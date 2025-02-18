@@ -1,0 +1,160 @@
+<!-- src/app/auth/auth-login/auth-login.component.html -->
+<app-loading></app-loading>
+<section class="login-section">
+    <div class="header-section">
+        <div class="logo-sec">
+            <a [routerLink]="['/news-feed-layout/style-1']">
+                <img src="assets/images/icon/logo.png" alt="logo" class="img-fluid">
+            </a>
+        </div>
+        <div class="right-links">
+            <ul>
+                <li>
+                    <a href="javascript:void(0)">
+                        about
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        upgrade
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-5 d-none d-lg-block">
+                <div class="login-welcome">
+                    <div>
+                        <img src="assets/images/login/charcter.png" class="img-fluid" alt="charcter">
+                        <h1>Welcome Back!</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-7 col-md-10 col-12 m-auto">
+                <div class="login-form">
+                    <div>
+                        <div class="login-title">
+                            <h2>Login</h2>
+                        </div>
+                        <div class="login-discription">
+                            <h3>Hello Everyone, Welcome Back</h3>
+                            <h4>Welcome to Friendbook, please login to your account.</h4>
+                        </div>
+                        <div class="form-sec">
+                            <div>
+                                <form class="theme-form" [formGroup]="loginForm">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input 
+                                            type="email" 
+                                            class="form-control" 
+                                            id="exampleInputEmail1"
+                                            placeholder="Enter email" 
+                                            formControlName="email"
+                                        >
+                                        <app-feather-icon 
+                                            [icons]="'user'" 
+                                            [class]="'input-icon iw-20 ih-20'">
+                                        </app-feather-icon>
+                                        @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+                                            <small class="text-danger">Veuillez entrer un email valide</small>
+                                        }
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Password</label>
+                                        <input  
+                                            class="form-control" 
+                                            id="exampleInputPassword1"
+                                            placeholder="Password" 
+                                            formControlName="password" 
+                                            [type]="show ? 'text' : 'password'" 
+                                        >
+                                        @if(show){
+                                            <app-feather-icon 
+                                                [icons]="'eye'" 
+                                                [class]="'input-icon iw-20 ih-20'" 
+                                                (click)="show = !show">
+                                            </app-feather-icon>
+                                        } @else {
+                                            <app-feather-icon 
+                                                [icons]="'eye-off'" 
+                                                [class]="'input-icon iw-20 ih-20'" 
+                                                (click)="show = !show">
+                                            </app-feather-icon>
+                                        }
+                                        @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+                                            <small class="text-danger">Le mot de passe est requis</small>
+                                        }
+                                    </div>
+
+                                    @if (errorMessage) {
+                                        <div class="alert alert-danger mt-3">
+                                            {{ errorMessage }}
+                                        </div>
+                                    }
+
+                                    <div class="bottom-sec">
+                                        <div class="form-check checkbox_animated">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                            <label class="form-check-label" for="exampleCheck1">remember me</label>
+                                        </div>
+                                        <a href="javascript:void(0)" class="ms-auto forget-password">forget password?</a>
+                                    </div>
+                                    <div class="btn-section">
+                                        <button 
+                                            class="btn btn-solid btn-lg" 
+                                            [disabled]="!loginForm.valid" 
+                                            (click)="login()"
+                                        >
+                                            login
+                                        </button>
+                                        <button 
+                                            [routerLink]="['/auth/signup']" 
+                                            class="btn btn-solid btn-lg ms-auto"
+                                        >
+                                            sign up
+                                        </button>
+                                    </div>  
+                                </form>
+                                <div class="connect-with">
+                                    <h6><span>OR Connect With</span></h6>
+                                    <ul class="social-links">
+                                        <li class="google">
+                                            <a href="javascript:void(0)">
+                                                <app-svg-icon [icons]="'google'"></app-svg-icon>
+                                            </a>
+                                        </li>
+                                        <li class="facebook">
+                                            <a href="javascript:void(0)">
+                                                <app-svg-icon [icons]="'facebook'"></app-svg-icon>
+                                            </a>
+                                        </li>
+                                        <li class="twitter">
+                                            <a href="javascript:void(0)">
+                                                <app-svg-icon [icons]="'twitter'"></app-svg-icon>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="how-work">
+        <div class="media">
+            <app-feather-icon [icons]="'play-circle'"></app-feather-icon>
+            <div class="media-body">
+                <h2>how it work?</h2>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

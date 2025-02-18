@@ -1,0 +1,18 @@
+<div class="card-header">
+    <h4>all svg emoji</h4>
+</div>
+<div class="card-body">
+    <div class="icon-usage">
+        <div class="row">
+            <div class="col-12">
+                <ul class="element-emoji">
+                    @for (item of allSvg; track item) {
+                    <li>
+                        <img [src]="item.svg" alt="">
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<owl-carousel-o [options]="storyOptions">
+    @if(storyData){
+    @for (item of storyData; track item) {
+    <ng-template carouselSlide>
+        <div>
+            @if(item.uname === 'add stories'){
+            <div class="story-box add-box">
+                <div class="bg-size"
+                    style="background-image: url(assets/images/story-bg.jpg); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                    <img [src]="item.images" class="img-fluid  bg-img" alt="" style="display: none;">
+                    <div class="add-icon">
+                        <div class="icon">
+                            <img [src]="item.plusImg" class="img-fluid " alt="plus">
+                        </div>
+                        <h6>{{item.uname}}</h6>
+                    </div>
+                </div>
+            </div>
+            } @else {
+            <div class="story-box" (click)="addStory()">
+                <div class="adaptive-overlay {{item.class}}"></div>
+                <div class="story-bg bg-size" [ngStyle]="{'background-image': 'url(' +  item.images  + ')'}"
+                    style=" background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                    <img [src]="item.images" class="img-fluid bg-img" alt="" style="display: none;">
+                </div>
+                <div class="story-content">
+                    <h6>{{item.uname}}</h6>
+                    <span>{{item.status}}</span>
+                </div>
+                <div class="story-setting setting-dropdown">
+                    <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+                        <a href="javascript:void(0)">
+                            <app-feather-icon [icons]="'sun'" [class]="'icon-light iw-13 ih-13'"></app-feather-icon>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right custom-dropdown">
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <app-feather-icon [icons]="'volume-x'"
+                                            [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>mute josephin
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <app-feather-icon [icons]="'user'"
+                                            [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>view profile
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </ng-template>
+    }
+    }
+</owl-carousel-o>

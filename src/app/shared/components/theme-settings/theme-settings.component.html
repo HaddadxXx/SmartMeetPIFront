@@ -1,0 +1,25 @@
+<div class="theme-settings">
+    <div class="rtl-btn">
+        <div class="theme-layout-version" [class.rtl]="tabData === 'ltr'" (click)="changeLayoutType(tabData)">
+            {{tabData.toUpperCase()}}</div>
+    </div>
+    <div class="rtl-btn h-cls" (click)="commonServices.changeMode()">
+        @if(!commonServices.dark){
+        <div class="dark-button">Dark</div>
+        } @else {
+        <div class="dark-button">Light</div>
+        }
+    </div>
+    <div class="pages">
+        <a (click)="isOpenMenu = true">
+            <div class="theme-setting-sidebar" id="setting-icon">
+                <div>
+                    pages
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<div id="setting_box" class="setting-box" [class.open-setting]="isOpenMenu">
+        <app-setting-box [isOpenMenu]="isOpenMenu" (childEvent)="isFalse($event)"></app-setting-box>
+</div>

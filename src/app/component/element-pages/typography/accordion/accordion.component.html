@@ -1,0 +1,28 @@
+<div class="card-header">
+    <h4>Accordion</h4>
+    <span>Theme style bootstrap accodion, you can use bootstrap accodion by removing
+        theme-accordion class
+    </span>
+</div>
+<div class="card-body">
+    <div class="accordion theme-accordion" id="accordionExample">
+        @for (item of items; track item) {
+        <div ngbAccordion [closeOthers]="true" class="card">
+           
+                <div ngbAccordionItem [collapsed]="true">
+                    <h2 ngbAccordionHeader class="card-header">
+                        <button ngbAccordionButton class="btn btn-link btn-block text-left collapsed">{{ item.title }}</button>
+                    </h2>
+                    <div ngbAccordionCollapse class="collapse" >
+                        <div ngbAccordionBody class="card-body">
+                            <ng-template>
+                               {{item.desc}}
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+           
+        </div>
+    }
+    </div>
+</div>

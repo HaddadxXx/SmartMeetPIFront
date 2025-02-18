@@ -1,0 +1,70 @@
+<div class="profile-menu section-t-space">
+    <ul>
+        <li
+            [class.active]="currentUrl === '/profile/timeline' || currentUrl === '/profile/tab' || currentUrl === '/profile/friend-profile'">
+            <a [routerLink]="['/profile/timeline']">
+                <app-feather-icon [icons]="'clock'" [class]="'iw-14 ih-14'"></app-feather-icon>
+                <h6>timeline</h6>
+            </a>
+        </li>
+        <li routerLinkActive="active">
+            <a [routerLink]="['/profile/about']">
+                <app-feather-icon [icons]="'info'" [class]="'iw-14 ih-14'"></app-feather-icon>
+                <h6>about</h6>
+            </a>
+        </li>
+        <li routerLinkActive="active">
+            <a [routerLink]="['/profile/friends']">
+                <app-feather-icon [icons]="'users'" [class]="'iw-14 ih-14'"></app-feather-icon>
+                <h6>friends</h6>
+            </a>
+        </li>
+        <li routerLinkActive="active">
+            <a [routerLink]="['/profile/gallery']">
+                <app-feather-icon [icons]="'image'" [class]="'iw-14 ih-14'"></app-feather-icon>
+                <h6>photos</h6>
+            </a>
+        </li>
+        <li class="d-xl-none d-inline-block" routerLinkActive="active">
+            <a [routerLink]="['/profile/activity-feed']">
+                <app-feather-icon [icons]="'list'" [class]="'iw-14 ih-14'"></app-feather-icon>
+                <h6>acitivity feed</h6>
+            </a>
+        </li>
+    </ul>
+    @if (currentUrl.includes('/profile/friend-profile')) {
+    <ul class="right-menu d-xl-flex d-none">
+        <li>
+            <div class="search-bar input-style icon-left search-inmenu">
+                 <app-feather-icon [icons]="'search'" [class]="'iw-16 ih-16 icon icon-theme'"></app-feather-icon>
+                <input type="text" class="form-control" placeholder="search here...">
+            </div>
+        </li>
+        <li>
+            <a href="javascript:void(0)">
+                <app-feather-icon [icons]="'user-check'" [class]="'me-0 iw-14 ih-14'"></app-feather-icon>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">
+                <app-feather-icon [icons]="'message-square'" [class]="'me-0 iw-14 ih-14'"></app-feather-icon>
+            </a>
+        </li>
+    </ul>
+    } @else {
+    <ul class="right-menu d-xl-flex d-none">
+        <li>
+            <div class="search-bar input-style icon-left search-inmenu">
+                <app-feather-icon [icons]="'search'" [class]="'iw-16 ih-16 icon icon-theme'"></app-feather-icon>
+                <input type="text" class="form-control" placeholder="search here...">
+            </div>
+        </li>
+        <li routerLinkActive="active">
+            <a [routerLink]="['/profile/activity-feed']">
+                <app-feather-icon [class]="'iw-14 ih-14'" [icons]="'list'"></app-feather-icon>
+                <h6>acitivity feed</h6>
+            </a>
+        </li>
+    </ul>
+    }
+</div>

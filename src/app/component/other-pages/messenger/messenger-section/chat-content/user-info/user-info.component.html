@@ -1,0 +1,56 @@
+<div class="back-btn d-lg-none d-block" (click)="isFalse()"> <app-feather-icon [icons]="'x'" [class]="'icon-theme'"></app-feather-icon>
+</div>
+<div class="user-image bg-size" [ngStyle]="{'background-image': 'url(' +  data.image  + ')'}"
+    style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+    <img src="assets/images/user/2.jpg" class="img-fluid bg-img" alt="" style="display: none;">
+</div>
+<div class="user-name">
+    <h5>{{data.user}}</h5>
+    <h6>london, united kingdom</h6>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora possimus magnam
+        adipisci aspernatur.</p>
+    <div class="social-btn">
+        <ul>
+            <li class="facebook">
+                <a href="javascript:void(0)">
+                    <app-svg-icon [icons]="'facebook'"></app-svg-icon>
+                </a>
+            </li>
+            <li class="twitter">
+                <a href="javascript:void(0)">
+                    <app-svg-icon [icons]="'twitter'"></app-svg-icon>
+                </a>
+            </li>
+            <li class="whatsapp">
+                <a href="javascript:void(0)">
+                    <app-svg-icon [icons]="'whatsapp'"></app-svg-icon>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="user-gallery">
+    <h5>media <a href="javascript:void(0)">see all</a></h5>
+    <div class="gallery-section">
+        <div class="portfolio-section ratio_square">
+            <div class="container-fluid p-0">
+                <div class="row">
+                    @for (item of socialMedia; track item) {
+                    <div class="col-4">
+                        <div class="overlay">
+                            <div class="portfolio-image">
+                                <a href="javascript:void(0)" class="bg-size"
+                                    [ngStyle]="{'background-image': 'url(' +  item.image  + ')'}"
+                                    style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+                                    <img [src]="item.image" alt="" class="img-fluid bg-img"
+                                        style="display: none;">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

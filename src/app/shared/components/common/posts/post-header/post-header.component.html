@@ -1,0 +1,54 @@
+<div class="post-title">
+    <div class="profile">
+        <div class="media">
+            @if(postData) {
+            <a class="popover-cls user-img" #data="ngbPopover" [ngbPopover]="popContent" triggers=""
+            (click)="commonServices.toggle(data, postData.profileImage , postData.userName)" placement="top"
+             [ngStyle]="{'background-image': 'url(' +  postData.profileImage  + ')'}"
+                style=" background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                <img [src]="postData.profileImage" class="img-fluid  bg-img" alt="user" style="display: none;">
+            </a>
+            <div class="media-body">
+                <a href="javascript:void(0)">
+                    <h5>{{postData.userName}}
+                        @if(postData.isDescription){
+                        <span>{{postData.details}} <a href="javascript:void(0)">dance acadamy</a></span>
+                        }
+                    </h5>
+                </a>
+                <h6>30 mins ago</h6>
+            </div>
+            }
+        </div>
+    </div>
+    <div class="setting-btn ms-auto setting-dropdown no-bg" (clickOutside)="outSideClose()">
+        <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+            <div role="button" (click)="isShow = !isShow">
+                <app-feather-icon [class]="'icon icon-font-color iw-14'" [icons]="'more-horizontal'"></app-feather-icon>
+            </div>
+            <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow"
+                style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 32px);">
+                <ul>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <app-feather-icon [class]="'icon-font-light iw-16 ih-16'"
+                                [icons]="'bookmark'"></app-feather-icon>savepost</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <app-feather-icon [class]="'icon-font-light iw-16 ih-16'"
+                                [icons]="'x-square'"></app-feather-icon>hidepost</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <app-feather-icon [class]="'icon-font-light iw-16 ih-16'"
+                                [icons]="'x-octagon'"></app-feather-icon>unfollows ufiya</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #popContent>
+    <app-popover-loader [data]="commonServices.popoverData"></app-popover-loader>
+</ng-template>

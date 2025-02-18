@@ -1,0 +1,57 @@
+<app-loading></app-loading>
+
+<header class="header-relative">
+    <app-header-one></app-header-one>
+</header>
+
+<section class="setting-section section-pb-space section-pt-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3 col-lg-4">
+                <div class="setting-sidebar" [class.show]="isOpenMenu">
+                    <div class="back-btn d-lg-none d-block" (click)="isOpenMenu = false">
+                        <app-feather-icon [class]="'icon-theme'" [icons]="'x'"></app-feather-icon>
+                    </div>
+                    <div class="user-details">
+                        <div class="user-img">
+                            <img src="assets/images/user/3.jpg" class="img-fluid bg-img" alt="">
+                        </div>
+                        <h5>Josephin water</h5>
+                        <h6>Josephin.water&#64;gmail.com</h6>
+                    </div>  
+                    <div class="tab-section">
+                        <div class="nav flex-column nav-pills">
+                            <a class="nav-link" routerLinkActive="active" [routerLink]="['/others/setting/home']"> <i class="fas fa-home me-2"></i>Home</a>
+                            <a class="nav-link" routerLinkActive="active" [routerLink]="['/others/setting/personal-info']"> <i class="fas fa-info me-2"></i>personal info</a>
+                            <a class="nav-link" routerLinkActive="active" [routerLink]="['/others/setting/account']"> <i class="fas fa-user me-2"></i>account</a>
+                            <a class="nav-link" routerLinkActive="active" [routerLink]="['/others/setting/privacy']"> <i class="fas fa-lock me-2"></i>privacy</a>
+                            <a class="nav-link" routerLinkActive="active" [routerLink]="['/others/setting/notifications']"> <i class="fas fa-bell me-2"></i>notification</a>
+                            <a class="nav-link" routerLinkActive="active" [routerLink]="['/others/setting/story']"> <i class="fas fa-photo-video me-2"></i>story</a>
+                            <a class="nav-link" routerLinkActive="active" [routerLink]="['/others/help-support']"> <i class="fas fa-question-circle me-2"></i>help</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-8">
+                <div class="d-lg-none d-block text-right mb-3" (click)="isOpenMenu = true">
+                    <a href="javascript:void(0)" class="btn btn-solid setting-menu">
+                        setting menu
+                    </a>
+                </div>
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade active show" role="tabpanel">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <app-download></app-download>
+</section>
+
+<footer class="footer-t-space pb-0">
+    <app-footer [footerClass]="'footer-b-space'"></app-footer>
+</footer>

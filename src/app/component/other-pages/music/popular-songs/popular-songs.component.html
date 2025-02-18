@@ -1,0 +1,65 @@
+    <div class="card-title">
+        <h3>popular songs</h3>
+        <div class="settings">
+            <div class="setting-btn">
+                <a href="javascript:void(0)" class="d-flex">
+                    <app-feather-icon [icons]="'rotate-cw'" [class]="'icon icon-dark iw-11 ih-11 stroke-width-3'"></app-feather-icon>
+                </a>
+            </div>
+            <div class="setting-btn ms-2 setting-dropdown" (clickOutside)="outSideClose()">
+                <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+                    <a class="d-flex" href="javascript:void(0)" [class.show]="isShow" (click)="isShow = !isShow">
+                        <app-feather-icon [icons]="'sun'" [class]="'icon-dark stroke-width-3 iw-12 ih-12'"></app-feather-icon>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 14px);">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'edit'" [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>change city</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'settings'" [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>setting</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="popular-song-sec">
+        <ul>
+            @for (item of popularSongs; track item) {
+                <li>
+                    <div class="media">
+                        <div class="icon-play">
+                            <app-feather-icon [icons]="'play'" [class]="'icon-theme iw-18 ih-18'"></app-feather-icon>
+                        </div>
+                        <div class="media-body">
+                            <h5>{{item.songName}}</h5>
+                            <h6>{{item.singerName}}</h6>
+                        </div>
+                    </div>
+                    <div class="setting-btn ms-auto setting-dropdown no-bg">
+                        <div class="btn-group custom-dropdown arrow-none dropdown-sm" (clickOutside)="item.isShow = false">
+                            <div role="button" [class.show]="item.isShow" (click)="show(item)">
+                                <app-feather-icon [icons]="'more-horizontal'" [class]="'icon icon-font-color iw-14'"></app-feather-icon>
+                            </div>
+                            <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="item.isShow" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 32px);">
+                                <ul>
+                                    <li>
+                                        <a href="javascript:void(0)">
+                                            <app-feather-icon [icons]="'play'" [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>add to playlist</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">
+                                             <app-feather-icon [icons]="'heart'" [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>add to favourite</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>

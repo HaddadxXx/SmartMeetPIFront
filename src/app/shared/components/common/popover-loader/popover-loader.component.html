@@ -1,0 +1,17 @@
+<div class="popover-loader">
+    <p>loader</p>
+</div>
+<div class="media popover-media friend-box-chat">
+    <img class="img-fluid user-img" [src]="data.image">
+    <div class="media-body">
+        <h4>
+            {{data.title}}
+        </h4>
+        <h6><img src="assets/svg/users.svg" class="img-fluid">30 mutual friend</h6>
+        <h6><img src="assets/svg/map-pin.svg" class="img-fluid">lives in london</h6>
+    </div>
+</div>
+<div class="button-popover">
+    <a [routerLink]="['/others/messenger']" class="btn btn-solid"><img src="assets/svg/message-square.svg" class="img-fluid">message</a>
+    <a href="javascript:void(0)" class="btn btn-solid"><img src="assets/svg/user-check.svg" class="img-fluid mr-0"></a>
+</div>

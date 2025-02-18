@@ -1,0 +1,49 @@
+<div class="container-fluid custom-padding">
+    <div class="header-section">
+        <div class="header-left">
+            <app-brand-logo [currentUrl]="currentUrl"></app-brand-logo>
+            <app-search-box></app-search-box>
+        </div>
+        <div class="header-right">
+            <nav class="navbar navbar-expand-lg pe-0">
+                <div class="overlay-bg"></div>
+                <button class="navbar-toggler p-0" type="button">
+                    <app-feather-icon [icons]="'menu'" [class]="'icon iw-22 ih-22 icon-light'"></app-feather-icon>
+                </button>
+                <div class="navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav align-items-center">
+                        <li class="nav-item d-block d-lg-none back-btn">
+                            <a class="nav-link" href="javascript:void(0)">back</a>
+                        </li>
+                        <li class="nav-item"
+                            [class.active]="currentUrl.includes('/company/blog-details') || currentUrl.includes('/company/career-details')|| currentUrl.includes('/company/404') || 
+                             currentUrl.includes('/element/typography') || currentUrl.includes('/element/sidebar-widgets') ||  currentUrl.includes('/element/calender') || currentUrl.includes('/element/maps') 
+                            || currentUrl.includes('/element/calender') || currentUrl.includes('/element/icons') || currentUrl.includes('/element/modal') || currentUrl.includes('/element/buttons')">
+                            <a class="nav-link" [routerLink]="['/news-feed-layout/style-1']">Home</a>
+                        </li>
+                        <li class="nav-item" routerLinkActive="active">
+                            <a class="nav-link" [routerLink]="['/company/about']">about</a>
+                        </li>
+                        <li class="nav-item" routerLinkActive="active">
+                            <a class="nav-link" [routerLink]="['/company/career']">career</a>
+                        </li>
+                        <li class="nav-item" routerLinkActive="active">
+                            <a class="nav-link" [routerLink]="['/company/blog']">blog</a>
+                        </li>
+                        <li class="nav-item" routerLinkActive="active">
+                            <a class="nav-link" [routerLink]="['/company/faq']">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex" (click)="logOut()">
+                                <app-feather-icon [icons]="'log-in'"
+                                    [class]="'me-2 iw-20 ih-20'"></app-feather-icon>login</a>
+                        </li>
+                        <li class="header-btn margin-1 nav-item">
+                            <app-mode></app-mode>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>

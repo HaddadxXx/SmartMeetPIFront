@@ -1,0 +1,83 @@
+<div class="card-title">
+    <h3>create post</h3>
+    <ul class="create-option">
+        <li class="options">
+            <div class="setting-dropdown">
+                <div class="btn-group custom-dropdown arrow-none dropdown-sm" (clickOutside)="outSide()">
+                    <h5 [class.show]="isShow" (click)="isShow = !isShow">public
+                        <app-feather-icon [icons]="'chevron-down'" [class]="'iw-14'"></app-feather-icon>
+                    </h5>
+                    <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow"
+                        style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(12px, 26px);">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'globe'"
+                                        [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>public</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'users'"
+                                        [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>friends</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'user'"
+                                        [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>friends
+                                    except</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'user'"
+                                        [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>specific
+                                    friends</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'lock'"
+                                        [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>only
+                                    me</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <h5>
+                <app-feather-icon [icons]="'video'" [class]="'iw-15'"></app-feather-icon>go live
+            </h5>
+        </li>
+    </ul>
+    <div class="settings">
+        <div class="setting-btn ms-2 setting-dropdown no-bg" (clickOutside)="outSideClose()">
+            <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+                <div role="button" [class.show]="isOpen" (click)="isOpen = !isOpen">
+                    <app-feather-icon [icons]="'more-horizontal'"
+                        [class]="'icon icon-font-color iw-14'"></app-feather-icon>
+                </div>
+                <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isOpen"
+                    style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 32px);">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <app-feather-icon [icons]="'edit'"
+                                    [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>editprofile</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <app-feather-icon [icons]="'user'"
+                                    [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>viewprofile</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="search-input input-style icon-right">
+    <input type="text" class="form-control enable" placeholder="write something here.." (click)="postButton()">
+    <a href="javascript:void(0)">
+        <img src="assets/images/icon/translate.png" class="img-fluid  icon" alt="translate">
+    </a>
+</div>

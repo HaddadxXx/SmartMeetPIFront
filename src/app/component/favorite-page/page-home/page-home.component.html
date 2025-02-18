@@ -1,0 +1,49 @@
+<div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
+    <app-page-home-skeleton></app-page-home-skeleton>
+</div>
+<app-page-cover></app-page-cover>
+<app-profile-menu [currentUrl]="currentUrl"></app-profile-menu>
+<div class="container-fluid section-t-space px-0">
+    <div class="page-content">
+        <div class="content-left">
+            <div class="sticky-top">
+                <app-about-data></app-about-data>
+                <div class="page-list section-t-space">
+                    <app-liked-pages [rating]="true" [currentUrl]="currentUrl"></app-liked-pages>
+                </div>
+            </div>
+        </div>
+        <div class="content-center">
+            <div class="post-panel">
+                @for (item of visiblePosts; track item) {
+                <div class="post-wrapper col-grid-box {{item.class}}">
+                    <app-post-header [postData]="item"></app-post-header>
+                    <app-post-details [postData]="item"></app-post-details>
+                </div>
+                }
+            </div>
+            @if(visiblePosts){
+            <div class="post-loader" [class.no-more]="visiblePosts.length == 7">
+                @if(visiblePosts){
+                @if (visiblePosts.length < 7) { <div class="loader-icon" (click)="refresh()">
+                    <app-feather-icon [icons]="'rotate-ccw'" [class]="'icon-theme iw-25 ih-25'"></app-feather-icon>
+            </div>
+            }@else {
+            <div class="no-more-text">
+                <p>no more post</p>
+            </div>
+            }
+            }
+        </div>
+        }
+    </div>
+    <div class="content-right">
+        <div class="sticky-top">
+            <app-birthday-reminder></app-birthday-reminder>
+            <div class="gallery-section section-t-space">
+                <app-gallery></app-gallery>
+            </div>
+            <app-events [events]="event"></app-events>
+        </div>
+    </div>
+</div>

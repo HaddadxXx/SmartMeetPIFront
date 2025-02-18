@@ -1,0 +1,35 @@
+<div class="container-fluid section-t-space px-0">
+    <div class="page-content">
+        <div class="content-center w-100">
+            <div class="gallery-page-section section-b-space">
+                <div class="card-title">
+                    <h3>gallery</h3>
+                    <div class="right-setting">
+                        <a href="javascript:void(0)" class="btn btn-solid">create album</a>
+                        <a href="javascript:void(0)" class="btn btn-solid ms-3">add photo/video</a>
+                    </div>
+                </div>
+                <div class="tab-section">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link" [class.active]="openTab == 'album'"
+                                (click)="changeTab('album')">Album</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [class.active]="openTab == 'photos'"
+                                (click)="changeTab('photos')">Photos</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade Choose-photo-modal" id="photo-album" [ngClass]=" {'active show' :openTab == 'album' }"  role="tabpanel">
+                            <app-album></app-album>
+                        </div>
+                        <div class="tab-pane fade" id="photo" [ngClass]=" {'active show' :openTab == 'photos' }" role="tabpanel">
+                            <app-gallery-photos></app-gallery-photos>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

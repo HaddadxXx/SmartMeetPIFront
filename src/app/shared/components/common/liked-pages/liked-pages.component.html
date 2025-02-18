@@ -1,0 +1,78 @@
+<div class="card-title">
+    @if(currentUrl && currentUrl.includes('favorite/page-home')) {
+    <h3>Suggestion Pages</h3>
+    } @else {
+    <h3>liked pages</h3>
+    @if(rating){
+    <h5>18 pages</h5>
+    }
+    }
+    <div class="settings">
+        <div class="setting-btn">
+            <a href="javascript:void(0)" class="d-flex">
+                <app-feather-icon [icons]="'rotate-cw'"
+                    [class]="'icon icon-dark stroke-width-3 iw-11 ih-11'"></app-feather-icon>
+            </a>
+        </div>
+        <div class="setting-btn ms-2 setting-dropdown" (clickOutside)="outSideClose()">
+            <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+                <a href="javascript:void(0)" class="d-flex" [class.show]="isShow" (click)="isShow = !isShow">
+                    <app-feather-icon [icons]="'sun'"
+                        [class]="'icon-dark stroke-width-3 icon iw-11 ih-11'"></app-feather-icon>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow"
+                    style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 13px);">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <app-feather-icon [icons]="'edit'"
+                                    [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>see all</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <app-feather-icon [icons]="'search'"
+                                    [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon> find page</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <app-feather-icon [icons]="'settings'"
+                                    [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="list-content">
+    <ul>
+        @if(likedPages){
+        @for (item of likedPages; track item) {
+        <li>
+            <div class="media">
+                <div class="img-part" [ngStyle]="{'background-image': 'url(' +  item.image  + ')'}"
+                    style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                    <img [src]="item.image" class="img-fluid  bg-img" alt="" style="display: none;">
+                </div>
+                <div class="media-body">
+                    <h4>{{item.title}}</h4>
+                    <h6>{{item.subTitle}}
+                        @if(rating){
+                        <span>
+                            <app-feather-icon [icons]="'user'"
+                                [class]="'icon-font-color iw-13 ih-13'"></app-feather-icon>{{item.friends}}k
+                        </span>
+                        }
+                    </h6>
+                </div>
+            </div>
+            @if(rating){
+            <div class="favourite-btn" [class.active]="item.favorite" (click)="items(item)">
+                <app-feather-icon [icons]="'star'" [class]="'icon-dark iw-14 ih-14'"></app-feather-icon>
+            </div>
+            }
+        </li>
+        }
+        }
+    </ul>
+</div>

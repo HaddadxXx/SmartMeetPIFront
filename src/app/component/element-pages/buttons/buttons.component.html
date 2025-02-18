@@ -1,0 +1,46 @@
+<app-loading></app-loading>
+
+<header class="no-sticky bg-transparent">
+    <app-header [currentUrl]="currentUrl"></app-header>
+</header>
+
+<section class="breadcrumb-section breadcrumb-sm bg-size"
+    style="background-image: url(assets/images/breadcrumb.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+    @if(title){
+    <app-title-section [title]="title"></app-title-section>
+    }
+</section>
+
+<section class="container section-pt-space section-pb-space element-btn">
+    <div class="row">
+        <div class="col-lg-6 section-b-space">
+               <app-theme-buttons></app-theme-buttons>
+        </div>
+        <div class="col-lg-6 section-b-space">
+              <app-button-tags></app-button-tags>
+        </div>
+        <div class="col-sm-12 section-b-space">
+             <app-button-text-sizes></app-button-text-sizes>
+        </div>
+        <div class="col-sm-12 section-b-space">
+            <app-bootstrap-button></app-bootstrap-button>
+        </div>
+        <div class="col-sm-12 section-b-space">
+              <app-button-outline></app-button-outline>
+        </div>
+        <div class="col-lg-6">
+            <app-button-block></app-button-block>
+        </div>
+        <div class="col-lg-6">
+             <app-button-group></app-button-group>
+        </div>
+    </div>
+</section>
+
+<section>
+    <app-download></app-download>
+</section>
+
+<footer class="footer-t-space pb-0">
+   <app-footer [footerClass]="'footer-b-space'"></app-footer>
+</footer>

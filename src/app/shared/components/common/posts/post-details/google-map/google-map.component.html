@@ -1,0 +1,35 @@
+
+
+<div class="post-wrapper">
+    <div class="post-details ratio_55">
+        <div class="img-wrapper">
+            <div class="map-wrapper">
+                <div class="map" id="map">
+                    <google-map height="300x" width="100%" [zoom]="zoom">
+                        @for (marker of markers; track marker) {
+                        <map-marker #markerElem [position]="marker.position" [label]="marker.label" [title]="marker.title"
+                          [options]="marker.options" (mapClick)="openInfo(markerElem, marker.info)">
+                        </map-marker>
+                        }
+                      </google-map>
+                </div>
+                <div class="map-details">
+                    <div class="media">
+                        <a href="javascript:void(0)" class="map-img"
+                        [style.background-image]="'url(\'assets/images/paris.jpg\')'"
+                        style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                            <img src="assets/images/paris.jpg" class="img-fluid  bg-img" alt="paris" style="display: none;">
+                        </a>
+                        <div class="media-body">
+                            <h5>paris, france</h5>
+                            <h6>city . france</h6>
+                            <span>Solez Cloter and 54 other have been
+                                here......</span>
+                        </div>
+                    </div>
+                    <a href="https://www.google.com/maps" class="btn btn-theme-light">view</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

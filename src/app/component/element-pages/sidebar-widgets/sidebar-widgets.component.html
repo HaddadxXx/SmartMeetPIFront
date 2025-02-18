@@ -1,0 +1,64 @@
+<app-loading></app-loading>
+<header class="no-sticky bg-transparent">
+    <app-header [currentUrl]="currentUrl"></app-header>
+</header>
+<section class="breadcrumb-section breadcrumb-sm bg-size"
+    style="background-image: url(assets/images/breadcrumb.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+    @if(title){
+    <app-title-section [title]="title"></app-title-section>
+    }
+</section>
+<div class="page-body container-fluid custom-padding element-space">
+    <div class="page-center w-100">
+        <div class="page-content justify-content-center">
+            <div class="content-left">
+                <div class="profile-box">
+                    <app-profile-box></app-profile-box>
+                </div>
+                <div class="suggestion-box section-t-space">
+                    <app-friend-suggestion></app-friend-suggestion>
+                </div>
+                <div class="weather-section section-t-space">
+                    <app-common-weather></app-common-weather>
+                </div>
+                <div class="suggestion-box section-t-space">
+                    <app-your-games></app-your-games>
+                </div>
+            </div>
+            <div class="content-right">
+                <app-birthday-section></app-birthday-section>
+                <div class="gallery-section section-t-space">
+                    <app-gallery></app-gallery>
+                </div>
+                <app-events [events]="event"></app-events>
+            </div>
+            <div class="content-left">
+                <div class="player-box section-b-space">
+                    <app-now-playing></app-now-playing>
+                </div>
+                <app-college-meet></app-college-meet>
+                <div class="weather-search section-t-space">
+                    <app-search-location></app-search-location>
+                </div>
+            </div>
+            <div class="content-right">
+                <div class="playlist-sec">
+                    <app-popular-songs></app-popular-songs>
+                </div>
+                <div class="page-list section-t-space">
+                    <app-liked-pages [rating]="true"></app-liked-pages>
+                </div>
+                <div class="weather-section weather-light section-t-space">
+                    <app-common-weather [image]="image"></app-common-weather>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section>
+    <app-download></app-download>
+</section>
+
+<footer class="footer-t-space pb-0">
+    <app-footer [footerClass]="'footer-b-space'"></app-footer>
+</footer>

@@ -1,0 +1,58 @@
+<div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
+<app-time-line-skeleton></app-time-line-skeleton>
+</div>
+<app-profile-pages></app-profile-pages>
+<app-profile-menu [currentUrl]="currentUrl"></app-profile-menu>
+<div class="container-fluid section-t-space px-0 layout-default">
+    <div class="page-content">  
+        <div class="content-left">
+            <app-about-intro-my-self [introMySelf]="introMySelf"></app-about-intro-my-self>
+            <div class="suggestion-box section-t-space">
+                <app-friend-suggestion></app-friend-suggestion>
+            </div>
+            <div class="sticky-top d-xl-block d-none">
+                <div class="page-list section-t-space">
+                    <app-liked-pages [rating]="true"></app-liked-pages>
+                </div>
+            </div>
+        </div>
+        <div class="content-center">
+            <app-create-post [isCreatePost]="isCreatePost"></app-create-post>
+            <div class="overlay-bg"></div>
+            <div class="post-panel infinite-loader-sec section-t-space">
+                @for (item of visiblePosts; track item) {
+                <div class="post-wrapper col-grid-box {{item.class}}">
+                    <app-post-header [postData]="item"></app-post-header>
+                    <app-post-details [postData]="item"></app-post-details>
+                </div>
+                }
+            </div>
+            @if(visiblePosts){
+            <div class="post-loader" [class.no-more]="visiblePosts.length == 7">
+                @if (visiblePosts.length < 7) { <div class="loader-icon" (click)="refresh()">
+                    <app-feather-icon [icons]="'rotate-ccw'" [class]="'icon-theme iw-25 ih-25'"></app-feather-icon>
+            </div>
+            }@else {
+            <div class="no-more-text">
+                <p>no more post</p>
+            </div>
+            }
+        </div>
+        }
+    </div>
+    <div class="content-right d-xl-block d-none">
+        <app-college-meet></app-college-meet>
+        <div class="gallery-section section-t-space">
+            <app-gallery></app-gallery>
+        </div>
+        <div class="activity-list section-t-space">
+            <app-activity-feed></app-activity-feed>
+        </div>
+        <div class="sticky-top">
+            <app-events [events]="event"></app-events>
+            <div class="hashtag-list section-t-space">
+                <app-worldwide-trends></app-worldwide-trends>
+            </div>
+        </div>
+    </div>
+</div>

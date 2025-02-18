@@ -1,0 +1,100 @@
+<app-loading></app-loading>
+<header class="no-sticky bg-transparent">
+    <app-header [currentUrl]="currentUrl"></app-header>
+</header>
+<section class="breadcrumb-section breadcrumb-sm bg-size"
+    style="background-image: url(assets/images/breadcrumb.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+    @if(title){
+    <app-title-section [title]="title"></app-title-section>
+    }
+</section>
+<section class="element-modal section-pt-space section-pb-space ratio2_3">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="modal-box">
+                    <div class="card">
+                        <div class="img-section">
+                            <img src="assets/images/modal-img/story.jpg" class="img-fluid bg-img" alt="">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">story modal</h5>
+                            <a href="javascript:void(0)" class="btn btn-solid" (click)="storyModal()">open modal</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="modal-box">
+                    <div class="card">
+                        <div class="img-section">
+                            <img src="assets/images/modal-img/share.jpg" class="img-fluid bg-img" alt="">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">share post modal</h5>
+                            <a href="javascript:void(0)" class="btn btn-solid" (click)="sharePost()">open modal</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="modal-box">
+                    <div class="card">
+                        <div class="img-section">
+                            <img src="assets/images/modal-img/gallery.jpg" class="img-fluid bg-img" alt="">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">gallery/post modal</h5>
+                            <a href="javascript:void(0)" class="btn btn-solid" (click)="gallery()">open modal</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="modal-box">
+                    <div class="card">
+                        <div class="img-section">
+                            <img src="assets/images/modal-img/video.jpg" class="img-fluid bg-img" alt="">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Video view modal</h5>
+                            <a href="javascript:void(0)" class="btn btn-solid" (click)="videoView()">open modal</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="modal-box">
+                    <div class="card">
+                        <div class="img-section">
+                            <img src="assets/images/modal-img/edit.jpg" class="img-fluid bg-img" alt="">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">edit profile modal</h5>
+                            <a href="javascript:void(0)" class="btn btn-solid" (click)="editProfile()">open modal</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="modal-box">
+                    <div class="card">
+                        <div class="img-section">
+                            <img src="assets/images/modal-img/choose.jpg" class="img-fluid bg-img" alt="">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Choose photo modal</h5>
+                            <a href="javascript:void(0)" class="btn btn-solid" (click)="choosePhoto()">open modal</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <app-download></app-download>
+</section>
+<footer class="footer-t-space pb-0">
+    <app-footer [footerClass]="'footer-b-space'"></app-footer>
+</footer>

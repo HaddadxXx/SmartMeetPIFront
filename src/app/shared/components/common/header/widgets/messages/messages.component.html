@@ -1,0 +1,90 @@
+<div (clickOutside)="outSideClose()">
+    <a class="main-link" href="javascript:void(0)" (click)="isOpen = !isOpen" [class.show]="isOpen">
+        <app-feather-icon [icons]="'message-circle'"
+            [class]="'icon-light stroke-width-3 iw-16 ih-16'"></app-feather-icon>
+        <span class="count success">2</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right" [class.show]="isOpen"
+        style="position: absolute;inset: 0px auto auto 0px;margin: 0px;transform: translate(-306px, 20px);">
+        <div class="dropdown-header">
+            <div class="left-title">
+                <span>messages</span>
+            </div>
+            <div class="right-option">
+                <ul>
+                    <li>
+                        <a [routerLink]="['/others/messenger']">
+                            <app-feather-icon [icons]="'maximize'" [class]="'iw-16 ih-16'"></app-feather-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <app-feather-icon [icons]="'edit'" [class]="'iw-16 ih-16'"></app-feather-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <app-feather-icon [icons]="'more-horizontal'" [class]="'iw-16 ih-16'"></app-feather-icon>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="mobile-close" (click)="isOpen = false">
+                <h5>close</h5>
+            </div>
+        </div>
+        <div class="search-bar input-style icon-left">
+            <app-feather-icon [icons]="'search'" [class]="'iw-16 ih-16 icon'"></app-feather-icon>
+            <input type="text" class="form-control" placeholder="search messages...">
+        </div>
+        <div class="dropdown-content">
+            <ul class="friend-list">
+                <li (click)="isOpen = false">
+                    <a href="javascript:void(0)">
+                        <div class="media">
+                            <img src="assets/images/user-sm/1.jpg" alt="user">
+                            <div class="media-body">
+                                <div>
+                                    <h5 class="mt-0">Paige Turner</h5>
+                                    <h6>Are you there ?</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="active-status">
+                            <span class="active"></span>
+                        </div>
+                    </a>
+                </li>
+                <li (click)="isOpen = false">
+                    <a href="javascript:void(0)">
+                        <div class="media">
+                            <img src="assets/images/user-sm/2.jpg" alt="user">
+                            <div class="media-body">
+                                <div>
+                                    <h5 class="mt-0">Paige Turner</h5>
+                                    <h6>Are you there ?</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li (click)="isOpen = false">
+                    <a href="javascript:void(0)">
+                        <div class="media">
+                            <img src="assets/images/user-sm/3.jpg" alt="user">
+                            <div class="media-body">
+                                <div>
+                                    <h5 class="mt-0">Bob Frapples</h5>
+                                    <h6>hello ! how are you ?</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="active-status">
+                            <span class="offline"></span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+{
+    "galleryRecord" : [
+        {
+            "image": "assets/images/story/1.jpg",
+            "previewImage": "assets/images/story/1.jpg",
+            "class": "col-4"
+       },
+       {
+            "image": "assets/images/story/2.jpg",
+            "previewImage": "assets/images/story/2.jpg",
+            "class": "col-4"
+       },
+       {
+            "image": "assets/images/story/3.jpg",
+            "previewImage": "assets/images/story/3.jpg",
+            "class": "col-4"
+       },
+       {
+            "class": "col-4 row m-0",
+            "images": [
+                 {
+                      "class": "col-12 pt-cls p-0",
+                      "image": "assets/images/story/4.jpg",
+                      "previewImage": "assets/images/story/4.jpg"
+                 },
+                 {
+                      "class": "col-12 pt-cls p-0",
+                      "image": "assets/images/story/6.jpg",
+                      "previewImage": "assets/images/story/6.jpg"
+                 }
+            ]
+       },
+       {
+            "image": "assets/images/story/5.jpg",
+            "previewImage": "assets/images/story/5.jpg",
+            "class": "col-8 pt-cls"
+       }
+    ]
+}

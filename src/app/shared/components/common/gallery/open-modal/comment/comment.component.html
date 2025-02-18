@@ -1,0 +1,55 @@
+<div class="post-react">
+    <ul>
+        <li class="react-btn">
+            <a class="react-click" href="javascript:void(0)" (click)="isEmoji =!isEmoji">
+                 <app-feather-icon [icons]="'smile'" [class]="'iw-18 ih-18'"></app-feather-icon>react
+            </a>
+            <div class="react-box" [class.show]="isEmoji">
+                <ul>
+                    @for (item of emojiList; track item) {
+                    <li ngbTooltip="{{item.icon}}">
+                        <a href="javascript:void(0)">
+                            <img [src]="item.images" alt="{{item.icon}}">
+                        </a>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </li>
+        <li class="comment-click" (click)="isActive =!isActive">
+            <a href="javascript:void(0)">
+                <app-feather-icon [class]="'iw-18 ih-18'"
+                    [icons]="'message-square'"></app-feather-icon>
+                comment
+            </a>
+        </li>
+        <li (click)="share()">
+            <a href="javascript:void(0)">
+                <app-feather-icon [class]="'iw-16 ih-16'"
+                    [icons]="'share'"></app-feather-icon>
+                share
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="comment-section">
+    @if (isActive) {
+    <div class="comments" [class.d-block]="isActive">
+        <app-comment-data></app-comment-data>
+    </div>
+    }
+    <div class="reply">
+        <div class="search-input input-style input-lg icon-right">
+            <input type="text" class="form-control emojiPicker"
+                placeholder="write a comment..">
+            <a href="javascript:void(0)">
+                <app-feather-icon [class]="'icon icon-2 iw-14 ih-14'"
+                    [icons]="'smile'"></app-feather-icon>
+            </a>
+            <a href="javascript:void(0)">
+                <app-feather-icon [class]="'iw-14 ih-14 icon'"
+                    [icons]="'camera'"></app-feather-icon>
+            </a>
+        </div>
+    </div>
+</div>

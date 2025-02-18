@@ -1,0 +1,199 @@
+{
+    "style3": [
+        {
+            "id": 1,
+            "profileImage": "assets/images/user-sm/1.jpg",
+            "userName": "sufiya eliza",
+            "uploadTime": "30 mins ago",
+            "isUrl": "https://giphy.com/embed/dSdoQogGblKnid5Wb3",
+            "title": "Today Our Three Cute Puppy Dog Birthday !!!!",
+            "spanTag": "#ourcutepuppy,",
+            "tag": "#puppy, #birthday, #dog",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. has been the industry's standard dummy text ever since the 1500s",
+            "class": "section-t-space d-block",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name": "Sufiya Eliza"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "profileImage": "assets/images/user-sm/1.jpg",
+            "userName": "Gemix Store - Online Shopping App",
+            "uploadTime": "2 mins ago",
+            "title": "Today Our Three Cute Puppy Dog Birthday !!!!",
+            "carousel": [
+                {
+                    "src": "assets/images/products/2.jpg",
+                    "title": "Natural juice",
+                    "desc": "Fresh and natural, Orange Juice. -50%"
+                },
+                {
+                    "src": "assets/images/products/3.jpg",
+                    "title": "Natural juice",
+                    "desc": "Fresh and natural, Orange Juice. -50%"
+                },
+                {
+                    "src": "assets/images/products/1.jpg",
+                    "title": "Natural juice",
+                    "desc": "Fresh and natural, OrangeJuice. -50%",
+                    "discount": true
+                },
+                {
+                    "src": "assets/images/products/3.jpg",
+                    "title": "Natural juice",
+                    "desc": "Fresh and natural, OrangeJuice. -50%"
+                }
+            ],
+            "spanTag": "#ourcutepuppy,",
+            "tag": "#puppy, #birthday, #dog",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. has been the industry's standard dummy text ever since the 1500s",
+            "class": "section-t-space d-block",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name": "Sufiya Eliza"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "profileImage": "assets/images/user-sm/1.jpg",
+            "userName": "sufiya eliza",
+            "uploadTime": "30 mins ago",
+            "postImage": "assets/images/post/2.jpg",
+            "title": "Celebration new album song launched",
+            "spanTag": "#Musiccelebration,",
+            "tag": "#music, #party, #music",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. has been the industry's standard dummy text ever since the 1500s",
+            "class": "section-t-space d-block",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name": "Sufiya Eliza"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "profileImage": "assets/images/user-sm/1.jpg",
+            "userName": "sufiya eliza",
+            "uploadTime": "30 mins ago",
+            "postImage": "assets/images/post/3.jpg",
+            "title": "Today Our Three Cute Puppy Dog Birthday !!!!",
+            "spanTag": "#puppy, #birthday, #dog,",
+            "tag": "#music, #party, #music",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. has been the industry's standard dummy text ever since the 1500s",
+            "class": "section-t-space d-block",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name": "Sufiya Eliza"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "profileImage": "assets/images/user-sm/1.jpg",
+            "userName": "sufiya eliza",
+            "uploadTime": "30 mins ago",
+            "gallerySrc": [
+                {
+                    "class": "col-8 pt-cls",
+                    "url": "assets/images/post/4.jpg"
+                },
+                {
+                    "class": "col-4 row m-0",
+                    "subClass": [
+                        {
+                            "class":"col-12 pt-cls p-0",
+                            "url": "assets/images/post/5.jpg"
+                        },
+                        {
+                            "class":"col-12 pt-cls p-0",
+                            "url": "assets/images/post/6.jpg"
+                        }
+                    ]
+                }
+            ],
+            "title": "Celebration new album song launched",
+            "spanTag": "#Musiccelebration,",
+            "tag": "#music, #party, #music",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.has been the industry's standard dummy text ever since the 1500s",
+            "class": "section-t-space d-block",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name": "Sufiya Eliza"
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "profileImage": "assets/images/user-sm/1.jpg",
+            "userName": "sufiya eliza",
+            "uploadTime": "30 mins ago",
+            "title": "Celebration new album song launched",
+            "spanTag": "#Musiccelebration,",
+            "tag": "#music, #party, #music",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.has been the industry's standard dummy text ever since the 1500s",
+            "class": "section-t-space d-block",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name": "Sufiya Eliza"
+                }
+            ]
+        }
+    ]
+}

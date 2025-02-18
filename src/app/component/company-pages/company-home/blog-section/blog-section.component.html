@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="title-sec">
+                <h4>blogs</h4>
+                <h3>our latest posts</h3>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="slider-section ratio2_3">
+                <div class="blog-slider default-space-lg no-arrow">
+                    <owl-carousel-o [options]="options">
+                        @for (item of blogSection; track item) {
+                        <ng-template carouselSlide>
+                            <div>
+                                <div class="blog-wrap">
+                                    <div class="blog-image">
+                                        <a href="javascript:void(0)" class="bg-size"
+                                            [ngStyle]="{'background-image': 'url(' +  item.url  + ')'}"
+                                            style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+                                            <img [src]="item.url" class="img-fluid bg-img" alt=""
+                                                style="display: none;">
+                                        </a>
+                                        <div class="blog-label">
+                                            <h6>
+                                                <app-feather-icon [icons]="'heart'"
+                                                    [class]="'iw-15 ih-15'"></app-feather-icon>10
+                                            </h6>
+                                            <h6>
+                                                <app-feather-icon [icons]="'message-circle'"
+                                                    [class]="'iw-16 ih-16'"></app-feather-icon>5
+                                            </h6>
+                                        </div>
+                                        <h3 class="title">fashion shoot</h3>
+                                    </div>
+                                    <div class="blog-details">
+                                        <a href="javascript:void(0)">
+                                            <h5>increase your friendbook followers - post, like, comments</h5>
+                                        </a>
+                                        <div class="detail">
+                                            <h6>
+                                                <app-feather-icon [icons]="'user'"
+                                                    [class]="'iw-15 ih-15'"></app-feather-icon>page turner
+                                            </h6>
+                                            <h6>
+                                                <app-feather-icon [icons]="'clock'"
+                                                    [class]="'iw-15 ih-15'"></app-feather-icon>20 June, 2024
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                        }
+                    </owl-carousel-o>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="animation-home">
+    <div class="cross"></div>
+    <div class="cross cross1"></div>
+    <div class="tringle"></div>
+    <div class="tringle tringle1"></div>
+    <div class="circle"></div>
+</div>

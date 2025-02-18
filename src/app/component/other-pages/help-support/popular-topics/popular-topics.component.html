@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="title">
+                <h3>popular topics</h3>
+            </div>
+        </div>
+        @for (item of popularTopics; track item) {
+        <div class="col-lg-4 col-md-6">
+            <div class="topic-box">
+                <a [routerLink]="['/others/help-article']" class="icon">
+                    <img [src]="item.icon" class="img-fluid" alt="">
+                </a>
+                <div class="topic-content">
+                    <a href="javascript:void(0)">
+                        <h4>{{item.title}}</h4>
+                    </a>
+                    <p>{{item.desc}}</p>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>

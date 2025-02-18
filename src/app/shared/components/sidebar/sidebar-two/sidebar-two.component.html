@@ -1,0 +1,27 @@
+    @if (currentUrl.includes('/news-feed-layout/style-9')){
+    <app-user-wrap [user]="user" [currentUrl]="currentUrl"></app-user-wrap>
+    }
+    <div class="main-icon">
+        <a href="javascript:void(0)">
+            @if (!currentUrl.includes('/news-feed-layout/style-9')){
+            <img src="assets/svg/sidebar-vector/menu.svg" class="bar-icon-img" alt="menu">
+            <h4>all apps</h4>
+            }
+        </a>
+    </div>
+    <ul class="sidebar-icon">
+        @for (item of menuItemsSecond; track item) {
+        <li [class.active]="item.active">
+            <a href="javascript:void(0)">
+                <img [src]="item.icons" class="bar-icon-img" alt="news">
+                <h4>{{item.title}}</h4>
+            </a>
+        </li>
+        }
+    </ul>
+    <div class="main-icon">
+        <a href="javascript:void(0)">
+            <img src="assets/svg/sidebar-vector/next.svg" class="bar-icon-img" alt="logout">
+            <h4>logout</h4>
+        </a>
+    </div>

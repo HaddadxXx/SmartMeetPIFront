@@ -1,0 +1,35 @@
+<div (clickOutside)="outSideClose()">
+    <a class="main-link" href="javascript:void(0)" (click)="isOpen = !isOpen" [class.show]="isOpen">
+        <app-feather-icon [class]="'icon-light stroke-width-3 iw-16 ih-16'" [icons]="'user-plus'"></app-feather-icon>
+    </a>
+    <div class="dropdown-menu" [class.show]="isOpen"
+        style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 20px);">
+        <div class="dropdown-header">
+            <span>friend request</span>
+            <div class="mobile-close" (click)="isOpen = false">
+                <h5>close</h5>
+            </div>
+        </div>
+        <div class="dropdown-content">
+            <ul class="friend-list">
+                @for (item of friendRequest; track item) {
+                    <li>
+                        <div class="media">
+                            <img [src]="item.url" alt="user">
+                            <div class="media-body">
+                                <div>
+                                    <h5 class="mt-0">Paige Turner</h5>
+                                    <h6> 1 mutual friend</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="action-btns">
+                            <button type="button" class="btn btn-solid" (click)="isOpen = false">confirm</button>
+                            <button type="button" class="btn btn-outline ms-1" (click)="isOpen = false">delete</button>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

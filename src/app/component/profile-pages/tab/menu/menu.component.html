@@ -1,0 +1,34 @@
+<div class="profile-menu section-t-space">
+    <ul>
+        <li>
+            <a [routerLink]="['/profile/tab']" routerLinkActive="active">
+                <app-feather-icon [icons]="'clock'" class="'iw-14 ih-14'"></app-feather-icon>
+                <h6>timeline</h6>
+            </a>
+        </li>
+        <li>
+            <a [routerLink]="['/profile/about']" routerLinkActive="active">
+                <app-feather-icon [icons]="'info'" [class]="'iw-14 ih-14'"></app-feather-icon>
+                <h6>about</h6>
+            </a>
+        </li>
+        <li>
+            <a [routerLink]="['/profile/friends']" routerLinkActive="active">
+                <app-feather-icon [icons]="'users'" [class]="'iw-14 ih-14'"></app-feather-icon>
+                <h6>friends</h6>
+            </a>
+        </li>
+        <li>
+            <a  [routerLink]="['/profile/gallery']" routerLinkActive="active">
+                <app-feather-icon [icons]="'image'" [class]="'iw-14 ih-14'"></app-feather-icon>
+                <h6>photos</h6>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a [routerLink]="['/profile/activity-feed']" routerLinkActive="active">
+                <app-feather-icon [class]="'iw-14 ih-14'" [icons]="'list'"></app-feather-icon>
+                <h6>acitivity feed</h6>
+            </a>
+        </li>
+    </ul>
+</div>

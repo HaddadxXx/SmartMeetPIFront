@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9 order-lg-1">
+            <div class="blog_section ratio_55">
+                <div class="row">
+                    @for (item of blogData; track item) {
+                    <div class="col-md-6">
+                        <div class="blog-wrap">
+                            <div class="blog-image">
+                                <a href="javascript:void(0)" class="bg-size"
+                                    [ngStyle]="{'background-image': 'url(' +  item.image  + ')'}"
+                                    style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+                                    <img [src]="item.image" class="img-fluid bg-img" alt="" style="display: none;">
+                                </a>
+                                <div class="blog-label">
+                                    <h6><app-feather-icon [icons]="'heart'" [class]="'iw-13 ih-13'"></app-feather-icon>10</h6>
+                                    <h6><app-feather-icon [icons]="'message-circle'" [class]="'iw-14 ih-14'"></app-feather-icon>5</h6>
+                                </div>
+                            </div>
+                            <div class="blog-details">
+                                <div class="detail">
+                                    <h6><app-feather-icon [icons]="'user'" [class]="'iw-15 ih-15'"></app-feather-icon>{{item.name}}</h6>
+                                    <h6><app-feather-icon [icons]="'clock'" [class]="'iw-15 ih-15'"></app-feather-icon>{{item.date}}</h6>
+                                </div>
+                                <a href="javascript:void(0)">
+                                    <h5>{{item.title}}</h5>
+                                </a>
+                                <p>{{item.desc}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+                <nav aria-label="Page navigation example" class="pagination-section mt-0">
+                    <ul class="pagination theme-pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0)" aria-label="Previous">
+                                <app-feather-icon [icons]="'chevron-left'" [class]="'iw-15 ih-15'"></app-feather-icon>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0)" aria-label="Next">
+                                <app-feather-icon [icons]="'chevron-right'" [class]="'iw-15 ih-15'"></app-feather-icon>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="col-lg-3 order-lg-0">
+            <app-blog-filter></app-blog-filter>
+        </div> 
+    </div>
+</div>

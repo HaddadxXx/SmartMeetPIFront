@@ -1,0 +1,25 @@
+
+{
+    "eventCategory":[
+        {
+            "name": "josephin water",
+            "fans": 15,
+            "images": "assets/images/game/1.jpg"
+        },
+        {
+            "name": "josephin water",
+            "fans": 30,
+            "images": "assets/images/game/2.jpg"
+        },
+        {
+            "name": "josephin water",
+            "fans": 25,
+            "images": "assets/images/game/3.jpg"
+        },
+        {
+            "name": "josephin water",
+            "fans": 25,
+            "images": "assets/images/game/3.jpg"
+        }
+    ]
+}

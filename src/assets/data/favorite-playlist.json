@@ -1,0 +1,52 @@
+{
+    "favoritePlaylist": [
+        {
+            "image": "assets/images/music/1.jpg",
+            "singerName": "alan walker",
+            "songs": "3.58",
+            "songName": "Faded New Song",
+            "view": "2,55,415",
+            "favorite": true    
+        }, 
+        {
+            "image": "assets/images/music/2.jpg",
+            "singerName": "wiz khalifa",
+            "songs": "4.23",
+            "songName": "see you agin",
+            "view": "1,55,415",
+            "favorite": false
+        },
+        {
+            "image": "assets/images/music/3.jpg",
+            "singerName": "justin bieber",
+            "songs": "2.58",
+            "songName": "sorry new song",
+            "view": "2,65,465",
+            "favorite": false
+        },
+        {
+            "image": "assets/images/music/4.jpg",
+            "singerName": "mark ronson",
+            "songs": "3.36",
+            "songName": "uptown funk",
+            "view": "7,55,515",
+            "favorite": false
+        },
+        {
+            "image": "assets/images/music/5.jpg",
+            "singerName": "tylor swift",
+            "songs": "5.58",
+            "songName": "blank space",
+            "view": "4,55,455",
+            "favorite": false
+        },
+        {
+            "image": "assets/images/music/6.jpg",
+            "singerName": "maroon",
+            "songs": "4.58",
+            "songName": "girl like you",
+            "view": "10,141,142",
+            "favorite": false
+        }
+    ]
+}

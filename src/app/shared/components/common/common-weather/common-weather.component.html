@@ -1,0 +1,83 @@
+<div class="card-title light-version">
+    <h3>weather</h3>
+    <div class="settings">
+        <div class="setting-btn light-btn">
+            <a href="javascript:void(0)" class="d-flex">
+                <app-feather-icon [icons]="'rotate-cw'"
+                    [class]="'icon icon-light stroke-width-3 iw-11 ih-11'"></app-feather-icon>
+            </a>
+        </div>
+        <div class="setting-btn light-btn setting-dropdown" (clickOutside)="outSideClose()">
+            <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+                <a class="d-flex" href="javascript:void(0)" [class.show]="isShow" (click)="isShow = !isShow">
+                    <app-feather-icon [icons]="'sun'"
+                        [class]="'icon-light stroke-width-3 iw-12 ih-12'"></app-feather-icon>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow"
+                    style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-148px, 14px);">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <app-feather-icon [icons]="'edit'"
+                                    [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon> change city</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <app-feather-icon [icons]="'settings'"
+                                    [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>setting</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="weather-content">
+    <div class="top-title">
+        <h2>28°C</h2>
+        <h5>4.45 pm</h5>
+    </div>
+    <h5>sunny day</h5>
+    <h6>21 march 2024 (monday) <span>denmark</span></h6>
+</div>
+<div class="flaks-img">
+    <img [src]="image ? image :'assets/images/icon/snow-flaks.png'" class="img-fluid " alt="snow">
+</div>
+<div class="snowflakes" aria-hidden="true">
+    <div class="snowflake">
+        ❅
+    </div>
+    <div class="snowflake">
+        ❆
+    </div>
+    <div class="snowflake">
+        ❅
+    </div>
+    <div class="snowflake">
+        ❆
+    </div>
+    <div class="snowflake">
+        ❅
+    </div>
+    <div class="snowflake">
+        ❆
+    </div>
+    <div class="snowflake">
+        ❅
+    </div>
+    <div class="snowflake">
+        ❆
+    </div>
+    <div class="snowflake">
+        ❅
+    </div>
+    <div class="snowflake">
+        ❆
+    </div>
+    <div class="snowflake">
+        ❅
+    </div>
+    <div class="snowflake">
+        ❆
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="card-title">
+    <app-friends-title></app-friends-title>
+</div>
+<div class="container-fluid">
+    <div class="friend-list row">
+        @for (item of friendList; track item) {
+        <div class="col-sm-6">
+            @for (items of item.data; track items) {
+            <div class="friend-box">
+                <div class="media">
+                    <a [routerLink]="['/profile/friend-profile']" class="user-img"
+                        [ngStyle]="{'background-image': 'url(' +  items.image  + ')'}"
+                        style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+                        <img [src]="items.image" class="img-fluid bg-img" alt="user" style="display: none;">
+                        <span class="available-stats"></span>
+                    </a>
+                    <div class="media-body">
+                        <a [routerLink]="['/profile/friend-profile']">
+                            <h5 class="user-name">{{items.friend_Name}}</h5>
+                        </a>
+                        <h6>{{items.home}}</h6>
+                    </div>
+                </div>
+                <div class="setting-btn ms-auto setting-dropdown no-bg">
+                    <div class="btn-group custom-dropdown arrow-none dropdown-sm" (clickOutside)="items.isOpen = false">
+                        <div (click)="open(items)" [class.show]="items.isOpen">
+                            <app-feather-icon [icons]="'more-horizontal'"
+                                [class]="'icon icon-font-color iw-14'"></app-feather-icon>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="items.isOpen"
+                            style="position: absolute;inset: 0px auto auto 0px;margin: 0px;transform: translate(0px, 32px);">
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <app-feather-icon [icons]="'user'"
+                                            [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>view profile</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <app-feather-icon [icons]="'message-square'"
+                                            [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>message</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <app-feather-icon [icons]="'x-octagon'"
+                                            [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>unfollow
+                                        sufiya</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+        }
+    </div>
+</div>
+<div class="see-all"> 
+    <a [routerLink]="['/profile/friends']" class="btn btn-solid">see all</a>
+</div>

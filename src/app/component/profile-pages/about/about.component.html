@@ -1,0 +1,25 @@
+<div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
+    <app-profile-about-skeleton></app-profile-about-skeleton>
+</div>
+<app-profile-pages></app-profile-pages>
+<app-profile-menu [currentUrl]="currentUrl"></app-profile-menu>
+<div class="container-fluid section-t-space px-0">
+    <div class="row">
+        <div class="content-left col-4 res-full-width order-1">
+            <div class="profile-about sticky-top">
+                <app-about-intro-my-self [introMySelf]="introMySelfAbout"></app-about-intro-my-self>
+            </div>
+        </div>
+        <div class="content-center col-xl-8">
+            <div class="about-profile section-b-space">
+                <app-hobbies-interest [hobbyInterests]="hobbyInterest"></app-hobbies-interest>
+            </div>
+            <div class="about-profile section-b-space">
+                <app-hobbies-interest [hobbyInterests]="educationWork"></app-hobbies-interest>
+            </div>
+            <div class="friend-list-box section-t-space section-b-space">
+                <app-about-friend-list></app-about-friend-list>
+            </div>
+        </div>
+    </div>
+</div>

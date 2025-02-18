@@ -1,0 +1,31 @@
+<h3 class="comment">comments:</h3>
+<div class="comment-wrapper">
+    @for (item of blogCategoryComment; track item) {
+        <div class="comment-box">
+            <div class="media {{item.class}}">
+                <img [src]="item.image" class="img-fluid "
+                    alt="">
+                <div class="media-body">
+                    <div class="title">
+                        <div class="comment-user">
+                            <app-feather-icon [class]="'iw-13 ih-13'" [icons]="'user'"></app-feather-icon>
+                            <h6>That Guy</h6>
+                        </div>
+                        <div class="comment-date">
+                            <app-feather-icon [class]="'iw-13 ih-13'" [icons]="'clock'"></app-feather-icon>
+                            <h6> Dec 16, 2024 </h6>
+                        </div>
+                    </div>
+                    <div class="comment-detail">
+                        <p>{{item.comment}}</p>
+                    </div>
+                    <div class="reply-btn">
+                        <a href="javascript:void(0)">
+                            <app-feather-icon [class]="'iw-15 ih-15'" [icons]="'corner-up-left'"></app-feather-icon>
+                            reply</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

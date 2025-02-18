@@ -1,0 +1,41 @@
+<div class="profile-about">
+    <div class="card-title">
+        <h3>about</h3>
+        <h5>intro my self</h5>
+        <div class="settings">
+            <div class="setting-btn">
+                <a href="javascript:void(0)" (click)="editProfile()">
+                    <app-feather-icon [class]="'icon icon-dark stroke-width-3 iw-11 ih-11'" [icons]="'edit-2'"></app-feather-icon>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="about-content">
+        <ul>
+            @for (item of introMySelf; track item) {
+            <li>
+                <div class="icon">
+                    @if(item.type === 'feather'){
+                    <app-feather-icon [class]="'iw-18 ih-18'" [icons]="item.icon"></app-feather-icon>
+                    } @else {
+                    <app-svg-icon [class]="'fill-color'" [icons]="item.icon"></app-svg-icon>
+                    }
+                </div>
+                <div class="details">
+                    <h5>{{item.title}}</h5>
+                    <h6>{{item.sunTitle}}</h6>
+                </div>
+            </li>
+            }
+        </ul>
+    </div>
+    <div class="about-footer">
+        <ul>
+            @for (item of introMySelfFooter; track item) {
+            <li class="{{item.class}}">
+                <a href="javascript:void(0)"><app-svg-icon [icons]="item.icon"></app-svg-icon></a>
+            </li>
+            }
+        </ul>
+    </div>
+</div>

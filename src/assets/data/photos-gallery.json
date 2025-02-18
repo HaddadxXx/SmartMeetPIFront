@@ -1,0 +1,74 @@
+{
+    "album": [
+        {
+            "image": "assets/images/post/3.jpg",
+            "title": "Cover photos"
+        },
+        {
+            "image": "assets/images/post/4.jpg",
+            "title": "profile photos"
+        },
+        {
+            "image": "assets/images/post/10.jpg",
+            "title": "family trip"
+        },
+        {
+            "image": "assets/images/post/11.jpg",
+            "title": "family trip"
+        },
+        {
+            "image": "assets/images/post/8.jpg",
+            "title": "family trip"
+        },
+        {
+            "image": "assets/images/post/7.jpg",
+            "title": "family trip"
+        }
+    ],
+    "galleryOpen": [
+        {
+            "image": "assets/images/post/1.jpg"
+        },
+        {
+            "image": "assets/images/post/2.jpg"
+        },
+        {
+            "image": "assets/images/post/3.jpg"
+        },
+        {
+            "image": "assets/images/post/4.jpg"
+        },
+        {
+            "image": "assets/images/post/5.jpg"
+        },
+        {
+            "image": "assets/images/post/6.jpg"
+        }
+    ],
+    "gallery": [
+        {
+            "image": "assets/images/post/10.jpg"
+        },
+        {
+            "image": "assets/images/post/11.jpg"
+        },
+        {
+            "image": "assets/images/post/12.jpg"
+        },
+        {
+            "image": "assets/images/post/9.jpg"
+        },
+        {
+            "image": "assets/images/post/8.jpg"
+        },
+        {
+            "image": "assets/images/post/7.jpg"
+        },
+        {
+            "image": "assets/images/post/5.jpg"
+        },
+        {
+            "image": "assets/images/post/6.jpg"
+        }
+    ]
+}

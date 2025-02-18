@@ -1,0 +1,87 @@
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade" [ngClass]="isHide ? '' :'active show'">
+        <div class="tab-box">
+            <div class="user-chat">
+                <div class="user-title">
+                    <div class="back-btn d-block d-sm-none" (click)="isHide = true">
+                        <app-feather-icon [icons]="'arrow-left'"></app-feather-icon>
+                    </div>
+                    <div class="media list-media">
+                        <div class="story-img">
+                            <div class="user-img bg-size" (click)="isMenu =!isMenu"
+                                [ngStyle]="{'background-image': 'url(' +  data.image  + ')'}"
+                                style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+                                <img src="assets/images/user/2.jpg" class="img-fluid bg-img" alt="user"
+                                    style="display: none;">
+                            </div>
+                        </div>
+                        <div class="media-body">
+                            <h5>{{data.user}} </h5>
+                            <h6>active 10m ago</h6>
+                        </div>
+                    </div>
+                    <div class="menu-option">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'phone'" [class]="'icon-dark'"></app-feather-icon>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'video'" [class]="'icon-dark'"></app-feather-icon>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'settings'" [class]="'icon-dark'"></app-feather-icon>
+                                </a>
+                            </li>
+                            <li class="d-block d-lg-none info-user" (click)="isMenu = true">
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'info'" [class]="'icon-dark'"></app-feather-icon>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="chat-history">
+                    <div class="avenue-messenger">
+                        <div class="chat">
+                            <div class="messages-content">
+                                @for (item of chats; track item) {
+                                <div class="message new" [class.message-personal]="item.isReply"
+                                    [class.new]="data.user">
+                                    {{item.message}}
+                                    <div class="timestamp">15:13</div>
+                                    <div class="checkmark-sent-delivered">✓</div>
+                                    <div class="checkmark-read">✓</div>
+                                </div>
+                                }
+                            </div>
+                            <div class="message-box">
+                                <textarea class="message-input emojiPicker" placeholder="Type message..."></textarea>
+                                <div class="add-extent" [class.show]="isShow">
+                                    <i class="fas fa-plus animated-btn" (click)="isShow =!isShow"></i>
+                                    <div class="options">
+                                        <ul>
+                                            <li><img src="assets/svg/image.svg" alt="svg"></li>
+                                            <li><img src="assets/svg/paperclip.svg" alt="svg"></li>
+                                            <li><img src="assets/svg/camera.svg" alt="svg"></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <a href="javascript:void(0)" class="message-submit">
+                                    <app-feather-icon [icons]="'send'"></app-feather-icon>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="user-info" [class.show]="isMenu">
+                 <app-user-info [data]="data" [isMenu]="isMenu" (move)="receiveChildData($event)"></app-user-info>
+            </div>
+        </div>
+    </div>
+</div>

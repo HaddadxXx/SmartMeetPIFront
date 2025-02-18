@@ -1,0 +1,40 @@
+<div class="main-icon">
+    <a href="javascript:void(0)">
+        <app-feather-icon [icons]="'grid'" [class]="'bar-icon'"></app-feather-icon>
+    </a>
+</div>
+<ul class="sidebar-icon">
+    @for (item of menuItems; track item) {
+    <li [class.inner-list]="item.title === 'Games'">
+        <a [routerLink]="item.path">
+            @if(item.iconType === 'feather'){
+            <app-feather-icon [icons]="item.icons" [class]="'bar-icon'"></app-feather-icon>
+            } @else {
+            <app-svg-icon [icons]="item.icons" [class]="item.class"></app-svg-icon>
+            }
+            <div class="tooltip-cls">
+                <span>{{item.title}}</span>
+            </div>
+        </a>
+        @if(item.title === 'Games') {
+        <span class="count">2</span>
+        <ul class="vertical-slide-3 no-arrow">
+            <owl-carousel-o [options]="optionsData">
+                @for (item of imageData; track item) {
+                <ng-template carouselSlide>
+                    <li>
+                        <a href="javascript:void(0)"><img [src]="item.image" alt=""></a>
+                    </li>
+                </ng-template>
+                }
+            </owl-carousel-o>
+        </ul>
+        }
+    </li>
+    }
+</ul>
+<div class="main-icon">
+    <a href="javascript:void(0)">
+        <app-feather-icon [icons]="'power'" [class]="'bar-icon'"></app-feather-icon>
+    </a>
+</div>

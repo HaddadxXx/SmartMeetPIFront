@@ -1,0 +1,88 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title">Choose Photo</h5>
+        <button type="button" class="btn-close" (click)="modalServices.dismissAll()">
+        </button>
+    </div>
+    <div class="modal-body">
+        <ul class="nav nav-tabs" ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+            <li class="nav-item" [ngbNavItem]="1">
+                <button ngbNavLink>Uploaded</button>
+                <ng-template ngbNavContent>
+                    <div class="row gallery-photo ratio_landscape">
+                        @for (item of uploaded; track item) {
+                        <div class="col-sm-4 col-6">
+                            <label for="{{item.id}}"></label>
+                            <input class="radio_animated" id="{{item.id}}" type="radio" name="Radios"
+                                [checked]="item.check">
+                            <div class="image-box ">
+                                <div class="image bg-size" [ngStyle]="{'background-image': 'url(' +  item.image  + ')'}"
+                                    style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                                    <img [src]="item.image" class="img-fluid bg-img" alt="img" style="display: none;">
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </ng-template>
+            </li>
+            <li class="nav-item" [ngbNavItem]="2">
+                <button ngbNavLink>Album</button>
+                <ng-template ngbNavContent>
+                    <div class="row gallery-album" [class.d-none]="isOpen">
+                        <div class="col-6">
+                            <a class="card add-card"> </a>
+                            <div class="add-icon">
+                                <app-feather-icon [class]="'iw-30 ih-30'" [icons]="'plus-circle'"></app-feather-icon>
+                                <input type="file" class="form-control-file">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">create album</h5>
+                            </div>
+                        </div>
+                        @for (item of album; track item) {
+                        <div class="col-6"(click)="isOpen = !isOpen">
+                            <a class="card collection bg-size"
+                                [ngStyle]="{'background-image': 'url(' +  item.image  + ')'}"
+                                style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                                <img class="card-img-top img-fluid bg-img" [src]="item.image" alt="Card image cap" style="display: none;">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{item.title}}</h5>
+                                    <h6>3 photos</h6>
+                                </div>
+                            </a>
+                        </div>
+                        }
+                    </div>
+                    <div class="gallery-open" [class.d-block]="isOpen"> 
+                        <div class="close-album" (click)="isOpen = false">
+                            <h5>close album</h5>
+                        </div>
+                        <div class="row gallery-photo ratio_landscape">
+                            @for (item of closeAlbum; track item) {
+                            <div class="col-sm-4 col-6">
+                                <label for="{{item.id}}"></label>
+                                <input class="radio_animated" id="{{item.id}}" type="radio" name="Radios1" [checked]="item.check">
+                                <div class="image-box">
+                                    <div class="image bg-size"
+                                [ngStyle]="{'background-image': 'url(' +  item.image  + ')'}"
+                                    style="background-size: cover;
+                                    background-position: center center;
+                                    background-repeat: no-repeat;
+                                    display: block;">
+                                        <img [src]="item.id" class="img-fluid bg-img" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </ng-template>
+            </li>
+        </ul>
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-solid" (click)="modalServices.dismissAll()">choose Photo</button>
+</div>

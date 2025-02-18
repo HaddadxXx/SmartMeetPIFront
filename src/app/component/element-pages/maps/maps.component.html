@@ -1,0 +1,57 @@
+<app-loading></app-loading>
+<header class="no-sticky bg-transparent">
+    <app-header [currentUrl]="currentUrl"></app-header>
+</header>
+
+<section class="breadcrumb-section breadcrumb-sm bg-size"
+    style="background-image: url(assets/images/breadcrumb.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+    @if(title){
+    <app-title-section [title]="title"></app-title-section>
+    }
+</section>
+
+<div class="container section-pt-space section-pb-space element-map">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="element-card theme-card bg-white">
+                <div class="card-header">
+                    <h4>google route map</h4>
+                </div>
+                <div class="card-body">
+                    <div class="map-wrapper">
+                        <div class="map h-100" id="map">
+                            <google-map height="500px" width="100%" [zoom]="zoom">
+                                @for (marker of markers; track marker) {
+                                <map-marker #markerElem [position]="marker.position" [label]="marker.label"
+                                    [title]="marker.title" [options]="marker.options"
+                                    (mapClick)="openInfo(markerElem, marker.info)">
+                                </map-marker>
+                                }
+                            </google-map>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="element-card theme-card bg-white">
+                <div class="card-header">
+                    <h4>Leaflet Map</h4>
+                </div>
+                <div class="card-body">
+                    <div class="map-wrapper">
+                        <div class="map h-100">
+                            <div style="height: 500px; z-index: 0;" leaflet [leafletOptions]="options1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section>
+    <app-download></app-download>
+</section>
+<footer class="footer-t-space pb-0">
+    <app-footer [footerClass]="'footer-b-space'"></app-footer>
+</footer>

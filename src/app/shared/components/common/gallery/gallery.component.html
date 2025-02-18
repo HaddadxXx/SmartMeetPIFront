@@ -1,0 +1,76 @@
+<div class="gallery-top">
+    <div class="card-title">
+        <h3>gallery</h3>
+        <h5>156 photos</h5>
+        <div class="settings">
+            <div class="setting-btn">
+                <a href="javascript:void(0)">
+                    <app-feather-icon [icons]="'rotate-cw'"
+                        [class]="'icon icon-dark stroke-width-3 iw-11 ih-11'"></app-feather-icon>
+                </a>
+            </div>
+            <div class="setting-btn ms-2 setting-dropdown" (clickOutside)="outSideClose()">
+                <div class="btn-group custom-dropdown arrow-none dropdown-sm" (click)="isShow =!isShow">
+                    <a href="javascript:void(0)">
+                        <app-feather-icon [icons]="'sun'"
+                            [class]="'icon-dark stroke-width-3 icon iw-11 ih-11'"></app-feather-icon>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow" style="position: absolute;
+                        inset: 0px auto auto 0px;
+                        margin: 0px;
+                        transform: translate(0px, 23px);">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'edit'"
+                                        [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>edit profile</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'user'"
+                                        [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>view profile</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="portfolio-section ratio_square">
+    <div class="container-fluid p-0">
+        <div class="row">
+            @if(galleryData){
+            @for (item of galleryData; track item) {
+            <div class="{{item.class}}">
+                @if(item.images) {
+                @for (items of item.images; track items) {
+                <div class="{{items.class}}">
+                    <div (click)="openModel()">
+                        <div class="portfolio-image">
+                            <a href="javascript:void(0)" class="bg-size   ed"
+                                [ngStyle]="{'background-image': 'url(' +  items.image  + ')'}"
+                                style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                                <img [src]="items.image" alt="" class="img-fluid  bg-img" style="display: none;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                }
+                } @else {
+                <div (click)="openModel()">
+                    <div class="portfolio-image">
+                        <a href="javascript:void(0)" class="bg-size   ed"
+                            [ngStyle]="{'background-image': 'url(' +  item.image  + ')'}"
+                            style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                            <img [src]="item.image" alt="" class="img-fluid  bg-img" style="display: none;">
+                        </a>
+                    </div>
+                </div>
+                }
+            </div>
+            }
+            }
+        </div>
+    </div>
+</div>
