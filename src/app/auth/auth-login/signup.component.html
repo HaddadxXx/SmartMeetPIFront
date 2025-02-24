@@ -56,7 +56,7 @@
                                         <label>Email address</label>
                                         <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
                                         @if (signupForm.get('email')?.invalid && signupForm.get('email')?.touched) {
-                                            <small class="text-danger">Veuillez entrer un email valide</small>
+                                            <small class="text-danger">Please enter a valid email</small>
                                         }
                                     </div>
 
@@ -64,12 +64,20 @@
                                         <label>Password</label>
                                         <input class="form-control" placeholder="Password" formControlName="password" [type]="show ? 'text' : 'password'">
                                         @if(show){
-                                            <app-feather-icon [icons]="'eye'" class="input-icon iw-20 ih-20" (click)="show = !show"></app-feather-icon>
+                                            <app-feather-icon 
+                                                [icons]="'eye'" 
+                                                [class]="'input-icon iw-20 ih-20'" 
+                                                (click)="show = !show">
+                                            </app-feather-icon>
                                         } @else {
-                                            <app-feather-icon [icons]="'eye-off'" class="input-icon iw-20 ih-20" (click)="show = !show"></app-feather-icon>
+                                            <app-feather-icon 
+                                                [icons]="'eye-off'" 
+                                                [class]="'input-icon iw-20 ih-20'" 
+                                                (click)="show = !show">
+                                            </app-feather-icon>
                                         }
                                         @if (signupForm.get('password')?.invalid && signupForm.get('password')?.touched) {
-                                            <small class="text-danger">Le mot de passe est requis</small>
+                                            <small class="text-danger">Password is required</small>
                                         }
                                     </div>
 
@@ -103,6 +111,7 @@
                                             Login
                                         </button>
                                     </div>  
+                                    <!-- <app-loading *ngIf="isLoading"></app-loading> -->
                                 </form>
                                 <div class="connect-with">
                                     <h6><span>OR Connect With</span></h6>

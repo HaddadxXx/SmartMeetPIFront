@@ -5,11 +5,14 @@ import { AuthService } from '../../shared/services/auth.service';
 import { SvgIconComponent } from '../../shared/components/common/svg-icon/svg-icon.component';
 import { FeatherIconComponent } from '../../shared/components/common/feather-icon/feather-icon.component';
 import { LoadingComponent } from '../../shared/skeleton-loader/widgets/loading/loading.component';
+import { NgIf } from '@angular/common'; //A structural directive that conditionally includes a template based on the value of an expression coerced to Boolean.
+
 
 @Component({
   selector: 'app-signup',
   standalone: true,
   imports: [
+    NgIf, 
     FeatherIconComponent, 
     SvgIconComponent, 
     LoadingComponent,
@@ -34,7 +37,7 @@ export class SignupComponent {
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      roles: ['ROLE_ADMIN'] // Valeur par défaut pour ce test
+      roles: ['ROLE_USER'] // Valeur par défaut pour ce test
     });
   }
 
@@ -43,19 +46,28 @@ export class SignupComponent {
   }
 
   signup() {
-    this.errorMessage = '';
-  
+    this.errorMessage = '';  
     if (this.signupForm.valid) {
       const userData = {
         ...this.signupForm.value,
         roles: [this.signupForm.value.roles] // Convertir la valeur en tableau
       };
   
+
       console.log('Données envoyées:', userData); // Vérifie dans la console
-  
+      
+      const email = this.signupForm.value.email; // Récupère l'email ici
+
+      console.log('Email récupéré:', email);// Vérifie dans la console
+      localStorage.setItem('email', email);
+
+      //      khalil
+      // VerifMailIfExist  
+      //this.router.navigate(['/auth/verif']);
+
       this.authService.signup(userData).subscribe({
         next: () => {
-          this.router.navigate(['/auth/auth-login']);
+          this.router.navigate(['/auth/verif']);
         },
         error: (error) => {
           console.error('Erreur backend:', error); // Log de l'erreur

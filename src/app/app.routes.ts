@@ -12,6 +12,8 @@ import { SettingsComponent } from './backEnd/settings/settings.component';
 import { LoginComponent } from './backEnd/login/login.component';
 import { NgModule } from '@angular/core';
 import { SignupComponent } from '../app/auth/auth-login/signup.component';
+import { VerifComponent } from '../app/auth/auth-login/verif.component';
+import { LoadingComponent } from './shared/skeleton-loader/widgets/loading/loading.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -21,6 +23,10 @@ export const routes: Routes = [
   { path: 'settings', component: SettingsComponent },
   { path: 'auth/signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'auth/verif', component: VerifComponent },
+
+  //khalil
+  { path: 'auth/loading', component: LoadingComponent },
 
   {
     path: '',
