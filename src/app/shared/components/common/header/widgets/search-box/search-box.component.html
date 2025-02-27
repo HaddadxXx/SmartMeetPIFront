@@ -1,0 +1,45 @@
+<div class="search-box" [class.show]="isOpen" (clickOutside)="outSideClose()">
+    <app-feather-icon [icons]="'search'" [class]="'icon iw-16 icon-light'"></app-feather-icon>
+   <input type="text" class="form-control search-type" placeholder="find friends..." (click)="isOpen =!isOpen">
+   <div class="icon-close" (click)="isOpen = false">
+    <app-feather-icon [icons]="'x'" [class]="'iw-16 icon-light'"></app-feather-icon>
+   </div>
+   <div class="search-suggestion">
+       <span class="recent">recent search</span>
+       <ul class="friend-list">
+           <li>
+               <div class="media">
+                   <img src="assets/images/user-sm/9.jpg" alt="user">
+                   <div class="media-body">
+                       <div>
+                           <h5 class="mt-0">Paige Turner</h5>
+                           <h6> 1 mutual friend</h6>
+                       </div>
+                   </div>
+               </div>
+           </li>
+           <li>
+               <div class="media">
+                   <img src="assets/images/user-sm/12.jpg" alt="user">
+                   <div class="media-body">
+                       <div>
+                           <h5 class="mt-0">Paige Turner</h5>
+                           <h6> 1 mutual friend</h6>
+                       </div>
+                   </div>
+               </div>
+           </li>
+           <li>
+               <div class="media">
+                   <img src="assets/images/user-sm/15.jpg" alt="user">
+                   <div class="media-body">
+                       <div>
+                           <h5 class="mt-0">Paige Turner</h5>
+                           <h6> 1 mutual friend</h6>
+                       </div>
+                   </div>
+               </div>
+           </li>
+       </ul>
+   </div>
+</div>

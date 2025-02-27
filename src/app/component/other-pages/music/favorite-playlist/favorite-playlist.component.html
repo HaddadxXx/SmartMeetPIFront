@@ -1,0 +1,68 @@
+<div class="playlist-sec">
+    <div class="card-title">
+        <h3>favourite playlist</h3>
+        <div class="settings">
+            <div class="setting-btn">
+                <a href="javascript:void(0)" class="d-flex" [class.show]="isShow">
+                    <app-feather-icon [icons]="'rotate-cw'" [class]="'icon icon-dark iw-11 ih-11 stroke-width-3'"></app-feather-icon>
+                </a>
+            </div>
+            <div class="setting-btn ms-2 setting-dropdown" (clickOutside)="outSideClose()">
+                <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+                    <a class="d-flex" href="javascript:void(0)" (click)="isShow =!isShow">
+                        <app-feather-icon [icons]="'sun'" [class]="'icon-dark stroke-width-3 iw-12 ih-12'"></app-feather-icon>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 14px);">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'edit'" [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>change city</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'settings'" [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>setting</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-sec table-responsive">
+        <table class="table">
+            <tbody>
+                @for (item of favoritePlaylist; track item) {
+                    <tr>
+                        <td>
+                            <div class="media">
+                                <div class="img-sec" 
+                                [ngStyle]="{'background-image': 'url(' +  item.image  + ')'}"
+                                style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                                    <img [src]="item.image"
+                                        class="img-fluid  bg-img" alt="user" style="display: none;">
+                                </div>
+                                <div class="media-body">
+                                    <h5>{{item.singerName}}</h5>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <h5>{{item.songs}}</h5>
+                        </td>
+                        <td>
+                            <h6>{{item.songName}}</h6>
+                        </td>
+                        <td>
+                            <h5>{{item.view}}</h5>
+                        </td>
+                        <td>
+                            <div class="favourite-btn" [class.active]="item.favorite" (click)="favorite(item)">
+                                <app-feather-icon [icons]="'heart'" [class]="'icon-dark iw-14 ih-14'"></app-feather-icon>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

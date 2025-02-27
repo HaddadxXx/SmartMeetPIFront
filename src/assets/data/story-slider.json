@@ -1,0 +1,58 @@
+{
+    "story": [
+        {
+            "images": "assets/images/story-bg.jpg",
+            "plusImg": "assets/images/icon/plus.png",
+            "uname": "add stories",
+            "class": ""
+        },
+        {
+            "images": "assets/images/story/6.jpg",
+            "uname": "Anna Mull",
+            "status": "active now",
+            "class": "orange-overlay"
+        },
+        {
+            "images": "assets/images/story/2.jpg",
+            "uname": "josephin water",
+            "status": "active now",
+            "class": "pink-overlay"
+        },
+        {
+            "images": "assets/images/story/1.jpg",
+            "uname": "josephin water",
+            "status": "active now",
+            "class": "skin-overlay"
+        },
+        {
+            "images": "assets/images/story/3.jpg",
+            "uname": "Petey Cruiser",
+            "status": "active now",
+            "class": "yellow-overlay"
+        },
+        {
+            "images": "assets/images/story/5.jpg",
+            "uname": "Paul Molive",
+            "status": "active now",
+            "class": "skin-overlay"
+        },
+        {
+            "images": "assets/images/story/4.jpg",
+            "uname": "Anna Sthesia",
+            "status": "active now",
+            "class": "pink-overlay"
+        },
+        {
+            "images": "assets/images/story/7.jpg",
+            "uname": "Paige Turner",
+            "status": "active now",
+            "class": "blue-overlay"
+        },
+        {
+            "images": "assets/images/story/8.jpg",
+            "uname": "Bob Frapples",
+            "status": "active now",
+            "class": ""
+        }
+    ]
+}

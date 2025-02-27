@@ -1,0 +1,32 @@
+ <!-- header start -->
+ <header class="no-sticky bg-transparent">
+    <app-header-one></app-header-one>
+</header>
+<!-- header end -->
+
+<!-- breadcrumb section start -->
+<section class="breadcrumb-section breadcrumb-sm"
+    style="background-image: url(assets/images/breadcrumb.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+    @if(title){
+    <app-title-section [title]="title"></app-title-section>
+    }
+</section>
+<!-- breadcrumb section end -->
+
+<!-- contact section start -->
+<section class="section-pb-space section-pt-space contact-section">
+    <app-contacts-section></app-contacts-section>
+</section>
+<!-- contact section end -->
+
+<!-- subscribe section start -->
+<section>
+    <app-download></app-download>
+</section>
+<!-- subscribe section end -->
+
+<!-- footer start -->
+<footer class="footer-t-space">
+    <app-footer [footerClass]="'footer-b-space'"></app-footer>
+</footer>
+<!-- footer end -->

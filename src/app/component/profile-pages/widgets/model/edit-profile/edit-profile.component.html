@@ -1,0 +1,99 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title">Edit Profile</h5>
+        <button type="button" class="btn-close" (click)="modalServices.dismissAll()">
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="edit-profile-sec">
+            <div class="profile-wrap">
+                <div class="edit-title">
+                    <div class="icon">
+                        <app-feather-icon [icons]="'image'" [class]="'iw-16 ih-16'"></app-feather-icon>
+                    </div>
+                    <h5>edit profile image</h5>
+                </div>
+                <div class="edit-content">
+                    <div class="profile-pic">
+                        <div class="bg-size"
+                            style="background-image: url(assets/images/user-sm/1.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+                            <img src="assets/images/user-sm/1.jpg" class="img-fluid bg-img" alt=""
+                                style="display: none;">
+                        </div>
+                        <a href="javascript:void(0)" (click)="editImage()">edit image</a>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-wrap">
+                <div class="edit-title">
+                    <div class="icon">
+                        <app-feather-icon [icons]="'briefcase'" [class]="'iw-16 ih-16'"></app-feather-icon>
+                    </div>
+                    <h5>work details</h5>
+                    <a href="javascript:void(0)" class="btn btn-outline ms-auto">+ add work</a>
+                </div>
+                <div class="edit-content">
+                    <h5>UX Designer at Google <a>
+                            <app-feather-icon [icons]="'edit-2'" [class]="'iw-16 ih-16'"></app-feather-icon></a>
+                    </h5>
+                </div>
+            </div>
+            <div class="profile-wrap">
+                <div class="edit-title">
+                    <div class="icon">
+                        <app-svg-icon [class]="'fill-color'" [icons]="'degree'"></app-svg-icon>
+                    </div>
+                    <h5>education</h5>
+                    <a href="javascript:void(0)" class="btn btn-outline ms-auto">+ add education</a>
+                </div>
+                <div class="edit-content">
+                    <h5>At London Univercity - 2024
+                        <a>
+                            <app-feather-icon [icons]="'edit-2'" [class]="'iw-16 ih-16'"></app-feather-icon>
+                        </a>
+                    </h5>
+                </div>
+            </div>
+            <div class="profile-wrap">
+                <div class="edit-title">
+                    <div class="icon">
+                        <app-feather-icon [icons]="'heart'" [class]="'iw-18 ih-18'"></app-feather-icon>
+                    </div>
+                    <h5>relationship status</h5>
+                </div>
+                <div class="edit-content">
+                    <form class="edit-radio row">
+                        @for (item of relationshipStatus; track item) {
+                        <div class="form-check col-sm-6">
+                            <label class="form-check-label" for="{{item.id}}">
+                                <input class="form-check-input radio_animated" type="radio" name="exampleRadios"
+                                    id="{{item.id}}" value="option1" [checked]="item.active">
+                                {{item.label}}
+                            </label>
+                        </div>
+                        }
+                    </form>
+                </div>
+            </div>
+            <div class="profile-wrap">
+                <div class="edit-title">
+                    <div class="icon">
+                        <app-feather-icon [icons]="'map-pin'" [class]="'iw-18 ih-18'"></app-feather-icon>
+                    </div>
+                    <h5>current city</h5>
+                    <a href="javascript:void(0)" class="btn btn-outline ms-auto">+ add city</a>
+                </div>
+                <div class="edit-content">
+                    <h5>London
+                        <a>
+                            <app-feather-icon [icons]="'edit-2'" [class]="'iw-18 ih-18'"></app-feather-icon>
+                        </a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-solid">save changes</button>
+    </div>
+</div>

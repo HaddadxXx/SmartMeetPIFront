@@ -1,0 +1,364 @@
+{
+    "settingBoxList": [
+        {
+            "id":1,
+            "title": "Newsfeed Layout",
+            "tab": "first",
+            "data": [
+                {
+                    "id": 1,
+                    "image": "assets/images/demo/newsfeed/1.jpg",
+                    "title": "style 1",
+                    "path": "news-feed-layout/style-1"
+                },
+                {
+                    "id": 2,
+                    "image": "assets/images/demo/newsfeed/2.jpg",
+                    "title": "style 2",
+                    "path": "news-feed-layout/style-2"
+                },
+                {
+                    "id": 3,
+                    "image": "assets/images/demo/newsfeed/3.jpg",
+                    "title": "style 3",
+                    "path": "news-feed-layout/style-3"
+                },
+                {
+                    "id": 4,
+                    "image": "assets/images/demo/newsfeed/4.jpg",
+                    "title": "style 4",
+                    "path": "news-feed-layout/style-4"
+                },
+                {
+                    "id": 5,
+                    "image": "assets/images/demo/newsfeed/5.jpg",
+                    "title": "style 5",
+                    "path": "news-feed-layout/style-5"
+                },
+                {
+                    "id": 6,
+                    "image": "assets/images/demo/newsfeed/6.jpg",
+                    "title": "style 6",
+                    "path": "news-feed-layout/style-6"
+                },
+                {
+                    "id": 7,
+                    "image": "assets/images/demo/newsfeed/7.jpg",
+                    "title": "style 7",
+                    "path": "news-feed-layout/style-7"
+                },
+                {
+                    "id": 8,
+                    "image": "assets/images/demo/newsfeed/8.jpg",
+                    "title": "style 8",
+                    "path": "news-feed-layout/style-8"
+                },
+                {
+                    "id": 9,
+                    "image": "assets/images/demo/newsfeed/9.jpg",
+                    "title": "style 9",
+                    "path": "news-feed-layout/style-9"
+                },
+                {
+                    "id": 10,
+                    "image": "assets/images/demo/newsfeed/10.jpg",
+                    "title": "style 10",
+                    "path": "news-feed-layout/style-10"
+                },
+                {
+                    "id": 11,
+                    "image": "assets/images/demo/newsfeed/11.jpg",
+                    "title": "style 11",
+                    "path": "news-feed-layout/style-11"
+                },
+                {
+                    "id": 12,
+                    "image": "assets/images/demo/newsfeed/12.jpg",
+                    "title": "style 12",
+                    "path": "news-feed-layout/style-12"
+                }
+            ]
+        },
+        {
+            "id":2,
+            "title": "Profile Pages",
+            "tab": "second",
+            "data": [
+                {
+                    "id": 1,
+                    "image": "assets/images/demo/profile/1.jpg",
+                    "title": "timeline",
+                    "path": "profile/timeline"
+                },
+                {
+                    "id": 2,
+                    "image": "assets/images/demo/profile/2.jpg",
+                    "title": "about",
+                    "path": "profile/about"
+                },
+                {
+                    "id": 3,
+                    "image": "assets/images/demo/profile/3.jpg",
+                    "title": "friends",
+                    "path": "profile/friends"
+                },
+                {
+                    "id": 4,
+                    "image": "assets/images/demo/profile/4.jpg",
+                    "title": "gallery",
+                    "path": "profile/gallery"
+                },
+                {
+                    "id": 5,
+                    "image": "assets/images/demo/profile/5.jpg",
+                    "title": "activity feed",
+                    "path": "profile/activity-feed"
+                },
+                {
+                    "id": 6,
+                    "image": "assets/images/demo/profile/6.jpg",
+                    "title": "tab",
+                    "path": "profile/timeline"
+                },
+                {
+                    "id": 7,
+                    "image": "assets/images/demo/profile/7.jpg",
+                    "title": "friend profile",
+                    "path": "profile/friend-profile"
+                }
+            ]
+        },
+        {
+            "id":3,
+            "title": "Favorite Page",
+            "tab": "third",
+            "data": [
+                {
+                    "id": 1,
+                    "image": "assets/images/demo/favourite/1.jpg",
+                    "title": "page listing",
+                    "path": "favorite/page-listing"
+                },
+                {
+                    "id": 2,
+                    "image": "assets/images/demo/favourite/2.jpg",
+                    "title": "page home",
+                    "path": "favorite/page-home"
+                },
+                {
+                    "id": 3,
+                    "image": "assets/images/demo/favourite/3.jpg",
+                    "title": "about",
+                    "path": "favorite/about"
+                },
+                {
+                    "id": 4,
+                    "image": "assets/images/demo/favourite/4.jpg",
+                    "title": "review",
+                    "path": "favorite/review"
+                },
+                {
+                    "id": 5,
+                    "image": "assets/images/demo/favourite/5.jpg",
+                    "title": "gallery",
+                    "path": "favorite/gallery"
+                },
+                {
+                    "id": 6,
+                    "image": "assets/images/demo/favourite/6.jpg",
+                    "title": "tab",
+                    "path": "favorite/tab"
+                }
+            ]
+        },
+        {
+            "id":4,
+            "title": "other pages",
+            "tab": "four",
+            "data": [
+                {
+                    "id": 1,
+                    "image": "assets/images/demo/other/events.jpg",
+                    "title": "event & calendar",
+                    "path": "others/event-calendar"
+                },
+                {
+                    "id": 2,
+                    "image": "assets/images/demo/other/birthday.jpg",
+                    "title": "Birthday",
+                    "path": "others/birthday"
+                },
+                {
+                    "id": 3,
+                    "image": "assets/images/demo/other/weather.jpg",
+                    "title": "weather",
+                    "path": "others/weather"
+                },
+                {
+                    "id": 4,
+                    "image": "assets/images/demo/other/music.jpg",
+                    "title": "Music",
+                    "path": "others/music"
+                },
+                {
+                    "id": 5,
+                    "image": "assets/images/demo/other/events.jpg",
+                    "title": "games",
+                    "path": "others/games"
+                },
+                {
+                    "id": 6,
+                    "image": "assets/images/demo/other/login.jpg",
+                    "title": "login",
+                    "path": "others/login"
+                },
+                {
+                    "id": 7,
+                    "image": "assets/images/demo/other/register.jpg",
+                    "title": "register",
+                    "path": "others/register"
+                },
+                {
+                    "id": 8,
+                    "image": "assets/images/demo/other/help.jpg",
+                    "title": "help & support",
+                    "path": "others/help-support"
+                },
+                {
+                    "id": 9,
+                    "image": "assets/images/demo/other/messanger.jpg",
+                    "title": "messenger",
+                    "path": "others/messenger"
+                },
+                {
+                    "id": 10,
+                    "image": "assets/images/demo/other/setting.jpg",
+                    "title": "setting",
+                    "path": "others/setting/home"
+                },
+                {
+                    "id": 11,
+                    "image": "assets/images/demo/other/help.jpg",
+                    "title": "help article",
+                    "path": "others/help-article"
+                }
+            ]
+        },
+        {
+            "id":5,
+            "title": "Company Pages",
+            "tab": "five",
+            "data": [
+                {
+                    "id": 1,
+                    "image": "assets/images/demo/company/home.jpg",
+                    "title": "Home",
+                    "path": "company/home"
+                },
+                {
+                    "id": 2,
+                    "image": "assets/images/demo/company/about.jpg",
+                    "title": "About",
+                    "path": "company/about"
+                },
+                {
+                    "id": 3,
+                    "image": "assets/images/demo/company/blog.jpg",
+                    "title": "Blog",
+                    "path": "company/blog"
+                },
+                {
+                    "id": 4,
+                    "image": "assets/images/demo/company/blog-details.jpg",
+                    "title": "Blog details",
+                    "path": "company/blog-details"
+                },
+                {
+                    "id": 5,
+                    "image": "assets/images/demo/company/faq.jpg",
+                    "title": "FAQ",
+                    "path": "company/faq"
+                },
+                {
+                    "id": 6,
+                    "image": "assets/images/demo/company/career.jpg",
+                    "title": "Career",
+                    "path": "company/career"
+                },
+                {
+                    "id": 7,
+                    "image": "assets/images/demo/company/career-details.jpg",
+                    "title": "Career details",
+                    "path": "company/career-details"
+                },
+                {
+                    "id": 8,
+                    "image": "assets/images/demo/company/contact.jpg",
+                    "title": "Contact Us",
+                    "path": "company/contact-us"
+                },
+                {
+                    "id": 9,
+                    "image": "assets/images/demo/company/coming-soon.jpg",
+                    "title": "Coming soon",
+                    "path": "company/coming-soon"
+                },
+                {
+                    "id": 10,
+                    "image": "assets/images/demo/company/404.jpg",
+                    "title": "404",
+                    "path": "company/404"
+                }
+            ]
+        },
+        {
+            "id":6,
+            "title": "Element Pages",
+            "tab": "six",
+            "data": [
+                {
+                    "id": 1,
+                    "image": "assets/images/demo/element/typography.jpg",
+                    "title":"typography",
+                    "path": "element/typography"
+                },
+                {
+                    "id": 2,
+                    "image": "assets/images/demo/element/widget.jpg",
+                    "title": "sidebar widgets",
+                    "path": "element/sidebar-widgets"
+                },
+                {
+                    "id": 3,
+                    "image": "assets/images/demo/element/calendar.jpg",
+                    "title": "calender",
+                    "path": "element/calender"
+                },
+                {
+                    "id": 4,
+                    "image": "assets/images/demo/element/map.jpg",
+                    "title": "maps",
+                    "path": "element/maps"
+                },
+                {
+                    "id": 5,
+                    "image": "assets/images/demo/element/icons.jpg",
+                    "title": "icons",
+                    "path": "element/icons"
+                },
+                {
+                    "id": 6,
+                    "image": "assets/images/demo/element/modal.jpg",
+                    "title": "modal",
+                    "path": "element/modal"
+                },
+                {
+                    "id": 7,
+                    "image": "assets/images/demo/element/buttons.jpg",
+                    "title": "buttons",
+                    "path": "element/buttons"
+                }
+            ]
+        }
+    ]
+}

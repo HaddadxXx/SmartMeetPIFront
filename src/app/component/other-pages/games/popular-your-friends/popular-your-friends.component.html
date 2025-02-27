@@ -1,0 +1,39 @@
+<div class="event-category music-slider-section section-t-space">
+    <div class=" event-title">
+        <div class="icon">
+            <app-svg-icon [class]="'fill-white iw-20 ih-20'" [icons]="'game-controller'"></app-svg-icon>
+        </div>
+        <div class="content">
+            <h3>popular in your friends</h3>
+        </div>
+    </div>
+    <div class="col-10 suggestion-box">
+        <div class="music-slider ratio_115 no-arrow default-space">
+            <owl-carousel-o [options]="friendsOptions">
+                @for (item of popularYourGames; track item) {
+                <ng-template carouselSlide>
+                    <div>
+                        <div class="story-box">
+                            <div class="adaptive-overlay"></div>
+                            <a class="story-bg story-bg bg-size"
+                                [ngStyle]="{'background-image': 'url(' +  item.image  + ')'}"
+                                style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                                <img [src]="item.image" class="img-fluid  bg-img" alt=""
+                                    style="display: none;">
+                            </a>
+                            <div class="story-content">
+                                <h6>{{item.userName}}</h6>
+                                <span class="player">
+                                    <app-feather-icon [icons]="'user'"
+                                        [class]="'icon-light iw-10 ih-10'"></app-feather-icon>
+                                    {{item.fiends}}</span>
+                            </div>
+                            <a href="javascript:void(0)" class="btn btn-solid play-btn">play</a>
+                        </div>
+                    </div>
+                </ng-template>
+                }
+            </owl-carousel-o>
+        </div>
+    </div>
+</div>

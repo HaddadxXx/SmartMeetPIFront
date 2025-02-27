@@ -1,0 +1,39 @@
+{
+    "likedPages": [
+        {
+            "image":"assets/images/pages-logo/1.jpg",
+            "title": "chrimson agency",
+            "subTitle": "clothing store",
+            "friends": 15,
+            "favorite": true
+       },
+       {
+            "image":"assets/images/pages-logo/2.jpg",
+            "title": "Digital Pixel",
+            "subTitle": "software company",
+            "friends": 158,
+            "favorite": false
+       },
+       {
+            "image":"assets/images/pages-logo/3.jpg",
+            "title": "the angle bar",
+            "subTitle": "disco bar",
+            "friends": 8,
+            "favorite": true
+       },
+       {
+            "image":"assets/images/pages-logo/4.jpg",
+            "title": "fivestar food",
+            "subTitle": "restaurant",
+            "friends": 186,
+            "favorite": false
+       },
+       {
+            "image":"assets/images/pages-logo/5.jpg",
+            "title": "royal watch",
+            "subTitle": "watch shop",
+            "friends": 65,
+            "favorite": false
+       }
+    ]
+}

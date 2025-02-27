@@ -1,0 +1,55 @@
+<div class="card-header">
+    <h4>dropdown</h4>
+    <span>theme dropdown style</span>
+</div>
+<div class="card-body d-flex">
+    <div class="settings">
+        <div class="setting-btn setting-dropdown ms-2">
+            <div class=" btn-group custom-dropdown arrow-none dropdown-sm" (clickOutside)="isShow = false">
+                <a href="javascript:void(0)" class="d-flex" [class.show]="isShow" (click)="isShow =!isShow">
+                    <app-feather-icon [class]="'icon icon-dark stroke-width-3 iw-14 ih-14'" [icons]="'sun'"></app-feather-icon>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow" style="position: absolute;inset: 0px auto auto 0px;margin: 0px;transform: translate(0px, 16px);">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <app-feather-icon [class]="'icon-font-light iw-16 ih-16'"
+                                    [icons]="'user'"></app-feather-icon> see all</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <app-feather-icon [class]="'icon-font-light iw-16 ih-16'"
+                                    [icons]="'search'"></app-feather-icon> find friends</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <app-feather-icon [class]="'icon-font-light iw-16 ih-16'"
+                                    [icons]="'settings'"></app-feather-icon> settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="settings ms-4">
+        <div class="setting-btn ms-2 setting-dropdown no-bg">
+            <div class=" btn-group custom-dropdown arrow-none dropdown-sm" (clickOutside)="isOpen = false">
+                <div [class.show]="isOpen" (click)="isOpen =!isOpen">
+                    <app-feather-icon [class]="'icon icon-font-color iw-14'" [icons]="'more-horizontal'"></app-feather-icon>
+                </div>
+                <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isOpen"style="position: absolute;inset: 0px auto auto 0px;margin: 0px;transform: translate(0px, 32px);">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <app-feather-icon [class]="'icon-font-light iw-16 ih-16'" [icons]="'edit'"></app-feather-icon>edit profile</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <app-feather-icon [class]="'icon-font-light iw-16 ih-16'" [icons]="'user'"></app-feather-icon>view profile</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

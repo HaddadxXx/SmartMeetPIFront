@@ -1,0 +1,31 @@
+<div class="detail-box">
+    <h3>{{data.title}}</h3>
+    <span>
+    </span>
+    <h5 class="tag"><span>{{data.spanTag}}</span> {{data.tag}}</h5>
+    <p>{{data.description}}
+        @if(data.span){
+        <span>{{data.span}}</span>
+        }
+    </p>
+    <div class="bookmark favourite-btn" [class.active]="isBookmark" (click)="isBookmark =!isBookmark">
+        <app-feather-icon [icons]="'bookmark'" [class]="'iw-14 ih-14'"></app-feather-icon>
+    </div>
+    <div class="people-likes">
+        <ul>
+            @for (images of data.images; track images) {
+            <li class="popover-cls" #data="ngbPopover" [ngbPopover]="popContent" triggers=""
+                (click)="commonServices.toggle(data, images.url , images.name)" placement="right"
+                [ngStyle]="{'background-image': 'url(' +  images.url  + ')'}"
+                style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                <img [src]="images.url" class="img-fluid  bg-img" alt="" style="display: none;">
+            </li>
+            }
+        </ul>
+        <h6>+12 people react this post</h6>
+    </div>
+</div>
+
+<ng-template #popContent>
+    <app-popover-loader [data]="commonServices.popoverData"></app-popover-loader>
+</ng-template>

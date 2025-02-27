@@ -1,0 +1,40 @@
+<div class="list-box">
+    <div class="cover-img bg-size" 
+    [ngStyle]="{'background-image': 'url(' +  data.image  + ')'}"
+    style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+        <img [src]="data.image" class="img-fluid bg-img" alt="" style="display: none;">
+        <div class="logo-img">
+            <a href="javascript:void(0)">
+                <img src="assets/images/pages-logo/6.png" class="img-fluid bg-img" alt="">
+            </a>
+        </div>
+    </div>
+    <div class="list-content">
+        <div class="page-name">
+            <a href="javascript:void(0)">
+                <h4>dance acadamy</h4>
+            </a>
+            <h6>danceacadamy&#64;gmail.com</h6>
+        </div>
+        <div class="counter-stats">
+            <ul>
+                <li>
+                    <h3 class="counter-value">546</h3>
+                    <h5>following</h5>
+                </li>
+                <li>
+                    <h3 class="counter-value">26335</h3>
+                    <h5>likes</h5>
+                </li>
+                <li>
+                    <h3 class="counter-value">6845</h3>
+                    <h5>followers</h5>
+                </li>
+            </ul>
+        </div>
+        <div class="bottom-btn">
+            <a href="javascript:void(0)" class="btn btn-solid">followed</a>
+            <a href="javascript:void(0)" class="btn btn-solid">invite</a>
+        </div>
+    </div>
+</div>

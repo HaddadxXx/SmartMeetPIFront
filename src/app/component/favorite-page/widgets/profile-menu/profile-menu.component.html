@@ -1,0 +1,36 @@
+<div class="profile-menu section-t-space">
+    <ul>
+        <li [class.active]="currentUrl === '/favorite/page-home' || currentUrl === '/favorite/tab'">
+            <a [routerLink]="['/favorite/page-home']">
+                <app-feather-icon [icons]="'clock'" [class]="'iw-14 ih-14'"></app-feather-icon>
+                <h6>home</h6>
+            </a>
+        </li>
+        <li [routerLinkActive]="'active'">
+            <a [routerLink]="['/favorite/about']">
+                <app-feather-icon [icons]="'info'" [class]="'iw-14 ih-14'"></app-feather-icon>
+                <h6>about</h6>
+            </a>
+        </li>
+        <li [routerLinkActive]="'active'">
+            <a [routerLink]="['/favorite/review']">
+                <app-feather-icon [icons]="'message-circle'" [class]="'iw-14 ih-14'"></app-feather-icon>
+                <h6>reviews</h6>
+            </a>
+        </li>
+        <li [routerLinkActive]="'active'">
+            <a [routerLink]="['/favorite/gallery']">
+                <app-feather-icon [icons]="'image'" [class]="'iw-14 ih-14'"></app-feather-icon>
+                <h6>photos</h6>
+            </a>
+        </li>
+    </ul>
+    <ul class="right-menu d-xl-flex d-none">
+        <li>
+            <div class="search-bar input-style icon-left search-inmenu">
+                <app-feather-icon [icons]="'search'" [class]="'iw-16 ih-16 icon icon-theme'"></app-feather-icon>
+                <input type="text" class="form-control" placeholder="search here...">
+            </div>
+        </li>
+    </ul>
+</div>

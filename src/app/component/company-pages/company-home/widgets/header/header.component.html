@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="header-section">
+        <div class="header-left">
+            <app-brand-logo [currentUrl]="currentUrl"></app-brand-logo>
+        </div>
+        <div class="header-right">
+            <nav class="navbar navbar-expand-lg pe-0">
+                <div class="overlay-bg" [class.show]="isMenu"></div>
+                <button class="navbar-toggler p-0" type="button" (click)="isMenu = true">
+                    <app-feather-icon [class]="'icon iw-22 ih-22 icon-light'" [icons]="'menu'"></app-feather-icon>
+                </button>
+                <div class="navbar-collapse" [class.show]="isMenu">
+                    <ul class="navbar-nav">
+                        <li class="nav-item d-block d-lg-none back-btn" (click)="isMenu = false">
+                            <a class="nav-link" href="javascript:void(0)">back</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" [routerLink]="['/news-feed-layout/style-1']">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/company/about']">features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/company/career']">testimonial</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/company/blog']">download</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/company/faq']">contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center btn btn-white"  (click)="logOut()">
+                                <app-feather-icon [icons]="'log-in'" [class]="'me-2 iw-18 ih-18'"></app-feather-icon>login</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>

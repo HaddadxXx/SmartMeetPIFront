@@ -1,0 +1,70 @@
+<div class="sticky-top">
+    <div class="review-counter section-b-space">
+        <div class="card-title">
+            <h3>review</h3>
+            <div class="settings">
+                <div class="setting-btn">
+                    <a href="jvascript:void(0)">
+                        <app-feather-icon [icons]="'rotate-cw'" [class]="'icon icon-dark stroke-width-3 iw-11 ih-11'"></app-feather-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="review-content">
+            <h2>4.6</h2>
+            <h4>based on 22 ratings</h4>
+            <ul class="ratings">
+                <li><i class="fas fa-star"></i></li>
+                <li><i class="fas fa-star"></i></li>
+                <li><i class="fas fa-star"></i></li>
+                <li><i class="fas fa-star"></i></li>
+                <li><i class="far fa-star"></i></li>
+            </ul>
+            <div class="review-part">
+                <ul>
+                    @for (item of review; track item) {
+                    <li>
+                        <h5>{{item.rating}} {{item.title}}</h5>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" [style.width]="item.width">
+                            </div>
+                        </div>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="review-bottom">
+        <div class="review-statement section-b-space">
+            <div class="card-title">
+                <h3>Review Statement</h3>
+                <div class="settings">
+                    <div class="setting-btn">
+                        <a href="javascript:void(0)">
+                            <app-feather-icon [icons]="'rotate-cw'" [class]="'icon icon-dark stroke-width-3 iw-11 ih-11'"></app-feather-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="chart-container">
+                <apx-chart 
+                [series]="reviewStatement.series" 
+                [chart]="reviewStatement.chart"
+                [legend]="reviewStatement.legend" 
+                [plotOptions]="reviewStatement.plotOptions" 
+                [colors]="reviewStatement.colors"
+                [labels]="reviewStatement.labels" 
+                [responsive]="reviewStatement.responsive">
+            </apx-chart>
+            </div>
+        </div>
+        <div class="recommend-sec">
+            <h3>Would you recommend Dance Acadamy?</h3>
+            <div class="recommend-btn">
+                <a href="javascript:void(0)" class="btn btn-solid">yes</a>
+                <a href="javascript:void(0)" class="btn btn-outline">no</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="intro-part">
+                <div class="title">
+                    <h2>Perks & Benefits</h2>
+                    <p>Join our team and help build the world’s best platform</p>
+                </div>
+                <div class="contact-img">
+                    <img src="assets/svg/hire.svg" class="img-fluid" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <div class="career-perks">
+                <div class="row">
+                    @for (item of perksBenefits; track item) {
+                    <div class="col-md-6">
+                        <div class="career-wrap">
+                            <app-feather-icon [icons]="item.icon" [class]="'iw-30 ih-25'"></app-feather-icon>
+                            <div class="content">
+                                <h3>{{item.title}}</h3>
+                                <p>{{item.subTitle}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

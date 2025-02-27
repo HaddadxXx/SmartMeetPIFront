@@ -1,0 +1,81 @@
+<div class="modal-content share-modal">
+    <div class="modal-header">
+        <div class="setting-dropdown" (clickOutside)="outSideClose()">
+            <div class="btn-group custom-dropdown arrow-none dropdown-sm" >
+                <h5 [class.show]="isShow" (click)="isShow =!isShow">share as post
+                    <app-feather-icon [icons]="'chevron-down'" [class]="'iw-14'"></app-feather-icon>
+                </h5>
+                <div class="dropdown-menu custom-dropdown" [class.show]="isShow" 
+                    style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 26px);">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)">share as post</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">on friend's feed</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">in a group</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">share as message</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn-close" (click)="modalServices.dismissAll()"></button>
+    </div>
+    <div class="modal-body">
+        <div class="user-info">
+            <div class="media">
+                <a href="javascript:void(0)" class="user-img" style="background-image: url(assets/images/user-sm/2.jpg);
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
+                display: block;">
+                    <img src="assets/images/user-sm/2.jpg" class="img-fluid  bg-img" alt="user" style="display: none;">
+                </a>
+                <div class="media-body">
+                    <a href="javascript:void(0)">
+                        <h5>Pabelo Mukrani</h5>
+                    </a>
+                    <div class="setting-dropdown" (clickOutside)="outSide()">
+                        <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+                            <h6 [class.show]="isOpen" (click)="isOpen =!isOpen">
+                                <app-feather-icon [icons]="'globe'" [class]="'icon-font-light left-icon iw-12 ih-12'"></app-feather-icon>public 
+                                <app-feather-icon [icons]="'chevron-down'" [class]="'iw-14'"></app-feather-icon>
+                            </h6>
+                            <div class="dropdown-menu custom-dropdown" [class.show]="isOpen" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(8px, 26px);">
+                                <ul>
+                                    @for (item of sharedPostIcon; track item) {
+                                    <li>
+                                        <a href="javascript:void(0)">
+                                            <app-feather-icon [icons]="item.icon"
+                                                [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>{{item.name}}</a>
+                                    </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="input-section">
+            <input type="text" class="form-control emojiPicker" placeholder="write a comment..">
+        </div>
+        <div class="post-section ratio2_1">
+            <div class="post-img bg-size" style="background-image: url(assets/images/post/1.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+                <img src="assets/images/post/1.jpg" class="img-fluid bg-img" alt="" style="display: none;">
+            </div>
+            <div class="post-content">
+                <h3>Today Our Three Cute Puppy Dog Birthday !!!!</h3>
+                <h5 class="tag"><span>#ourcutepuppy,</span> #puppy, #birthday, #dog</h5>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-solid">share post</button>
+    </div>
+</div>

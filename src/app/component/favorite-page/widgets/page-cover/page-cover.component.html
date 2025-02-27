@@ -1,0 +1,50 @@
+<div class="page-cover">
+    <div class="cover-img"
+        style="background-image: url(assets/images/cover/3.jpg); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+        <img src="assets/images/cover/3.jpg" class="img-fluid  bg-img" alt="cover"
+            style="display: none;">
+        <div class="cover-btns">
+            <a href="javascript:void(0)" class="btn btn-solid">
+                <app-feather-icon [icons]="'user-plus'" [class]="'iw-18 ih-18'"></app-feather-icon>follow</a>
+            <a href="javascript:void(0)" class="btn btn-solid">
+                <app-feather-icon [icons]="'message-square'" [class]="'iw-18 ih-18'"></app-feather-icon>send message</a>
+        </div>
+    </div>
+    <div class="cover-content">
+        <div class="page-logo">
+            <a href="javascript:void(0)">
+                <img src="assets/images/pages-logo/6.png" class="img-fluid  bg-img" alt="">
+            </a>
+        </div>
+        <a href="javascript:void(0)" class="page-name">
+            <h4>dance acadamy</h4>
+            <h6>danceacadamy&#64;gmail.com</h6>
+        </a>
+        <div class="page-stats">
+            <ul>
+                @for (item of profile; track item) {
+                <li>
+                    @if(item.value){
+                    <h2>{{item.value}}</h2>
+                    } @else {
+                    <h2><img [src]="item.image" class="img-fluid " alt=""></h2>
+                    }
+                    <h6>{{item.title}}</h6>
+                </li>
+                }
+            </ul>
+        </div>
+        <div class="social-btn">
+            <ul>
+                @for (item of socialMedia; track item) {
+                <li class="{{item.class}}">
+                    <a href="javascript:void(0)">
+                        <app-svg-icon [icons]="item.svgIcon"></app-svg-icon>
+                        <h6>{{item.media}}</h6>
+                    </a>
+                </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

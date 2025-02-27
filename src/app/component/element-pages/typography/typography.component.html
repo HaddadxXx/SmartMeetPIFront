@@ -1,0 +1,102 @@
+<app-loading></app-loading>
+<header class="no-sticky bg-transparent">
+    <app-header [currentUrl]="currentUrl"></app-header>
+</header>
+<section class="breadcrumb-section breadcrumb-sm bg-size"
+    style="background-image: url(assets/images/breadcrumb.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+    @if(title){
+    <app-title-section [title]="title"></app-title-section>
+    }
+</section>
+<section class=" typography-section">
+    <div class="element-card section-pb-space section-pt-space bg-white section-b-space">
+        <app-theme-color></app-theme-color>
+    </div>
+    <div class="element-card section-pb-space section-pt-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <app-headings></app-headings>
+                </div>
+                <div class="col-md-6">
+                    <app-text-color></app-text-color>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="element-card section-pb-space section-pt-space bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <app-theme-switch></app-theme-switch>
+                </div>
+                <div class="col-md-6">
+                    <app-theme-pagination></app-theme-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="element-card section-pb-space section-pt-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <app-inline-text-elements></app-inline-text-elements>
+                </div>
+                <div class="col-md-6">
+                    <app-alignment></app-alignment>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="element-card section-pb-space section-pt-space bg-white">
+        <app-lists></app-lists>
+    </div>
+    <div class="element-card section-pb-space section-pt-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <app-popover></app-popover>
+                </div>
+                <div class="col-md-6">
+                    <app-popover-theme></app-popover-theme>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="element-card section-pb-space section-pt-space bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <app-theme-form></app-theme-form>
+                </div>
+                <div class="col-md-6">
+                    <app-radio-checkbox></app-radio-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="element-card section-pb-space section-pt-space">
+        <app-naming-source-social-icons></app-naming-source-social-icons>
+    </div>
+    <div class="element-card section-pb-space section-pt-space bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <app-accordion></app-accordion>
+                </div>
+                <div class="col-md-3">
+                    <app-popover></app-popover>
+                </div>
+                <div class="col-md-3">
+                    <app-dropdown></app-dropdown>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <app-download></app-download>
+</section>
+<footer class="footer-t-space pb-0">
+    <app-footer [footerClass]="'footer-b-space'"></app-footer>
+</footer>

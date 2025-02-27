@@ -1,0 +1,31 @@
+<app-loading></app-loading>
+<header class="header-relative">
+    <app-header [currentUrl]="currentUrl"></app-header>
+</header>
+<section class="breadcrumb-section breadcrumb-sm bg-size"
+   style="background-image: url(assets/images/breadcrumb.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+    <app-title-section [title]="title"></app-title-section>
+</section>
+<section class="error-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 m-auto">
+                <div class="error-img">
+                    <img src="assets/images/404/1.png" class="img-fluid first-img" alt="">
+                    <img src="assets/images/404/2.png" class="img-fluid second-img" alt="">
+                    <img src="assets/images/404/3.png" class="img-fluid third-img" alt="">
+                </div>
+                <div class="error-content">
+                    <p>the page you requested could not be found</p>
+                    <a [routerLink]="['/news-feed-layout/style-1']" class="btn btn-solid btn-lg">back to home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <app-download></app-download>
+</section>
+<footer class="footer-t-space pb-0">
+    <app-footer [footerClass]="'footer-b-space'"></app-footer>
+</footer>

@@ -1,0 +1,42 @@
+<div class="coming-soon bg-size" 
+    style="background-image: url(assets/images/background.jpg); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+    <img src="assets/images/background.jpg" alt="" class="img-fluid bg-img" style="display: none;">
+    
+    <div class="object">
+        <div class="object-rope"></div>
+        <div class="object-shape">
+            OTP <span class="soon">Code</span>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="coming-soon-detail text-center">
+                    <div>
+                        <div class="logo mb-4">
+                            <a href="javascript:void(0)">
+                                <img src="assets/images/icon/logo.png" alt="Logo" class="img-fluid">
+                            </a>
+                        </div>
+                        
+                        <h2 class="mb-3">Code Verification</h2>
+                        <p class="mb-4">Please enter the code you received by email.</p>
+                        
+                        <form (ngSubmit)="verifyCode()" class="theme-form">
+                            <input type="text" [(ngModel)]="code" name="code" placeholder="Verification Code" class="form-control text-center" required />
+                            <div class="col-md-12 mt-3">
+                                <button type="submit" class="btn btn-solid btn-theme-light w-100">To validate</button>
+                            </div>
+                        </form>
+                        
+                        <p *ngIf="errorMessage" class="error mt-3">{{ errorMessage }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="animation-emoji">
+        <app-animation-emoji></app-animation-emoji>
+    </div>
+</div>

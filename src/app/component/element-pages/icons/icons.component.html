@@ -1,0 +1,53 @@
+<app-loading></app-loading>
+<header class="no-sticky bg-transparent">
+    <app-header [currentUrl]="currentUrl"></app-header>
+</header>
+<section class="breadcrumb-section breadcrumb-sm bg-size"
+    style="background-image: url(assets/images/breadcrumb.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+    @if(title){
+    <app-title-section [title]="title"></app-title-section>
+    }
+</section>
+<section class="section-pb-space section-pt-space">
+    <div class="container">
+        <div class="row sm-pb-space">
+            <div class="col-lg-9 col-12 m-auto">
+                <app-feather></app-feather>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 col-12 m-auto">
+                <div class="element-card theme-card bg-white section-b-space">
+                    <app-theme-icon></app-theme-icon>
+                </div>
+            </div>
+        </div>
+        <div class="row sm-pt-space">
+            <div class="col-lg-9 col-12 m-auto">
+                <div class="element-card theme-card bg-white">
+                    <app-weather-icons></app-weather-icons>
+                </div>
+            </div>
+        </div>
+        <div class="row sm-pt-space">
+            <div class="col-lg-9 col-12 m-auto">
+                <div class="element-card theme-card bg-white">
+                    <app-all-svg></app-all-svg>
+                </div>
+            </div>
+        </div>
+        <div class="row sm-pt-space">
+            <div class="col-lg-9 col-12 m-auto">
+                <div class="element-card theme-card bg-white">
+                    <app-all-svg-weather></app-all-svg-weather>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <app-download></app-download>
+</section>
+<footer class="footer-t-space pb-0">
+    <app-footer [footerClass]="'footer-b-space'"></app-footer>
+</footer>

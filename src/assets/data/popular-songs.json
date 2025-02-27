@@ -1,0 +1,40 @@
+{
+    "popularSongs": [
+        {
+            "id": 1,
+            "songName": "something just like this",
+            "singerName": "chainsmoker",
+            "isShow":false
+        },
+        {
+            "id": 2,
+            "songName": "Bom Bidi Bom",
+            "singerName": "Nicki Minaj",
+            "isShow":false
+        },
+        {
+            "id": 3,
+            "songName": "Regret In Your Tears",
+            "singerName": "Nicki Minaj",
+            "isShow":false
+        },
+        {
+            "id": 4,
+            "songName": "Bigger Than Me",
+            "singerName": "Katy Perry",
+            "isShow":false
+        },
+        {
+            "id": 5,
+            "songName": "Into Me You See",
+            "singerName": "Katy Perry",
+            "isShow":false
+        },
+        {
+            "id": 6,
+            "songName": "girl like you",
+            "singerName": "maroon 5",
+            "isShow":false
+        }
+    ]
+}

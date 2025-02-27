@@ -1,0 +1,67 @@
+    <div class="card-title">
+        <h3>friend suggestion</h3>
+        <div class="settings">
+            <div class="setting-btn">
+                <a href="javascript:void(0)" class="d-flex">
+                    <app-feather-icon [icons]="'rotate-cw'"
+                        [class]="'icon icon-theme stroke-width-3 iw-11 ih-11'"></app-feather-icon>
+                </a>
+            </div>
+            <div class="setting-btn setting-dropdown ms-2" (clickOutside)="outSideClose()">
+                <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+                    <a href="javascript:void(0)" class="d-flex" [class.show]="isShow" (click)="isShow = !isShow">
+                        <app-feather-icon [icons]="'sun'"
+                            [class]="'icon icon-theme stroke-width-3 iw-11 ih-11'"></app-feather-icon>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow"
+                        style="position: absolute;inset: 0px auto auto 0px;margin: 0px;transform: translate(0px, 13px);">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'user'"
+                                        [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>see all</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'search'"
+                                        [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>find friends</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'settings'"
+                                        [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>settings</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="suggestion-content ratio_115">
+        <div class="slide-2 no-arrow default-space">
+            <owl-carousel-o [options]="friendSuggestionOptions">
+                @if(friendSuggestion){
+                    @for (slideData of friendSuggestion; track slideData) {
+                    <ng-template carouselSlide>
+                        <div>
+                            <div class="story-box">
+                                <div class="adaptive-overlay {{slideData.class}}-overlay"></div>
+                                <div class="story-bg bg-size"
+                                    [ngStyle]="{'background-image': 'url(' +  slideData.images  + ')'}" style="background-size: cover;
+                                background-position: center center;
+                                background-repeat: no-repeat;
+                                display: block;">
+                                    <img [src]="slideData.images" class="img-fluid bg-img" alt="" style="display: none;">
+                                </div>
+                                <div class="story-content">
+                                    <h6>{{slideData.name}}</h6>
+                                    <span>{{slideData.title}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    }
+                }
+            </owl-carousel-o>
+        </div>
+    </div>

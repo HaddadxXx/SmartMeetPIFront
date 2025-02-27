@@ -1,0 +1,62 @@
+{
+    "friendsConversationList": [
+        {
+            "heading": "close friends",
+            "isCollapsed": false,
+            "data": [
+                {
+                    "image": "assets/images/user-sm/1.jpg",
+                    "title": "Paige Turner",
+                    "city": "alabma, USA",
+                    "class": "user1"
+                },
+                {
+                    "image": "assets/images/user-sm/2.jpg",
+                    "title": "Bob Frapples",
+                    "city": "alabma, USA",
+                    "class": "user2",
+                    "status": "online"
+                }
+            ]
+        },
+        {
+            "heading": "Recent Chats",
+            "isCollapsed": false,
+            "data": [
+                {
+                    "image": "assets/images/user-sm/3.jpg",
+                    "title": "Josephin water",
+                    "city": "alabma, USA",
+                    "class": "user3"
+                },
+                {
+                    "image": "assets/images/user-sm/4.jpg",
+                    "title": "Petey Cruiser",
+                    "city": "alabma, USA",
+                    "status": "offline",
+                    "class": "user4"
+                },
+                {
+                    "image": "assets/images/user-sm/5.jpg",
+                    "title": "Anna Sthesia",
+                    "city": "alabma, USA",
+                    "status": "online",
+                    "class": "user5"
+                },
+                {
+                    "image": "assets/images/user-sm/6.jpg",
+                    "title": "Paul Molive",
+                    "city": "alabma, USA",
+                    "class": "user6"
+                },
+                {
+                    "image": "assets/images/user-sm/7.jpg",
+                    "title": "Anna Mull",
+                    "city": "alabma, USA",
+                    "status": "away",
+                    "class": "user7"
+                }
+            ]
+        }
+    ]
+}

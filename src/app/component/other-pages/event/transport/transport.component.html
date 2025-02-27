@@ -1,0 +1,59 @@
+<div class="card p-4 mb-4">
+    <h1 class="mb-3">Add Transport</h1>
+    <form>
+      <div class="form-group mb-3">
+        <label>Type de transport</label>
+        <input type="text" [(ngModel)]="type" [ngModelOptions]="{standalone: true}" class="form-control" id="typetransport" name="typetransport" placeholder="Enter type">
+      </div>
+      
+      <div class="form-group mb-3">
+        <label>Capacite du transport</label>
+        <input type="number" [(ngModel)]="capacite" [ngModelOptions]="{standalone: true}" class="form-control" id="Capacity" name="Capacity" placeholder="Enter Capacity">
+      </div>
+      
+      <div class="form-group mb-3">
+        <label>Statut</label>
+        <select [(ngModel)]="statut" [ngModelOptions]="{standalone: true}" class="form-control" id="statut" name="statut">
+          <option value="disponible">Disponible</option>
+          <option value="non-disponible">Non-disponible</option>
+        </select>
+      </div>
+      
+      <button type="submit" class="btn btn-primary" (click)="save()">Submit</button>
+    </form>
+  </div>
+  
+  <div class="card p-4">
+    <h1 class="mb-3">Transport Table</h1>
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="bg-light">     
+          <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Capacity</th>
+            <th scope="col">Statut</th>
+            <th scope="col">Option</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let TransportItem of TransportArray">
+            <td>{{TransportItem.type}}</td>
+            <td>{{TransportItem.capacite}}</td>
+            <td>
+              <span [ngClass]="{'badge bg-success': TransportItem.statut === 'disponible', 'badge bg-danger': TransportItem.statut === 'non-disponible'}">
+                {{TransportItem.statut}}
+              </span>
+            </td>
+            <td>
+              <button type="button" class="btn btn-sm btn-outline-primary me-2" (click)="setUpdate(TransportItem)">
+                <i class="bi bi-pencil"></i> Edit
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-danger" (click)="setDelete(TransportItem)">
+                <i class="bi bi-trash"></i> Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

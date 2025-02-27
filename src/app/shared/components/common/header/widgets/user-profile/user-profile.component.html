@@ -1,0 +1,82 @@
+<div class="" (clickOutside)="outSideClose()">
+    <a class="main-link" href="javascript:void(0)" (click)="isOpen = !isOpen" [class.show]="isOpen">
+        <app-feather-icon [icons]="'user'"
+            [class]="'icon-light stroke-width-3 d-sm-none d-block iw-16 ih-16'"></app-feather-icon>
+        <div class="media d-none d-sm-flex">
+            <div class="user-img"
+                style="background-image: url(assets/images/user-sm/1.jpg); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                <img src="assets/images/user-sm/1.jpg" class="img-fluid  bg-img" alt="user" style="display: none;">
+                <span class="available-stats online"></span>
+            </div>
+            <div class="media-body d-none d-md-block">
+                <h4>Josephin water</h4>
+                <span>active now</span>
+            </div>
+        </div>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right" [class.show]="isOpen"
+        style="position: absolute;inset: 0px auto auto 0px;margin: 0px;transform: translate(-93px, 54px);">
+        <div class="dropdown-header">
+            <span>profile</span>
+            <div class="mobile-close" (click)="isOpen = false">
+                <h5>close</h5>
+            </div>
+        </div>
+        <div class="dropdown-content">
+            <ul class="friend-list">
+                <li>
+                    <a [routerLink]="['/profile/timeline']">
+                        <div class="media">
+                            <app-feather-icon [icons]="'user'"></app-feather-icon>
+                            <div class="media-body">
+                                <div>
+                                    <h5 class="mt-0">Profile</h5>
+                                    <h6>Profile preview & settings</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/others/setting/home']">
+                        <div class="media">
+                            <app-feather-icon [icons]="'settings'"></app-feather-icon>
+                            <div class="media-body">
+                                <div>
+                                    <h5 class="mt-0">setting & privacy</h5>
+                                    <h6>all settings & privacy</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/others/help-support']">
+                        <div class="media">
+                            <app-feather-icon [icons]="'help-circle'"></app-feather-icon>
+                            <div class="media-body">
+                                <div>
+                                    <h5 class="mt-0">help & support</h5>
+                                    <h6>browse help here</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a (click)="logOut()">
+                        <div class="media">
+                            <app-feather-icon [icons]="'log-out'"></app-feather-icon>
+
+                            <div class="media-body">
+                                <div>
+                                    <h5 class="mt-0">log out</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

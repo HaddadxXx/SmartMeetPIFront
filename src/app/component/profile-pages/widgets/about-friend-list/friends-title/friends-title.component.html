@@ -1,0 +1,28 @@
+<h3>friends</h3>
+<div class="right-setting">
+    <div class="search-input input-style icon-right">
+        <app-feather-icon [class]="'icon-dark icon iw-16'" [icons]="'search'"></app-feather-icon>
+        <input type="text" class="form-control" placeholder="find friends...">
+    </div>
+    <div class="ms-2 setting-dropdown" (clickOutside)="isShow = false">
+        <div class="btn-group custom-dropdown arrow-none dropdown-sm" (click)="isShow =!isShow">
+            <a [class.show]="isShow">
+                filter
+            </a>
+            <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow"
+                style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 32px);">
+                <ul>
+                    <li class="active">
+                        <a href="javascript:void(0)">all friends</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">close friends</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">office friends</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

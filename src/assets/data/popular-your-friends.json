@@ -1,0 +1,44 @@
+{
+    "popularYourFriends": [
+        {
+            "image": "assets/images/game/4.jpg",
+            "userName": "josephin water",
+            "fiends":"15k"
+        },
+        {
+            "image": "assets/images/game/5.jpg",
+            "userName": "josephin water",
+            "fiends":"15k"
+        },
+        {
+            "image": "assets/images/game/6.jpg",
+            "userName": "josephin water",
+            "fiends":"15k"
+        },
+        {
+            "image": "assets/images/game/7.jpg",
+            "userName": "josephin water",
+            "fiends":"15k"
+        },
+        {
+            "image": "assets/images/game/8.jpg",
+            "userName": "josephin water",
+            "fiends":"15k"
+        },
+        {
+            "image": "assets/images/game/9.jpg",
+            "userName": "josephin water",
+            "fiends":"15k"
+        },
+        {
+            "image": "assets/images/game/10.jpg",
+            "userName": "josephin water",
+            "fiends":"15k"
+        },
+        {
+            "image": "assets/images/game/11.jpg",
+            "userName": "josephin water",
+            "fiends":"15k"
+        }
+    ]
+}

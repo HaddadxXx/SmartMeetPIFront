@@ -1,0 +1,51 @@
+<div class="mobile-fix-menu"></div>
+<div class="container-fluid custom-padding">
+    <div class="header-section">
+        <div class="header-left">
+            <app-brand-logo [currentUrl]="currentUrl"></app-brand-logo>
+            <app-search-box></app-search-box>
+            <ul class="btn-group">
+                <li class="header-btn home-btn">
+                    <a class="main-link" [routerLink]="['/news-feed-layout/style-1']">
+                        <app-feather-icon [icons]="'home'"
+                            [class]="'icon-light stroke-width-3 iw-16 ih-16'"></app-feather-icon>
+                    </a>
+                </li>
+                <li class="header-btn custom-dropdown dropdown-lg add-friend">
+                    <app-friend-request></app-friend-request>
+                </li>
+            </ul>
+        </div>
+        <div class="header-right">
+            <div class="post-stats">
+                <ul>
+                    <li>
+                        <h3>326</h3>
+                        <span>total posts</span>
+                    </li>
+                    <li>
+                        <h3>2456</h3>
+                        <span>total friends</span>
+                    </li>
+                </ul>
+            </div>
+            <ul class="option-list">
+                <li class="header-btn custom-dropdown dropdown-lg btn-group message-btn">
+                    <app-messages></app-messages>
+                </li>
+                <li class="header-btn custom-dropdown">
+                    <app-mode></app-mode>
+                </li>
+                <li class="header-btn custom-dropdown d-md-none d-block app-btn">
+                    <app-mobile-menu></app-mobile-menu>
+                </li>
+                <li class="header-btn custom-dropdown dropdown-lg btn-group notification-btn">
+                    <app-notification></app-notification>
+                </li>
+                <li class="header-btn custom-dropdown profile-btn btn-group">
+                    <app-user-profile></app-user-profile>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

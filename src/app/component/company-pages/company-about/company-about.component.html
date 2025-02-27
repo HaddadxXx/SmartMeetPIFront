@@ -1,0 +1,29 @@
+<app-loading></app-loading>
+<header class="no-sticky bg-transparent">
+  <app-header [currentUrl]="currentUrl"></app-header>
+</header>
+<section class="breadcrumb-section breadcrumb-sm bg-size"
+    style="background-image: url(assets/images/breadcrumb.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+    @if(title){
+        <app-title-section [title]="title"></app-title-section>
+    }
+</section>
+<section class="section-pt-space section-pb-space single-feature-section overflow-hidden">
+    <app-about-us></app-about-us>
+</section>
+<section class="feature-section section-pb-space overflow-hidden about-feature">
+    <app-feature-section></app-feature-section>
+</section>
+<section class="default-space-lg landing-bg section-pt-space section-pb-space">
+    <app-team-section></app-team-section>
+</section>
+<section class="section-pb-space section-pt-space blog-wrapper overflow-hidden">
+    <app-blog-section></app-blog-section>
+</section>
+<section>
+    <app-download></app-download>
+</section>
+<footer class="footer-t-space pb-0">
+   <app-footer [footerClass]="'footer-b-space'"></app-footer>
+</footer>
+

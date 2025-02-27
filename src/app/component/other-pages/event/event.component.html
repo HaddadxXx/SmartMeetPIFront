@@ -1,0 +1,97 @@
+<div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
+    <app-event-skeleton></app-event-skeleton>
+</div>
+
+<div class="event-cover">
+    <div class="event-img"
+        style="background-image: url(assets/images/cover/5.jpg);background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+        <img src="assets/images/cover/5.jpg" class="img-fluid  bg-img" alt="" style="display: none;">
+        <div class="event-content">
+            <h1>latest events</h1>
+        </div>
+        <div class="cover-img-detail">
+            <span>12 dec</span>
+            <h3>last added 10 songs</h3>
+            <a href="javascript:void(0)">view more
+                <app-feather-icon [class]="'fas ms-1 fa-arrow-right'"></app-feather-icon>
+            </a>
+        </div>
+        <div class="settings">
+            <div class="setting-btn">
+                <a href="javascript:void(0)">
+                    <app-feather-icon [icons]="'rotate-cw'"
+                        [class]="'icon icon-dark stroke-width-3 iw-11 ih-11'"></app-feather-icon>
+                </a>
+            </div>
+            <div class="setting-btn ms-2 setting-dropdown" (clickOutside)="outSideClose()">
+                <div class=" btn-group custom-dropdown arrow-none dropdown-sm">
+                    <a href="javascript:void(0)" [class.show]="isShow" (click)="isShow =!isShow">
+                        <app-feather-icon [icons]="'sun'"
+                            [class]="'icon-dark stroke-width-3 icon iw-11 ih-11'"></app-feather-icon>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow"
+                        style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-149px, 23px);">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'edit'"
+                                        [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>edit profile</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'user'"
+                                        [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>view profile</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="event-timeline">
+        <div class="timeline-title">
+            <div class="media">
+                <img src="assets/images/icon/event.png" class="img-fluid " alt="">
+                <div class="media-body">
+                    <h4>timeline</h4>
+                    <h6>45 total your attended events</h6>
+                </div>
+            </div>
+        </div>
+        <ul class="timeline-content">
+            <li>
+                <h4>2019</h4>
+                <h6>12 events</h6>
+            </li>
+            <li>
+                <h4>2024</h4>
+                <h6>16 events</h6>
+            </li>
+            <li>
+                <h4>2024</h4>
+                <h6>10 events</h6>
+            </li>
+            <li>
+                <h4>2016</h4>
+                <h6>13 events</h6>
+            </li>
+            <li>
+                <h4>2024</h4>
+                <h6>5 events</h6>
+            </li>
+            <li>
+                <h4>2024</h4>
+                <h6>4 events</h6>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row event-body">
+    <div class="col-xl-6">
+        <app-event-section [class]="class"></app-event-section>
+        <app-event-category></app-event-category>
+    </div>
+    <div class="col-xl-6">
+        <app-calendar></app-calendar>
+    </div>
+</div>
