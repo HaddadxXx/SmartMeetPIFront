@@ -1,0 +1,26 @@
+<div class="left-emoji">
+    <ul>
+        @for (item of emoji; track item) {
+        <li>
+            <img [src]="item.images" alt="smile">
+        </li>
+        }
+    </ul>
+    <h6>+75</h6>
+</div>
+<div class="right-stats">
+    <ul>
+        <li>
+            <h5>
+                <app-feather-icon [class]="'iw-16 ih-16'" [icons]="'message-square'"></app-feather-icon>
+                <span>4565</span> comment
+            </h5>
+        </li>
+        <li>
+            <h5>
+                <app-feather-icon [class]="'iw-16 ih-16'" [icons]="'share'"></app-feather-icon> <span>985</span>
+                share
+            </h5>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,54 @@
+<div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
+    <app-skeleton-style-3></app-skeleton-style-3>
+</div>
+<div class="story-section ratio_115">
+    <app-stroy></app-stroy>
+</div>
+<div class="container-fluid section-t-space px-0">
+    <div class="page-content">
+        <div class="content-center">
+            <app-create-post [isCreatePost]="isCreatePost"></app-create-post>
+            <div class="overlay-bg"></div>
+            <div class="post-panel infinite-loader-sec section-t-space">
+                @for (item of visiblePosts; track item) {
+                <div class="post-wrapper col-grid-box {{item.class}}">
+                    <app-post-header [postData]="item"></app-post-header>
+                    <app-post-details [postData]="item"></app-post-details>
+                </div>
+                }
+            </div>
+            @if(visiblePosts){
+            <div class="post-loader" [class.no-more]="visiblePosts.length == 6">
+                @if (visiblePosts.length < 6) { <div class="loader-icon" (click)="refresh()">
+                    <app-feather-icon [icons]="'rotate-ccw'" [class]="'icon-theme iw-25 ih-25'"></app-feather-icon>
+            </div>
+            }@else {
+            <div class="no-more-text">
+                <p>no more post</p>
+            </div>
+            }
+        </div>
+        }
+    </div>
+    <div class="content-left">
+        <div class="profile-box">
+            <app-profile-box></app-profile-box>
+        </div>
+        <app-birthday-section [class]="birthdayClass"></app-birthday-section>
+        <div class="gallery-section section-t-space">
+            <app-gallery></app-gallery>
+        </div>
+        <div class="page-list section-t-space">
+            <app-liked-pages [rating]="true"></app-liked-pages>
+        </div>
+        <div class="sticky-top sticky-xl-top">
+            <app-events [events]="event"></app-events>
+            <div class="suggestion-box section-t-space">
+                <app-friend-suggestion></app-friend-suggestion>
+            </div>
+            <div class="weather-section section-t-space">
+                <app-common-weather></app-common-weather>
+            </div>
+        </div>
+    </div>
+</div>

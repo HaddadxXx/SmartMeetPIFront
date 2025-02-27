@@ -1,0 +1,89 @@
+
+<div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
+<app-page-list-skeleton></app-page-list-skeleton>
+</div>
+<div class="event-cover light-cover">
+    <div class="event-img bg-size"
+        style="background-image: url(assets/images/cover/8.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+        <img src="assets/images/cover/8.jpg" class="img-fluid bg-img" alt="profile" style="display: none;">
+        <div class="event-content">
+            <h1>list of pages</h1>
+        </div>
+        <div class="cover-img-detail">
+            <span>12 dec</span>
+        </div>
+        <div class="settings">
+            <div class="setting-btn">
+                <a href="javascript:void(0)">
+                    <app-feather-icon [icons]="'rotate-cw'"
+                        [class]="'icon icon-dark stroke-width-3 iw-11 ih-11'"></app-feather-icon>
+                </a>
+            </div>
+            <div class="setting-btn ms-2 setting-dropdown" (clickOutside)="outSideClose()">
+                <div class=" btn-group custom-dropdown arrow-none dropdown-sm">
+                    <a href="javascript:void(0)" [class.show]="isShow" (click)="isShow =!isShow">
+                        <app-feather-icon [icons]="'sun'"
+                            [class]="'icon-dark stroke-width-3 icon iw-11 ih-11'"></app-feather-icon>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow"
+                        style="position: absolute;inset: 0px auto auto 0px;margin: 0px;transform: translate(-149px, 23px);">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [class]="'icon-font-light iw-16 ih-16'"
+                                        [icons]="'edit'"></app-feather-icon>edit profile</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'user'"
+                                        [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>view profile</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid section-t-space px-0">
+    <div class="page-content">
+        <div class="content-center w-100">
+            <div class="profile-menu ms-0 me-0">
+                <ul>
+                    @for (item of tabData; track $index) {
+                    <li [ngClass]="item.class">
+                        <a href="javascript:void(0)">
+                            <h6>{{item.tab}}</h6>
+                        </a>
+                    </li>
+                    }
+                </ul>
+                <ul class="right-menu d-xl-flex d-none">
+                    <li>
+                        <a href="javascript:void(0)">
+                            <h6>create page</h6>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="page-list-section section-t-space">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-sm-6">
+                        <div class="list-box create-page">
+                            <div>
+                                <app-feather-icon [icons]="'plus-circle'" [class]="'iw-30 ih-30'"></app-feather-icon>
+                                <h5 class="card-title">create page</h5>
+                                <p>create page to reach more people</p>
+                            </div>
+                        </div>
+                    </div>
+                    @for (item of pageListing; track item) {
+                    <div class="col-xl-3 col-lg-4 col-sm-6">
+                        <app-list-box [data]="item"></app-list-box>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

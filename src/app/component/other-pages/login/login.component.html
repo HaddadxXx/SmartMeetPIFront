@@ -1,0 +1,117 @@
+<app-loading></app-loading>
+<section class="login-section">
+    <div class="header-section">
+        <div class="logo-sec">
+            <a [routerLink]="['/news-feed-layout/style-1']">
+                <img src="assets/images/icon/logo.png" alt="logo" class="img-fluid">
+            </a>
+        </div>
+        <div class="right-links">
+            <ul>
+                <li>
+                    <a href="javascript:void(0)">
+                        about
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        upgrade
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-5 d-none d-lg-block">
+                <div class="login-welcome">
+                    <div>
+                        <img src="assets/images/login/charcter.png" class="img-fluid" alt="charcter">
+                        <h1>Welcome Back!</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-7 col-md-10 col-12 m-auto">
+                <div class="login-form">
+                    <div>
+                        <div class="login-title">
+                            <h2>Login</h2>
+                        </div>
+                        <div class="login-discription">
+                            <h3>Hello Everyone, Welcome Back</h3>
+                            <h4>Welcome to Friendbook, please login to your account.
+                            </h4>
+                        </div>
+                        <div class="form-sec">
+                            <div>
+                                <form class="theme-form">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1"
+                                            placeholder="Enter email">
+                                        <app-feather-icon [icons]="'user'"
+                                            [class]="'input-icon iw-20 ih-20'"></app-feather-icon>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Password</label>
+                                        <input  class="form-control" id="exampleInputPassword1"
+                                        placeholder="Password" formControlName="password" [type]="show ? 'text' : 'password'" >
+                                            @if(show){
+                                                <app-feather-icon [icons]="'eye'" [class]="'input-icon iw-20 ih-20'" (click)="show = !show"></app-feather-icon>
+                                            } @else {
+                                                <app-feather-icon [icons]="'eye-off'" [class]="'input-icon iw-20 ih-20'" (click)="show = !show"></app-feather-icon>
+                                            }
+                                    </div>
+                                    <div class="bottom-sec">
+                                        <div class="form-check checkbox_animated">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                            <label class="form-check-label" for="exampleCheck1">remember me</label>
+                                        </div>
+                                        <a href="javascript:void(0)" class="ms-auto forget-password">forget
+                                            password?</a>
+                                    </div>
+                                    <div class="btn-section">
+                                        <a class="btn btn-solid btn-lg">login</a>
+                                        <a [routerLink]="['/others/register']" class="btn btn-solid btn-lg ms-auto">sign
+                                            up</a>
+                                    </div>
+                                </form>
+                                <div class="connect-with">
+                                    <h6><span>OR Connect With</span></h6>
+                                    <ul class="social-links">
+                                        <li class="google">
+                                            <a href="javascript:void(0)">
+                                                <app-svg-icon [icons]="'google'"></app-svg-icon>
+                                            </a>
+                                        </li>
+                                        <li class="facebook">
+                                            <a href="javascript:void(0)">
+                                                <app-svg-icon [icons]="'facebook'"></app-svg-icon>
+                                            </a>
+                                        </li>
+                                        <li class="twitter">
+                                            <a href="javascript:void(0)">
+                                                <app-svg-icon [icons]="'twitter'"></app-svg-icon>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="how-work">
+        <div class="media">
+            <app-feather-icon [icons]="'play-circle'"></app-feather-icon>
+            <div class="media-body">
+                <h2>how it work?</h2>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

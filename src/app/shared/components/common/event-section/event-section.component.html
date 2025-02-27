@@ -1,0 +1,21 @@
+<div class="event-section">
+    <div class="event_category no-arrow default-space">
+        <owl-carousel-o [options]="storyDataOptions">
+            <ng-template carouselSlide>
+                <div>
+                    <app-events [events]="event1"></app-events>
+                </div>
+            </ng-template>
+            <ng-template carouselSlide>
+                <div>
+                    <app-events [events]="event2"></app-events>
+                </div>
+            </ng-template>
+            <ng-template carouselSlide>
+                <div>
+                    <app-events [events]="event3"></app-events>
+                </div>
+            </ng-template>
+        </owl-carousel-o>
+    </div>
+</div>

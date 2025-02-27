@@ -1,0 +1,92 @@
+<div class="modal-content">
+    <div>
+        <div class="image-gallery">
+            <div class="row m-0">
+                <div class="col-xl-9 col-lg-8 p-0">
+                    <a href="javascript:void(0)" (click)="modalServices.dismissAll()">
+                        <app-feather-icon [icons]="'x'" [class]="'icon-light close-btn'"></app-feather-icon>
+                    </a>
+                    <div class="slide-1 box-arrow dots-number">
+                        <owl-carousel-o [options]="storyOptions">
+                            @for (item of carousalData; track item) {
+                            <ng-template carouselSlide>
+                                <div>
+                                    <div class="img-part">
+                                        <img [src]="item.image" class="img-fluid " alt="">
+                                    </div>
+                                </div>
+                            </ng-template>
+                            }
+                        </owl-carousel-o>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 p-0">
+                    <div class="comment-part">
+                        <div class="user-detail">
+                            <div class="user-media">
+                                <div class="media">
+                                    <a class="user-img"
+                                        style="background-image: url(assets/images/user-sm/1.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+                                        <img src="assets/images/user-sm/1.jpg" class="img-fluid  bg-img" alt="user"
+                                            style="display: none;">
+                                        <span class="available-stats"></span>
+                                    </a>
+                                    <div class="media-body">
+                                        <h5 class="user-name">Paige Turner</h5>
+                                        <h6>alabma, USA</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="setting-btn ms-auto setting-dropdown no-bg" (clickOutside)="clickOutside()">
+                                <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+                                    <div role="button" [class.show]="isShow" (click)="isShow =!isShow">
+                                        <app-feather-icon [icons]="'more-horizontal'"
+                                            [class]="'icon icon-font-color iw-14'"></app-feather-icon>
+                                    </div>
+                                    <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow"
+                                        style="position: absolute;
+                                    inset: 0px auto auto 0px;
+                                    margin: 0px;
+                                    transform: translate(-146px, 32px);">
+                                        <ul>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <app-feather-icon [icons]="'bookmark'"
+                                                        [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon> save
+                                                    post</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <app-feather-icon [icons]="'edit'"
+                                                        [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>edit
+                                                    post</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <app-feather-icon [icons]="'x-square'"
+                                                        [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>hide
+                                                    post</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-panel mb-0">
+                            <div class="post-wrapper">
+                                <div class="post-wrapper">
+                                    <div class="post-details">
+                                        <div class="like-panel">
+                                            <app-like-panel></app-like-panel>
+                                        </div>
+                                        <app-comment></app-comment>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

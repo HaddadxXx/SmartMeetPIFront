@@ -1,0 +1,42 @@
+<div class="profile-cover bg-size"
+    style="background-image: url(assets/images/cover/1.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+    <img src="assets/images/cover/1.jpg" class="img-fluid bg-img" alt="cover" style="display: none;">
+    <div class="profile-box d-lg-block d-none">
+        <app-profile-content></app-profile-content>
+    </div>
+    <div class="setting-dropdown btn-group custom-dropdown arrow-none dropdown-sm" (clickOutside)="outSideClose()">
+        <a class="btn-white btn-cover" href="javascript:void(0)" [class.show]="isShow" (click)="isShow =!isShow">
+            edit cover
+        </a>
+        <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow" style=" position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 41px);">
+            <ul>
+                <li>
+                    <a href="javascript:void(0)" (click)="choosePhoto()">
+                        <app-feather-icon [class]="'icon-font-light iw-16 ih-16'" [icons]="'image'"></app-feather-icon>
+                        choose photo</a>
+                </li>
+                <li class="choose-file">
+                    <a href="javascript:void(0)">
+                        <app-feather-icon [class]="'icon-font-light iw-16 ih-16'" [icons]="'upload'"></app-feather-icon>
+                        upload photo</a>
+                    <input type="file">
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <app-feather-icon [class]="'icon-font-light iw-16 ih-16'" [icons]="'maximize'"></app-feather-icon>
+                        set position</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <app-feather-icon [class]="'icon-font-light iw-16 ih-16'" [icons]="'trash-2'"></app-feather-icon>
+                        remove photo</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="d-lg-none d-block">
+    <div class="profile-box">
+        <app-profile-content></app-profile-content>
+    </div>
+</div>

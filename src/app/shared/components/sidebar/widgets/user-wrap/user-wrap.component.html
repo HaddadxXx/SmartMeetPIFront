@@ -1,0 +1,19 @@
+<div class="user-wrap">
+    <div class="profile-img">
+        <div class="bg-size " [ngStyle]="{'background-image': 'url(' + user + ')'}" style="    background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        display: block;">
+            <img [src]="user" class="img-fluid  bg-img" alt="profile" style="display: none;">
+        </div>
+        @if (currentUrl.includes('/news-feed-layout/style-9')){
+        <span class="stats">
+            <img src="assets/images/icon/verified.png" class="img-fluid " alt="verified">
+        </span>
+        }
+    </div>
+    <div class="user-info">
+        <h3>Paige Turner</h3>
+        <h4>alabma, USA</h4>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="title-sec">
+                <h4>our features</h4>
+                <h3>we provide best feature</h3>
+            </div>
+        </div>
+        @for (item of ourFeatures; track item) {
+        <div class="col-lg-4 col-6 mobile-w100">
+            <div class="feature-box">
+                <div class="icon-box">
+                    <img [src]="item.image" class="img-fluid" alt="">
+                </div>
+                <div class="feature-content">
+                    <h3>{{item.title}}</h3>
+                    <p>{{item.desc}}</p>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+<div class="animation-home">
+    <div class="cross"></div>
+    <div class="cross cross1"></div>
+    <div class="tringle"></div>
+    <div class="tringle tringle1"></div>
+    <div class="circle"></div>
+</div>

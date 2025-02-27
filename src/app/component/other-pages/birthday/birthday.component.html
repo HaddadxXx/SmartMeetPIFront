@@ -1,0 +1,92 @@
+<div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
+    <app-birthday-skeleton></app-birthday-skeleton>
+</div>
+<div class="event-cover light-cover">
+    <div class="event-img"
+        style="background-image: url(assets/images/cover/6.jpg); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+        <img src="assets/images/cover/6.jpg" class="img-fluid  bg-img" alt="" style="display: none;">
+        <div class="event-content">
+            <h1 class="celebration-txt">upcoming birthday</h1>
+        </div>
+        <div class="cover-img-detail">
+            <span>12 dec</span>
+            <h3>Wish Birthday to your friend</h3>
+        </div>
+        <div class="settings" >
+            <div class="setting-btn">
+                <a href="javascript:void(0)">
+                    <app-feather-icon [icons]="'rotate-cw'" [class]="'icon icon-dark stroke-width-3 iw-11 ih-11'"></app-feather-icon>
+                </a>
+            </div>
+            <div class="setting-btn ms-2 setting-dropdown" (clickOutside)="outSideClose()">
+                <div class=" btn-group custom-dropdown arrow-none dropdown-sm">
+                    <a href="javascript:void(0)" (click)="isShow =!isShow" [class.show]="isShow" >
+                        <app-feather-icon [icons]="'sun'" [class]="'icon-dark stroke-width-3 icon iw-11 ih-11'"></app-feather-icon>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow"  style="position: absolute;inset: 0px auto auto 0px;margin: 0px;transform: translate(-149px, 23px);">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)"><app-feather-icon [icons]="'edit'" [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>edit profile</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><app-feather-icon [class]="'icon-font-light iw-16 ih-16'" [icons]="'user'"></app-feather-icon>view profile</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid section-t-space px-0">
+    <div class="page-content">
+        <div class="content-center">
+            @for (item of birthdayData; track item) {
+            <div class="friend-list-box birthday-list section-b-space">
+                <div class="card-title">
+                    <h3>{{item.title}}</h3>
+                </div>
+                <div class="container-fluid">
+                    <div class="friend-list friend-page-list">
+                        <ul>
+                            @for (items of item.list; track items) {
+                            <li>
+                                <div class="friend-box">
+                                    <div class="media">
+                                        <a [routerLink]="['/profile/friend-profile']" class="user-img"
+                                            [ngStyle]="{'background-image': 'url(' +  items.image  + ')'}"style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                                            <img [src]="items.image" class="img-fluid  bg-img" alt="user"style="display: none;">
+                                            <span class="available-stats"></span>
+                                        </a>
+                                        <div class="media-body">
+                                            <a [routerLink]="['/profile/friend-profile']">
+                                                <h5 class="user-name">{{items.userName}}</h5>
+                                            </a>
+                                            @if(items.age){
+                                            <h6>{{items.age}}</h6>
+                                            } @else {
+                                            <h6>{{items.birthday}}</h6>
+                                            }
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0)" class="btn btn-outline">create card</a>
+                                </div>
+                            </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+        <div class="content-left d-none d-xl-block">
+            <div class="profile-box">
+                <app-profile-box></app-profile-box>
+            </div>
+            <div class="suggestion-box section-t-space">
+                <app-friend-suggestion></app-friend-suggestion>
+            </div>
+            <app-birthday-section [class]="birthdayClass"></app-birthday-section>
+        </div>
+    </div>
+</div>

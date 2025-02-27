@@ -1,0 +1,46 @@
+<div class="portfolio-section">
+    <div class="row ratio_square">
+        @for (item of photos; track item) {
+        <div class="col-xl-3 col-lg-4 col-6">
+            <div class="portfolio-image" (click)="open()">
+                <a class="bg-size" [ngStyle]="{'background-image': 'url(' +  item.image  + ')'}"
+                    style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                    <img [src]="item.image" alt="" class="img-fluid  bg-img" style="display: none;">
+                </a>
+                <div class="settings">
+                    <div class="setting-btn setting-dropdown">
+                        <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+                            <a class="d-flex" [class.show]="isShow" (click)="isShow = !isShow">
+                                <app-feather-icon [icons]="'sun'" [class]="'icon icon-dark stroke-width-3 iw-11 ih-11'"></app-feather-icon>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow" style="position: absolute;inset: 0px auto auto 0px;margin: 0px;transform: translate(0px, 13px);">
+                                <ul>
+                                    <li>
+                                        <a href="javascript:void(0)"><app-feather-icon [icons]="'trash-2'"
+                                                [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon> Delete
+                                            Photo</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)"><app-feather-icon [icons]="'download'"
+                                                [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon> Download</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)"><app-feather-icon [icons]="'image'"
+                                                [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon> Make a
+                                            cover</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)"><app-feather-icon [icons]="'image'"
+                                                [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon> Make a
+                                            profile</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>

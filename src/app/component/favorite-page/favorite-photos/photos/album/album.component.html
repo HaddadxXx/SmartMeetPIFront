@@ -1,0 +1,45 @@
+<div class="row gallery-album" [class.d-none]="isOpen">
+    <div class="col-xl-3 col-lg-4 col-6">
+        <div class="card add-card">
+            <div class="add-icon">
+                <div>
+                    <app-feather-icon [icons]="'plus-circle'" [class]="'iw-30 ih-30'"></app-feather-icon>
+                    <input type="file" class="form-control-file">
+                    <h5 class="card-title">create album</h5>
+                    <p>create album in just few minutes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    @for (item of album; track item) {
+    <div class="col-xl-3 col-lg-4 col-6">
+        <a class="card collection" (click)="isOpen = !isOpen" [ngStyle]="{'background-image': 'url(' +  item.image  + ')'}" style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+            <img class="card-img-top img-fluid  bg-img" [src]="item.image" alt="Card image cap" style="display: none;" >
+            <div class="card-body">
+                <h5 class="card-title">{{item.title}}</h5>
+                <h6>3 photos</h6>
+            </div>
+        </a>
+    </div>
+    }
+</div>
+<div class="gallery-open" [class.d-block]="isOpen">
+    <div class="close-album" (click)="isOpen = false">
+        <h5>close album</h5>
+    </div>
+    <div class="portfolio-section">
+        <div class="row ratio_square">
+            @for (item of galleryOpen; track item) {
+                <div class="col-xl-3 col-lg-4 col-6">
+                    <div class="portfolio-image">
+                        <a href="javascript:void(0)" class="bg-size"
+                        [ngStyle]="{'background-image': 'url(' +  item.image  + ')'}"
+                         style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                            <img [src]="item.image" alt="" class="img-fluid bg-img" style="display: none;">
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

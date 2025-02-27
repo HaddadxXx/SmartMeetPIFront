@@ -1,0 +1,66 @@
+<div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
+    <app-profile-friends-skeleton></app-profile-friends-skeleton>
+</div>
+<app-profile-pages></app-profile-pages>
+<app-profile-menu [currentUrl]="currentUrl"></app-profile-menu>
+<div class="container-fluid section-t-space px-0">
+    <div class="page-content">
+        <div class="content-center w-100">
+            <div class="friend-list-box section-b-space">
+                <div class="card-title">
+                    <app-friends-title></app-friends-title>
+                </div>
+                <div class="container-fluid">
+                    <div class="friend-list friend-page-list">
+                        <ul>
+                            @for (item of friends; track item) {
+                            <li>
+                                <div class="profile-box friend-box">
+                                    <div class="profile-content">
+                                        <div class="image-section">
+                                            <div class="profile-img">
+                                                <div class="bg-size"
+                                                    [ngStyle]="{'background-image': 'url(' +  item.image  + ')'}"
+                                                    style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+                                                    <img [src]="item.image" class="img-fluid bg-img" alt="profile"
+                                                        style="display: none;">
+                                                </div>
+                                                <span class="stats">
+                                                    <img src="assets/images/icon/verified.png" class="img-fluid"
+                                                        alt="verified">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="profile-detail">
+                                            <h2>kelin jasen <span>❤</span></h2>
+                                            <h5>kelin.jasen156&#64;gmail.com</h5>
+                                            <div class="counter-stats">
+                                                <ul>
+                                                    <li>
+                                                        <h3 class="counter-value">546</h3>
+                                                        <h5>following</h5>
+                                                    </li>
+                                                    <li>
+                                                        <h3 class="counter-value">26335</h3>
+                                                        <h5>likes</h5>
+                                                    </li>
+                                                    <li>
+                                                        <h3 class="counter-value">6845</h3>
+                                                        <h5>followers</h5>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <a [routerLink]="['/profile/friend-profile']" class="btn btn-outline">view
+                                                profile</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

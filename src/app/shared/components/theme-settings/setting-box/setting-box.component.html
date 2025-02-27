@@ -1,0 +1,42 @@
+<a href="javascript:void(0)"></a>
+<div class="setting_box_body">
+    <div>
+        <div class="sidebar-back text-left" (click)="closeSetting(isOpenMenu)"><i class="fa fa-angle-left pe-2"></i>Back</div>
+    </div>
+    <div ngbAccordion [closeOthers]="true" class="setting-body">
+        @for (item of settingBox; track item) {
+        <div ngbAccordionItem [collapsed]="true">
+            <h2 ngbAccordionHeader>
+                <button ngbAccordionButton>{{ item.title }}</button>
+            </h2>
+            <div class="setting-contant" ngbAccordionCollapse>
+                <div class="row demo-section" ngbAccordionBody>
+                    <ng-template>
+                        @for (items of item.data; track items) {
+                        <div class="col-sm-6 col-12 text-center demo-effects">
+                            <div class="set-position">
+                                <div class="layout-container"
+                                    [ngStyle]="{'background-image': 'url(' +  items.image  + ')'}"
+                                    style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                                    <img [src]="items.image" class="bg-img   " alt="" style="display: none;">
+                                </div>
+                                <div class="demo-text">
+                                    <h4>{{items.title}}</h4>
+                                    <div class="btn-group demo-btn">
+                                        <button type="button" [routerLink]="items.path"
+                                            (click)="closeSetting(isOpenMenu)" class="btn new-tab-btn">Preview</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+        }
+        <div class="buy_btn">
+            <a href="javascript:void(0)" class="btn btn-block btn-solid ">purchase Friendbook now!</a>
+        </div>
+    </div>
+</div>

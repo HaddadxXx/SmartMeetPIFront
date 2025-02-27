@@ -1,0 +1,30 @@
+<div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
+    <app-skeleton-style-6></app-skeleton-style-6>
+</div>
+<div class="story-section ratio_115">
+    <app-stroy></app-stroy>
+</div>
+<div class="container-fluid section-t-space px-0">
+    <div class="page-content">
+        <div class="content-center content-full">
+            <div class="row">
+                @for (item of visiblePosts;track item) {
+                <div class="col-xl-6">
+                    @if(item.showPost){
+                    <app-create-post [isCreatePost]="isCreatePost"></app-create-post>
+                    }
+                    <div class="overlay-bg"></div>
+                    <div class="post-panel">
+                        @for (items of item.children; track items) {
+                        <div class="post-wrapper col-grid-box {{items.class}}">
+                            <app-post-header [postData]="items"></app-post-header>
+                            <app-post-details [postData]="items"></app-post-details>
+                        </div>
+                        }
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

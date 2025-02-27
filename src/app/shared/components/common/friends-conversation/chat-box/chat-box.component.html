@@ -1,0 +1,38 @@
+<div class="chat-box" [class.show]="commonServices.isShow" style="right: 370px"> 
+    <a [routerLink]="['/profile/timeline']" class="chat-header"> 
+        <div class="name"> 
+            <div class="user-img" [ngStyle]="{'background-image': 'url(' +  commonServices.popoverData.image  + ')'}"> 
+                <span class="available-stats online"></span> 
+            </div> 
+            <span>{{commonServices.popoverData.title}}</span>
+        </div> 
+        <div class="menu-option"> 
+            <ul> 
+                <li><img src="assets/svg/video.svg"></li> 
+                <li><img src="assets/svg/phone.svg"></li> 
+                <li><img src="assets/svg/settings.svg"></li> 
+                <li class="close-chat" (click)="commonServices.isShow = false">
+                    <img src="assets/svg/x.svg">
+                </li> 
+            </ul> 
+        </div> 
+    </a> 
+    <div class="chat-wrap">
+        <div class="chat-body">
+            <div class="msg_push"></div>
+        </div> 
+        <div class="chat-footer"> 
+            <input placeholder="type your message here.." class="chat-input form-control emojiPicker">
+            <div class="add-extent" [class.show]="isOpen"> 
+                <i class="fas fa-plus animated-btn" (click)="isOpen =!isOpen"></i> 
+                <div class="options"> 
+                    <ul> 
+                        <li><img src="assets/svg/image.svg"></li> 
+                        <li><img src="assets/svg/paperclip.svg"></li> 
+                        <li><img src="assets/svg/camera.svg"></li> 
+                    </ul> 
+                </div> 
+            </div> 
+        </div>
+    </div>
+</div>

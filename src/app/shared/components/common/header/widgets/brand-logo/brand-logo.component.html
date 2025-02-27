@@ -1,0 +1,9 @@
+<div class="brand-logo">
+    <a [routerLink]="['/news-feed-layout/style-1']">
+        @if((currentUrl && currentUrl.includes('/news-feed-layout/style-2')) || (currentUrl &&  currentUrl.includes('/company/home'))){
+        <img src="assets/images/icon/logo-color.png" alt="logo" class="img-fluid ">
+        } @else {
+        <img src="assets/images/icon/logo.png" alt="logo" class="img-fluid ">
+        }
+    </a>
+</div>

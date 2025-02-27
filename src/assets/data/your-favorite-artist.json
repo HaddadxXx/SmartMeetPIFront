@@ -1,0 +1,44 @@
+{
+    "favoriteArtist": [
+        {
+            "name": "josephin water",
+            "fans": 15,
+            "images": "assets/images/music/1.jpg"
+        },
+        {
+            "name": "josephin water",
+            "fans": 15,
+            "images": "assets/images/music/2.jpg"
+        },
+        {
+            "name": "josephin water",
+            "fans": 15,
+            "images": "assets/images/music/3.jpg"
+        },
+        {
+            "name": "josephin water",
+            "fans": 15,
+            "images": "assets/images/music/4.jpg"
+        },
+        {
+            "name": "josephin water",
+            "fans": 15,
+            "images": "assets/images/music/5.jpg"
+        },
+        {
+            "name": "josephin water",
+            "fans": 15,
+            "images": "assets/images/music/6.jpg"
+        },
+        {
+            "name": "josephin water",
+            "fans": 15,
+            "images": "assets/images/music/7.jpg"
+        },
+        {
+            "name": "josephin water",
+            "fans": 15,
+            "images": "assets/images/music/5.jpg"
+        }
+    ]
+}

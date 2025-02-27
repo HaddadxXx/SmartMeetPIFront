@@ -1,0 +1,31 @@
+{
+    "activityFeed": [
+        {
+            "id": 1,
+            "profileImage": "assets/images/user-sm/1.jpg",
+            "postImage": "assets/images/post/1.jpg",
+            "userName": "sufiya eliza",
+            "uploadTime": "30 mins ago",
+            "title": "Today Our Three Cute Puppy Dog Birthday !!!!",
+            "video" : "https://www.youtube.com/embed/TKnufs85hXk",
+            "spanTag": "#ourcutepuppy,",
+            "tag": "#puppy, #birthday, #dog",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. has been the industry's standard dummy text ever since the 1500s",
+            "class": "section-t-space d-block",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name": "Sufiya Eliza"
+                }
+            ]
+        }
+    ]
+}

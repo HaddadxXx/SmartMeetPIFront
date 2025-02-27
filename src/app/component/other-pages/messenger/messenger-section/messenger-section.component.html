@@ -1,0 +1,45 @@
+<section class="messenger-section">
+    <div class="chat-users">
+        <div class="user-header">
+            <a [routerLink]="['/news-feed-layout/style-1']" class="back-btn d-block d-sm-none">
+                <app-feather-icon [icons]="'arrow-left'" class="'ih-18 iw-18'"></app-feather-icon>
+            </a>
+            <div class="search-bar">
+                <app-feather-icon [class]="'icon-theme icon iw-16'" [icons]="'search'"></app-feather-icon>
+                <input type="text" class="form-control" placeholder="find friends...">
+            </div>
+            <a class="new-chat" href="javascript:void(0)">
+                <app-feather-icon [class]="'icon-light iw-14 ih-14'" [icons]="'edit'"></app-feather-icon>
+            </a>
+        </div>
+        <ul class="nav nav-tabs">
+            @for (item of chatUser; track item) {
+            <li class="nav-item">
+                <a class="nav-link" [class.active]="item.id === messageData.id" (click)="changeData(item.id)">
+                    <div class="media list-media">
+                        <div class="story-img">
+                            <div class="user-img bg-size" [ngStyle]="{'background-image': 'url(' +  item.image  + ')'}"
+                                style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+                                <img [src]="item.image" class="img-fluid bg-img" alt="user" style="display: none;">
+                            </div>
+                        </div>
+                        <div class="media-body">
+                            <h5>{{item.user}} <span>{{item.time}}</span></h5>
+                            <h6>{{item.status}}</h6>
+                        </div>
+                    </div>
+                    <div class="chat">
+                        <h6>{{item.message}}</h6>
+                        @if(item.count){
+                        <span class="count">{{item.count}}</span>
+                        }
+                    </div>
+                </a>
+            </li>
+            }
+        </ul>
+    </div>
+    <div class="chat-content">
+        <app-chat-content [data]="messageData"></app-chat-content>
+    </div>
+</section>

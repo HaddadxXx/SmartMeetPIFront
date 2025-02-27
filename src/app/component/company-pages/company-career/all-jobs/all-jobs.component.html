@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="title">
+                <h3>All Jobs</h3>
+            </div>
+        </div>
+        @for (item of allJobs; track item) {
+            <div class="col-xl-3 col-md-6">
+                <div class="career-box">
+                    <a href="javascript:void(0)">
+                        <h4>{{item.title}}</h4>
+                    </a>
+                    <p>{{item.desc}}
+                    </p>
+                    <div class="requirement-sec">
+                        <h6>{{item.experience}} Ex.</h6>
+                        <h6>{{item.opening}} opening</h6>
+                    </div>
+                    <div class="button-sec row">
+                        <div class="col-6">
+                            
+                            <a [routerLink]="['/company/career-details']" class="btn btn-solid d-block">apply now</a>
+                        </div>
+                        <div class="col-6">
+                            <a [routerLink]="['/company/career-details']" class="btn btn-light d-block">details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

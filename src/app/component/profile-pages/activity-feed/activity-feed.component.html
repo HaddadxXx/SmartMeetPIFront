@@ -1,0 +1,24 @@
+<div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
+    <app-time-line-skeleton></app-time-line-skeleton>
+</div>
+<app-profile-pages></app-profile-pages>
+<app-profile-menu [currentUrl]="currentUrl"></app-profile-menu>
+<div class="container-fluid section-t-space px-0">
+    <div class="row">
+        <div class="content-left col-lg-5">
+            <div class="activity-list actitvity-page">
+                <app-profile-activity-feed></app-profile-activity-feed>
+            </div>
+        </div>
+        <div class="content-center col-lg-7">
+            <div class="post-panel">
+                @for (item of postData; track item) {
+                <div class="post-wrapper">
+                    <app-post-header [postData]="item"></app-post-header>
+                    <app-post-details [postData]="item"></app-post-details>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

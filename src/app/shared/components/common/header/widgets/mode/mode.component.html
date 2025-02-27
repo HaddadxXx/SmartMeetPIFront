@@ -1,0 +1,11 @@
+<div (click)="commonServices.changeMode()">
+    @if(!this.commonServices.dark){
+    <a id="dark" class="main-link" href="javascript:void(0)">
+        <app-feather-icon [icons]="'moon'" [class]="'icon-light stroke-width-3 iw-16 ih-16'"></app-feather-icon>
+    </a>
+    } @else {
+    <a id="light" class="main-link" href="javascript:void(0)">
+        <app-feather-icon [icons]="'sun'" [class]="'icon-light stroke-width-3 iw-16 ih-16'"></app-feather-icon>
+    </a>
+    }
+</div>

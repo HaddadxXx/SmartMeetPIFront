@@ -1,0 +1,40 @@
+<div class="card-header">
+    <h4>popover</h4>
+    <span>custom user popover</span>
+</div>
+<div class="card-body">
+    <div class="user-media">
+        <div class="media">
+            <a class="user-img popover-cls" placement="right" [ngbPopover]="popContent" style="background-image: url(assets/images/user-sm/1.jpg);
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            display: block;">
+                <img src="assets/images/user-sm/1.jpg" class="img-fluid bg-img" alt="user" style="display: none;">
+                <span class="available-stats"></span>
+            </a>
+            <div class="media-body">
+                <h5 class="user-name">Paige Turner</h5>
+                <h6>alabma, USA</h6>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #popContent>
+    <div class="popover-loader">
+    </div>
+    <div class="media popover-media">
+        <img class="img-fluid user-img" src="assets/images/user-sm/1.jpg">
+        <div class="media-body">
+            <h4>
+                ggg
+            </h4>
+            <h6><img src="assets/svg/users.svg" class="img-fluid">30 mutual friend</h6>
+            <h6><img src="assets/svg/map-pin.svg" class="img-fluid">lives in london</h6>
+        </div>
+    </div>
+    <div class="button-popover">
+        <a href="javascript:void(0)" class="btn btn-solid"><img src="assets/svg/message-square.svg" class="img-fluid">message</a>
+        <a href="javascript:void(0)" class="btn btn-solid"><img src="assets/svg/user-check.svg" class="img-fluid mr-0"></a>
+    </div>
+</ng-template>

@@ -1,0 +1,18 @@
+<div class="detail-box">
+    @if(postData){
+        <h4>{{postData.description}}</h4>
+    }
+    @if(postData.images){
+        <div class="people-likes">
+            <ul>
+                @for (items of postData.images; track items) {
+                    <li class="popover-cls" [ngStyle]="{'background-image': 'url(' +  items.url  + ')'}"
+                    style=" background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                    <img [src]="items.url" class="img-fluid  bg-img" alt="" style="display: none;">
+                </li>
+            }
+        </ul>
+        <h6>+12 people react this post</h6>
+    </div>
+}
+</div>

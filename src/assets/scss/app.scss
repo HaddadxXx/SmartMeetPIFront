@@ -1,0 +1,15 @@
+// bootstrap
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+/* Ngx-owl-carousel-o */
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+// leaflet Map
+@import 'leaflet/dist/leaflet.css';
+// calendar 
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+// calendar
+@import "../node_modules/flatpickr/dist/flatpickr.css";
+//emoji
+@import '@ctrl/ngx-emoji-mart/picker';
+
+@import "./styles.scss";
