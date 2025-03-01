@@ -16,5 +16,6 @@ export const contentRoutes: Routes = [
     {
         path: 'others',
         loadChildren: () => import('../../component/other-pages/other-pages.routes')
-    },
+    }
+    
 ]

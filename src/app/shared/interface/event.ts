@@ -1,10 +1,16 @@
 export interface eventCategory {
-    eventCategory: event[]
+    eventCategory: Event[]
 }
 
-export interface event {
+export interface Event {
+    idEvent ? : string ;
     name: string;
     fans: number;
     images: string;
     nomEvent :string ;
+    theme : string ;
+    description: string ;
+   // dateDebut: string ;
+  //  dateFin : string ;
+    capacite : number ;
 }

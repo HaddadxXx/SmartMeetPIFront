@@ -16,7 +16,7 @@ import { VerifComponent } from '../app/auth/auth-login/verif.component';
 import { LoadingComponent } from './shared/skeleton-loader/widgets/loading/loading.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/company/404', pathMatch: 'full' },
  { path: 'dashboard', component: DashboardComponent },
   { path: 'users', component: UsersComponent },
   { path: 'reports', component: ReportsComponent },
@@ -43,6 +43,11 @@ export const routes: Routes = [
     children: contentRoutes,
     canActivate: [AdminGuard],
   },
+  {
+    path: 'others',
+    children: contentRoutes
+},
+
   {
     path: '',
     component: FullComponent,

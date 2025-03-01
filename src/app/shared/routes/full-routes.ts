@@ -11,6 +11,11 @@ export const fullRoutes: Routes = [
         path: 'others/login',
         component: LoginComponent,
     },
+    // {
+    //     path : 'others ',
+    //     component :
+
+    // },
     {
         path: 'others/register',
         component: RegisterComponent,
@@ -43,4 +48,9 @@ export const fullRoutes: Routes = [
         path: 'element',
         loadChildren: () => import('../../component/element-pages/element-pages.routes')
     },
+    {
+        path: 'others',
+        loadChildren: () => import('../../component/other-pages/other-pages.routes')
+    },
+    
 ]
