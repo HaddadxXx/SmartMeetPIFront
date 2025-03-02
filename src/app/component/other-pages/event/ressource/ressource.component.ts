@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RessourceService } from '../../../../shared/services/ressource.service';
 
 @Component({
   selector: 'app-ressource',
@@ -11,126 +11,153 @@ import { CommonModule } from '@angular/common';
   styleUrl: './ressource.component.scss'
 })
 export class RessourceComponent {
+  RessourceArray: any[] = [];
+  name: string = '';
+  typeR: string = '';
+  quantite: number = 0;
+  statutR: string = '';
+  currentRessourceID: string = "";
+  serverErrors: any = {};
 
+  constructor(private ressourceService: RessourceService) {
+    this.getAllRessources();
+  }
 
-  
-  
-    RessourceArray : any[] = [];
-    name : string = '';
-    typeR : string = '';
-    quantite : number = 0;
-    statutR : string = '';
-    currentRessourceID ="";
-  
-    constructor (private http: HttpClient) 
-    {
-     this.getAllRessources();
+  /**
+   * Enregistre ou met à jour une ressource
+   */
+  saveRess(): void {
+    this.serverErrors = {};
+
+   /* // Vérification des champs obligatoires
+    if (!this.name.trim() || !this.typeR.trim() || this.quantite <= 0 || !this.statutR.trim()) {
+      alert("Veuillez remplir tous les champs correctement !");
+      return;
+    }*/
+
+    if (this.currentRessourceID === '') {
+      this.register();
+    } else {
+      this.updateRess();
     }
-  
-    register()
-    {
-    
-      let bodyData = {
-        "name" : this.name,
-        "typeR" : this.typeR,
-        "quantite" : this.quantite,
-        "statutR" : this.statutR
-      };
-   
-      this.http.post("http://localhost:8087/api/ressources/create",bodyData,{responseType: 'text'}).subscribe((resultData: any)=>
-      {
-          console.log(resultData);
-          alert("Ressource Added Successfully");
-          this.getAllRessources();
-          this.name = '';
-          this.typeR = '';
-          this.quantite = 0;
-          this.statutR  = '';
-      });
-    }
-    getAllRessources()
-      {
-        
-        this.http.get("http://localhost:8087/api/ressources/all")
-        .subscribe((resultData: any)=>
-        {
-            console.log(resultData);
-            this.RessourceArray = resultData;
-        });
-      }
-  
-      setUpdateRess(data: any)
-      {
-       this.name = data.name;
-       this.typeR = data.typeR;
-       this.quantite = data.quantite;
-       this.statutR = data.statutR;
-       this.currentRessourceID = data.id;     
-      }
-      UpdateRess() {
-        let bodyData = {
-          "name": this.name,        // Correction des noms de propriétés
-          "typeR": this.typeR,
-          "quantite": this.quantite,
-          "statutR": this.statutR
-        };
-      
-        if (!this.currentRessourceID) {
-          console.error("Erreur : ID de ressource non défini !");
-          alert("Erreur : Aucun ID de ressource sélectionné !");
-          return; // Empêcher la requête si l'ID est vide
-        }
-      
-        this.http.put(`http://localhost:8087/api/ressources/update/${this.currentRessourceID}`, bodyData, { responseType: 'text' })
-          .subscribe((resultData: any) => {
-            console.log("Réponse du serveur:", resultData);
-            alert("Ressource Updated Successfully");
-            this.getAllRessources();
-      
-            // Réinitialisation des champs
-            this.currentRessourceID = '';
-            this.name = '';
-            this.typeR = '';
-            this.quantite = 0;
-            this.statutR = '';
-          }, (error) => {
-            console.error("Erreur lors de la mise à jour:", error);
-          });
-      }
-      
-     
-      saveRess()
-      {
-        if(this.currentRessourceID == '')
-        {
-            this.register();
-        }
-          else
-          {
-           this.UpdateRess();
-          }      
-     
-      }
-  
-      setDeleteRess(data: any)
-      {
-        
-        
-        this.http.delete("http://localhost:8087/api/ressources/delete/"+  data.id,{responseType: 'text'}).subscribe((resultData: any)=>
-        {
-            console.log(resultData);
-            alert("Ressource Deleted Successfully") 
-            this.getAllRessources();
-            this.name = '';
-            this.typeR = '';
-            this.quantite = 0;
-            this.statutR  = '';
-      
-        });
-     
-      }
-    
-      
-  
+  }
 
+  /**
+   * Création d'une nouvelle ressource
+   */
+  register(): void {
+    const bodyData = this.getRessourcePayload();
+
+    this.ressourceService.createRessource(bodyData).subscribe({
+      next: () => {
+        alert("Ressource ajoutée avec succès !");
+        this.refreshData();
+      },
+      error: (error) => this.handleError(error)
+    });
+  }
+
+  /**
+   * Récupère toutes les ressources
+   */
+  getAllRessources(): void {
+    this.ressourceService.getAllRessources().subscribe({
+      next: (data: any) => {
+        this.RessourceArray = data;
+      },
+      error: (error) => console.error("Erreur lors de la récupération des ressources:", error)
+    });
+  }
+  
+  /**
+   * Prépare la mise à jour d'une ressource
+   */
+  setUpdateRess(data: any): void {
+    this.name = data.name;
+    this.typeR = data.typeR;
+    this.quantite = data.quantite;
+    this.statutR = data.statutR;
+    this.currentRessourceID = data.id;
+  }
+
+  /**
+   * Mise à jour d'une ressource existante
+   */
+  updateRess(): void {
+    if (!this.currentRessourceID) {
+      alert("Erreur : Aucun ID de ressource sélectionné !");
+      return;
+    }
+
+    const bodyData = this.getRessourcePayload();
+
+    this.ressourceService.updateRessource(this.currentRessourceID, bodyData).subscribe({
+      next: () => {
+        alert("Ressource mise à jour avec succès !");
+        this.refreshData();
+      },
+      error: (error) => this.handleError(error)
+    });
+  }
+
+  /**
+   * Suppression d'une ressource
+   */
+  setDeleteRess(data: any): void {
+    if (!confirm("Do you really want to delete this resource?")) {
+      return;
+    }
+
+    this.ressourceService.deleteRessource(data.id).subscribe({
+      next: () => {
+        alert("Resource deleted successfully !");
+        this.refreshData();
+      },
+      error: (error) => console.error("Erreur lors de la suppression:", error)
+    });
+  }
+
+  /**
+   * Réinitialise le formulaire
+   */
+  resetForm(): void {
+    this.name = '';
+    this.typeR = '';
+    this.quantite = 0;
+    this.statutR = '';
+    this.currentRessourceID = '';
+    this.serverErrors = {};
+  }
+
+  /**
+   * Gère les erreurs du backend et met à jour `serverErrors`
+   */
+  private handleError(error: any): void {
+    console.error("Erreur:", error);
+    if (error.status === 400) {
+      this.serverErrors = error.error;
+    } else {
+      alert("Une erreur s'est produite, veuillez réessayer !");
+    }
+  }
+
+  /**
+   * Récupère l'objet ressource à envoyer à l'API
+   */
+  private getRessourcePayload(): any {
+    return {
+      name: this.name.trim(),
+      typeR: this.typeR.trim(),
+      quantite: this.quantite,
+      statutR: this.statutR.trim()
+    };
+  }
+
+  /**
+   * Rafraîchit la liste des ressources et réinitialise le formulaire
+   */
+  private refreshData(): void {
+    this.getAllRessources();
+    this.resetForm();
+  }
 }
