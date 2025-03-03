@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Event } from '../../shared/interface/event';
-
+import { Session } from '../interface/Session';
 import { Observable } from 'rxjs';
 //import { environment } from 'src/environments/environment';
 
@@ -24,7 +24,7 @@ export class EventService {
     throw new Error('Method not implemented.');
   }
  // private apiUrl = `${environment.apiUrl}/events`; // Remplacez par l'URL de votre API
-private apiUrl = 'http://localhost:8081/events';
+private apiUrl = 'http://localhost:8082/events';
 
   constructor(private http: HttpClient) {}
 
@@ -59,8 +59,17 @@ private apiUrl = 'http://localhost:8081/events';
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
+  // addSessionToEvent(session: Session, eventName: string): Observable<Session> {
+  //   return this.http.post<Session>(`${this.apiUrl}/ajouterSessionEtAffecterAEvenement/${eventName}`, session);
+  // }
   
-
+// Ajoutez cette méthode
+// ajouterSessionEtAffecterAEvenement(sessionData: any, eventName: string): Observable<any> {
+//   return this.http.post(`${this.apiUrl}/ajouterSessionEtAffecterAEvenement/${eventName}`, sessionData);
+// }
+ajouterSessionEtAffecterAEvenement(sessionData: any, eventName: string): Observable<any> {
+  return this.http.post(`${this.apiUrl}/ajouterSessionEtAffecterAEvenement/${encodeURIComponent(eventName)}`, sessionData);
+}
 
 
 

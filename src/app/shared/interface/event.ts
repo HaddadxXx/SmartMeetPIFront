@@ -13,4 +13,5 @@ export interface Event {
    // dateDebut: string ;
   //  dateFin : string ;
     capacite : number ;
+    typeEvent : string;
 }

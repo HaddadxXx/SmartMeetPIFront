@@ -1,0 +1,29 @@
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 40%;  /* Augmente légèrement la largeur */
+  max-width: 500px; /* Ajuste la largeur maximale */
+  height: auto; /* Hauteur ajustable selon le contenu */
+  max-height: 400px; /* Augmente la hauteur maximale */
+  overflow: auto; /* Ajoute un défilement si nécessaire */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.modal-content {
+  width: 100%;
+}
+
+/* Espacement entre les champs */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Espacer les boutons */
+.btn {
+  margin: 5px;
+}

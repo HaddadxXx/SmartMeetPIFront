@@ -7,16 +7,31 @@ import { provideHttpClient } from '@angular/common/http';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { routes } from './app.routes';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { FormsModule } from '@angular/forms';
+
+// export const appConfig: ApplicationConfig = {
+//   providers: [provideRouter(routes),
+//   provideHttpClient(),
+//   provideAnimations(),
+//   importProvidersFrom(
+//     FlatpickrModule.forRoot({}),
+//     CalendarModule.forRoot({
+//     provide: DateAdapter,
+//     FormsModule ,
+//     useFactory: adapterFactory
+//   }))
+//   ],
+// };
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes),
-  provideHttpClient(),
-  provideAnimations(),
-  importProvidersFrom(
-    FlatpickrModule.forRoot({}),
-    CalendarModule.forRoot({
-    provide: DateAdapter,
-    useFactory: adapterFactory
-  }))
+  providers: [
+    provideRouter(routes),
+    provideHttpClient(),
+    provideAnimations(),
+    importProvidersFrom(
+      FlatpickrModule.forRoot({}),
+      CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+      FormsModule // Déplacé ici
+    )
   ],
 };

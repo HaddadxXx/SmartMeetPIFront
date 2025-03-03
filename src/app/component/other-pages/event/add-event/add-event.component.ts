@@ -46,6 +46,7 @@ export class AddEventComponent {
           
           
         });
+        
       }
     
       onSubmit() {
@@ -78,6 +79,10 @@ export class AddEventComponent {
         } else {
           this.errorMessage = 'Veuillez remplir tous les champs obligatoires.';
         }
+
+        
       }
+
+      
 
 }

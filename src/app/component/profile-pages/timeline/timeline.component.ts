@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { AboutIntroMySelfComponent } from '../../../shared/components/common/about-intro-my-self/about-intro-my-self.component';
 import { ActivityFeedComponent } from '../../../shared/components/common/activity-feed/activity-feed.component';
@@ -23,13 +23,17 @@ import { introMySelf } from '../../../shared/data/profile-pages/time-line';
 import { events } from '../../../shared/interface/common';
 import { profile } from '../../../shared/interface/post';
 import { CommonService } from '../../../shared/services/common.service';
-
+import { EventService } from '../../../shared/services/event.service';
+import { Event } from '../../../shared/interface/event';
+import { EventSectionComponent } from '../../../shared/components/common/event-section/event-section.component';
+import { EventComponent } from '../../other-pages/event/event.component';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-timeline',
   standalone: true,
   imports: [ProfilePagesComponent, ProfileMenuComponent, AboutIntroMySelfComponent,
-    FriendSuggestionComponent, LikedPagesComponent, CollegeMeetComponent,
-    GalleryComponent, ActivityFeedComponent, EventsComponent,
+    FriendSuggestionComponent, LikedPagesComponent, CollegeMeetComponent,EventComponent,
+    GalleryComponent, ActivityFeedComponent, EventsComponent,EventSectionComponent,CommonModule,
     WorldwideTrendsComponent, CreatePostComponent, PostHeaderComponent,RouterModule,
     PostDetailsComponent, FeatherIconComponent,TimeLineSkeletonComponent],
   templateUrl: './timeline.component.html',
@@ -38,6 +42,9 @@ import { CommonService } from '../../../shared/services/common.service';
 
 export class TimelineComponent {
 
+  @Input() event: any; // Permet de recevoir l'événement
+
+
   public introMySelf = introMySelf;
   public isCreatePost: boolean = true;
   public visiblePosts: profile[];
@@ -45,36 +52,91 @@ export class TimelineComponent {
   public displayCount: number = 5;
   public currentUrl : string;
 
-  public event: events = {
-    image: 'assets/images/post/12.jpg',
-    title: 'happy life event',
-    subTitle: '26 january 2024',
-    desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-    span: '15256 People Going',
-    link: 'interested / not in..',
-    class: 'section-t-space ratio2_3'
-  }
+  
+  // public event: events = {
+  //   image: 'assets/images/post/12.jpg',
+  //   title: 'happy life event',
+  //   subTitle: '26 january 2024',
+  //   desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+  //   span: '15256 People Going',
+  //   link: 'interested / not in..',
+  //   class: 'section-t-space ratio2_3'
+  // }
+
+  public events: Event[] = [];  // Liste des événements
 
   constructor(public profileServices: ProfilePagesService,private router: Router,
-    public commonServices:CommonService) {
+    public commonServices:CommonService,private eventService :EventService ) {
     this.currentUrl = this.router.url;
     }
 
   ngOnInit() {
-    this.profileServices.timeLine().subscribe((data) => {
-      if (data.timeline) {
-        this.post = data.timeline;
-        this.visiblePosts = this.post.slice(0, this.displayCount);
-        this.post.filter((element, index) => {
-          index === 0 ? element.active = true : element.active = false;
-        });
-      }
-    });
+    // this.profileServices.timeLine().subscribe((data) => {
+    //   if (data.timeline) {
+    //     this.post = data.timeline;
+    //     this.visiblePosts = this.post.slice(0, this.displayCount);
+    //     this.post.filter((element, index) => {
+    //       index === 0 ? element.active = true : element.active = false;
+    //     });
+    //   }
+    // });
+    this.getEvents();
   }
 
-  refresh() {
-    this.displayCount = Math.min(this.displayCount + 1);
-    this.visiblePosts = this.post.slice(0, this.displayCount);
+  getEvents(): void {
+    this.eventService.getEvents().subscribe(
+      (data: Event[]) => {
+        this.events = data;  // Mettre à jour la liste des événements
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des événements:', error);
+      }
+    );
   }
+
+  deleteEvent(idE: string | undefined): void { 
+    if (idE && confirm("Voulez-vous vraiment supprimer cet événement ?")) { // Vérifier si idE n'est pas undefined
+      this.eventService.deleteEvent(idE).subscribe(
+        () => {
+          this.events = this.events.filter(event => event.idEvent !== idE);
+        },
+        (error) => {
+          console.error("Erreur lors de la suppression de l'événement :", error);
+        }
+      );
+    } else {
+      console.error("L'ID de l'événement est invalide.");
+    }
+  }
+  updateEvent(id: string | undefined, event: Event): void {
+    // Vérifiez si l'ID est défini avant d'appeler la méthode updateEvent
+    if (id) {
+      this.eventService.updateEvent(id, event).subscribe(
+        (updatedEvent: Event) => {
+          const index = this.events.findIndex(e => e.idEvent === id);
+          if (index !== -1) {
+            this.events[index] = updatedEvent;
+          }
+  
+          this.router.navigate(['/add-event']);
+        },
+        (error) => {
+          console.error("Erreur lors de la mise à jour de l'événement:", error);
+        }
+      );
+    } else {
+      console.error("L'ID de l'événement est invalide ou indéfini.");
+    }
+  }
+
+  
+  
+  
+
+
+  // refresh() {
+  //   this.displayCount = Math.min(this.displayCount + 1);
+  //   this.visiblePosts = this.post.slice(0, this.displayCount);
+  // }
 
 }

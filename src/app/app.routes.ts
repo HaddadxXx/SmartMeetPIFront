@@ -15,9 +15,10 @@ import { SignupComponent } from '../app/auth/auth-login/signup.component';
 import { VerifComponent } from '../app/auth/auth-login/verif.component';
 import { LoadingComponent } from './shared/skeleton-loader/widgets/loading/loading.component';
 
+
 export const routes: Routes = [
   { path: '', redirectTo: '/company/404', pathMatch: 'full' },
- { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'users', component: UsersComponent },
   { path: 'reports', component: ReportsComponent },
   { path: 'settings', component: SettingsComponent },

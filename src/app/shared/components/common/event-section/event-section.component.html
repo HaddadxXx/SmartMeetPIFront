@@ -1,4 +1,4 @@
-<div class="event-section">
+<!-- <div class="event-section">
     <div class="event_category no-arrow default-space">
         <owl-carousel-o [options]="storyDataOptions">
             <ng-template carouselSlide>
@@ -18,4 +18,26 @@
             </ng-template>
         </owl-carousel-o>
     </div>
+</div> -->
+<div class="event-section">
+    <h2>Liste des Événements</h2>
+
+    <!-- Vérifier si des événements existent -->
+    <div *ngIf="events.length > 0; else noEvents">
+        <p>Il y a {{ events.length }} événements.</p>
+        <owl-carousel-o [options]="storyDataOptions">
+            <ng-container *ngFor="let event of events">
+                <ng-template carouselSlide>
+                    <div>
+                        <app-events [event]="event"></app-events>
+                    </div>
+                </ng-template>
+            </ng-container>
+        </owl-carousel-o>
+    </div>
+
+    <!-- Afficher un message si aucun événement n'est disponible -->
+    <ng-template #noEvents>
+        <p>Aucun événement disponible.</p>
+    </ng-template>
 </div>

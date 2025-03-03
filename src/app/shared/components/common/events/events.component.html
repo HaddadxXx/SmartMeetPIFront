@@ -1,8 +1,8 @@
-<div class="event-box {{events.class}}">
+<div class="event-box {{events?.class}}">
     <div class="image-section bg-size"
-    [ngStyle]="{'background-image': 'url(' +  events.image  + ')'}"
+    [ngStyle]="{'background-image': 'url(assets/images/cover/event.png)'}"
     style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
-        <img [src]="events.image" class="img-fluid  bg-img" alt="event" style="display: none;">
+        <img src="assets/images/cover/event.png" class="img-fluid  bg-img" alt="event" style="display: none;">
         <div class="card-title">
             <h3>event</h3>
             <div class="settings">
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        @if (commonService.urls) {
+        @if (commonService?.urls) {
         <div class="play-btn" (click)="commonService.videoPlay(commonService.urls)">
             <img src="assets/images/icon/play.png" class="img-fluid " alt="play">
         </div>
@@ -48,13 +48,15 @@
         }
     </div>
     <div class="event-content">
-        <h3>{{events.title}}</h3>
-        <h6>{{events.subTitle}}</h6>
-        <p>{{events.desc}}
-            <span>{{events.span}}</span>
+        <h2>{{event.nomEvent}}</h2>
+        <h3>{{event.typeEvent}}</h3>
+        <h4>{{event.theme}}</h4>
+        <p>{{event.description}}
+
+            <!-- <span>{{events.span}}</span> -->
         </p>
         <div class="bottom-part">
-            <a href="javascript:void(0)" class="event-btn">{{events.link}}</a>
+            <a href="javascript:void(0)" class="event-btn">{{events?.link}}</a>
         </div>
         <a href="javascript:void(0)" class="share-btn">
             <app-feather-icon [icons]="'corner-up-right'"
