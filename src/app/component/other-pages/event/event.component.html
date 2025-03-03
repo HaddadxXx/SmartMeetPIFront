@@ -125,6 +125,7 @@
                 </div>
                 <br>
                 <button type="submit" class="btn btn-success">Créer</button>
+                
                 <button type="button" class="btn btn-secondary" (click)="closeSessionModal()">Annuler</button>
             </form>
         </div>
@@ -143,12 +144,14 @@
                     <li *ngFor="let session of sessions">
                         <h4>{{ session.titre }}</h4>
                         <p>Date: {{ session.date }}</p>
+                       <!-- <button (click)="openSessionModal(session)">Modifier</button> -->
                     </li>
                 </ul>
                 <ng-template #noSession>
                     <p>Aucune session disponible.</p>
                 </ng-template>
             </div>
+            
             
     </div>
     <div class="col-xl-6">

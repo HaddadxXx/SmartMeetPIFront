@@ -174,6 +174,22 @@ export class EventComponent {
         );
     }
 }
+ // Mettre à jour une session
+ updateSession(id: string, sessionData: any): void {
+  this.sessionService.updateSession(id, sessionData).subscribe(
+    (updatedSession: any) => {
+      const index = this.sessions.findIndex(s => s.idSession === id);
+      if (index !== -1) {
+        this.sessions[index] = updatedSession; // Mettre à jour la session dans la liste
+      }
+      alert('Session mise à jour avec succès');
+      this.closeSessionModal();
+    },
+    (error) => {
+      console.error('Erreur lors de la mise à jour de la session:', error);
+    }
+  );
+}
 
 
   

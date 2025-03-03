@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Event } from '../../shared/interface/event';
 import { Session } from '../interface/Session';
 import { Observable } from 'rxjs';
-//import { environment } from 'src/environments/environment';
 
 // export interface Eveent {
 //   id: string  ;

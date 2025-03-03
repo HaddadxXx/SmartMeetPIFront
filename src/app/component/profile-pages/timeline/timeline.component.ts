@@ -28,6 +28,9 @@ import { Event } from '../../../shared/interface/event';
 import { EventSectionComponent } from '../../../shared/components/common/event-section/event-section.component';
 import { EventComponent } from '../../other-pages/event/event.component';
 import { CommonModule } from '@angular/common';
+import { SessionService } from '../../../shared/services/session.service';
+import { Session } from '../../../shared/interface/Session';
+
 @Component({
   selector: 'app-timeline',
   standalone: true,
@@ -64,9 +67,11 @@ export class TimelineComponent {
   // }
 
   public events: Event[] = [];  // Liste des événements
+  sessions: any[] = []; // Déclaration de la propriété sessions
+
 
   constructor(public profileServices: ProfilePagesService,private router: Router,
-    public commonServices:CommonService,private eventService :EventService ) {
+    public commonServices:CommonService,private eventService :EventService , private sessionService :SessionService ) {
     this.currentUrl = this.router.url;
     }
 
@@ -81,6 +86,8 @@ export class TimelineComponent {
     //   }
     // });
     this.getEvents();
+    this.getSessions();
+
   }
 
   getEvents(): void {
@@ -93,6 +100,38 @@ export class TimelineComponent {
       }
     );
   }
+
+  getSessions(): void {
+    this.sessionService.getAllSessions().subscribe(
+      (data: any[]) => {
+        
+        this.sessions = data;
+        console.log('Sessions chargées:', this.sessions);
+
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des sessions:', error);
+      }
+    );
+  }// Supprimer une session
+  deleteSession(id: string): void {
+    console.log('ID de la session à supprimer:', id);  // Ajoute ce log
+    if (!id) {
+      console.error('L\'ID de la session est vide');
+      return;
+    }
+    this.sessionService.deleteSession(id).subscribe(
+      () => {
+        this.sessions = this.sessions.filter(session => session.idSession !== id);  // Filtrer pour retirer la session supprimée
+        console.log(`Session ${id} supprimée`);
+      },
+      (error) => {
+        console.error('Erreur lors de la suppression de la session:', error);
+      }
+    );
+  }
+
+ 
 
   deleteEvent(idE: string | undefined): void { 
     if (idE && confirm("Voulez-vous vraiment supprimer cet événement ?")) { // Vérifier si idE n'est pas undefined
@@ -108,6 +147,9 @@ export class TimelineComponent {
       console.error("L'ID de l'événement est invalide.");
     }
   }
+
+
+
   updateEvent(id: string | undefined, event: Event): void {
     // Vérifiez si l'ID est défini avant d'appeler la méthode updateEvent
     if (id) {
