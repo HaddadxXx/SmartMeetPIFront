@@ -1,0 +1,25 @@
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Nom du groupe:</label>
+    <input id="name" [(ngModel)]="groupData.name" name="name" required>
+  </div>
+  <div>
+    <label for="description">Description:</label>
+    <textarea id="description" [(ngModel)]="groupData.description" name="description"></textarea>
+  </div>
+  <div>
+    <label for="visibility">Visibilité:</label>
+    <select id="visibility" [(ngModel)]="groupData.visibility" name="visibility">
+      <option value="PUBLIC">Public</option>
+      <option value="PRIVATE">Privé</option>
+    </select>
+  </div>
+  <div>
+    <label for="photo">Photo du groupe:</label>
+    <input type="file" id="photo" (change)="onFileSelected($event)" accept="image/*">
+  </div>
+  <div>
+    <button type="button" (click)="closePopup()">Annuler</button>
+    <button type="submit">Créer le groupe</button>
+  </div>
+</form>

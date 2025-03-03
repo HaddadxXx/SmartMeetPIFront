@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { FormsModule } from '@angular/forms'; // ✅ Importation de FormsModule
+import { FormsModule } from '@angular/forms'; //  Importation de FormsModule
 
 
 @Injectable({
@@ -29,6 +29,8 @@ export class AuthService {
       roles: user.roles 
     });
   }
+
+  
   verifySignupCode(email: string, code: string) {
     const url = `http://localhost:8080/api/auth/verify-code?email=${email}&code=${code}`;
     return this.http.get(url);

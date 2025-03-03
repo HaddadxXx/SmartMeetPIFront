@@ -13,10 +13,10 @@ import { LoginComponent } from './backEnd/login/login.component';
 import { NgModule } from '@angular/core';
 import { SignupComponent } from '../app/auth/auth-login/signup.component';
 import { VerifComponent } from '../app/auth/auth-login/verif.component';
-import { LoadingComponent } from './shared/skeleton-loader/widgets/loading/loading.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'group', redirectTo: 'favorite/group-listing', pathMatch: 'full' },
+
  { path: 'dashboard', component: DashboardComponent },
   { path: 'users', component: UsersComponent },
   { path: 'reports', component: ReportsComponent },
@@ -25,8 +25,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'auth/verif', component: VerifComponent },
 
-  //khalil
-  { path: 'auth/loading', component: LoadingComponent },
+
 
   {
     path: '',

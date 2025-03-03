@@ -15,6 +15,7 @@ import { ThemeSettingsComponent } from '../../theme-settings/theme-settings.comp
 import { CommonService } from '../../../services/common.service';
 import { SettingBoxComponent } from '../../theme-settings/setting-box/setting-box.component';
 import { ClickOutSideDirective } from '../../../directives/click-out-side.directive';
+import { GroupListingComponent } from '../../../../component/favorite-page/group-listing/group-listing.component';
 
 @Component({
   selector: 'app-content',
@@ -22,7 +23,7 @@ import { ClickOutSideDirective } from '../../../directives/click-out-side.direct
   imports: [SidebarComponent, FriendsConversationComponent, SettingBoxComponent,
     ThemeSettingsComponent, HeaderComponent, ProfileBoxComponent,ClickOutSideDirective,
     FriendSuggestionComponent, LikedPagesComponent, SidebarThreeComponent,
-    CommonWeatherComponent, LikedPagesComponent, RouterModule, CommonModule],
+    CommonWeatherComponent, LikedPagesComponent, RouterModule, CommonModule,GroupListingComponent],
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss'
 })
@@ -117,6 +118,9 @@ export class ContentComponent {
     }
 
     else if (this.currentUrl === "/favorite/page-listing") {
+      pageBody = 'custom-padding event-page';
+    }
+    else if (this.currentUrl === "/favorite/group-listing") {
       pageBody = 'custom-padding event-page';
     }
     else if (this.currentUrl === "/favorite/page-home") {

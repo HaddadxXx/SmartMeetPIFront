@@ -31,7 +31,7 @@ export class NavService {
       iconType: 'feather'
     },
     {
-      path: '',
+      path: '/group',
       icons: 'users',
       title: 'Groups',
       iconType: 'feather'

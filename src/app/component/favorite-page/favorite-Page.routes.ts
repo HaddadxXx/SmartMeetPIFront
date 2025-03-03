@@ -4,6 +4,7 @@ import { FavoritePhotosComponent } from "./favorite-photos/favorite-photos.compo
 import { PageHomeComponent } from "./page-home/page-home.component";
 import { PageListingComponent } from "./page-listing/page-listing.component";
 import { ReviewComponent } from "./review/review.component";
+import { GroupListingComponent } from "./group-listing/group-listing.component";
 
 export default [
     {
@@ -12,6 +13,10 @@ export default [
             {
                 path: 'page-listing',
                 component: PageListingComponent,
+            },
+            {
+                path: 'group-listing',
+                component: GroupListingComponent,
             },
             {
                 path: 'page-home',
