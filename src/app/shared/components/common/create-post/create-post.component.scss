@@ -1,0 +1,327 @@
+.post-container {
+    max-width: 600px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  // Création de publication
+  .create-post {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  .post-header input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+  }
+  
+  .post-options {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .color-btn {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .post {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .post-content {
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .post-reactions {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    font-size: 16px;
+  }
+  
+  .post-reactions span {
+    cursor: pointer;
+  }
+  
+  .comments {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+  }
+  
+  .comment {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .comment-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .comment-content {
+    background: #f0f0f0;
+    padding: 8px;
+    border-radius: 10px;
+  }
+  
+  .add-comment {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .add-comment input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+  }
+  
+  .context-menu {
+    position: absolute;
+    background-color: #fff; /* Fond blanc */
+    border: 1px solid #ddd;
+    padding: 5px;
+    z-index: 1;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Ombre légère */
+    border-radius: 5px; /* Bords arrondis */
+    top: 100%; /* Positionné en dessous du post-header */
+    right: 0; /* Aligné à droite */
+    width: 150px; /* Largeur fixe */
+    font-size: 14px; /* Taille de police plus petite */
+    text-align: left; /* Texte aligné à gauche */
+  }
+  
+  .context-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .context-menu li {
+    padding: 5px 10px;
+    border-bottom: 1px solid #eee; /* Séparateur plus clair */
+  }
+  
+  .context-menu li:last-child {
+    border-bottom: none;
+  }
+  
+  .context-menu a {
+    text-decoration: none;
+    color: #333; /* Couleur de texte plus sombre */
+    display: block;
+  }
+  
+  .context-menu a:hover {
+    background-color: #f0f0f0; /* Fond gris clair au survol */
+    color: #007bff; /* Couleur de lien Bootstrap */
+  }
+
+
+  
+  /* Dans create-post.component.scss */
+.popup-menu {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.2); /* Ombre plus douce */
+  z-index: 1000;
+  border-radius: 5px; /* Bords arrondis */
+  min-width: 150px; /* Largeur minimale */
+}
+
+.popup-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.popup-menu li {
+  padding: 10px 15px; /* Plus d'espace */
+  cursor: pointer; /* Indique que c'est cliquable */
+}
+
+.popup-menu li:hover {
+  background-color: #f0f0f0; /* Couleur de fond au survol */
+  transition: background-color 0.3s; /* Transition douce */
+}
+
+ 
+
+.popup-menu li a {
+  display: block; /* Permet d'utiliser toute la surface du li */
+  color: #333; /* Couleur du texte */
+  text-decoration: none; /* Enlever le soulignement */
+}
+
+.popup-menu li:hover a {
+  color: #007bff; /* Changer la couleur au survol */
+}
+
+
+.post-actions {
+  position: relative; /* Important pour positionner le menu contextuel */
+  display: inline-block; /* Permet de contrôler la largeur */
+}
+
+.post-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em; /* Ajustez la taille des points */
+  padding: 0;
+  color: #666;
+}
+
+.popup-menu {
+  position: absolute;
+  top: 100%; /* Placer le menu en dessous du bouton */
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+  z-index: 1000;
+  border-radius: 5px;
+  min-width: 150px;
+  text-align: left; /* Alignement du texte à gauche */
+}
+
+
+.post-card {
+  margin-bottom: 15px;
+}
+
+.post-details {
+  flex-grow: 1;
+}
+
+.modal.show {
+  display: block;
+}
+
+/* Basic modal styling - adapt to your design */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top */
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%; /* Adjust as needed */
+  max-width: 600px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+/////////comment
+.comment {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+
+  .comment-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .comment-content {
+    flex-grow: 1;
+
+    h5 {
+      margin-top: 0;
+    }
+  }
+
+  .comment-actions {
+    position: relative;
+    display: inline-block;
+
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .popup-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          a {
+            display: block;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: #333;
+            cursor: pointer;
+
+            &:hover {
+              background-color: #f0f0f0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

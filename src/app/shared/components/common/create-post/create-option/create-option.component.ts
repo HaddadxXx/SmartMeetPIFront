@@ -1,22 +1,24 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FeatherIconComponent } from '../../feather-icon/feather-icon.component';
 import { ClickOutSideDirective } from '../../../../directives/click-out-side.directive';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-option',
   standalone: true,
-  imports: [FeatherIconComponent,ClickOutSideDirective],
+  imports: [FeatherIconComponent, ClickOutSideDirective],
   templateUrl: './create-option.component.html',
-  styleUrl: './create-option.component.scss'
+  styleUrls: ['./create-option.component.scss']
 })
-
 export class CreateOptionComponent {
 
   public isShow: boolean = false;
   public isOpen: boolean = false;
-  public isPost : boolean ;
+  public isPost: boolean;
 
   @Output() post: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  constructor(private router: Router) {}
 
   outSideClose() {
     this.isOpen = false;
@@ -26,9 +28,17 @@ export class CreateOptionComponent {
     this.isShow = false;
   }
 
-  postButton(){
+  postButton() {
     this.isPost = true;
     this.post.emit(this.isPost);
   }
 
+  modifyPost() {
+    console.log('Modifier le post');
+    this.router.navigate(['/modifier-post']);
+  }
+
+  editProfile() {
+    this.router.navigate(['/profile/timeline']);
+  }
 }

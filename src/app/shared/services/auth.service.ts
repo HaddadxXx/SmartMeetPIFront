@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms'; // ✅ Importation de FormsModule
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api/auth';
+  private apiUrl = 'http://localhost:8085/api/auth';
 
   constructor(private http: HttpClient) { }
 
@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   signup(user: any): Observable<any> {
-    return this.http.post('http://localhost:8080/api/auth/signup', {
+    return this.http.post('http://localhost:8085/api/auth/signup', {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
@@ -30,7 +30,7 @@ export class AuthService {
     });
   }
   verifySignupCode(email: string, code: string) {
-    const url = `http://localhost:8080/api/auth/verify-code?email=${email}&code=${code}`;
+    const url = `http://localhost:8085/api/auth/verify-code?email=${email}&code=${code}`;
     return this.http.get(url);
   }
 }
