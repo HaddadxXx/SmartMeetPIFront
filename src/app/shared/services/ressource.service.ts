@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 export class RessourceService {
 
   private baseUrl = 'http://localhost:8087/api/ressources';
+  private sessionUrl = 'http://localhost:8087/api/sessions';
+
 
   constructor(private http: HttpClient) {}
 
@@ -25,5 +27,15 @@ export class RessourceService {
 
   deleteRessource(id: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/delete/${id}`, { responseType: 'text' });
+  }
+  
+  
+  // Récupérer la liste des événements
+  getAllSessions(): Observable<any> {
+    return this.http.get(`${this.sessionUrl}/all`);
+  }
+  // Affecter un transport à un événement
+  affecterRessource(sessionId: string, ressourceId: string): Observable<string> {
+    return this.http.put(`${this.sessionUrl}/affecter-ressource/${sessionId}/${ressourceId}`, {}, { responseType: 'text' });
   }
 }

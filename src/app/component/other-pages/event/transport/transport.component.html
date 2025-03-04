@@ -1,103 +1,58 @@
-<!-- <div class="card p-4 mb-4">
-    <h1 class="mb-3">Add Transport</h1>
-    <form>
-      <div class="form-group mb-3">
-        <label>Type de transport</label>
-        <input type="text" [(ngModel)]="type" [ngModelOptions]="{standalone: true}" class="form-control" id="typetransport" name="typetransport" placeholder="Enter type">
+
+<div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
+  <app-event-skeleton></app-event-skeleton>
+</div>
+<div class="event-cover">
+  <div class="event-img"
+      style="background-image: url(assets/images/cover/transport.jpeg);background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+      <img src="assets/images/cover/transport.jpeg" class="img-fluid  bg-img" alt="" style="display: none;">
+      <div class="event-content">
+          <h1>Transports</h1>
       </div>
-      
-      <div class="form-group mb-3">
-        <label>Capacite du transport</label>
-        <input type="number" [(ngModel)]="capacite" [ngModelOptions]="{standalone: true}" class="form-control" id="Capacity" name="Capacity" placeholder="Enter Capacity">
+      <div class="cover-img-detail">
       </div>
-      
-      <div class="form-group mb-3">
-        <label>Statut</label>
-        <select [(ngModel)]="statut" [ngModelOptions]="{standalone: true}" class="form-control" id="statut" name="statut">
-          <option value="disponible">Disponible</option>
-          <option value="non-disponible">Non-disponible</option>
-        </select>
-      </div>
-      
-      <button type="submit" class="btn btn-primary" (click)="save()">Submit</button>
-    </form>
-  </div>
-  
-  <div class="card p-4">
-    <h1 class="mb-3">Transport Table</h1>
-    <div class="table-responsive">
-      <table class="table">
-        <thead class="bg-light">     
-          <tr>
-            <th scope="col">Type</th>
-            <th scope="col">Capacity</th>
-            <th scope="col">Statut</th>
-            <th scope="col">Option</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let TransportItem of TransportArray">
-            <td>{{TransportItem.type}}</td>
-            <td>{{TransportItem.capacite}}</td>
-            <td>
-              <span [ngClass]="{'badge bg-success': TransportItem.statut === 'disponible', 'badge bg-danger': TransportItem.statut === 'non-disponible'}">
-                {{TransportItem.statut}}
-              </span>
-            </td>
-            <td>
-              <button type="button" class="btn btn-sm btn-outline-primary me-2" (click)="setUpdate(TransportItem)">
-                <i class="bi bi-pencil"></i> Edit
-              </button>
-              <button type="button" class="btn btn-sm btn-outline-danger" (click)="setDelete(TransportItem)">
-                <i class="bi bi-trash"></i> Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
--->
 
 <div class="card p-4 mb-4">
   <h1 class="mb-6">Add a Transport</h1>
 <br>
   <form>
     <div class="form-group mb-3">
-      <label for="typetransport">Type de transport</label>
-      <input type="text" [(ngModel)]="type" [ngModelOptions]="{standalone: true}" class="form-control" id="typetransport" name="typetransport" placeholder="Entrez le type">
+      <label for="typetransport">Type of transport</label>
+      <input type="text" [(ngModel)]="type" [ngModelOptions]="{standalone: true}" class="form-control" id="typetransport" name="typetransport" placeholder="Enter the type">
       <div *ngIf="serverErrors?.type" class="text-danger">{{ serverErrors.type }}</div>
     </div>
 
     <div class="form-group mb-3">
-      <label for="capacite">Capacité du transport</label>
+      <label for="capacite">Transport capacity</label>
       <input type="number" [(ngModel)]="capacite" [ngModelOptions]="{standalone: true}" class="form-control" id="capacite" name="capacite" placeholder="0">
       <div *ngIf="serverErrors?.capacite" class="text-danger">{{ serverErrors.capacite }}</div>
     </div>
 
     <div class="form-group mb-3">
-      <label for="statut">Statut</label>
+      <label for="statut">Status</label>
       <select [(ngModel)]="statut" [ngModelOptions]="{standalone: true}" class="form-control" id="statut" name="statut">
-        <option value="disponible">Disponible</option>
-        <option value="non-disponible">Non disponible</option>
+        <option value="Available">Available</option>
+        <option value="Reserved">Reserved</option>
       </select>
       <div *ngIf="serverErrors?.statut" class="text-danger">{{ serverErrors.statut }}</div>
     </div>
 
-    <button type="button" class="btn btn-primary" (click)="saveTransport()">Soumettre</button>
+    <button type="button" class="btn btn-primary" (click)="saveTransport()">Submit</button>
   </form>
 </div>
 
 <!-- Tableau des transports -->
 <div class="card p-4">
-  <h1 class="mb-3">Tableau des Transports</h1>
+  <h1 class="mb-3">Transport Table</h1>
   <div class="table-responsive">
     <table class="table">
       <thead class="bg-light">
         <tr>
           <th scope="col">Type</th>
-          <th scope="col">Capacité</th>
-          <th scope="col">Statut</th>
+          <th scope="col">Capacity</th>
+          <th scope="col">Status</th>
           <th scope="col">Options</th>
         </tr>
       </thead>
@@ -106,20 +61,36 @@
           <td>{{ TransportItem.type }}</td>
           <td>{{ TransportItem.capacite }}</td>
           <td>
-            <span [ngClass]="{'badge bg-success fw-bold': TransportItem.statut === 'disponible', 'badge bg-danger fw-bold': TransportItem.statut === 'non-disponible'}">
+            <span [ngClass]="{'badge bg-success fw-bold': TransportItem.statut === 'Available', 'badge bg-danger fw-bold': TransportItem.statut === 'Reserved'}">
               {{ TransportItem.statut }}
             </span>
           </td>
           <td>
             <button type="button" class="btn btn-sm btn-outline-primary me-2" (click)="setUpdateTransport(TransportItem)">
-              <i class="bi bi-pencil">Modifier</i>
+              <i class="bi bi-pencil">Modify</i>
             </button>
             <button type="button" class="btn btn-sm btn-outline-danger" (click)="setDeleteTransport(TransportItem)">
-              <i class="bi bi-trash">Supprimer</i>
+              <i class="bi bi-trash">Delete</i>            
             </button>
+            <button type="button" class="btn btn-primary" (click)="openAffectationModal(TransportItem)">Assign to an event</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
+
+
+    <!-- Modal d'affectation -->
+    <div *ngIf="showModal" class="modal">
+      <div class="modal-content">
+          <h2>Assign transport to an event</h2>
+          <label>Choose an event :</label>
+          <select [(ngModel)]="selectedEventId" class="form-control">
+              <option *ngFor="let event of eventArray" [value]="event.id">{{ event.name }} - {{ event.dateE }}</option>
+          </select>
+          <br>
+          <button class="btn btn-success" (click)="affecterTransport()">Confirm</button>
+          <button class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+      </div>
+  </div>

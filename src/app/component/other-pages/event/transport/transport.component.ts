@@ -1,104 +1,15 @@
-/*import { Component } from '@angular/core';
-import { TransportService } from '../../../../shared/services/transport.service';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-@Component({
-  selector: 'app-transport',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './transport.component.html',
-  styleUrl: './transport.component.scss'
-})
-export class TransportComponent {
-  TransportArray: any[] = [];
-  type: string = '';
-  capacite: number = 0;
-  statut: string = '';
-  currentTransportID: string = '';
-
-  constructor(private transportService: TransportService) {
-    this.getAllTransport();
-  }
-
-  getAllTransport(): void {
-    this.transportService.getAllTransport().subscribe({
-      next: (data) => this.TransportArray = data,
-      error: (err) => console.error("Erreur lors de la récupération des transports :", err)
-    });
-  }
-
-  register(): void {
-    const bodyData = { type: this.type, capacite: this.capacite, statut: this.statut };
-
-    this.transportService.createTransport(bodyData).subscribe({
-      next: (res) => {
-        console.log(res);
-        alert("Transport ajouté avec succès !");
-        this.getAllTransport();
-        this.resetForm();
-      },
-      error: (err) => console.error("Erreur lors de l'ajout :", err)
-    });
-  }
-
-  setUpdate(data: any): void {
-    this.type = data.type;
-    this.capacite = data.capacite;
-    this.statut = data.statut;
-    this.currentTransportID = data.id;
-  }
-
-  updateRecords(): void {
-    if (!this.currentTransportID) {
-      alert("Erreur : Aucun ID de transport sélectionné !");
-      return;
-    }
-
-    const bodyData = { type: this.type, capacite: this.capacite, statut: this.statut };
-
-    this.transportService.updateTransport(this.currentTransportID, bodyData).subscribe({
-      next: (res) => {
-        console.log(res);
-        alert("Transport mis à jour avec succès !");
-        this.getAllTransport();
-        this.resetForm();
-      },
-      error: (err) => console.error("Erreur lors de la mise à jour :", err)
-    });
-  }
-
-  save(): void {
-    this.currentTransportID ? this.updateRecords() : this.register();
-  }
-
-  setDelete(data: any): void {
-    this.transportService.deleteTransport(data.id).subscribe({
-      next: (res) => {
-        console.log(res);
-        alert("Transport supprimé avec succès !");
-        this.getAllTransport();
-      },
-      error: (err) => console.error("Erreur lors de la suppression :", err)
-    });
-  }
-
-  resetForm(): void {
-    this.currentTransportID = '';
-    this.type = '';
-    this.capacite = 0;
-    this.statut = '';
-  }
-}*/
 import { Component } from '@angular/core';
 import { TransportService } from '../../../../shared/services/transport.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { EventSkeletonComponent } from "../../../../shared/skeleton-loader/others-pages-skeleton/event-skeleton/event-skeleton.component";
+import { FeatherIconComponent } from "../../../../shared/components/common/feather-icon/feather-icon.component";
+import { CommonService } from '../../../../shared/services/common.service';
 
 @Component({
   selector: 'app-transport',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, EventSkeletonComponent, FeatherIconComponent],
   templateUrl: './transport.component.html',
   styleUrl: './transport.component.scss'
 })
@@ -109,11 +20,18 @@ export class TransportComponent {
   statut: string = '';
   currentTransportID: string = '';
   serverErrors: any = {};
+  //////////////////////////
+  showModal: boolean = false;
+  selectedTransportId: string = '';
+  selectedEventId: string = '';
+  eventArray: any[] = [];
+  
 
-  constructor(private transportService: TransportService) {
+  constructor(private transportService: TransportService, public commonServices : CommonService) {
     this.getAllTransport();
   }
 
+  ngOnInit(): void {}
   /**
    * Enregistre ou met à jour un transport
    */
@@ -135,7 +53,7 @@ export class TransportComponent {
 
     this.transportService.createTransport(bodyData).subscribe({
       next: () => {
-        alert("Transport ajouté avec succès !");
+        alert("Transport added successfully!");
         this.refreshData();
       },
       error: (error) => this.handleError(error)
@@ -150,7 +68,7 @@ export class TransportComponent {
       next: (data: any) => {
         this.TransportArray = data;
       },
-      error: (error) => console.error("Erreur lors de la récupération des transports:", error)
+      error: (error) => console.error("Error while retrieving transports:", error)
     });
   }
 
@@ -169,7 +87,7 @@ export class TransportComponent {
    */
   updateTransport(): void {
     if (!this.currentTransportID) {
-      alert("Erreur : Aucun ID de transport sélectionné !");
+      alert("Error: No transport ID selected!");
       return;
     }
 
@@ -177,7 +95,7 @@ export class TransportComponent {
 
     this.transportService.updateTransport(this.currentTransportID, bodyData).subscribe({
       next: () => {
-        alert("Transport mis à jour avec succès !");
+        alert("Transport updated successfully!");
         this.refreshData();
       },
       error: (error) => this.handleError(error)
@@ -188,16 +106,16 @@ export class TransportComponent {
    * Suppression d'un transport
    */
   setDeleteTransport(data: any): void {
-    if (!confirm("Voulez-vous vraiment supprimer ce transport ?")) {
+    if (!confirm("Do you really want to delete this transport?")) {
       return;
     }
 
     this.transportService.deleteTransport(data.id).subscribe({
       next: () => {
-        alert("Transport supprimé avec succès !");
+        alert("Transport deleted successfully!");
         this.refreshData();
       },
-      error: (error) => console.error("Erreur lors de la suppression:", error)
+      error: (error) => console.error("Error during deletion:", error)
     });
   }
 
@@ -220,7 +138,7 @@ export class TransportComponent {
     if (error.status === 400) {
       this.serverErrors = error.error;
     } else {
-      alert("Une erreur s'est produite, veuillez réessayer !");
+      alert("An error occurred, please try again!");
     }
   }
 
@@ -241,5 +159,42 @@ export class TransportComponent {
   private refreshData(): void {
     this.getAllTransport();
     this.resetForm();
+  }
+  
+  // Ouvrir la modal et charger les événements
+  openAffectationModal(transport: any) {
+    this.selectedTransportId = transport.id;
+    this.showModal = true;
+
+    this.transportService.getAllEvents().subscribe((resultData: any) => {
+      this.eventArray = resultData;
+    });
+  }
+
+  // Fermer la modal
+  closeModal() {
+    this.showModal = false;
+    this.selectedTransportId = '';
+    this.selectedEventId = '';
+  }
+
+  // Affecter un transport à un événement
+  affecterTransport() {
+    if (!this.selectedTransportId || !this.selectedEventId) {
+      alert("Please select an event!");
+      return;
+    }
+
+    this.transportService.affecterTransport(this.selectedEventId, this.selectedTransportId)
+      .subscribe(
+        (resultData) => {
+          alert("Transport successfully assigned!");
+          this.closeModal();
+        },
+        (error) => {
+          console.error("Error during assignment:", error);
+          alert("The transport is already assigned to this event!");
+        }
+      );
   }
 }

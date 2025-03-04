@@ -2,11 +2,16 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RessourceService } from '../../../../shared/services/ressource.service';
+import { EventSectionComponent } from '../../../../shared/components/common/event-section/event-section.component';
+import { CommonService } from '../../../../shared/services/common.service';
+import { EventSkeletonComponent } from "../../../../shared/skeleton-loader/others-pages-skeleton/event-skeleton/event-skeleton.component";
+import { FeatherComponent } from '../../../element-pages/icons/feather/feather.component';
+import { FeatherIconComponent } from "../../../../shared/components/common/feather-icon/feather-icon.component";
 
 @Component({
   selector: 'app-ressource',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, EventSectionComponent, EventSkeletonComponent, FeatherComponent, FeatherIconComponent],
   templateUrl: './ressource.component.html',
   styleUrl: './ressource.component.scss'
 })
@@ -18,8 +23,14 @@ export class RessourceComponent {
   statutR: string = '';
   currentRessourceID: string = "";
   serverErrors: any = {};
+  //////////////////////////
+  showModall: boolean = false;
+  selectedRessourceId: string = '';
+  selectedSessionId: string = '';
+  sessionArray: any[] = [];
 
-  constructor(private ressourceService: RessourceService) {
+
+  constructor(private ressourceService: RessourceService, public commonServices :CommonService) {
     this.getAllRessources();
   }
 
@@ -50,7 +61,7 @@ export class RessourceComponent {
 
     this.ressourceService.createRessource(bodyData).subscribe({
       next: () => {
-        alert("Ressource ajoutée avec succès !");
+        alert("Resource added successfully!");
         this.refreshData();
       },
       error: (error) => this.handleError(error)
@@ -65,7 +76,7 @@ export class RessourceComponent {
       next: (data: any) => {
         this.RessourceArray = data;
       },
-      error: (error) => console.error("Erreur lors de la récupération des ressources:", error)
+      error: (error) => console.error("Error retrieving resources:", error)
     });
   }
   
@@ -85,7 +96,7 @@ export class RessourceComponent {
    */
   updateRess(): void {
     if (!this.currentRessourceID) {
-      alert("Erreur : Aucun ID de ressource sélectionné !");
+      alert("Error: No resource ID selected!");
       return;
     }
 
@@ -93,7 +104,7 @@ export class RessourceComponent {
 
     this.ressourceService.updateRessource(this.currentRessourceID, bodyData).subscribe({
       next: () => {
-        alert("Ressource mise à jour avec succès !");
+        alert("Resource updated successfully!");
         this.refreshData();
       },
       error: (error) => this.handleError(error)
@@ -113,7 +124,7 @@ export class RessourceComponent {
         alert("Resource deleted successfully !");
         this.refreshData();
       },
-      error: (error) => console.error("Erreur lors de la suppression:", error)
+      error: (error) => console.error("Error during deletion:", error)
     });
   }
 
@@ -137,7 +148,7 @@ export class RessourceComponent {
     if (error.status === 400) {
       this.serverErrors = error.error;
     } else {
-      alert("Une erreur s'est produite, veuillez réessayer !");
+      alert("An error occurred, please try again!");
     }
   }
 
@@ -159,5 +170,42 @@ export class RessourceComponent {
   private refreshData(): void {
     this.getAllRessources();
     this.resetForm();
+  }
+
+  // Ouvrir la modal et charger les événements
+  openAffectationModall(ressource: any) {
+    this.selectedRessourceId = ressource.id;
+    this.showModall = true;
+
+    this.ressourceService.getAllSessions().subscribe((resultData: any) => {
+      this.sessionArray = resultData;
+    });
+  }
+
+  // Fermer la modal
+  closeModall() {
+    this.showModall = false;
+    this.selectedRessourceId = '';
+    this.selectedSessionId = '';
+  }
+
+  // Affecter un transport à un événement
+  affecterRessource() {
+    if (!this.selectedRessourceId || !this.selectedSessionId) {
+      alert("Please select a session!");
+      return;
+    }
+
+    this.ressourceService.affecterRessource(this.selectedSessionId, this.selectedRessourceId)
+      .subscribe(
+        (resultData) => {
+          alert("Ressource successfully assigned!");
+          this.closeModall();
+        },
+        (error) => {
+          console.error("Error during assignment:", error);
+          alert("The ressource is already assigned to this session!");
+        }
+      );
   }
 }
