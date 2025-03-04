@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root', // Le service est disponible dans toute l'application
@@ -25,6 +25,31 @@ export class GroupService {
     }
 
     // Envoyez la requête POST au backend
-    return this.http.post(`${this.apiUrl}/create`, formData);
+    return this.http.post(`${this.apiUrl}/create`, formData,{
+      withCredentials: true,} // 🔥 Envoi du cookie HttpOnly avec JWT
+    );
   }
+
+
+
+  // group.service.ts
+  getGroupsByMember(memberId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/member/${memberId}`, { withCredentials: true });
+  }
+
+
+  updateGroup(id: string, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, data, { withCredentials: true });
+  }
+
+
+
+
+
+
+
+
+
+
+
 }

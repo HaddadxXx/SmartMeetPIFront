@@ -1,8 +1,8 @@
-<div class="list-box">
+<div class="list-box" *ngFor="let group of groups">
     <div class="cover-img bg-size" 
-    [ngStyle]="{'background-image': 'url(' +  data.image  + ')'}"
-    style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
-        <img [src]="data.image" class="img-fluid bg-img" alt="" style="display: none;">
+         [ngStyle]="{'background-image':   getGroupImage(group.photo)  }"
+         style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+        <img [src]="getGroupImage(group.photo)" class="img-fluid bg-img" alt="" style="display: none;">
         <div class="logo-img">
             <a href="javascript:void(0)">
                 <img src="assets/images/pages-logo/6.png" class="img-fluid bg-img" alt="">
@@ -12,9 +12,9 @@
     <div class="list-content">
         <div class="page-name">
             <a href="javascript:void(0)">
-                <h4>SMART MEET</h4>
+                <h4>{{ group.name }}</h4> <!-- Nom du groupe -->
             </a>
-            <h6>smartmeet&#64;gmail.com</h6>
+            <h6>{{ group.owner.email }}</h6> <!-- Email du propriétaire -->
         </div>
         <div class="counter-stats">
             <ul>
@@ -35,6 +35,7 @@
         <div class="bottom-btn">
             <a href="javascript:void(0)" class="btn btn-solid">followed</a>
             <a href="javascript:void(0)" class="btn btn-solid">invite</a>
+            
         </div>
     </div>
 </div>

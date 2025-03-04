@@ -53,10 +53,11 @@ export class GroupListingComponent {
     },
     {
       tab: 'followed groups',
-      class: 'active'
+      
     },
     {
       tab: 'your groups',
+      class: 'active'
     },
     {
       tab: 'create group',
@@ -89,7 +90,7 @@ export class GroupListingComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('Le groupe a été créé avec succès !', result);
-        // Vous pouvez rafraîchir la liste des groupes ici si nécessaire
+        
       }
     });
   }

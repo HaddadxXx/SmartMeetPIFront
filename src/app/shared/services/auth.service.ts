@@ -13,8 +13,9 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   signin(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/signin`, { email, password }).pipe(
+    return this.http.post(`${this.apiUrl}/signin`, { email, password },{ withCredentials: true }).pipe(
       tap((response) => {
+        console.log(response)
         localStorage.setItem('user', JSON.stringify(response));
       })
     );
@@ -35,4 +36,12 @@ export class AuthService {
     const url = `http://localhost:8080/api/auth/verify-code?email=${email}&code=${code}`;
     return this.http.get(url);
   }
+
+  private apiUrlme = 'http://localhost:8080/api/users/me'; // Endpoint pour récupérer l'utilisateur connecté
+  // Récupérer l'utilisateur connecté
+  getCurrentUser(): Observable<any> {
+    return this.http.get<any>(this.apiUrlme, { withCredentials: true });
+  }
+
+
 }

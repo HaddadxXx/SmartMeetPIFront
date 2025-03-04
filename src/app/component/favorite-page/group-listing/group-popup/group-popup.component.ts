@@ -37,7 +37,7 @@
      this.groupService.createGroup(this.groupData, this.selectedFile).subscribe({
        next: (response) => {
          console.log('Groupe créé avec succès:', response);
-        //  this.groupCreated.emit(); // Émet un événement pour informer le parent
+          this.groupCreated.emit(); // Émet un événement pour informer le parent
          this.closePopup();// Ferme le popup et envoie la réponse
         },
        error: (error) => {
@@ -75,51 +75,3 @@
 
 
 
-
-
-
-
-// import { Component } from '@angular/core';
-// import { MatDialogRef } from '@angular/material/dialog'; // Importez MatDialogRef
-// import { CommonModule } from '@angular/common';
-// import { FormsModule } from '@angular/forms';
-// import { CommonService } from '../../../../shared/services/common.service';
-
-// @Component({
-//   selector: 'app-group-popup',
-//   standalone: true,
-//   imports: [FormsModule, CommonModule],
-//   templateUrl: './group-popup.component.html',
-//   styleUrls: ['./group-popup.component.scss']
-// })
-// export class GroupPopupComponent {
-//   groupData = {
-//     name: '',
-//     description: '',
-//     visibility: 'PUBLIC', // Par défaut
-//   };
-//   selectedFile: File | null = null;
-
-//   constructor(
-//     public dialogRef: MatDialogRef<GroupPopupComponent> // Injection de MatDialogRef
-//   ) {}
-
-//   onFileSelected(event: any): void {
-//     this.selectedFile = event.target.files[0];
-//   }
-
-//   onSubmit(): void {
-//     // Simulez la création du groupe
-//     const createdGroup = {
-//       ...this.groupData,
-//       photo: this.selectedFile ? this.selectedFile.name : null,
-//     };
-
-//     // Fermez le modal et retournez les données du groupe
-//     this.dialogRef.close(createdGroup);
-//   }
-
-//   onCancel(): void {
-//     this.dialogRef.close(); // Fermez le modal sans retourner de données
-//   }
-// }
