@@ -40,19 +40,33 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid section-t-space px-0">
-    <div class="page-content">
-      <div class="content-center w-100">
-        <div class="profile-menu ms-0 me-0">
-          <ul>
-            @for (item of tabData; track $index) {
-            <li [ngClass]="item.class">
-              <a href="javascript:void(0)" (click)="onTabClick(item.tab)">
-                <h6>{{item.tab}}</h6>
-              </a>
-            </li>
-            }
-          </ul>
+ <div class="container-fluid section-t-space px-0">
+  <div class="page-content">
+    <div class="content-center w-100">
+      <div class="profile-menu ms-0 me-0">
+        <ul>
+          <li [class.active]="selectedTab === 'top suggestions'" >
+            <a href="javascript:void(0)" (click)="onTabClick('top suggestions')">
+              <h6>Top Suggestions</h6>
+            </a>
+          </li>
+          <li [class.active]="selectedTab === 'invitation'">
+            <a href="javascript:void(0)" (click)="onTabClick('invitation')">
+              <h6>Invitation</h6>
+            </a>
+          </li>
+          <li [class.active]="selectedTab === 'followed groups'">
+            <a href="javascript:void(0)" (click)="onTabClick('followed groups')">
+              <h6>Followed Groups</h6>
+            </a>
+          </li>
+          <li [class.active]="selectedTab === 'your groups'">
+            <a href="javascript:void(0)" (click)="onTabClick('your groups')">
+              <h6>Your Groups</h6>
+            </a>
+          </li>
+
+        </ul>
           <ul class="right-menu d-xl-flex d-none">
             <li>
               <a href="javascript:void(0)" (click)="onTabClick('create group')">
@@ -72,11 +86,11 @@
                 </div>
               </div>
             </div>
-            @for (item of pageListing; track item) {
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-              <app-list-box [data]="item"></app-list-box>
+            
+            <div class="col-xl-3 col-lg-4 col-sm-6" *ngFor="let group of groups">
+              <app-list-box [group]="group" ></app-list-box>
             </div>
-            }
+            
           </div>
         </div>
       </div>

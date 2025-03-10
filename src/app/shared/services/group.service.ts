@@ -44,6 +44,9 @@ export class GroupService {
 
 
 
+  getGroupsByOwner(memberId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/owner/${memberId}`, { withCredentials: true });
+  }
 
 
 
