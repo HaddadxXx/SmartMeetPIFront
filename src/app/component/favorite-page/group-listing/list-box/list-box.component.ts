@@ -6,13 +6,13 @@ import { GroupService } from '../../../../shared/services/group.service';
 import { AuthService } from '../../../../shared/services/auth.service';
 import { pageListing, pageListingImg } from '../../../../shared/data/favorite-page/favorite-page';
 import { GroupPopupComponent } from '../group-popup/group-popup.component';
-
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-list-box',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './list-box.component.html',
   styleUrl: './list-box.component.scss'
 })

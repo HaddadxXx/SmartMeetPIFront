@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 
 import { BirthdayReminderComponent } from '../../../shared/components/common/birthday-reminder/birthday-reminder.component';
 import { EventsComponent } from '../../../shared/components/common/events/events.component';
@@ -23,6 +23,10 @@ import { events } from '../../../shared/interface/common';
 import { profile } from '../../../shared/interface/post';
 import { PageHomeSkeletonComponent } from '../../../shared/skeleton-loader/favorite-pages-skeleton/page-home-skeleton/page-home-skeleton.component';
 
+
+
+
+
 @Component({
   selector: 'app-page-home',
   standalone: true,
@@ -44,6 +48,7 @@ export class PageHomeComponent {
   public isShow: boolean = false;
   public currentUrl: string;
 
+
  public event: events = {
    image: 'assets/images/post/12.jpg',
    title: 'happy life event',
@@ -60,9 +65,13 @@ export class PageHomeComponent {
     this.currentUrl = this.router.url;
 
     }
-
+    group: any;
   ngOnInit() {
     this.favoritePagesService.post().subscribe((data) => {
+
+      this.group = history.state.group;
+      console.log("voila le groupe",this.group)
+
       this.post = data.homePost;
       this.visiblePosts = this.post.slice(0, this.displayCount);
       this.post.filter((element, index) => {

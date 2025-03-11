@@ -1,5 +1,6 @@
 <div class="page-cover">
     <div class="cover-img"
+      [ngStyle]="{'background-image':   getGroupImage(group.photo)  }"
         style="background-image: url(assets/images/cover/3.jpg); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
         <img src="assets/images/cover/3.jpg" class="img-fluid  bg-img" alt="cover"
             style="display: none;">
@@ -17,8 +18,8 @@
             </a>
         </div>
         <a href="javascript:void(0)" class="page-name">
-            <h4>dance acadamy</h4>
-            <h6>danceacadamy&#64;gmail.com</h6>
+            <h4>{{ group?.name }}</h4>
+            <h6>{{ group.owner.email }}</h6>
         </a>
         <div class="page-stats">
             <ul>

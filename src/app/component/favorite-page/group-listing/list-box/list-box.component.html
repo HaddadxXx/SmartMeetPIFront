@@ -11,7 +11,7 @@
     </div>
     <div class="list-content">
         <div class="page-name">
-            <a href="javascript:void(0)">
+            <a [routerLink]="'/page-home'" [state]="{ group: group }">
                 <h4>{{ group.name }}</h4> <!-- Nom du groupe -->
             </a>
             <h6>{{ group.owner.email }}</h6> <!-- Email du propriétaire -->

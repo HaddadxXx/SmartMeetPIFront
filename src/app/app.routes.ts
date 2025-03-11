@@ -14,9 +14,10 @@ import { NgModule } from '@angular/core';
 import { SignupComponent } from '../app/auth/auth-login/signup.component';
 import { VerifComponent } from '../app/auth/auth-login/verif.component';
 
+
 export const routes: Routes = [
   { path: 'group', redirectTo: 'favorite/group-listing', pathMatch: 'full' },
-
+  { path: 'page-home', redirectTo: 'favorite/page-home', pathMatch: 'full' },
  { path: 'dashboard', component: DashboardComponent },
   { path: 'users', component: UsersComponent },
   { path: 'reports', component: ReportsComponent },
@@ -24,6 +25,7 @@ export const routes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'auth/verif', component: VerifComponent },
+
 
 
 
