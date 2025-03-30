@@ -49,18 +49,26 @@
     </div>
     <div class="event-content">
         <h2>{{event.nomEvent}}</h2>
+        <h2>{{event.theme}}</h2>
+        <h3>{{event.dateDebut}}</h3> - <h3>{{event.dateFin}}</h3>
+
         <h3>{{event.typeEvent}}</h3>
-        <h4>{{event.theme}}</h4>
+
         <p>{{event.description}}
 
             <!-- <span>{{events.span}}</span> -->
         </p>
-        <div class="bottom-part">
-            <a href="javascript:void(0)" class="event-btn">{{events?.link}}</a>
-        </div>
+        <!-- <div class="bottom-part">
+            <a href="javascript:void(0)" class="event-btn">{{events?.link}}</a> -->
+
+          
+            
+        <!-- </div> -->
         <a href="javascript:void(0)" class="share-btn">
             <app-feather-icon [icons]="'corner-up-right'"
                 [class]="'icon-dark stroke-width-3 iw-14 ih-14'"></app-feather-icon>
         </a>
     </div>
+  
+
 </div>

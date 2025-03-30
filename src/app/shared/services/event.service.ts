@@ -27,6 +27,7 @@ private apiUrl = 'http://localhost:8082/events';
 
   constructor(private http: HttpClient) {}
 
+  
   // Récupérer la liste des événements
   getEvents(): Observable<Event[]> {
     return this.http.get<Event[]>(`${this.apiUrl}/getAllEvents`);
@@ -41,6 +42,8 @@ private apiUrl = 'http://localhost:8082/events';
   // createEvent(event: Event): Observable<Event> {
   //   return this.http.post<Event>(`${this.apiUrl}/addEvenement`, event);
   // }
+
+
   createEvent(event: Event): Observable<Event> {
     return this.http.post<Event>(`${this.apiUrl}/addEvenement`, event, {
       headers: { 'Content-Type': 'application/json' }
@@ -71,6 +74,9 @@ ajouterSessionEtAffecterAEvenement(sessionData: any, eventName: string): Observa
 }
 
 
+addParticipation(participationData: any) {
+  return this.http.post('http://localhost:8082/events/addParticipation', participationData);
+}
 
 
 }

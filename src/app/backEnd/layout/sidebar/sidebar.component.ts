@@ -10,6 +10,8 @@ import { RouterLink } from '@angular/router';
 export class SidebarComponent {
   isDarkMode: boolean = false;
 
+  
+
   toggleDarkMode() {
     this.isDarkMode = !this.isDarkMode;
     document.body.classList.toggle('dark-mode', this.isDarkMode);

@@ -20,6 +20,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { SessionService } from '../../../shared/services/session.service';
 import { Session } from '../../../shared/interface/Session';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-event',
@@ -44,18 +45,24 @@ export class EventComponent {
 
   showSessionModal: boolean = false;
 
-  
+  selectedEvent: Event | null = null; // Au lieu de string
+
   sessionForm: FormGroup; // Formulaire pour créer une session
-  selectedEvent: string = ''; // Stocke l'événement sélectionné
+//  selectedEvent: string = ''; // Stocke l'événement sélectionné
+
+ selectedSession: Session | null = null;
 
   private modalInstance: any;
-
+  showParticipationModal = false;
+  participationForm!: FormGroup;
 
 
   constructor(
     private fb: FormBuilder,
     public commonServices: CommonService,
-    private router: Router ,  private eventService: EventService, privatemodalService : NgbModal,private sessionService :SessionService) {
+    private router: Router ,  private eventService: EventService,
+     privatemodalService : NgbModal,private http: HttpClient,
+     private sessionService :SessionService) {
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         this.currentUrl = event.url;
@@ -75,6 +82,12 @@ export class EventComponent {
     this.getSessions();
 
     this.getEvents(); // Charger les événements au démarrage
+    this.participationForm = this.fb.group({
+      nom: ['', Validators.required],
+      prenom: ['', Validators.required],
+      
+      email: ['', [Validators.required, Validators.email]]
+    });
   }
 
   getEvents(): void {
@@ -102,6 +115,7 @@ export class EventComponent {
       }
     );
   }
+  
 
   createEvent(event: Event): void {
     this.eventService.createEvent(event).subscribe(
@@ -174,26 +188,65 @@ export class EventComponent {
         );
     }
 }
- // Mettre à jour une session
- updateSession(id: string, sessionData: any): void {
-  this.sessionService.updateSession(id, sessionData).subscribe(
-    (updatedSession: any) => {
-      const index = this.sessions.findIndex(s => s.idSession === id);
-      if (index !== -1) {
-        this.sessions[index] = updatedSession; // Mettre à jour la session dans la liste
+ // Mettre à jour une session existante
+  updateSession(id: string, sessionData: any): void {
+    this.sessionService.updateSession(id, sessionData).subscribe(
+      (updatedSession: any) => {
+        const index = this.sessions.findIndex(s => s.idSession === id);
+        if (index !== -1) {
+          this.sessions[index] = updatedSession; // Mettre à jour la session dans la liste
+        }
+        alert('Session mise à jour avec succès');
+        this.closeSessionModal();
+      },
+      (error) => {
+        console.error('Erreur lors de la mise à jour de la session:', error);
       }
-      alert('Session mise à jour avec succès');
-      this.closeSessionModal();
-    },
-    (error) => {
-      console.error('Erreur lors de la mise à jour de la session:', error);
+    );
+  }
+  openParticipationModal(eventId: string) {
+    this.selectedEvent = this.events.find(e => e.idEvent === eventId) || null;
+  
+    if (!this.selectedEvent) {
+      console.error("Événement introuvable !");
+      return;
     }
-  );
-}
-
-
+    this.showParticipationModal = true;
+  }
+  
   
 
+  closeParticipationModal() {
+    
+    this.showParticipationModal = false;
+  }
+
+  onParticipationSubmit() {
+    if (!this.selectedEvent) {
+      console.error("Aucun événement sélectionné pour la participation !");
+      alert("Veuillez sélectionner un événement.");
+      return;
+    }
+  
+    const participationData = {
+      ...this.participationForm.value,
+      date: new Date().toISOString().split('T')[0],
+      eventName: this.selectedEvent.nomEvent // ✅ Assurez-vous que 'selectedEvent' est bien un objet Event
+    };
+  
+    console.log("Données envoyées :", participationData);
+  
+    this.http.post('http://localhost:8082/events/addParticipation', participationData)
+      .subscribe(response => {
+        console.log('Participation enregistrée avec succès', response);
+        alert("Participation enregistrée avec succès !");
+        this.closeParticipationModal();
+      }, error => {
+        console.error("Erreur lors de l'inscription", error);
+        alert("Erreur lors de l'inscription !");
+      });
+  }
+  
   outSideClose() {
     this.isShow = false;
   }

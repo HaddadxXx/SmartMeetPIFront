@@ -1,0 +1,9 @@
+.d-flex {
+    height: 100vh; // ✅ Assure que le layout prend toute la hauteur
+  }
+  
+  .flex-grow-1 {
+    overflow: auto; // ✅ Évite les chevauchements
+    min-width: 0;   // ✅ Permet un bon dimensionnement
+  }
+  

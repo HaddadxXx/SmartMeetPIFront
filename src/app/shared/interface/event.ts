@@ -10,8 +10,8 @@ export interface Event {
     nomEvent :string ;
     theme : string ;
     description: string ;
-   // dateDebut: string ;
-  //  dateFin : string ;
+    dateDebut: string ;
+    dateFin : string ;
     capacite : number ;
     typeEvent : string;
 }

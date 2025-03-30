@@ -14,14 +14,32 @@ import { NgModule } from '@angular/core';
 import { SignupComponent } from '../app/auth/auth-login/signup.component';
 import { VerifComponent } from '../app/auth/auth-login/verif.component';
 import { LoadingComponent } from './shared/skeleton-loader/widgets/loading/loading.component';
+import { BackLayoutComponent } from './backEnd/back-layout/back-layout.component';
 
 
 export const routes: Routes = [
+
   { path: '', redirectTo: '/company/404', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'users', component: UsersComponent },
-  { path: 'reports', component: ReportsComponent },
-  { path: 'settings', component: SettingsComponent },
+
+
+  {
+    path: 'admin',
+    component: BackLayoutComponent,
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // ✅ Redirection automatique
+      { path: 'dashboard', component: DashboardComponent }, // ✅ Page du dashboard
+      { path: 'users', component: UsersComponent } ,// ✅ Page des utilisateurs
+      { path: 'reports', component: ReportsComponent },
+      {path: 'settings', component: SettingsComponent },
+    ]
+},
+
+
+
+  // { path: 'dashboard', component: DashboardComponent },
+  // { path: 'users', component: UsersComponent },
+  // { path: 'reports', component: ReportsComponent },
+  // { path: 'settings', component: SettingsComponent },
   { path: 'auth/signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'auth/verif', component: VerifComponent },

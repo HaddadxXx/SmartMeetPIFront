@@ -1,78 +1,97 @@
 <div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
-    <app-event-skeleton></app-event-skeleton>
-  </div>
-  
-  <div class="event-cover">
-    <div class="event-img"
-        style="background-image: url(assets/images/cover/add.jpg);background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
-        <img src="assets/images/cover/add.jpg" class="img-fluid  bg-img" alt="" style="display: none;">
-        <div class="event-content">
-            <h1>ADD EVENT </h1>
-        </div>
-    </div>
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-      <div class="w-50">
-        <h2 class="text-center mb-4">Ajouter un Événement</h2>
-        <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
-          
-          <div class="mb-3">
-            <label for="nomEvent" class="form-label">Nom d'evenement :</label>
-            <input id="nomEvent" formControlName="nomEvent" type="text" class="form-control" required>
-          </div>
-          
-          <div class="mb-3">
-            <label for="theme" class="form-label">Thème :</label>
-            <input id="theme" formControlName="theme" type="text" class="form-control" required>
-          </div>
-          
-    
-          <div class="mb-3">
-            <label for="description" class="form-label">Description :</label>
-            <textarea id="description" formControlName="description" class="form-control" rows="3" required></textarea>
-          </div>
-            <!-- <div class="mb-3">
-            <label for="dateDebut" class="form-label">Date Début :</label>
-            <input id="dateDebut" [formControl]="form.controls.dateDebut" type="text" 
-                   class="form-control" 
-                   bsDatepicker 
-                   [bsConfig]="bsConfig">
-           </div> -->
-          
-            <!-- <div class="mb-3">
-            <label for="dateFin" class="form-label">Date Fin :</label>
-            <input id="dateFin" [formControl]="form.controls.dateFin" type="text" 
-                   class="form-control" 
-                   bsDatepicker 
-                   [bsConfig]="bsConfig">
-            </div>   -->
-  
-          <div class="mb-3">
-            <label for="capacite" class="form-label">Capacite :</label>
-            <textarea id="capacite" formControlName="capacite" class="form-control" rows="3" required></textarea>
-          </div>
-    
-          <div class="mb-3">
-            <label for="typeEvent" class="form-label">Type d'événement :</label>
-            <select id="typeEvent" formControlName="typeEvent" class="form-select" required>
-              <option *ngFor="let type of eventTypes" [value]="type">{{ type }}</option>
-            </select>
-          </div>
-    
-          <div class="text-center">
-            <button type="submit" class="btn btn-primary" [disabled]="eventForm.invalid">Ajouter</button>
-          </div>
-    
-        </form>
+  <app-event-skeleton></app-event-skeleton>
+</div>
+
+<div class="event-cover">
+  <div class="event-img"
+      style="background-image: url(assets/images/cover/add.jpg); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+      <img src="assets/images/cover/add.jpg" class="img-fluid bg-img" alt="" style="display: none;">
+      <div class="event-content">
+        <h1>{{ isEditMode ? 'EDIT EVENT' : 'ADD EVENT' }}</h1>
       </div>
-    </div>
-    
-    
-    
-            
-  
   </div>
   
-  
-  
-  
-  
+  <div class="container d-flex justify-content-center align-items-center vh-100">
+      <div class="w-50">
+        <h2 class="text-center mb-4">{{ isEditMode ? 'Edit Event' : 'Add Event' }}</h2>
+
+          <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+          
+              <!-- Event Name -->
+              <div class="mb-3">
+                  <label for="nomEvent" class="form-label">Event Name :</label>
+                  <input id="nomEvent" formControlName="nomEvent" type="text" class="form-control" placeholder="Enter event name" required minlength="3">
+                  <div *ngIf="eventForm.controls['nomEvent'].invalid && eventForm.controls['nomEvent'].touched" class="text-danger">
+                      <small *ngIf="eventForm.controls['nomEvent'].errors?.['required']">Event Name is required.</small>
+                      <small *ngIf="eventForm.controls['nomEvent'].errors?.['minlength']">Event Name must be at least 3 characters.</small>
+                  </div>
+              </div>
+
+              <!-- Theme -->
+              <div class="mb-3">
+                  <label for="theme" class="form-label">Theme :</label>
+                  <input id="theme" formControlName="theme" type="text" class="form-control" placeholder="Enter event theme" required>
+                  <div *ngIf="eventForm.controls['theme'].invalid && eventForm.controls['theme'].touched" class="text-danger">
+                      <small *ngIf="eventForm.controls['theme'].errors?.['required']">Theme is required.</small>
+                  </div>
+              </div>
+
+              <!-- Description -->
+              <div class="mb-3">
+                  <label for="description" class="form-label">Description :</label>
+                  <textarea id="description" formControlName="description" class="form-control" rows="3" placeholder="Enter event description" required minlength="10"></textarea>
+                  <div *ngIf="eventForm.controls['description'].invalid && eventForm.controls['description'].touched" class="text-danger">
+                      <small *ngIf="eventForm.controls['description'].errors?.['required']">Description is required.</small>
+                      <small *ngIf="eventForm.controls['description'].errors?.['minlength']">Description must be at least 10 characters.</small>
+                  </div>
+              </div>
+
+              <!-- Capacity -->
+              <div class="mb-3">
+                  <label for="capacite" class="form-label">Capacity :</label>
+                  <input id="capacite" formControlName="capacite" type="number" class="form-control" placeholder="Enter event capacity" required min="1">
+                  <div *ngIf="eventForm.controls['capacite'].invalid && eventForm.controls['capacite'].touched" class="text-danger">
+                      <small *ngIf="eventForm.controls['capacite'].errors?.['required']">Capacity is required.</small>
+                      <small *ngIf="eventForm.controls['capacite'].errors?.['min']">Capacity must be at least 1.</small>
+                  </div>
+              </div>
+
+              <!-- Start Date -->
+              <div class="mb-3">
+                  <label for="dateDebut" class="form-label">Begin Date :</label>
+                  <input id="dateDebut" formControlName="dateDebut" type="date" class="form-control" required>
+                  <div *ngIf="eventForm.controls['dateDebut'].invalid && eventForm.controls['dateDebut'].touched" class="text-danger">
+                      <small *ngIf="eventForm.controls['dateDebut'].errors?.['required']">Begin Date is required.</small>
+                  </div>
+              </div>
+
+              <!-- End Date -->
+              <div class="mb-3">
+                  <label for="dateFin" class="form-label">End Date :</label>
+                  <input id="dateFin" formControlName="dateFin" type="date" class="form-control" required>
+                  <div *ngIf="eventForm.controls['dateFin'].invalid && eventForm.controls['dateFin'].touched" class="text-danger">
+                      <small *ngIf="eventForm.controls['dateFin'].errors?.['required']">End Date is required.</small>
+                  </div>
+              </div>
+
+              <!-- Event Type -->
+              <div class="mb-3">
+                  <label for="typeEvent" class="form-label">Event Type :</label>
+                  <select id="typeEvent" formControlName="typeEvent" class="form-select" required>
+                      <option *ngFor="let type of eventTypes" [value]="type">{{ type }}</option>
+                  </select>
+                  <div *ngIf="eventForm.controls['typeEvent'].invalid && eventForm.controls['typeEvent'].touched" class="text-danger">
+                      <small *ngIf="eventForm.controls['typeEvent'].errors?.['required']">Event Type is required.</small>
+                  </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary" [disabled]="eventForm.invalid">
+                    {{ isEditMode ? 'Save' : 'Add Event' }}
+                </button>                  <!-- <button type="submit" class="btn btn-primary" >save</button> -->
+              </div>
+          </form>
+      </div>
+  </div>
+</div>

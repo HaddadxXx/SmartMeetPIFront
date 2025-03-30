@@ -23,8 +23,10 @@ export class AddEventComponent {
       successMessage: string = '';
       errorMessage: string = '';
       eventTypes: string[] = ['ENLIGNE', ' PRESENTIEL'];
-     isEditMode: any;
+      isEditMode: any;
     
+      eventId: string | undefined;
+
       // Ajout de la configuration du datepicker
     //   bsConfig: Partial<BsDatepickerConfig> = { 
     //   adaptivePosition: true, 
@@ -39,49 +41,116 @@ export class AddEventComponent {
           description: ['', Validators.required],
           theme: ['', Validators.required],
           typeEvent: ['', Validators.required],
-          //dateDebut :['', Validators.required],
-          //dateFin  : ['', Validators.required],
+          dateDebut :['', Validators.required],
+          dateFin  : ['', Validators.required],
           capacite : ['', Validators.required],
          // date: ['', Validators.required],
           
           
         });
+
+
+        //mta3 el modif eli zedetou 
+        // Récupérer l'événement passé via la 
+        
+
+      // Vérifier si on est en mode édition
+      const navigation = this.router.getCurrentNavigation();
+      const state = navigation?.extras.state as { eventData?: Event };
+      
+      if (state?.eventData) {
+          this.isEditMode = true;
+          this.eventId = state.eventData.idEvent;
+          this.eventForm.patchValue(state.eventData); // Remplir le formulaire
+      } else {
+          this.isEditMode = false;
+      }
+      
+  
         
       }
     
-      onSubmit() {
-        if (this.eventForm.valid) {
-           console.log('Formulaire envoyé !', this.eventForm.value);
-          const newEvent = {
-            nomEvent: this.eventForm.value.nomEvent,
-            description: this.eventForm.value.description,
-            date: this.eventForm.value.date,
-           // dateDebut: this.eventForm.value.dateDebut,
-           // dateFin: this.eventForm.value.dateFin,
-            fans: 0,
-            images: this.eventForm.value.imageUrl || '',
-            theme: this.eventForm.value.theme,
-            typeEvent: this.eventForm.value.typeEvent,
-            capacite : this.eventForm.value.capacite,
-            name: ''
+      // onSubmit() {
+      //   if (this.eventForm.valid) {
+      //      console.log('Formulaire envoyé !', this.eventForm.value);
+      //     const newEvent = {
+      //       nomEvent: this.eventForm.value.nomEvent,
+      //       description: this.eventForm.value.description,
+      //       date: this.eventForm.value.date,
+      //       dateDebut: this.eventForm.value.dateDebut,
+      //       dateFin: this.eventForm.value.dateFin,
+      //       fans: 0,
+      //       images: this.eventForm.value.imageUrl || '',
+      //       theme: this.eventForm.value.theme,
+      //       typeEvent: this.eventForm.value.typeEvent,
+      //       capacite : this.eventForm.value.capacite,
+      //       name: ''
 
-          } as Event;  // Force le type Event
+      //     } as Event;  // Force le type Event
           
-          this.eventService.createEvent(newEvent).subscribe(
-            (response) => {
-              this.successMessage = 'Événement ajouté avec succès !';
-              this.eventForm.reset();
-            },
-            (error) => {
-              this.errorMessage = 'Échec de l’ajout de l’événement.';
-            }
-          );
-        } else {
-          this.errorMessage = 'Veuillez remplir tous les champs obligatoires.';
-        }
+      //     this.eventService.createEvent(newEvent).subscribe(
+      //       (response) => {
+      //         this.successMessage = 'Événement ajouté avec succès !';
+      //         this.eventForm.reset();
+      //       },
+      //       (error) => {
+      //         this.errorMessage = 'Échec de l’ajout de l’événement.';
+      //       }
+      //     );
+      //   } else {
+      //     this.errorMessage = 'Veuillez remplir tous les champs obligatoires.';
+      //   }
 
         
-      }
+      // }
+
+      onSubmit() {
+        if (this.eventForm.valid) {
+            console.log('Formulaire envoyé !', this.eventForm.value);
+    
+            const eventData: Event = {
+                idEvent: this.eventId, 
+                nomEvent: this.eventForm.value.nomEvent,
+                description: this.eventForm.value.description,
+                dateDebut: this.eventForm.value.dateDebut,
+                dateFin: this.eventForm.value.dateFin,
+                capacite: this.eventForm.value.capacite, // Vérifie que c'est la bonne valeur
+                theme: this.eventForm.value.theme,
+                typeEvent: this.eventForm.value.typeEvent,
+                images: this.eventForm.value.imageUrl || '',
+                fans: 0,
+                name: ''
+            };
+    
+            if (this.isEditMode && this.eventId) {
+                this.eventService.updateEvent(this.eventId, eventData).subscribe(
+                    (response) => {
+                        this.successMessage = 'Événement mis à jour avec succès !';
+                        this.router.navigate(['/others/event-calendar']);
+                    },
+                    (error) => {
+                        this.errorMessage = 'Échec de la modification de l’événement.';
+                        console.error(error);
+                    }
+                );
+            } else {
+                this.eventService.createEvent(eventData).subscribe(
+                    (response) => {
+                        this.successMessage = 'Événement ajouté avec succès !';
+                        this.router.navigate(['/others/event-calendar']);
+                    },
+                    (error) => {
+                        this.errorMessage = 'Échec de l’ajout de l’événement.';
+                        console.error(error);
+                    }
+                );
+            }
+        } else {
+            this.errorMessage = 'Veuillez remplir tous les champs obligatoires.';
+        }
+    }
+    
+      
 
       
 

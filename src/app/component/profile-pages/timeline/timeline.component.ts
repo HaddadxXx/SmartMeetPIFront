@@ -148,28 +148,47 @@ export class TimelineComponent {
     }
   }
 
+/////////////////////////////////////////////////////////////////////////
+//update event modifieé 
 
 
-  updateEvent(id: string | undefined, event: Event): void {
-    // Vérifiez si l'ID est défini avant d'appeler la méthode updateEvent
-    if (id) {
-      this.eventService.updateEvent(id, event).subscribe(
-        (updatedEvent: Event) => {
-          const index = this.events.findIndex(e => e.idEvent === id);
-          if (index !== -1) {
-            this.events[index] = updatedEvent;
-          }
-  
-          this.router.navigate(['/add-event']);
-        },
-        (error) => {
-          console.error("Erreur lors de la mise à jour de l'événement:", error);
-        }
-      );
-    } else {
-      console.error("L'ID de l'événement est invalide ou indéfini.");
-    }
+updateEvent(event: Event): void {
+  if (event.idEvent) {
+    // this.router.navigate(['/add-event'], { state: { eventData: event } });
+    this.router.navigate(['/others/add-event'], { state: { eventData: event } });
+
+  } else {
+    console.error("L'ID de l'événement est invalide ou indéfini.");
   }
+}
+
+
+
+
+
+/////////////////////////////////////////////////
+
+// modif le9dima 
+  // updateEvent(id: string | undefined, event: Event): void {
+  //   // Vérifiez si l'ID est défini avant d'appeler la méthode updateEvent
+  //   if (id) {
+  //     this.eventService.updateEvent(id, event).subscribe(
+  //       (updatedEvent: Event) => {
+  //         const index = this.events.findIndex(e => e.idEvent === id);
+  //         if (index !== -1) {
+  //           this.events[index] = updatedEvent;
+  //         }
+  
+  //         this.router.navigate(['/add-event']);
+  //       },
+  //       (error) => {
+  //         console.error("Erreur lors de la mise à jour de l'événement:", error);
+  //       }
+  //     );
+  //   } else {
+  //     console.error("L'ID de l'événement est invalide ou indéfini.");
+  //   }
+  // }
 
   
   
