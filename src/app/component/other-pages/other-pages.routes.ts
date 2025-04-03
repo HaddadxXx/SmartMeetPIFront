@@ -6,6 +6,7 @@ import { MusicComponent } from "./music/music.component";
 import { WeatherComponent } from "./weather/weather.component";
 import { AddEventComponent } from "./event/add-event/add-event.component";
 import { ParticipationComponent } from "./event/participation/participation.component";
+import { DetailsEventComponent } from "./event/details-event/details-event.component";
 
 export default [
     {
@@ -40,6 +41,10 @@ export default [
             {
                 path : 'add-event',
                 component : AddEventComponent
+            },
+            {
+                path : 'details',
+                component : DetailsEventComponent
             },
             // {
             //     path : 'participation',

@@ -21,13 +21,14 @@ import { CommonModule } from '@angular/common';
 import { SessionService } from '../../../shared/services/session.service';
 import { Session } from '../../../shared/interface/Session';
 import { HttpClient } from '@angular/common/http';
+import { DetailsEventComponent } from './details-event/details-event.component';
 
 @Component({
   selector: 'app-event',
   standalone: true,
   imports: [FeatherIconComponent, EventsComponent, EventCategoryComponent,
     EventSkeletonComponent,CalendarComponent,ReactiveFormsModule,CommonModule,
-    EventSectionComponent, CarouselModule, ClickOutSideDirective, RouterModule ,AddEventComponent,OpenModalComponent],
+    EventSectionComponent, CarouselModule, ClickOutSideDirective, RouterModule ,AddEventComponent,OpenModalComponent, DetailsEventComponent],
   templateUrl: './event.component.html',
   styleUrl: './event.component.scss'
 })

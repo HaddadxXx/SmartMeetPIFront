@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { EventSkeletonComponent } from '../../../../shared/skeleton-loader/others-pages-skeleton/event-skeleton/event-skeleton.component';
 import { EventService } from '../../../../shared/services/event.service';
 import { CommonService } from '../../../../shared/services/common.service';
@@ -44,6 +45,8 @@ export class AddEventComponent {
           dateDebut :['', Validators.required],
           dateFin  : ['', Validators.required],
           capacite : ['', Validators.required],
+          horaire: ['', Validators.required],
+          lieu: [{ value: '', disabled: true }], 
          // date: ['', Validators.required],
           
           
@@ -62,6 +65,7 @@ export class AddEventComponent {
           this.isEditMode = true;
           this.eventId = state.eventData.idEvent;
           this.eventForm.patchValue(state.eventData); // Remplir le formulaire
+         
       } else {
           this.isEditMode = false;
       }
@@ -103,24 +107,55 @@ export class AddEventComponent {
 
         
       // }
+      onTypeChange() {
+        const typeEvent = this.eventForm.controls['typeEvent'].value;
+      
+        if (typeEvent === 'PRESENTIEL') {
+          this.eventForm.controls['lieu'].enable();
+        } else {
+          this.eventForm.controls['lieu'].disable();
+          this.eventForm.controls['lieu'].setValue('');
+        }
+      
+        console.log('Type Event:', typeEvent);
+        console.log('Lieu Status:', this.eventForm.controls['lieu'].status); // ✅ Vérifier s'il est bien activé/désactivé
+      }
+      
+      
 
       onSubmit() {
         if (this.eventForm.valid) {
             console.log('Formulaire envoyé !', this.eventForm.value);
     
+            const dateDebut = new Date(this.eventForm.value.dateDebut);
+            const dateFin = new Date(this.eventForm.value.dateFin);
+            
+            // Vérifier que la date de fin n'est pas avant la date de début
+            if (dateDebut > dateFin) {
+                this.errorMessage = "La date de fin ne peut pas être avant la date de début.";
+                console.error(this.errorMessage);
+                return;
+            }
+
             const eventData: Event = {
-                idEvent: this.eventId, 
-                nomEvent: this.eventForm.value.nomEvent,
-                description: this.eventForm.value.description,
-                dateDebut: this.eventForm.value.dateDebut,
-                dateFin: this.eventForm.value.dateFin,
-                capacite: this.eventForm.value.capacite, // Vérifie que c'est la bonne valeur
-                theme: this.eventForm.value.theme,
-                typeEvent: this.eventForm.value.typeEvent,
-                images: this.eventForm.value.imageUrl || '',
-                fans: 0,
-                name: ''
+              idEvent: this.eventId,
+              nomEvent: this.eventForm.value.nomEvent,
+              description: this.eventForm.value.description,
+              dateDebut: this.eventForm.value.dateDebut,
+              dateFin: this.eventForm.value.dateFin,
+              capacite: this.eventForm.value.capacite, // Vérifie que c'est la bonne valeur
+              theme: this.eventForm.value.theme,
+              typeEvent: this.eventForm.value.typeEvent,
+              images: this.eventForm.value.imageUrl || '',
+              horaire: this.eventForm.value.horaire,
+              lieu: this.eventForm.value.lieu || '',
+              fans: 0,
+              name: '',
+              isInterested: false
             };
+
+            
+              
     
             if (this.isEditMode && this.eventId) {
                 this.eventService.updateEvent(this.eventId, eventData).subscribe(
@@ -148,10 +183,20 @@ export class AddEventComponent {
         } else {
             this.errorMessage = 'Veuillez remplir tous les champs obligatoires.';
         }
+
+
+        
+
+
+        
     }
+
+    
     
       
-
+    
+      
+  
       
 
 }

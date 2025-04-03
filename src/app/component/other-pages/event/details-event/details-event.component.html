@@ -1,0 +1,45 @@
+<div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
+    <app-event-skeleton></app-event-skeleton>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
+<div class="event-cover">
+    <div class="event-img"
+        style="background-image: url(assets/images/cover/details-event.png);background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+        <img src="assets/images/cover/details-event.png" class="img-fluid  bg-img" alt="" style="display: none;">
+        <div class="event-content">
+            <h1>more details </h1>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+
+
+<div class="container">
+    <div class="row">
+      <div *ngFor="let event of events" class="col-md-4 mb-4">
+        <div class="card event-card">
+          <img [src]="event || 'assets/default-event.jpg'" class="card-img-top event-image" alt="Image de l'événement">
+          <div class="card-body">
+            <h5 class="card-title">{{ event.nomEvent }}</h5>
+            <p class="card-text"><strong>Date :</strong> {{ event.dateDebut }}</p>
+            <p class="card-text">{{ event.description }}</p>
+  
+            <div class="d-flex justify-content-between align-items-center">
+              <!-- Icône Intéressé -->
+              <span class="interested-icon" (click)="toggleInterested(event)">
+                <i class="fa" [ngClass]="event.isInterested ? 'fa-star text-warning' : 'fa-star-o'"></i>
+              </span>
+  
+              <!-- Bouton Participer -->
+              <button class="btn btn-primary">Participer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

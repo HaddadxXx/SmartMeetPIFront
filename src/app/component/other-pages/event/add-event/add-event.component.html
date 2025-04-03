@@ -77,19 +77,45 @@
               <!-- Event Type -->
               <div class="mb-3">
                   <label for="typeEvent" class="form-label">Event Type :</label>
-                  <select id="typeEvent" formControlName="typeEvent" class="form-select" required>
+                  <!-- <select id="typeEvent" formControlName="typeEvent" class="form-select" required>
                       <option *ngFor="let type of eventTypes" [value]="type">{{ type }}</option>
+                  </select> -->
+                  <select formControlName="typeEvent" (change)="onTypeChange()">
+                    <option value="ENLIGNE">En ligne</option>
+                    <option value="PRESENTIEL">Présentiel</option>
                   </select>
+                  
+                
+                
+                
                   <div *ngIf="eventForm.controls['typeEvent'].invalid && eventForm.controls['typeEvent'].touched" class="text-danger">
                       <small *ngIf="eventForm.controls['typeEvent'].errors?.['required']">Event Type is required.</small>
                   </div>
               </div>
 
+               <!-- Lieu (Disabled if not 'Présentiel') -->
+               <!-- <div class="mb-3">
+                <label for="lieu" class="form-label">Lieu :</label>
+                <input id="lieu" formControlName="lieu" type="text" class="form-control" placeholder="Enter event location" [disabled]="eventForm.controls['typeEvent'].value !== 'Présentiel'">
+                </div> -->
+                <label for="lieu" class="form-label">lieu :</label>
+                <input id="lieu" formControlName="lieu" type="text" class="form-control" placeholder="Enter location"
+                 [disabled]="eventForm.controls['typeEvent'].value !== 'Presential'">
+
+                 
+
+               <!-- Horaire -->
+                 <div class="mb-3">
+                <label for="horaire" class="form-label">Horaire :</label>
+                <input id="horaire" formControlName="horaire" type="time" class="form-control" required>
+                </div>
+
               <!-- Submit Button -->
               <div class="text-center">
                 <button type="submit" class="btn btn-primary" [disabled]="eventForm.invalid">
                     {{ isEditMode ? 'Save' : 'Add Event' }}
-                </button>                  <!-- <button type="submit" class="btn btn-primary" >save</button> -->
+                </button> 
+                <!-- <button type="submit" class="btn btn-primary" >save</button> -->                 
               </div>
           </form>
       </div>

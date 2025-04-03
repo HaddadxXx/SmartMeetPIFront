@@ -1,0 +1,24 @@
+.event-card {
+    transition: transform 0.3s ease-in-out;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .event-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .event-image {
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  .interested-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .btn {
+    border-radius: 20px;
+  }
+  

@@ -1,8 +1,11 @@
+import { Session } from "./Session";
 export interface eventCategory {
     eventCategory: Event[]
 }
 
 export interface Event {
+    isInterested: boolean;
+  //  date: string | number | Date;
     idEvent ? : string ;
     name: string;
     fans: number;
@@ -14,4 +17,7 @@ export interface Event {
     dateFin : string ;
     capacite : number ;
     typeEvent : string;
+    sessions?: Session[]; 
+    horaire: string ;
+    lieu : string ;
 }
