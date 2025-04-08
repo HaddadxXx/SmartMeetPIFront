@@ -1,25 +1,25 @@
 <div class="profile-menu section-t-space">
     <ul>
-        <li [class.active]="currentUrl === '/favorite/page-home' || currentUrl === '/favorite/tab'">
-            <a [routerLink]="['/favorite/page-home']">
+        <li [class.active]="currentUrl === '/favorite/page-home/' + groupId || currentUrl === '/favorite/tab/' + groupId">
+            <a [routerLink]="['/favorite/page-home', groupId]">
                 <app-feather-icon [icons]="'clock'" [class]="'iw-14 ih-14'"></app-feather-icon>
                 <h6>home</h6>
             </a>
         </li>
         <li [routerLinkActive]="'active'">
-            <a [routerLink]="['/favorite/about']">
+            <a [routerLink]="['/favorite/about', groupId]">
                 <app-feather-icon [icons]="'info'" [class]="'iw-14 ih-14'"></app-feather-icon>
                 <h6>about</h6>
             </a>
         </li>
         <li [routerLinkActive]="'active'">
-            <a [routerLink]="['/favorite/review']">
+            <a [routerLink]="['/favorite/review', groupId]">
                 <app-feather-icon [icons]="'message-circle'" [class]="'iw-14 ih-14'"></app-feather-icon>
                 <h6>reviews</h6>
             </a>
         </li>
         <li [routerLinkActive]="'active'">
-            <a [routerLink]="['/favorite/gallery']">
+            <a [routerLink]="['/favorite/gallery', groupId]">
                 <app-feather-icon [icons]="'image'" [class]="'iw-14 ih-14'"></app-feather-icon>
                 <h6>photos</h6>
             </a>

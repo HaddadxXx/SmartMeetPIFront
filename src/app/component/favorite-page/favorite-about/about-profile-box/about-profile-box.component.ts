@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { FeatherIconComponent } from '../../../../shared/components/common/feather-icon/feather-icon.component';
 
 @Component({
@@ -10,5 +10,5 @@ import { FeatherIconComponent } from '../../../../shared/components/common/feath
 })
 
 export class AboutProfileBoxComponent {
-
+  @Input() group: any;
 }

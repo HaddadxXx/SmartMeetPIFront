@@ -23,18 +23,22 @@ export default [
                 component: PageHomeComponent,
             },
             {
-                path: 'tab',
+                path: 'page-home/:groupId',
                 component: PageHomeComponent,
             },
             {
-                path: 'about',
+                path: 'tab/:groupId',
+                component: PageHomeComponent,
+            },
+            {
+                path: 'about/:groupId',
                 component: FavoriteAboutComponent,
             },{
-                path: 'review',
+                path: 'review/:groupId',
                 component: ReviewComponent,
             },
             {
-                path: 'gallery',
+                path: 'gallery/:groupId',
                 component: FavoritePhotosComponent,
             },
            

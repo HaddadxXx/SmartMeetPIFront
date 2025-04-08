@@ -30,5 +30,6 @@ import { SettingPersonalStoryComponent } from './setting-personal-story/setting-
 export class SettingComponent {
 
   public isOpenMenu: boolean = false;
+  
 
 }

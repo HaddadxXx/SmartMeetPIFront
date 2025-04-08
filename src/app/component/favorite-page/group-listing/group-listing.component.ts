@@ -192,6 +192,11 @@ updateGroup() {
 }
 
 
+navigateToPageHome(groupId: number) {
+  this.router.navigate([`/favorite/page-home/${groupId}`]);
+}
+
+
 }
 
 

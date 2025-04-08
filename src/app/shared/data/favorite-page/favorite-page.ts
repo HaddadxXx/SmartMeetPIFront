@@ -27,7 +27,7 @@ export const profile: data[] = [
       value: '036'
    },
    {
-      title: 'Usa',
+      title: 'Tun',
       image: 'assets/images/flag.jpg'
    },
 ]

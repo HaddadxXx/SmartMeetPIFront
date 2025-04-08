@@ -49,7 +49,9 @@ export class GroupService {
   }
 
 
-
+  getGroupById(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}`, { withCredentials: true });
+  }
 
 
 

@@ -4,36 +4,37 @@
          style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
         <img [src]="getGroupImage(group.photo)" class="img-fluid bg-img" alt="" style="display: none;">
         <div class="logo-img">
-            <a href="javascript:void(0)">
+            <a href="javascript:void(0)" (click)="onCardClick()">
                 <img src="assets/images/pages-logo/6.png" class="img-fluid bg-img" alt="">
             </a>
         </div>
     </div>
     <div class="list-content">
         <div class="page-name">
-            <a [routerLink]="'/page-home'" [state]="{ group: group }">
+             <a href="javascript:void(0)" (click)="onCardClick()" >
                 <h4>{{ group.name }}</h4> <!-- Nom du groupe -->
             </a>
             <h6>{{ group.owner.email }}</h6> <!-- Email du propriétaire -->
         </div>
         <div class="counter-stats">
             <ul>
-                <li>
+                <!-- <li>
                     <h3 class="counter-value">546</h3>
                     <h5>following</h5>
+                </li> -->
+                <li>
+                    <h3 class="counter-value">{{ group.members.length*12 }}</h3>
+                    <h5>Posts</h5>
                 </li>
                 <li>
-                    <h3 class="counter-value">26335</h3>
-                    <h5>likes</h5>
-                </li>
-                <li>
-                    <h3 class="counter-value">6845</h3>
-                    <h5>followers</h5>
+                    <h3 class="counter-value">{{ group.members.length }}</h3>
+                    <h5>Members</h5>
                 </li>
             </ul>
         </div>
         <div class="bottom-btn">
-            <a href="javascript:void(0)" class="btn btn-solid">followed</a>
+             <a href="javascript:void(0)" class="btn btn-solid">followed</a> 
+            <!-- <a *ngIf="group.owner.id === currentUser.id" href="javascript:void(0)" class="btn btn-solid">Followed</a>     -->
             <a href="javascript:void(0)" class="btn btn-solid">invite</a>
             
         </div>

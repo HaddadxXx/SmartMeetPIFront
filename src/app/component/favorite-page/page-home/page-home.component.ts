@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component,Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { BirthdayReminderComponent } from '../../../shared/components/common/birthday-reminder/birthday-reminder.component';
 import { EventsComponent } from '../../../shared/components/common/events/events.component';
@@ -18,14 +18,10 @@ import { GalleryComponent } from '../../../shared/components/common/gallery/gall
 import { CommonService } from '../../../shared/services/common.service';
 import { FavoritePagesService } from '../../../shared/services/favorite-pages.service';
 
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute  } from '@angular/router';
 import { events } from '../../../shared/interface/common';
 import { profile } from '../../../shared/interface/post';
 import { PageHomeSkeletonComponent } from '../../../shared/skeleton-loader/favorite-pages-skeleton/page-home-skeleton/page-home-skeleton.component';
-
-
-
-
 
 @Component({
   selector: 'app-page-home',
@@ -48,7 +44,6 @@ export class PageHomeComponent {
   public isShow: boolean = false;
   public currentUrl: string;
 
-
  public event: events = {
    image: 'assets/images/post/12.jpg',
    title: 'happy life event',
@@ -60,18 +55,15 @@ export class PageHomeComponent {
 }
 
   constructor(public favoritePagesService: FavoritePagesService, 
-    public commonServices: CommonService,private router: Router
+    public commonServices: CommonService,private router: Router,private route: ActivatedRoute
     ) {
     this.currentUrl = this.router.url;
 
     }
-    group: any;
+    groupId!: string;
+
   ngOnInit() {
-    this.favoritePagesService.post().subscribe((data) => {
-
-      this.group = history.state.group;
-      console.log("voila le groupe",this.group)
-
+    this.groupId = this.route.snapshot.paramMap.get('groupId')!;    this.favoritePagesService.post().subscribe((data) => {
       this.post = data.homePost;
       this.visiblePosts = this.post.slice(0, this.displayCount);
       this.post.filter((element, index) => {

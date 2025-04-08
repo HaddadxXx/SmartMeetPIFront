@@ -1,6 +1,6 @@
 
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit,Output,EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GroupService } from '../../../../shared/services/group.service';
 import { AuthService } from '../../../../shared/services/auth.service';
@@ -18,12 +18,19 @@ import { RouterModule } from '@angular/router';
 })
 export class ListBoxComponent  {
   
+  currentUser: any;
+
+  constructor( private groupService: GroupService,private authService: AuthService,) {}
 
 
-  constructor( private groupService: GroupService) {}
-
-
-
+  getCurrentUser(): void {
+    this.authService.getCurrentUser().subscribe(user => {
+      this.currentUser = user;
+      console.log('USERRRRR',user)
+    }, error => {
+      console.error("Erreur lors de la récupération de l'utilisateur :", error);
+    });
+  }
 
 getGroupImage(photo: string): string {
   
@@ -31,7 +38,11 @@ getGroupImage(photo: string): string {
 }
 
 
+@Output() groupSelected = new EventEmitter<number>(); // Émet l'ID du groupe
 
+  onCardClick() {
+    this.groupSelected.emit(this.group.id);
+  }
 
 
 

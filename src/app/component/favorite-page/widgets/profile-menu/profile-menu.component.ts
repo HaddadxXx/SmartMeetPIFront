@@ -12,6 +12,11 @@ import { RouterModule } from '@angular/router';
 
 export class ProfileMenuComponent {
 
-  @Input() currentUrl: string;
-
+  @Input() currentUrl!: string;
+  groupId!: string;
+  ngOnInit() {
+    const urlParts = this.currentUrl.split('/');
+    this.groupId = urlParts[urlParts.length - 1]; // Prend le dernier segment de l'URL
+    console.log('Group ID:', this.groupId);
+  }
 }

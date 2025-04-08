@@ -22,12 +22,12 @@ export class AdminGuard  {
     let user = JSON.parse(localStorage.getItem('user') || '{}');
     if (!user || user === null) {
       this.router.navigate(['/auth/login']);
-      return true;
+      return false;
     }
     else if (user) {
       if (!Object.keys(user).length) {
         this.router.navigate(['/auth/login']);
-        return true;
+        return false;
       }
     }
     return true;

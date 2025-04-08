@@ -32,7 +32,7 @@
 <div class="profile-content">
     <a [routerLink]="['/profile/timeline']" class="image-section">
         <div class="profile-img">
-            <div style="background-image: url(assets/images/story/8.jpg);
+            <div style="background-image: url(assets/images/user-sm/555.jpg);
                 background-size: cover;
                 background-position: center center;
                 background-repeat: no-repeat;
@@ -46,9 +46,9 @@
     </a>
     <div class="profile-detail">
         <a [routerLink]="['/profile/timeline']">
-            <h2>kelin jasen <span>❤</span></h2>
+            <h2>{{currentUser.firstName}} {{currentUser.lastName}} <span>❤</span></h2>
         </a>
-        <h5>kelin.jasen156&#64;gmail.com</h5>
+        <h5>{{currentUser.email}}</h5>
         <div class="description">
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
             </p>
