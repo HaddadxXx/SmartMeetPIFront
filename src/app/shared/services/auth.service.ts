@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { FormsModule } from '@angular/forms'; //  Importation de FormsModule
-
+import { FormsModule } from '@angular/forms'; // 
 
 @Injectable({
   providedIn: 'root'
