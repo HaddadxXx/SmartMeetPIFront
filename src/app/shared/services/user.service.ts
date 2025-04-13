@@ -9,12 +9,15 @@ export interface User {
   lastName: string;
   email: string;
   profilePicture?: string;
-  // Ajoute d'autres propriétés si nécessaire…
+  expertiseArea?: string;
+  interests?: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class UserService {
 
   constructor(private http: HttpClient) {}
@@ -30,4 +33,28 @@ export class UserService {
       .set('keyword', keyword);
     return this.http.get<User[]>('http://localhost:8080/api/users/search', { params });
   }
-}  
+
+  /**
+   * Met à jour le profil utilisateur.
+   * @param user Les données utilisateur à mettre à jour.
+   * @param file (Optionnel) Le fichier image à uploader.
+   */
+  updateUserProfile(user: User, file?: File): Observable<User> {
+    console.log("rasszebbi")
+    const formData = new FormData();
+    // Ajoute la partie JSON sous forme de Blob
+    formData.append('user', new Blob([JSON.stringify(user)], { type: 'application/json' }));
+    // Ajoute le fichier si fourni
+    if (file) {
+      formData.append('file', file);
+    }
+   // Log the contents of FormData
+   console.log('FormData contents:');
+   // Explicitly log known keys
+   console.log('user:', formData.get('user'));
+   if (formData.get('file')) {
+       console.log('file:', formData.get('file'));
+   }
+    return this.http.put<User>('http://localhost:8080/api/users/me', formData);
+  }
+}

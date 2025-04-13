@@ -30,6 +30,7 @@ export class ProfileBoxComponent {
       console.error("Erreur lors de la récupération de l'utilisateur :", error);
     });
   }
+  
 
 
 }
