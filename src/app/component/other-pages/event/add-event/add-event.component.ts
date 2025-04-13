@@ -17,6 +17,7 @@ import { Event } from '../../../../shared/interface/event';
   styleUrl: './add-event.component.scss',
 })
 export class AddEventComponent {
+  selectedFile: File;
   cancel() {
     throw new Error('Method not implemented.');
     }
@@ -53,6 +54,7 @@ export class AddEventComponent {
         });
 
 
+        
         //mta3 el modif eli zedetou 
         // Récupérer l'événement passé via la 
         
@@ -64,7 +66,7 @@ export class AddEventComponent {
       if (state?.eventData) {
           this.isEditMode = true;
           this.eventId = state.eventData.idEvent;
-          this.eventForm.patchValue(state.eventData); // Remplir le formulaire
+          this.eventForm.patchValue(state.eventData); // Remplir le formulaire avec les données existantes
          
       } else {
           this.isEditMode = false;
@@ -73,6 +75,8 @@ export class AddEventComponent {
   
         
       }
+     
+      
     
       // onSubmit() {
       //   if (this.eventForm.valid) {
@@ -136,6 +140,7 @@ export class AddEventComponent {
                 console.error(this.errorMessage);
                 return;
             }
+           
 
             const eventData: Event = {
               idEvent: this.eventId,
@@ -151,7 +156,8 @@ export class AddEventComponent {
               lieu: this.eventForm.value.lieu || '',
               fans: 0,
               name: '',
-              isInterested: false
+              isInterested: false,
+             
             };
 
             
@@ -169,7 +175,7 @@ export class AddEventComponent {
                     }
                 );
             } else {
-                this.eventService.createEvent(eventData).subscribe(
+                this.eventService.createEvent(eventData ).subscribe(
                     (response) => {
                         this.successMessage = 'Événement ajouté avec succès !';
                         this.router.navigate(['/others/event-calendar']);
@@ -179,6 +185,7 @@ export class AddEventComponent {
                         console.error(error);
                     }
                 );
+                
             }
         } else {
             this.errorMessage = 'Veuillez remplir tous les champs obligatoires.';

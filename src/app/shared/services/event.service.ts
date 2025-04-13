@@ -49,12 +49,20 @@ private apiUrl = 'http://localhost:8082/events';
       headers: { 'Content-Type': 'application/json' }
     });
   }
-
+  // createEvent(event: FormData): Observable<Event> {
+  //   return this.http.post<Event>(`${this.apiUrl}/addEvenement`, event);
+  // }
+  
+  
   
   // Mettre à jour un événement
   updateEvent(id: string, event: Event): Observable<Event> {
     return this.http.put<Event>(`${this.apiUrl}/${id}`, event);
   }
+  // updateEvent(eventId: string, event: FormData): Observable<Event> {
+  //   return this.http.put<Event>(`${this.apiUrl}/updateEvenement/${eventId}`, event);
+  // }
+
 
   // Supprimer un événement
   deleteEvent(id: string): Observable<void> {

@@ -20,4 +20,5 @@ export interface Event {
     sessions?: Session[]; 
     horaire: string ;
     lieu : string ;
+
 }
