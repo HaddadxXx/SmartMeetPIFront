@@ -40,7 +40,7 @@ export class UserService {
    * @param file (Optionnel) Le fichier image à uploader.
    */
   updateUserProfile(user: User, file?: File): Observable<User> {
-    console.log("rasszebbi")
+    console.log("hellooooo")
     const formData = new FormData();
     // Ajoute la partie JSON sous forme de Blob
     formData.append('user', new Blob([JSON.stringify(user)], { type: 'application/json' }));
