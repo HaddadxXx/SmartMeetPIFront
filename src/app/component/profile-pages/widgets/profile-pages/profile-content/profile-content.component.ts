@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditProfileComponent } from '../../model/edit-profile/edit-profile.component';
 import { AuthService } from '../../../../../shared/services/auth.service';
+import { CommonModule } from '@angular/common'; // ✅ Ajoute ceci
+
 @Component({
   selector: 'app-profile-content',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './profile-content.component.html',
   styleUrl: './profile-content.component.scss'
 })
@@ -31,5 +33,9 @@ export class ProfileContentComponent {
       console.error("Erreur lors de la récupération de l'utilisateur :", error);
     });
   }
-
+  getProfileImage(profilePicture: string | null): string {
+    return profilePicture 
+      ? `url('http://localhost:8080/uploads/${profilePicture}')` 
+      : `url('http://localhost:8080/uploads/defaultuser.jpg')`;
+  }
 }

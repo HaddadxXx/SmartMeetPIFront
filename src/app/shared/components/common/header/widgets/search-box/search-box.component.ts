@@ -48,5 +48,9 @@ export class SearchBoxComponent {
       this.searchResults = [];
     }
   }
-  
+  getProfileImage(profilePicture: string | null): string {
+    return profilePicture 
+      ? `url('http://localhost:8080/uploads/${profilePicture}')` 
+      : `url('http://localhost:8080/uploads/defaultuser.jpg')`;
+  }
 }

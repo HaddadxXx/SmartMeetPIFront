@@ -39,22 +39,21 @@ export class UserService {
    * @param user Les données utilisateur à mettre à jour.
    * @param file (Optionnel) Le fichier image à uploader.
    */
-  updateUserProfile(user: User, file?: File): Observable<User> {
-    console.log("hellooooo")
+  updateProfile(user: any, file?: File): Observable<any> {
     const formData = new FormData();
-    // Ajoute la partie JSON sous forme de Blob
-    formData.append('user', new Blob([JSON.stringify(user)], { type: 'application/json' }));
-    // Ajoute le fichier si fourni
+  
+    // Crée un blob JSON pour le champ "user"
+    const userBlob = new Blob([JSON.stringify(user)], { type: 'application/json' });
+    formData.append('user', userBlob); // C’est CRUCIAL que ça s’appelle "user"
+  
     if (file) {
       formData.append('file', file);
     }
-   // Log the contents of FormData
-   console.log('FormData contents:');
-   // Explicitly log known keys
-   console.log('user:', formData.get('user'));
-   if (formData.get('file')) {
-       console.log('file:', formData.get('file'));
-   }
-    return this.http.put<User>('http://localhost:8080/api/users/me', formData);
+  
+    return this.http.put('http://localhost:8080/api/users/me', formData, {
+      withCredentials: true
+    });
   }
+  
+  
 }

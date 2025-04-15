@@ -1,77 +1,102 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FeatherIconComponent } from '../../../../../shared/components/common/feather-icon/feather-icon.component';
-import { SvgIconComponent } from '../../../../../shared/components/common/svg-icon/svg-icon.component';
-import { ChoosePhotoComponent } from '../choose-photo/choose-photo.component';
+import { UserService } from '../../../../../shared/services/user.service';
 import { relationshipStatus } from '../../../../../shared/data/profile-pages/time-line';
-import {  UserService } from '../../../../../shared/services/user.service';
-import { ReactiveFormsModule } from '@angular/forms'; // ← à importer
+import { SvgIconComponent } from '../../../../../shared/components/common/svg-icon/svg-icon.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../../../../../shared/services/auth.service';
+
 
 
 @Component({
   selector: 'app-edit-profile',
   standalone: true,
-  imports: [FeatherIconComponent, SvgIconComponent,ReactiveFormsModule],
+  imports: [CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FeatherIconComponent,
+    SvgIconComponent],
   templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.scss']
+  styleUrl: './edit-profile.component.scss'
 })
-export class EditProfileComponent implements OnInit {
+
+export class EditProfileComponent {
 
   public relationshipStatus = relationshipStatus;
-  public profileForm: FormGroup;
-
-  // Optionnel : si vous gérez le changement d’image
+  public profileForm!: FormGroup;
   public selectedFile: File | null = null;
+  constructor(public modalServices: NgbModal,private userService: UserService,    private fb: FormBuilder,    private authService: AuthService,
 
-  constructor(
-    public modalServices: NgbModal,
-    private fb: FormBuilder,
-    private userService: UserService
   ) { }
+
+
 
   ngOnInit(): void {
     this.profileForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      expertiseArea: ['', Validators.required],
-      interests: ['', Validators.required]
+      firstName: [''],
+      lastName: [''],
+      expertiseArea: [''],
+      interests: [''],
+    });
+
+    this.authService.getCurrentUser().subscribe({
+      next: (user) => {
+        // Préremplir le formulaire avec les données de l'utilisateur
+        this.profileForm.patchValue({
+          firstName: user.firstName,
+          lastName: user.lastName,
+          expertiseArea: user.expertiseArea,
+          interests: user.interests,
+        });
+      },
+      error: (err) => {
+        console.error('Erreur récupération utilisateur', err);
+      }
     });
   }
 
-  editImage() {
-    this.modalServices.open(ChoosePhotoComponent, { size: 'lg', windowClass: 'Choose-photo-modal' });
-  }
 
-  // Appelée lors de la sauvegarde (via le bouton "save changes")
-  onSubmit() {
-    if (this.profileForm.invalid) {
-      // Vous pouvez ajouter ici un affichage d’erreur
-      return;
+
+  
+  imagePreviewUrl: string | ArrayBuffer | null = null;
+
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    this.selectedFile = file;
+  
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreviewUrl = reader.result;
+      };
+      reader.readAsDataURL(file);
     }
-
-    const formValues = this.profileForm.value;
-    // Construction de l'objet user, complété avec vos autres données statiques ou en récupérant d'autres données
-    const user: any = {
-      firstName: formValues.firstName,
-      lastName: formValues.lastName,
-      expertiseArea: formValues.expertiseArea,
-      interests: formValues.interests
-    };
+  }
+  getProfileImage(photo: string | null): string {
+    return photo 
+      ? `url('http://localhost:8080/uploads/profilimages/${photo}')` 
+      : `url('http://localhost:8080/uploads/default.png')`;
+  }
     
 
-    // Appel du service. On passe selectedFile si vous l’avez sélectionné au préalable via votre méthode d’upload
-    this.userService.updateUserProfile(user, this.selectedFile || undefined)
-      .subscribe({
-        next: updatedUser => {
-          // Gérer la réponse, par exemple fermer la modale et notifier l’utilisateur
-          console.log('Profil mis à jour', updatedUser);
-          this.modalServices.dismissAll();
-        },
-        error: err => {
-
-          console.error('Erreur lors de la mise à jour du profilssssss', err);
-        }
-      });
+  onSubmit(): void {
+    if (this.profileForm.valid) {
+      this.userService.updateProfile(this.profileForm.value,  this.selectedFile ?? undefined)
+        .subscribe({
+          next: (response) => {
+            console.log('Profil mis à jour :', response);
+          },
+          error: (error) => {
+            console.log(this.profileForm)
+            console.error('Erreur lors de la mise à jour :', error);
+          }
+        });
+    }
   }
+
 }
+

@@ -11,13 +11,17 @@
     </div>
     
     <!-- Affichage des suggestions de recherche -->
-    <div class="search-suggestion" *ngIf="searchResults && searchResults.length">
-        <span class="recent">Résultats</span>
+    <div class="search-suggestion" *ngIf="searchResults && searchResults.length "  style="width: 500px">
+        <span class="recent">Résults</span>
         <ul class="friend-list">
             <li *ngFor="let user of searchResults">
                 <div class="media">
                     <!-- Affichage de la photo de profil ou une image par défaut -->
-                    <img [src]="user.profilePicture ? user.profilePicture : 'assets/images/default.png'" alt="user">
+                    <img [src]="user.profilePicture ? 
+                    'http://localhost:8080/uploads/' + user.profilePicture : 
+                    'http://localhost:8080/uploads/defaultuser.jpg'" 
+                   alt="user"
+                   class="avatar">
                     <div class="media-body">
                         <div>
                             <h5 class="mt-0">{{ user.firstName }} {{ user.lastName }}</h5>
