@@ -5,12 +5,17 @@ export interface chats {
 }
 
 export interface chatsUser {
-  id : number;
-  image: string;
-  user: string;
+  id : string;
+  profilePicture: string;
+  email: string;
+  firstName : string ;
+  lastName : string ;
+  expertiseArea : string;
+  interests : string ;
   time: string;
   status: string;
   message: string;
+
   count?: number;
 }
 
@@ -151,103 +156,8 @@ export const footerRouter = [
 ]
 
 export const chatUser: chatsUser[] = [
-  {
-    id: 1,
-    image: 'assets/images/user/2.jpg',
-    user: 'Paul Molive',
-    time: '2.40 PM',
-    status: 'online',
-    message: 'How are you ?'
-  },
-  {
-    id: 2,
-    image: 'assets/images/user/3.jpg',
-    user: 'Anna Sthesia',
-    time: '2.40 PM',
-    status: 'online',
-    message: 'i have arranged the meeting at 2.30',
-    count: 4
-  },
-  {
-    id: 3,
-    image: 'assets/images/user/1.jpg',
-    user: 'Petey Cruiser',
-    time: '2.40 PM',
-    status: 'online',
-    message: 'i m waiting for your reply.'
-  },
-  {
-    id: 4,
-    image: 'assets/images/user/4.jpg',
-    user: 'Anna Mull',
-    time: '2.40 PM',
-    status: 'online',
-    message: 'sure you did!'
-  },
-  {
-    id: 5,
-    image: 'assets/images/user/5.jpg',
-    user: 'Paige Turner',
-    time: '2.40 PM',
-    status: 'online',
-    message: 'How are you ?'
-  },
-  {
-    id: 6,
-    image: 'assets/images/user/6.jpg',
-    user: 'Bob Frapples',
-    time: '2.40 PM',
-    status: 'online',
-    message: 'How are you ?'
-  },
-  {
-    id: 7,
-    image: 'assets/images/user/7.jpg',
-    user: 'Paul Molive',
-    time: '2.40 PM',
-    status: 'online',
-    message: 'How are you ?'
-  },
-  {
-    id: 8,
-    image: 'assets/images/user/8.jpg',
-    user: 'Paul Molive',
-    time: '2.40 PM',
-    status: 'online',
-    message: 'How are you ?'
-  },
-  {
-    id: 9,
-    image: 'assets/images/user/9.jpg',
-    user: 'Paul Molive',
-    time: '2.40 PM',
-    status: 'online',
-    message: 'How are you ?'
-  },
-  {
-    id: 10,
-    image: 'assets/images/user/10.jpg',
-    user: 'Paul Molive',
-    time: '2.40 PM',
-    status: 'online',
-    message: 'How are you ?'
-  },
-  {
-    id: 11,
-    image: 'assets/images/user/11.jpg',
-    user: 'Paul Molive',
-    time: '2.40 PM',
-    status: 'online',
-    message: 'How are you ?'
-  },
-  {
-    id: 12,
-    image: 'assets/images/user/12.jpg',
-    user: 'Paul Molive',
-    time: '2.40 PM',
-    status: 'online',
-    message: 'How are you ?'
-  },
+  
+    
 ]
 
 export const chat: chats[] = [

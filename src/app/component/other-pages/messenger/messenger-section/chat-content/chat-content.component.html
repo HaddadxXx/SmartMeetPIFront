@@ -9,14 +9,14 @@
                     <div class="media list-media">
                         <div class="story-img">
                             <div class="user-img bg-size" (click)="isMenu =!isMenu"
-                                [ngStyle]="{'background-image': 'url(' +  data.image  + ')'}"
+                                [ngStyle]="{'background-image': getProfileImage(data.profilePicture)}"
                                 style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
                                 <img src="assets/images/user/2.jpg" class="img-fluid bg-img" alt="user"
                                     style="display: none;">
                             </div>
                         </div>
                         <div class="media-body">
-                            <h5>{{data.user}} </h5>
+                            <h5>{{data.firstName +data.lastName}} </h5>
                             <h6>active 10m ago</h6>
                         </div>
                     </div>
@@ -49,15 +49,14 @@
                     <div class="avenue-messenger">
                         <div class="chat">
                             <div class="messages-content">
-                                @for (item of chats; track item) {
-                                <div class="message new" [class.message-personal]="item.isReply"
-                                    [class.new]="data.user">
-                                    {{item.message}}
+                               <li *ngFor="let item of chats">
+                                <div class="message new" [class.message-personal]="item.senderId === currentUserId">
+                                    {{item.content}}
                                     <div class="timestamp">15:13</div>
                                     <div class="checkmark-sent-delivered">✓</div>
                                     <div class="checkmark-read">✓</div>
                                 </div>
-                                }
+                               </li>
                             </div>
                             <div class="message-box">
                                 <textarea class="message-input emojiPicker" placeholder="Type message..."></textarea>
@@ -72,7 +71,7 @@
                                     </div>
                                 </div>
                                 <a href="javascript:void(0)" class="message-submit">
-                                    <app-feather-icon [icons]="'send'"></app-feather-icon>
+                                    <app-feather-icon [icons]="'send'" (click)="sendMessage()"></app-feather-icon>
                                 </a>
                             </div>
                         </div>

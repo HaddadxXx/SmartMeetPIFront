@@ -18,13 +18,13 @@
                 <a class="nav-link" [class.active]="item.id === messageData.id" (click)="changeData(item.id)">
                     <div class="media list-media">
                         <div class="story-img">
-                            <div class="user-img bg-size" [ngStyle]="{'background-image': 'url(' +  item.image  + ')'}"
+                            <div class="user-img bg-size" [ngStyle]="{'background-image': getProfileImage(item.profilePicture)}"
                                 style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
-                                <img [src]="item.image" class="img-fluid bg-img" alt="user" style="display: none;">
+                                <img [src]="item.profilePicture" class="img-fluid bg-img" alt="user" style="display: none;">
                             </div>
                         </div>
                         <div class="media-body">
-                            <h5>{{item.user}} <span>{{item.time}}</span></h5>
+                            <h5>{{item.firstName +item.lastName}} <span>{{item.time}}</span></h5>
                             <h6>{{item.status}}</h6>
                         </div>
                     </div>
@@ -40,8 +40,7 @@
         </ul>
     </div>
     <div class="chat-content">
-        <app-chat-content [data]="messageData"></app-chat-content>
+        <app-chat-content [data]="messageData" [conversationId]="selectedConversationId"   [currentUserId]="currentUserId">
+            ></app-chat-content>
     </div>
 </section>
-
-<!-- ?messenger? -->
