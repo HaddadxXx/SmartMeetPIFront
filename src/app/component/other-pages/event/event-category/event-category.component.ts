@@ -5,19 +5,20 @@ import { CommonModule } from '@angular/common';
 import { FeatherIconComponent } from '../../../../shared/components/common/feather-icon/feather-icon.component';
 
 import { EventCategoryService } from '../../../../shared/services/event-category.service';
-import { event } from '../../../../shared/interface/event';
+import { Event } from '../../../../shared/interface/event';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-event-category',
   templateUrl: './event-category.component.html',
   styleUrl: './event-category.component.scss',
-  imports: [FeatherIconComponent,CarouselModule,CommonModule],
+  imports: [FeatherIconComponent,CarouselModule,CommonModule , RouterLink],
   standalone:true
 })
 
 export class EventCategoryComponent {
 
-  public eventCategoryList :event[];
+  public eventCategoryList :Event[];
 
   public storyDataOptions = {
     loop: true,

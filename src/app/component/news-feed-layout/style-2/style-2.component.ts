@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-
+import { Event } from '../../../shared/interface/event';
 import { CollegeMeetComponent } from '../../../shared/components/common/college-meet/college-meet.component';
 import { CommonWeatherComponent } from '../../../shared/components/common/common-weather/common-weather.component';
 import { CreatePostComponent } from '../../../shared/components/common/create-post/create-post.component';
@@ -19,8 +19,10 @@ import { SkeletonStyle2Component } from '../../../shared/skeleton-loader/news-fe
 import { PostService } from '../../../shared/services/news-feed-layout/post.service';
 import { CommonService } from '../../../shared/services/common.service';
 
-import { event } from '../../../shared/data/common';
+//import { event } from '../../../shared/data/common';
 import { profile } from '../../../shared/interface/post';
+import { EventSectionComponent } from '../../../shared/components/common/event-section/event-section.component';
+import { EventService } from '../../../shared/services/event.service';
 
 
 @Component({
@@ -28,22 +30,26 @@ import { profile } from '../../../shared/interface/post';
   standalone: true,
   imports: [StroyComponent,ProfileBoxComponent,FriendSuggestionComponent,LikedPagesComponent,SkeletonStyle2Component,
     CommonWeatherComponent,CollegeMeetComponent,GalleryComponent,EventsComponent,YourGamesComponent,
-    CreatePostComponent,FeatherIconComponent,PostHeaderComponent,PostDetailsComponent,],
+    CreatePostComponent,FeatherIconComponent,PostHeaderComponent,PostDetailsComponent,EventSectionComponent],
   templateUrl: './style-2.component.html',
   styleUrl: './style-2.component.scss'
 })
 
 export class Style2Component {
 
-  public event = event;
+  // public event = event;
+  public events: Event[] = [];
+  
   public post: profile[];
   public visiblePosts: profile[];
   public displayCount: number = 5;
   public isCreatePost: boolean = true;
+  class: any;
 
-  constructor(public postServices:PostService,public commonServices : CommonService) {}
+  constructor(public postServices:PostService,public commonServices : CommonService , private eventService : EventService ) {}
 
   ngOnInit() {
+ 
     this.postServices.style2().subscribe(response => {
       if (response.style2) {
         this.post = response.style2;
@@ -53,11 +59,15 @@ export class Style2Component {
         });
       }
     })
+  
   }
 
   refresh() {
     this.displayCount = Math.min(this.displayCount + 1);
     this.visiblePosts = this.post.slice(0, this.displayCount);
   }
-
+  
 }
+
+
+ 

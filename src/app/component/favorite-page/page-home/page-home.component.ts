@@ -19,7 +19,7 @@ import { CommonService } from '../../../shared/services/common.service';
 import { FavoritePagesService } from '../../../shared/services/favorite-pages.service';
 
 import { Router,ActivatedRoute  } from '@angular/router';
-import { events } from '../../../shared/interface/common';
+//import { events } from '../../../shared/interface/common';
 import { profile } from '../../../shared/interface/post';
 import { PageHomeSkeletonComponent } from '../../../shared/skeleton-loader/favorite-pages-skeleton/page-home-skeleton/page-home-skeleton.component';
 
@@ -44,15 +44,15 @@ export class PageHomeComponent {
   public isShow: boolean = false;
   public currentUrl: string;
 
- public event: events = {
-   image: 'assets/images/post/12.jpg',
-   title: 'happy life event',
-   subTitle: '26 january 2024',
-   desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-   span: '15256 People Going',
-   link: 'interested / not in..',
-   class: 'section-t-space ratio2_3'
-}
+//  public event: events = {
+//    image: 'assets/images/post/12.jpg',
+//    title: 'happy life event',
+//    subTitle: '26 january 2024',
+//    desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+//    span: '15256 People Going',
+//    link: 'interested / not in..',
+//    class: 'section-t-space ratio2_3'
+// }
 
   constructor(public favoritePagesService: FavoritePagesService, 
     public commonServices: CommonService,private router: Router,private route: ActivatedRoute

@@ -14,7 +14,7 @@ import { StroyComponent } from '../../../shared/components/common/stroy/stroy.co
 import { CommonService } from '../../../shared/services/common.service';
 import { PostService } from '../../../shared/services/news-feed-layout/post.service';
 
-import { event } from '../../../shared/data/common';
+//import { event } from '../../../shared/data/common';
 import { profile } from '../../../shared/interface/post';
 import { SkeletonStyle9Component } from '../../../shared/skeleton-loader/news-feed-layout-skeleton/skeleton-style-9/skeleton-style-9.component';
 

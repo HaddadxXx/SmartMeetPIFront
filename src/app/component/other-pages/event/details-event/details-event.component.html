@@ -1,0 +1,161 @@
+<!-- Bouton Filtrer -->
+<div class="event-header">
+  <div class="event-title">
+    <h3 class="mb-4"><strong>Événements disponibles</strong></h3>
+  </div>
+  <div class="filter-button">
+    <button class="btn btn-outline-secondary" (click)="showFilters = !showFilters">
+      <i class="fa fa-filter me-1"></i> Filtrer
+    </button>
+  </div>
+</div>
+  
+  <!-- Section de filtre sans fond ni bordure -->
+  <div *ngIf="showFilters" class="mb-4">
+  
+    <!-- Type -->
+    <div class="mb-3">
+      <label class="fw-bold me-3">Type :</label>
+      <label class="me-2">
+        <input type="radio" name="typeEvent" value="" [(ngModel)]="filters.typeEvent"> Tous
+      </label>
+      <label class="me-2">
+        <input type="radio" name="typeEvent" value="en ligne" [(ngModel)]="filters.typeEvent"> En ligne
+      </label>
+      <label>
+        <input type="radio" name="typeEvent" value="présentiel" [(ngModel)]="filters.typeEvent"> Présentiel
+      </label>
+    </div>
+  
+    <!-- Thème -->
+    <div class="mb-3">
+      <label class="fw-bold d-block mb-2">Thèmes :</label>
+      <ng-container *ngFor="let theme of availableThemes">
+        <label class="me-3">
+          <input type="checkbox" [value]="theme" > {{ theme }}
+        </label>
+      </ng-container>
+    </div>
+  
+    <!-- Mois -->
+    <div class="mb-3">
+      <label class="fw-bold me-2">Mois :</label>
+      <select class="form-select w-auto d-inline-block" [(ngModel)]="filters.month">
+        <option value="">Tous les mois</option>
+        <option *ngFor="let m of months" [value]="m">{{ m }}</option>
+      </select>
+    </div>
+  
+    <!-- Boutons -->
+    <div class="d-flex gap-2">
+      <button class="btn btn-success" (click)="applyFilter()">Filtrer</button>
+      <button class="btn btn-outline-secondary">Réinitialiser</button>
+    </div>
+  </div>
+
+
+
+
+  <div class="row d-flex flex-wrap gap-3">
+  <div class="detailes-event section-b-space">
+    <!-- <h5 class="mb-4">Événements disponibles</h5> -->
+    <div class="row d-flex flex-wrap gap-3">
+      <div class="detailes-event-card" *ngFor="let event of events">
+        <div class="border">
+          <p><strong>🎯 Nom de l'événement :</strong> {{ event.nomEvent }}</p>
+          <p><strong>📚 Thème :</strong> {{ event.theme }}</p>
+          <p><strong>📝 Description :</strong><br> {{ event.description }}</p>
+  
+          <p class="text-muted small mt-2">
+            <i class="fa fa-calendar"></i>
+            {{ event.dateDebut | date:'longDate' }} - {{ event.dateFin | date:'longDate' }}<br>
+            <i class="fa fa-map-marker"></i>
+            <strong>Lieu :</strong>
+            {{ event.lieu?.toLowerCase() === 'en ligne' || event.typeEvent?.toLowerCase() === 'en ligne' ? 'En ligne' : event.lieu }}
+          </p>
+  
+          <img *ngIf="event.photo" [src]="'http://localhost:8888/uploads/' + event.photo" alt="Event image" />
+  
+          <div class="mt-4 text-center">
+            <button class="btn btn-success btn-sm" (click)="openParticipationModal(participationModal, event.nomEvent)">
+              <i class="fa fa-check"></i> Participer
+            </button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Pagination -->
+    <nav aria-label="Page navigation" class="mt-4">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 0">
+          <a class="page-link" href="javascript:void(0)" (click)="currentPage > 0 && goToPage(currentPage - 1)">Précédent</a>
+        </li>
+  
+        <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="i === currentPage">
+          <a class="page-link" href="javascript:void(0)" (click)="goToPage(i)">{{ i + 1 }}</a>
+        </li>
+  
+        <li class="page-item" [class.disabled]="currentPage >= totalPages - 1">
+          <a class="page-link" href="javascript:void(0)" (click)="currentPage < totalPages - 1 && goToPage(currentPage + 1)">Suivant</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  
+
+ <!-- ✅ MODALE PARTICIPATION -->
+
+
+<!-- ✅ Liste des événements
+<div *ngFor="let event of events" class="mb-2 d-flex justify-content-between align-items-center">
+  <div>
+    <strong>{{ event.nomEvent }}</strong>
+  </div>
+  <button class="btn btn-success btn-sm"
+          (click)="openParticipationModal(participationModal, event.nomEvent)">
+    <i class="fa fa-check"></i> Participer
+  </button>
+</div> -->
+
+<!-- ✅ MODALE PARTICIPATION -->
+<ng-template #participationModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Participation à : {{ selectedEvent?.nomEvent }}</h5>
+    <button type="button" class="btn-close" aria-label="Fermer" (click)="modal.dismiss('fermer')"></button>
+  </div>
+
+  <div class="modal-body">
+    <form (ngSubmit)="onSubmitParticipation()" #participationForm="ngForm" enctype="multipart/form-data">
+      <div class="row g-3">
+        
+        <div class="col-md-6">
+          <label>Nom</label>
+          <input type="text" class="form-control" name="nom" ngModel />
+        </div>
+        <div class="col-md-6">
+          <label>Prénom</label>
+          <input type="text" class="form-control" name="prenom" ngModel />
+        </div>
+        <div class="col-md-6">
+          <label>Email</label>
+          <input type="email" class="form-control" name="email" [(ngModel)]="participationData.email" required />
+        </div>
+        <div class="col-md-6">
+          <label>Fichier (CV, etc.)</label>
+          <input type="file" class="form-control" (change)="onFileSelected($event)" />
+        </div>
+        <div class="col-12">
+          <label>Sessions de l'événement :</label>
+          <li *ngFor="let session of selectedEvent?.sessions">{{ session.titre }}</li>
+          <!-- <li *ngFor="let session of selectedEvent?.sessions">{{ session.titre }}</li> -->
+          <ng-template #noSessions><em>Aucune session</em></ng-template>
+        </div>
+      </div>
+      <div class="mt-3 text-end">
+        <button type="submit" class="btn btn-primary" [disabled]="!participationForm.valid">Envoyer</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

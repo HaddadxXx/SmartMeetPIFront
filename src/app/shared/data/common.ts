@@ -1,15 +1,15 @@
-import { events, title } from "../interface/common"
+ //import { events, title } from "../interface/common"
 
-export const event: events = {
-     image: 'assets/images/event/1.jpg',
-     title: 'christmas 2024',
-     subTitle: '26 january 2024',
-     desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-     span: '15256 People Going',
-     link: 'going / not going',
-     class: 'section-t-space ratio2_3'
-}
-
+// export const event: events = {
+//      image: 'assets/images/event/1.jpg',
+//      title: 'christmas 2024',
+//      subTitle: '26 january 2024',
+//      desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+//      span: '15256 People Going',
+//      link: 'going / not going',
+//      class: 'section-t-space ratio2_3'
+// }
+ 
 
 export const birthdayClass = 'section-t-space';
 

@@ -17,7 +17,7 @@ import { SkeletonStyle7Component } from '../../../shared/skeleton-loader/news-fe
 import { PostService } from '../../../shared/services/news-feed-layout/post.service';
 import { CommonService } from '../../../shared/services/common.service';
 
-import { event } from '../../../shared/data/common';
+//import { event } from '../../../shared/data/common';
 import { profile } from '../../../shared/interface/post';
 
 @Component({

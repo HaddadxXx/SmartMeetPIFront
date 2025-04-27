@@ -18,7 +18,7 @@ export class SearchBoxComponent {
 
   // Remplacer 'CURRENT_USER_ID' par l'ID de l'utilisateur connecté.
   // Dans une application réelle, cet ID proviendrait par exemple d'un service d'authentification.
-  private currentUserId: string = '67b48a3af233692bf6f47a5d';
+  private currentUserId: string = '';
 
   constructor(private userService: UserService) {}
 
@@ -50,7 +50,7 @@ export class SearchBoxComponent {
   }
   getProfileImage(profilePicture: string | null): string {
     return profilePicture 
-      ? `url('http://localhost:8080/uploads/${profilePicture}')` 
-      : `url('http://localhost:8080/uploads/defaultuser.jpg')`;
+      ? `url('http://localhost:8888/uploads/${profilePicture}')` 
+      : `url('http://localhost:8888/uploads/defaultuser.jpg')`;
   }
 }

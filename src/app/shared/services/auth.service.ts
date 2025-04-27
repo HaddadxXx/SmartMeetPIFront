@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms'; //
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api/auth';
+  private apiUrl = 'http://localhost:8888/api/auth';
 
   constructor(private http: HttpClient) { }
 
@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   signup(user: any): Observable<any> {
-    return this.http.post('http://localhost:8080/api/auth/signup', {
+    return this.http.post('http://localhost:8888/api/auth/signup', {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
@@ -32,11 +32,11 @@ export class AuthService {
 
   
   verifySignupCode(email: string, code: string) {
-    const url = `http://localhost:8080/api/auth/verify-code?email=${email}&code=${code}`;
+    const url = `http://localhost:8888/api/auth/verify-code?email=${email}&code=${code}`;
     return this.http.get(url);
   }
 
-  private apiUrlme = 'http://localhost:8080/api/users/me'; // Endpoint pour récupérer l'utilisateur connecté
+  private apiUrlme = 'http://localhost:8888/api/users/me'; // Endpoint pour récupérer l'utilisateur connecté
   // Récupérer l'utilisateur connecté
   getCurrentUser(): Observable<any> {
     return this.http.get<any>(this.apiUrlme, { withCredentials: true });

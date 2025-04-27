@@ -15,7 +15,7 @@ import { GoogleMapComponent } from '../../../shared/components/common/posts/post
 import { PostService } from '../../../shared/services/news-feed-layout/post.service';
 import { CommonService } from '../../../shared/services/common.service';
 
-import { birthdayClass, event } from '../../../shared/data/common';
+import { birthdayClass } from '../../../shared/data/common';
 import { profileDataSection } from '../../../shared/interface/post';
 import { SkeletonStyle5Component } from '../../../shared/skeleton-loader/news-feed-layout-skeleton/skeleton-style-5/skeleton-style-5.component';
 

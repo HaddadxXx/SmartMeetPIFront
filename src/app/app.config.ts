@@ -7,6 +7,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { routes } from './app.routes';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
@@ -17,6 +18,7 @@ export const appConfig: ApplicationConfig = {
     CalendarModule.forRoot({
     provide: DateAdapter,
     useFactory: adapterFactory
-  }))
+  })),
+  NgbModalModule ,NgbModal
   ],
 };

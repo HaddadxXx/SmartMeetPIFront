@@ -17,7 +17,7 @@ import { YourGamesComponent } from '../../../shared/components/common/your-games
 import { PostService } from '../../../shared/services/news-feed-layout/post.service';
 import { CommonService } from '../../../shared/services/common.service';
 
-import { birthdayClass, event } from '../../../shared/data/common';
+import { birthdayClass } from '../../../shared/data/common';
 import { profile } from '../../../shared/interface/post';
 import { SkeletonStyle4Component } from '../../../shared/skeleton-loader/news-feed-layout-skeleton/skeleton-style-4/skeleton-style-4.component';
 

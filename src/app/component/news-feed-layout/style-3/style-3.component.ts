@@ -19,7 +19,7 @@ import { SkeletonStyle3Component } from '../../../shared/skeleton-loader/news-fe
 import { CommonService } from '../../../shared/services/common.service';
 import { PostService } from '../../../shared/services/news-feed-layout/post.service';
 
-import { birthdayClass, event } from '../../../shared/data/common';
+import { birthdayClass } from '../../../shared/data/common';
 import { profile } from '../../../shared/interface/post';
 
 @Component({

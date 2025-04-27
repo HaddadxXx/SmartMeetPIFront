@@ -6,7 +6,7 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root', // Le service est disponible dans toute l'application
 })
 export class GroupService {
-  private apiUrl = 'http://localhost:8080/api/groups'; // URL de votre backend Spring Boot
+  private apiUrl = 'http://localhost:8888/api/groups'; // URL de votre backend Spring Boot
 
   constructor(private http: HttpClient) {}
 

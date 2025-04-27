@@ -8,7 +8,7 @@ import { GalleryComponent } from '../../../shared/components/common/gallery/gall
 import { LikedPagesComponent } from '../../../shared/components/common/liked-pages/liked-pages.component';
 import { ProfileBoxComponent } from '../../../shared/components/common/profile-box/profile-box.component';
 import { YourGamesComponent } from '../../../shared/components/common/your-games/your-games.component';
-import { event } from '../../../shared/data/common';
+//import { event } from '../../../shared/data/common';
 import { blogTitle } from '../../../shared/interface/common';
 import { LoadingComponent } from '../../../shared/skeleton-loader/widgets/loading/loading.component';
 import { NowPlayingComponent } from '../../other-pages/music/now-playing/now-playing.component';

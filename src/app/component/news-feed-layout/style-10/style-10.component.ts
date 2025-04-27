@@ -7,7 +7,7 @@ import { PostService } from '../../../shared/services/news-feed-layout/post.serv
 import { CommonService } from '../../../shared/services/common.service';
 
 import { profileDataSection } from '../../../shared/interface/post';
-import { event } from '../../../shared/data/common';
+//import { event } from '../../../shared/data/common';
 import { SkeletonStyle10Component } from '../../../shared/skeleton-loader/news-feed-layout-skeleton/skeleton-style-10/skeleton-style-10.component';
 
 @Component({

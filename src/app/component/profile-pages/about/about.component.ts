@@ -12,24 +12,61 @@ import { CommonService } from '../../../shared/services/common.service';
 
 import { educationWork, hobbyInterests, introMySelfAbout } from '../../../shared/data/profile-pages/about';
 import { ProfileAboutSkeletonComponent } from '../../../shared/skeleton-loader/profile-pages-skeleton/profile-about-skeleton/profile-about-skeleton.component';
+import { EventService } from '../../../shared/services/event.service';
 
+import { Event
+  
+ } from '../../../shared/interface/event';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-about',
   standalone: true,
   imports: [ProfilePagesComponent, ProfileMenuComponent, AboutIntroMySelfComponent,ProfileAboutSkeletonComponent,
-    HobbiesInterestComponent, AboutFriendListComponent, MenuComponent],
+    HobbiesInterestComponent, AboutFriendListComponent, MenuComponent , CommonModule],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss'
 })
 
 export class AboutComponent {
 
+  events: Event[] = [];
+
   public introMySelfAbout = introMySelfAbout;
   public hobbyInterest = hobbyInterests;
   public educationWork = educationWork;
   @Input() currentUrl: string;
 
-  constructor(public commonServices: CommonService,private router: Router) {
+  constructor(public commonServices: CommonService,private router: Router , 
+    private eventService :EventService
+  ) {
     this.currentUrl = this.router.url;
   }
+  ngOnInit(): void {
+    this.loadEvents();
+  }
+
+  loadEvents() {
+    this.eventService.getAllEvents().subscribe({
+      next: (data) => this.events = data,
+      error: (err) => console.error('Erreur de chargement des événements', err)
+    });
+  }
+
+  onDeleteEvent(id: string | undefined): void {
+    if (!id) return;
+  
+    if (confirm('Voulez-vous vraiment supprimer cet événement ?')) {
+      this.eventService.deleteEvent(id).subscribe({
+        next: () => {
+          this.events = this.events.filter(e => e.idEvent !== id);
+        },
+        error: err => console.error('Erreur lors de la suppression :', err)
+      });
+    }
+  }
+  
+
+
+
+  
 }

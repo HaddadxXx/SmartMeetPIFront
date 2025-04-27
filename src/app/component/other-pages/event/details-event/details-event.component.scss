@@ -1,0 +1,122 @@
+.detailes-event .border {
+  max-width: 400px;
+  width: 100%;
+  padding: 1.5rem;
+  border: none;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  height: 100%;
+  transition: transform 0.2s ease-in-out;
+}
+
+.detailes-event .border:hover {
+  transform: translateY(-5px);
+}
+
+.detailes-event p {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.detailes-event h5 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  color: #333;
+}
+
+.detailes-event img {
+  max-height: 160px;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.detailes-event .btn-success {
+  background-color: #1e88e5;
+  border-color: #1e88e5;
+  color: white;
+  font-weight: 600;
+  border-radius: 25px;
+  padding: 0.5rem 1.2rem;
+}
+
+.detailes-event .btn-success:hover {
+  background-color: #1565c0;
+  border-color: #1565c0;
+}
+.detailes-event-card {
+  max-width: 380px;
+  flex: 1 1 300px;
+  padding: 1rem;
+  border: 1px solid #e4e9f0;
+  border-radius: 8px;
+  background-color: #fdfdfe;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+///pagination 
+  .pagination .page-link {
+    color: #007bff;
+    border: 1px solid #dee2e6;
+    padding: 6px 12px;
+    margin: 0 2px;
+    transition: all 0.2s ease-in-out;
+    border-radius: 20px; // 👈 Boutons arrondis
+  }
+  
+  .pagination .page-link:hover {
+    background-color: #e9ecef;
+    text-decoration: none;
+  }
+  
+  .pagination .active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px; // 👈 Arrondi même pour la page active
+  }
+  
+  .pagination .disabled .page-link {
+    pointer-events: none;
+    color: #6c757d;
+    background-color: #fff;
+    border-color: #dee2e6;
+    border-radius: 20px; // 👈 Aussi pour les disabled
+  }
+  
+
+
+/////alignement filter et titre 
+
+  .event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .event-title {
+    flex: 1;
+  }
+  
+  .filter-button {
+    flex-shrink: 0;
+  }
+  
+
+
+
+  ////////////
+  /* Style général de la modale */
+
+/* Style des sessions (liste) */

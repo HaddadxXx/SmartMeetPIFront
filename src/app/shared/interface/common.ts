@@ -1,12 +1,30 @@
-export interface events {
-    image?: string;
-    title?: string;
-    subTitle?: string;
-    desc?: string;
-    span?: string;
+export interface Event {
+    // image?: string;
+    // title?: string;
+    // subTitle?: string;
+    // desc?: string;
+    // span?: string;
+    // link?: string;
+    // video?: string;
+    // class?:string;
+    idEvent ? : string ;
+    nomEvent :string ;
+    theme : string ;
+    description: string ;
+    dateDebut: string ;
+    dateFin : string ;
+    capacite : number ;
+    typeEvent : string;
+//    sessions?: Session[]; 
+    horaire: string ;
+    lieu : string ;
+    photo : string ;
+    name: string;
+    fans: number;
+    images: string;
     link?: string;
-    video?: string;
-    class?:string;
+    
+    class?: string;
 }
 
 export interface title {

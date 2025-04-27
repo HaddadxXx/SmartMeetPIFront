@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { BirthdaySectionComponent } from '../../../shared/components/common/birthday-section/birthday-section.component';
 import { CommonWeatherComponent } from '../../../shared/components/common/common-weather/common-weather.component';
@@ -22,10 +22,12 @@ import { SkeletonStyle1Component } from '../../../shared/skeleton-loader/news-fe
 import { AddFriendCarouselComponent } from './add-friend-carousel/add-friend-carousel.component';
 
 import { PostService } from '../../../shared/services/news-feed-layout/post.service';
-
-import { event } from '../../../shared/data/common';
+import { Event } from '../../../shared/interface/event';
+//import { event } from '../../../shared/data/common';
 import { profile } from '../../../shared/interface/post';
 import { CommonService } from '../../../shared/services/common.service';
+import { EventComponent } from '../../other-pages/event/event.component';
+import { EventService } from '../../../shared/services/event.service';
 
 @Component({
   selector: 'app-style-1',
@@ -33,35 +35,46 @@ import { CommonService } from '../../../shared/services/common.service';
   imports: [StroyComponent, SidebarComponent, ProfileBoxComponent,
     FriendSuggestionComponent, LikedPagesComponent, CommonWeatherComponent,
     YourGamesComponent, EventsComponent, GalleryComponent,
-    FeatherIconComponent, AddFriendCarouselComponent,
+    FeatherIconComponent, AddFriendCarouselComponent,EventComponent ,
     PostDetailsComponent, DetailBoxComponent, SkeletonStyle1Component,
     PostHeaderComponent, LikePanelComponent, PostReactComponent,
-    CreatePostComponent, BirthdaySectionComponent, CommonModule],
+    CreatePostComponent, BirthdaySectionComponent, CommonModule ],
   templateUrl: './style-1.component.html',
   styleUrl: './style-1.component.scss'
 })
 
 export class Style1Component {
+  
+ // @Input() events: Event  ;
+  @Input() event: Event;  
+ @Input() events: Event[] = [];
 
-  public event = event;
+ // public event = event;
   public isCreatePost: boolean = true;
   public visiblePosts: profile[];
   public post: profile[];
   public displayCount: number = 4;
 
   constructor(public postServices: PostService,
-    public commonServices: CommonService) {
+    public commonServices: CommonService ,private eventService: EventService, ) {
   }
 
-  ngOnInit() {
-    this.postServices.style1().subscribe((data) => {
-      if (data.style1) {
-        this.post = data.style1;
-        this.visiblePosts = this.post.slice(0, this.displayCount);
-        this.post.filter((element, index) => {
-          index === 0 ? element.active = true : element.active = false;
-        });
-      }
+  // ngOnInit() {
+  //   this.postServices.style1().subscribe((data) => {
+  //     if (data.style1) {
+  //       this.post = data.style1;
+  //       this.visiblePosts = this.post.slice(0, this.displayCount);
+  //       this.post.filter((element, index) => {
+  //         index === 0 ? element.active = true : element.active = false;
+  //       });
+  //     }
+  //   });
+    
+  // } 
+  
+  ngOnInit(): void {
+    this.eventService.getAllEvents().subscribe((data: Event[]) => {
+      this.events = data;
     });
   }
 

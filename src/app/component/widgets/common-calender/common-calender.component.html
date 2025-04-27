@@ -27,11 +27,49 @@
         </div>
       </div>
       <br />
+      <!-- Ajoute le ng-template ici, au début ou à la fin du fichier -->
+      <ng-template #eventTemplate let-event="event">
+        <div class="cal-event">
+          <div *ngIf="event.ownerId === currentUserId"></div>
+          <!-- Titre de l'événement -->
+          <span class="cal-event-title">{{ event.title }}</span>
+          <!-- Actions -->
+          <span class="cal-event-actions">
+            <a *ngFor="let action of event.actions"
+               href="javascript:void(0)"
+               (click)="action.onClick({ event })"
+               [innerHTML]="action.label"
+               class="event-action-icon"
+               style="margin-left: 8px;">
+            </a>
+          </span>
+          <!-- Debug : afficher les sessions brutes -->
+          <div>
+            <pre>Sessions: {{ event.meta?.sessions | json }}</pre>
+          </div>
+          <!-- Affichage des sessions -->
+          <div *ngIf="event.meta?.sessions?.length > 0" class="sessions-container">
+            <div *ngFor="let session of event.meta.sessions" class="session-item">
+              <span class="session-title">{{ session.title }} ({{ session.date | date:'shortTime' }})</span>
+            </div>
+          </div>
+        </div>
+        
+      </ng-template>
+
+
       @switch (view) {
-      @case (CalendarView.Month) { <mwl-calendar-month-view [viewDate]="viewDate" [events]="events" [refresh]="refresh"
-        [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+      @case (CalendarView.Month) 
+      { <mwl-calendar-month-view [viewDate]="viewDate"
+       [events]="events" 
+      [refresh]="refresh"
+        [activeDayIsOpen]="activeDayIsOpen" 
+        (dayClicked)="dayClicked($event.day)"
         (eventClicked)="handleEvent('Clicked', $event.event)"
-        (eventTimesChanged)="eventTimesChanged($event)"></mwl-calendar-month-view> }
+        (eventTimesChanged)="eventTimesChanged($event)"
+        [eventTemplate]="eventTemplate">
+        >
+      </mwl-calendar-month-view> }
       @case (CalendarView.Week) { <mwl-calendar-week-view [viewDate]="viewDate" [events]="events" [refresh]="refresh"
         (eventClicked)="handleEvent('Clicked', $event.event)"
         (eventTimesChanged)="eventTimesChanged($event)"></mwl-calendar-week-view>}
@@ -89,6 +127,7 @@
               </td>
               <td>
                 <button class="btn btn-danger" (click)="deleteEvent(event)">Delete</button>
+                <i class="bi bi-trash"></i>
               </td>
             </tr>
             }
@@ -114,6 +153,7 @@
           <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
         </div>
       </ng-template>
+
       }
     </div>
   </div>

@@ -17,6 +17,44 @@
             <div class="about-profile section-b-space">
                 <app-hobbies-interest [hobbyInterests]="educationWork"></app-hobbies-interest>
             </div>
+            <div class="about-profile section-b-space">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">My Events</h5>
+                    <div class="row">
+                      <div class="col-md-6 mb-4" *ngFor="let event of events">
+                        <div class="border rounded p-3 h-100 d-flex flex-column justify-content-between">
+                          <div>
+                            <p><strong>Nom de l'événement :</strong> {{ event.nomEvent }}</p>
+                            <p><strong>Thème :</strong> {{ event.theme }}</p>
+                            <p class="mb-1"><strong>Description :</strong> {{ event.description }}</p>
+                            <p class="text-muted small">
+                              <i class="fa fa-calendar"></i>
+                              {{ event.dateDebut | date:'longDate' }} - {{ event.dateFin | date:'longDate' }}<br>
+                              <i class="fa fa-map-marker"></i>
+                              <strong>Lieu :</strong> 
+                              {{ event.lieu?.toLowerCase() === 'en ligne' || event.typeEvent?.toLowerCase() === 'en ligne' ? 'En ligne' : event.lieu }}
+                            </p>
+              
+                            <img *ngIf="event.photo" [src]="'http://localhost:8888/uploads/' + event.photo" class="img-fluid rounded mt-2" style="max-height: 150px;" />
+                          </div>
+              
+                          <!-- Boutons d'action -->
+                          <div class="mt-3 d-flex justify-content-between">
+                            <button class="btn btn-outline-primary btn-sm" >
+                              <i class="fa fa-edit"></i> Modifier
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm"(click)="onDeleteEvent(event.idEvent)">
+                              <i class="fa fa-trash"></i> Supprimer
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
             <div class="friend-list-box section-t-space section-b-space">
                 <app-about-friend-list></app-about-friend-list>
             </div>
