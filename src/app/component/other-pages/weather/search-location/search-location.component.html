@@ -1,15 +1,15 @@
 <div class="card-title">
-    <h3>search location</h3>
+    <h3>Search Location</h3>
     <div class="settings">
         <div class="setting-btn">
-            <a href="javascript:void(0)" class="d-flex">
+            <a href="javascript:void(0)" class="d-flex" (click)="resetForm()">
                 <app-feather-icon [icons]="'rotate-cw'"
                     [class]="'icon icon-dark stroke-width-3 iw-11 ih-11'"></app-feather-icon>
             </a>
         </div>
-        <div class="setting-btn ms-2 setting-dropdown" (clickOutside)="outSideClose()">
+        <!-- <div class="setting-btn ms-2 setting-dropdown" (clickOutside)="outSideClose()">
             <div class="btn-group custom-dropdown arrow-none dropdown-sm">
-                <a class="d-flex" href="javascript:void(0)" [class.show]="isShow" (click)="isShow =!isShow">
+                <a class="d-flex" href="javascript:void(0)" [class.show]="isShow" (click)="isShow = !isShow">
                     <app-feather-icon [icons]="'sun'"
                         [class]="'icon-dark stroke-width-3 iw-12 ih-12'"></app-feather-icon>
                 </a>
@@ -17,42 +17,41 @@
                     style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 14px);">
                     <ul>
                         <li>
-                            <a href="javascript:void(0)">
+                            <a href="javascript:void(0)" (click)="focusSearchInput()">
                                 <app-feather-icon [icons]="'edit'"
-                                    [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>change city</a>
+                                    [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>Change City
+                            </a>
                         </li>
                         <li>
                             <a href="javascript:void(0)">
                                 <app-feather-icon [icons]="'settings'"
-                                    [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>setting</a>
+                                    [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>Settings
+                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
-<form class="theme-form">
+<form class="theme-form" (ngSubmit)="search()">
     <div class="input-group">
-        <input class="form-control" type="text" placeholder="Search location">
+        <input #searchInput class="form-control" type="text" [(ngModel)]="city" name="city" placeholder="Search location" required>
     </div>
     <div class="input-group">
-        <select class="custom-select">
-            <option selected>Unit...</option>
-            <option value="1">ºC- Celsuis</option>
-            <option value="2">ºF - Fahrenheit</option>
-            <option value="3">ºK - Kelvin</option>
+        <select class="custom-select" [(ngModel)]="unit" name="unit" (change)="emitPreferences()">
+            <option value="metric" selected>ºC - Celsius</option>
+            <!-- <option value="imperial">ºF - Fahrenheit</option>
+            <option value="standard">ºK - Kelvin</option> -->
         </select>
     </div>
     <div class="input-group">
-        <select class="custom-select">
-            <option selected>forecast days...</option>
-            <option value="1">next 7 days</option>
-            <option value="2">next 15 days</option>
-            <option value="3">next 1 month</option>
+        <select class="custom-select" [(ngModel)]="forecastDays" name="forecastDays" (change)="emitPreferences()">
+            <option value="5" selected>Next 5 days</option>
         </select>
     </div>
     <div class="btn-section text-right">
-        <a href="javascript:void(0)" class="btn btn-solid">search</a>
+        <button type="submit" class="btn btn-solid">Search</button>
     </div>
+    <div *ngIf="error" class="error">{{ error }}</div>
 </form>

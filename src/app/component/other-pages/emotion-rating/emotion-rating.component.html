@@ -1,0 +1,79 @@
+<!-- <div class="emotion-rating-container">
+    <h2>Rate Our Application with Your Emotions</h2>
+    <p>Allow access to your webcam to detect your emotions in real-time and rate our application!</p>
+  
+    <div class="video-container">
+      <video #videoElement width="640" height="480" autoplay></video>
+      <canvas #canvasElement width="640" height="480"></canvas>
+    </div>
+  
+    <div class="emotion-info">
+      <h3>Detected Emotion: {{ detectedEmotion }}</h3>
+      <div class="emotion-probabilities">
+        <p *ngFor="let emotion of emotionKeys">
+          {{ emotion | titlecase }}: {{ (emotionProbabilities[emotion] * 100).toFixed(1) }}%
+        </p>
+      </div>
+    </div>
+  
+    <div class="rating-info">
+      <h3>Application Rating: {{ getAverageRating() }} / 100</h3>
+      <p>Your emotions are contributing to this rating in real-time!</p>
+      <div class="rating-bar">
+        <div class="rating-fill" [style.width.%]="getAverageRating()"></div>
+      </div>
+    </div>
+  
+    <button (click)="stopWebcam()">Stop Webcam</button>
+  </div> -->
+  <div class="emotion-rating-container">
+    <h2>Rate Our Application with Your Emotions</h2>
+  
+    <!-- Consent Popup -->
+    <div *ngIf="showConsentPopup" class="consent-popup">
+      <div class="consent-content">
+        <h3>Privacy Notice</h3>
+        <p>
+          We need access to your webcam to detect your emotions for rating our application. 
+          All webcam data is processed locally in your browser and is <strong>not stored or sent to any server</strong>. 
+          Your privacy is our priority.
+        </p>
+        <div class="consent-buttons">
+          <button class="consent-btn" (click)="consentToWebcam()">I Consent</button>
+          <button class="decline-btn" (click)="declineWebcamAccess()">Decline</button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Declined Message -->
+    <div *ngIf="declinedConsent" class="declined-message">
+      <p>You have declined webcam access. This feature requires webcam access to detect emotions and rate the application. Please refresh the page to try again.</p>
+    </div>
+  
+    <!-- Main Content -->
+    <div class="main-content" [ngClass]="{'hidden': showConsentPopup || declinedConsent}">
+      <div class="video-container">
+        <video #videoElement width="640" height="480" autoplay></video>
+        <canvas #canvasElement width="640" height="480"></canvas>
+      </div>
+  
+      <div class="emotion-info">
+        <h3>Detected Emotion: {{ detectedEmotion }}</h3>
+        <div class="emotion-probabilities">
+          <p *ngFor="let emotion of emotionKeys">
+            {{ emotion | titlecase }}: {{ (emotionProbabilities[emotion] * 100).toFixed(1) }}%
+          </p>
+        </div>
+      </div>
+  
+      <div class="rating-info">
+        <h3>Application Rating: {{ getAverageRating() }} / 100</h3>
+        <p>Your emotions are contributing to this rating in real-time!</p>
+        <div class="rating-bar">
+          <div class="rating-fill" [style.width.%]="getAverageRating()"></div>
+        </div>
+      </div>
+  
+      <button (click)="stopWebcam()">Stop Webcam</button>
+    </div>
+  </div>

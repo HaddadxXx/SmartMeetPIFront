@@ -1,0 +1,263 @@
+.event-cover {
+    position: relative;
+    background: #f8f9fa;
+  
+    .event-img {
+      position: relative;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+  
+      .event-content {
+        h1 {
+          color: #fff;
+          font-size: 2.5rem;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+          margin: 0;
+        }
+      }
+  
+      .cover-img-detail {
+        color: #fff;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  
+        span {
+          font-size: 0.9rem;
+        }
+  
+        h3 {
+          font-size: 1.5rem;
+          margin: 5px 0 0;
+        }
+      }
+  
+      .settings {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        align-items: center;
+  
+        .setting-btn {
+          a {
+            color: #fff;
+            text-decoration: none;
+          }
+  
+          &.setting-dropdown {
+            position: relative;
+          }
+        }
+  
+        .custom-dropdown {
+          .dropdown-menu {
+            min-width: 120px;
+            padding: 8px 0;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  
+            ul {
+              list-style: none;
+              padding: 0;
+              margin: 0;
+  
+              li {
+                a {
+                  display: flex;
+                  align-items: center;
+                  padding: 8px 15px;
+                  color: #333;
+                  text-decoration: none;
+                  font-size: 0.9rem;
+  
+                  &:hover {
+                    background: #f1f1f1;
+                  }
+  
+                  app-feather-icon {
+                    margin-right: 8px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    .event-timeline {
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+      .timeline-title {
+        .media {
+          display: flex;
+          align-items: center;
+  
+          img {
+            width: 30px;
+            margin-right: 10px;
+          }
+  
+          .media-body {
+            h4 {
+              font-size: 1.2rem;
+              margin: 0;
+              color: #333;
+            }
+          }
+        }
+      }
+  
+      .timeline-content {
+        display: flex;
+        overflow-x: auto;
+        padding: 10px 0;
+  
+        .loading, .error {
+          font-size: 1rem;
+          color: #555;
+          margin: 20px;
+        }
+  
+        .error {
+          color: #dc3545;
+        }
+  
+        li {
+          flex: 0 0 auto;
+          text-align: center;
+          margin-right: 20px;
+  
+          img {
+            width: 40px;
+            height: auto;
+          }
+  
+          h4 {
+            font-size: 1.1rem;
+            margin: 5px 0;
+            color: #333;
+          }
+  
+          h6 {
+            font-size: 0.9rem;
+            color: #666;
+          }
+        }
+      }
+    }
+  }
+  
+  .weather-page {
+    .page-content {
+      display: flex;
+      flex-wrap: wrap;
+  
+      .content-left {
+        flex: 1;
+        min-width: 300px;
+        padding: 20px;
+      }
+  
+      .content-center {
+        flex: 2;
+        min-width: 300px;
+        padding: 20px;
+  
+        .forecast-table {
+          background: #fff;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          padding: 20px;
+  
+          .card-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+  
+            h3 {
+              font-size: 1.5rem;
+              margin: 0;
+              color: #333;
+            }
+  
+            .settings {
+              display: flex;
+              align-items: center;
+  
+              .setting-btn {
+                a {
+                  text-decoration: none;
+                  color: #555;
+                }
+  
+                &.setting-dropdown {
+                  position: relative;
+                }
+              }
+            }
+          }
+  
+          .table-sec {
+            .loading, .error {
+              font-size: 1rem;
+              color: #555;
+              margin: 20px;
+              text-align: center;
+            }
+  
+            .error {
+              color: #dc3545;
+            }
+  
+            table {
+              width: 100%;
+  
+              th {
+                font-weight: 600;
+                color: #333;
+              }
+  
+              td {
+                vertical-align: middle;
+  
+                &.date {
+                  h5 {
+                    font-size: 1rem;
+                    margin: 0;
+                    color: #333;
+  
+                    span {
+                      display: block;
+                      font-size: 0.8rem;
+                      color: #666;
+                    }
+                  }
+                }
+  
+                &.temp {
+                  display: flex;
+                  align-items: center;
+  
+                  img {
+                    width: 50px;
+                    margin-right: 10px;
+                  }
+  
+                  span {
+                    font-size: 1rem;
+                    color: #333;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

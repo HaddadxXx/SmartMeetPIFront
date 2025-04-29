@@ -1,0 +1,116 @@
+<!-- <div>
+    <h2>Scan QR Code</h2>
+    <zxing-scanner
+      *ngIf="scannerEnabled"
+      [enable]="scannerEnabled"
+      (scanSuccess)="onCodeResult($event)"
+    ></zxing-scanner>
+  
+    <div *ngIf="result">
+      <h3>Scanned Result:</h3>
+      <pre>{{ result }}</pre>
+  
+      <div *ngIf="verificationResult">
+        <p>Inscription verified!</p>
+        <p>User: {{ verificationResult.user?.firstName || '' }} {{ verificationResult.user?.lastName || '' }}</p>
+        <p>Event: {{ verificationResult.event?.name }}</p>
+      </div>
+  
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  
+      <button (click)="resetScanner()">Scan Another QR Code</button>
+    </div>
+  </div> -->
+
+  <!-- <div class="card p-4 mb-4">
+    <h2 class="mb-4">Scan QR Code</h2>
+  
+    <zxing-scanner
+      *ngIf="scannerEnabled"
+      [enable]="scannerEnabled"
+      (scanSuccess)="onCodeResult($event)"
+    ></zxing-scanner>
+  
+    <div *ngIf="result" class="mt-4">
+      <h4 class="mb-2">Scanned Result:</h4>
+      <pre class="bg-light p-2 rounded">{{ result }}</pre>
+  
+      <div *ngIf="verificationResult" class="mt-3">
+        <div class="alert alert-success" role="alert">
+          Inscription verified!
+        </div>
+        <p><strong>User:</strong> {{ verificationResult.user?.firstName || '' }} {{ verificationResult.user?.lastName || '' }}</p>
+        <p><strong>Event:</strong> {{ verificationResult.event?.name }}</p>
+      </div>
+  
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+        {{ errorMessage }}
+      </div>
+  
+      <button class="btn btn-primary mt-3" (click)="resetScanner()">Scan Another QR Code</button>
+    </div>
+  </div> -->
+
+  <div class="coming-soon bg-size"
+  style="background-image: url(assets/images/background.jpg); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+  
+  <img src="assets/images/background.jpg" alt="" class="img-fluid bg-img" style="display: none;">
+
+  <div class="object">
+    <div class="object-rope"></div>
+    <div class="object-shape">
+      QR <span class="soon">Scanner</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="coming-soon-detail text-center">
+          <div>
+            <div class="logo mb-4">
+              <a href="javascript:void(0)">
+                <img src="assets/images/icon/logo.png" alt="Logo" class="img-fluid">
+              </a>
+            </div>
+
+            <h2 class="mb-3">Scan QR Code</h2>
+            <p class="mb-4">Please scan your QR code to verify your inscription.</p>
+
+            <!-- QR Scanner Component -->
+            <div class="theme-form">
+              <zxing-scanner
+                *ngIf="scannerEnabled"
+                [enable]="scannerEnabled"
+                (scanSuccess)="onCodeResult($event)">
+              </zxing-scanner>
+            </div>
+
+            <!-- Results -->
+            <div *ngIf="result" class="mt-4">
+              <h5 class="mb-2">Scanned Result</h5>
+              <pre class="bg-light p-2 rounded">{{ result }}</pre>
+
+              <div *ngIf="verificationResult" class="alert alert-success mt-3">
+                <strong>Inscription Verified!</strong><br />
+                User: {{ verificationResult.user?.firstName || '' }} {{ verificationResult.user?.lastName || '' }}<br />
+                Event: {{ verificationResult.event?.name }}
+              </div>
+
+              <p *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</p>
+
+              <button class="btn btn-solid btn-theme-light w-100 mt-3" (click)="resetScanner()">Scan Another QR Code</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="animation-emoji">
+    <app-animation-emoji></app-animation-emoji>
+  </div>
+</div>
+
+  

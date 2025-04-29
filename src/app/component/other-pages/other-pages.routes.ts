@@ -4,6 +4,10 @@ import { EventComponent } from "./event/event.component";
 import { GamesComponent } from "./games/games.component";
 import { MusicComponent } from "./music/music.component";
 import { WeatherComponent } from "./weather/weather.component";
+import { TransportComponent } from "./event/transport/transport.component";
+import { RessourceComponent } from "./event/ressource/ressource.component";
+import { EmotionRatingComponent } from "./emotion-rating/emotion-rating.component";
+
 
 export default [
     {
@@ -29,6 +33,19 @@ export default [
                 path: 'games',
                 component : GamesComponent
             },
+
+            { 
+                path: 'ressources', 
+                component: RessourceComponent 
+                },
+                {
+                path: 'transports', 
+                component: TransportComponent 
+                },
+            {
+                path: 'rating',
+                component: EmotionRatingComponent
+            }
         ]
     },
 ] as Routes;

@@ -1,6 +1,6 @@
 import {
   isPlatformBrowser
-} from "./chunk-ML7NWAL3.js";
+} from "./chunk-BN5JGIKQ.js";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,14 +21,14 @@ import {
   ɵɵelement,
   ɵɵqueryAdvance,
   ɵɵviewQuerySignal
-} from "./chunk-LTV4O3PE.js";
+} from "./chunk-P2N7JMFS.js";
 import {
   asapScheduler
 } from "./chunk-UVFDOJUO.js";
 import "./chunk-55JZBEKM.js";
 import {
   __async
-} from "./chunk-TXDUYLVM.js";
+} from "./chunk-N6ESDQJH.js";
 
 // node_modules/ng-apexcharts/fesm2022/ng-apexcharts.mjs
 var _c0 = ["chart"];
@@ -84,7 +84,7 @@ var ChartComponent = class _ChartComponent {
     return __async(this, null, function* () {
       const {
         default: ApexCharts
-      } = yield import("./apexcharts.esm-4MTK72UE.js");
+      } = yield import("./apexcharts.esm-3VE6KAIE.js");
       window.ApexCharts ||= ApexCharts;
       const options = {};
       const properties = ["annotations", "chart", "colors", "dataLabels", "series", "stroke", "labels", "legend", "fill", "tooltip", "plotOptions", "responsive", "markers", "noData", "xaxis", "yaxis", "forecastDataPoints", "grid", "states", "title", "subtitle", "theme"];

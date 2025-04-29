@@ -1,0 +1,99 @@
+<div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
+    <app-event-skeleton></app-event-skeleton>
+  </div>
+  <div class="event-cover">
+    <div class="event-img"
+        style="background-image: url(assets/images/cover/ressource.jpeg);background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+        <img src="assets/images/cover/ressource.jpeg" class="img-fluid  bg-img" alt="" style="display: none;">
+        <div class="event-content">
+            <h1>Latest resources</h1>
+        </div>
+      </div>
+    </div>
+  
+  <div class="card p-4 mb-4">
+    <h1 class="mb-6">Add a resource</h1>
+    <form>
+      <div class="form-group mb-3">
+        <label for="name">Resource name</label>
+        <input type="text" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" class="form-control" id="name" name="name" placeholder="Enter the name">
+        <div *ngIf="serverErrors?.name" class="text-danger">{{ serverErrors.name }}</div>
+      </div>
+  
+      <div class="form-group mb-3">
+        <label for="typeR">Resource type</label>
+        <input type="text" [(ngModel)]="typeR" [ngModelOptions]="{standalone: true}" class="form-control" id="typeR" name="typeR" placeholder="Enter the type">
+        <div *ngIf="serverErrors?.typeR" class="text-danger">{{ serverErrors.typeR }}</div>
+      </div>
+  
+      <div class="form-group mb-3">
+        <label for="quantite">Quantity</label>
+        <input type="number" [(ngModel)]="quantite" [ngModelOptions]="{standalone: true}" class="form-control" id="quantite" name="quantite" placeholder="0">
+        <div *ngIf="serverErrors?.quantite" class="text-danger">{{ serverErrors.quantite }}</div>
+      </div>
+  
+      <div class="form-group mb-3">
+        <label for="statutR">Status</label>
+        <select [(ngModel)]="statutR" [ngModelOptions]="{standalone: true}" class="form-control" id="statutR" name="statutR">
+          <option value="Available">Available</option>
+          <option value="Reserved">Reserved</option>
+        </select>
+        <div *ngIf="serverErrors?.statutR" class="text-danger">{{ serverErrors.statutR }}</div>
+      </div>
+  
+      <button type="button" class="btn btn-primary" (click)="saveRess()">Submit</button>
+    </form>
+  </div>
+  
+  <!-- Tableau des ressources -->
+  <div class="card p-4">
+    <h1 class="mb-3">Resource Table</h1>
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="bg-light">
+          <tr>
+            <th scope="col">Resource name</th>
+            <th scope="col">Resource type</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Status</th>
+            <th scope="col">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let RessourceItem of RessourceArray">
+            <td>{{ RessourceItem.name }}</td>
+            <td>{{ RessourceItem.typeR }}</td>
+            <td>{{ RessourceItem.quantite }}</td>
+            <td>
+              <span [ngClass]="{'badge bg-success fw-bold': RessourceItem.statutR === 'Available', 'badge bg-danger fw-bold': RessourceItem.statutR === 'Reserved'}">
+                {{ RessourceItem.statutR }}
+              </span>
+            </td>
+            <td>
+              <button type="button" class="btn btn-sm btn-outline-primary me-2" (click)="setUpdateRess(RessourceItem)">
+                <i class="bi bi-pencil">Modify</i> 
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-danger" (click)="setDeleteRess(RessourceItem)">
+                <i class="bi bi-trash">Delete</i> 
+              </button>
+              <button type="button" class="btn btn-primary" (click)="openAffectationModall(RessourceItem)">Assign to a session</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+   <!-- Modal d'affectation -->
+   <div *ngIf="showModall" class="modal">
+    <div class="modal-content">
+        <h2>Assign ressource to a session</h2>
+        <label>Choose a session :</label>
+        <select [(ngModel)]="selectedSessionId" class="form-control">
+            <option *ngFor="let session of sessionArray" [value]="session.idSession">{{ session.titre }} - {{ session.date }}</option>
+        </select>
+        <br>
+        <button class="btn btn-success" (click)="affecterRessource()">Confirm</button>
+        <button class="btn btn-secondary" (click)="closeModall()">Cancel</button>
+    </div>
+  </div>
+  

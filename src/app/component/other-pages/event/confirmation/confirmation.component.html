@@ -1,0 +1,9 @@
+<div>
+    <h2>Registration Confirmation</h2>
+    <p>Your registration was successful! Below is your QR code for the event.</p>
+    <div *ngIf="qrCodeUrl">
+      <img [src]="qrCodeUrl" alt="QR Code" />
+      <button (click)="downloadQRCode()">Download QR Code</button>
+    </div>
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  </div>
