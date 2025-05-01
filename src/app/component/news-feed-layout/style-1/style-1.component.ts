@@ -44,7 +44,8 @@ import { EventService } from '../../../shared/services/event.service';
 })
 
 export class Style1Component {
-  
+  public allEvents: any[] = [];
+
  // @Input() events: Event  ;
   @Input() event: Event;  
  @Input() events: Event[] = [];
@@ -73,8 +74,14 @@ export class Style1Component {
   // } 
   
   ngOnInit(): void {
-    this.eventService.getAllEvents().subscribe((data: Event[]) => {
-      this.events = data;
+    // this.eventService.getAllEvents().subscribe((data: Event[]) => {
+    //   this.events = data;
+    // });
+    this.loadEvents();
+  }
+  loadEvents() {
+    this.eventService.getAllEvents().subscribe((events) => {
+      this.allEvents = events;
     });
   }
 

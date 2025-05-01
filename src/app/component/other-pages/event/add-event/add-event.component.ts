@@ -6,8 +6,9 @@ import { Router } from '@angular/router';
 import { EventSkeletonComponent } from '../../../../shared/skeleton-loader/others-pages-skeleton/event-skeleton/event-skeleton.component';
 import { CommonModule } from '@angular/common';
 import { Event } from '../../../../shared/interface/event';
-import { UserService } from '../../../../shared/services/user.service';
+import { User, UserService } from '../../../../shared/services/user.service';
 import { AuthService } from '../../../../shared/services/auth.service';
+import { take, switchMap } from 'rxjs';
 @Component({
   selector: 'app-add-event',
   standalone: true,
@@ -27,8 +28,8 @@ export class AddEventComponent {
       isEditMode: any;
     
       eventId: string | undefined;
-      
-      currentUserId!: string;
+      owner: any = null;
+        //    currentUserId!: string;
      
       constructor(private fb: FormBuilder, private eventService: EventService ,
         public commonServices: CommonService,private router: Router ,private userService: UserService,
@@ -88,9 +89,14 @@ export class AddEventComponent {
       }
       
       ngOnInit() {
-        this.authService.getCurrentUser().subscribe(user => {
-          this.currentUserId = user.id; 
-        });
+        this.authService.getCurrentUser().subscribe(
+          (user) => {
+            this.owner = user; // <- Sauvegarde l'utilisateur dans ton component
+          },
+          (error) => {
+            console.error('Erreur lors de la récupération de l\'utilisateur :', error);
+          }
+        );
       }
       
 
@@ -99,35 +105,13 @@ export class AddEventComponent {
           
 
             
-              
-    
-           /* if (this.isEditMode && this.eventId) {
-                this.eventService.updateEvent(this.eventId, eventData).subscribe(
-                    (response) => {
-                        this.successMessage = 'Événement mis à jour avec succès !';
-                        this.router.navigate(['/others/event-calendar']);
-                    },
-                    (error) => {
-                        this.errorMessage = 'Échec de la modification de l’événement.';
-                        console.error(error);
-                    }
-                );
-            } else {
-                this.eventService.createEvent(eventData ).subscribe(
-                    (response) => {
-                        this.successMessage = 'Événement ajouté avec succès !';
-                        this.router.navigate(['/others/event-calendar']);
-                    },
-                    (error) => {
-                        this.errorMessage = 'Échec de l’ajout de l’événement.';
-                        console.error(error);
-                    }
-                );
-                
-            }*/
+ 
 
-
-             onSubmit() {
+            onSubmit() {
+              if (!this.owner) {
+                console.error('Utilisateur non chargé.');
+                return;
+              }
               const formData = new FormData();
               const eventObject = this.eventForm.value;
 
@@ -140,19 +124,26 @@ export class AddEventComponent {
                     formData.append('file', this.selectedFile);
                   }
 
-                  console.log('user owner :', ownerId);
+                  console.log('Formulaire envoyé :', eventObject);
                 //  console.log('user owner :',Response);
                   
-              
-                  this.eventService.createEvent(formData).subscribe(response => {
+                this.eventService.createEvent(formData).subscribe({
+                  next: (response) => {
                     console.log('Événement ajouté : ', response);
-                  });
+                    console.log('ID de l\'utilisateur propriétaire :',ownerId);
+                    this.successMessage = 'Événement ajouté avec succès !';
+                    setTimeout(() => {
+                      this.router.navigate(['others/event-calendar']);
+                    }, 1500);
+                  },
 
-              //   } else {
-              //     this.errorMessage = 'Veuillez remplir tous les champs obligatoires.';
-              // }
+                  error: (error) => {
+                    console.error('Erreur lors de l\'ajout de l\'événement :', error);
+                    this.errorMessage = 'Erreur lors de l\'ajout de l\'événement.';
+                  }
             
-  }  
+  }  );
             
             
+}
 }

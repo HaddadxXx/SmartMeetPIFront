@@ -5,7 +5,11 @@ import { Event } from '../../shared/interface/event';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { UserService } from './user.service';
-
+interface MeetResponse {
+ // link: string;
+  message: string;
+  meetLink: string;
+}
 
 @Injectable({
     providedIn: 'root',
@@ -17,20 +21,24 @@ import { UserService } from './user.service';
     }*/
 
 
-  private apiUrl = 'http://localhost:8888/events';
+  private apiUrl = 'http://localhost:8889/events';
 
   constructor(private http: HttpClient ,private authService : AuthService ,private userService : UserService) { }
 
-   // Récupérer la liste des événements
   
-    getAllEvents(): Observable<Event[]> {
-      return this.http.get<Event[]>(`${this.apiUrl}/getAllEvents`);
-    }
+  
+   // Récupérer la liste des événements
+   getAllEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(`${this.apiUrl}/getAllEvents`);
+  }
 
   
  
-
-
+  
+  
+  lancerMeetPourEvent(eventId: string): Observable<MeetResponse> {
+    return this.http.post<MeetResponse>(`http://localhost:8889/events/lancerMeetPourEvent/${eventId}`, {});
+  }
   createEvent(formData: FormData) {
     return this.http.post(`${this.apiUrl}/addEvenement`, formData);
   }
@@ -62,5 +70,21 @@ import { UserService } from './user.service';
   participateToEvent(formData: FormData): Observable<any> {
     return this.http.post(`${this.apiUrl}/participateToEvent`, formData);
   }
+
   
+
+  sendEmailToParticipants(eventId: string) {
+    return this.http.get(`${this.apiUrl}/testSend/${eventId}`, { responseType: 'text' });
+  }
+  
+
+  analyzeFileWithAI(file: File, theme: string) {
+    // Créer un FormData pour envoyer le fichier et le thème
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('theme', theme);
+  
+    // Faire une requête HTTP POST vers le backend Spring Boot
+    return this.http.post<any>('http://localhost:8889/events/analyze', formData);
+  }
 }

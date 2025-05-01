@@ -15,6 +15,11 @@ import { Router } from '@angular/router';
 
 export class AppComponent {
   title = 'bootstraptoangular19';
+  isBackOffice(): boolean {
+    return this.router.url.startsWith('/dashboard') 
+      || this.router.url.startsWith('/users')
+      || this.router.url.startsWith('/backoffice');
+  }
   constructor(private router: Router) {}
 
   showSidebar(): boolean {

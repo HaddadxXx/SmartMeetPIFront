@@ -7,7 +7,7 @@ import { Session } from "../interface/Session";
   providedIn: 'root',
 })
 export class SessionService {
-  private apiUrl = 'http://localhost:8888/sessions'; // Remplace par l'URL correcte de ton backend
+  private apiUrl = 'http://localhost:8889/sessions'; // Remplace par l'URL correcte de ton backend
 
   constructor(private http: HttpClient) {}
 

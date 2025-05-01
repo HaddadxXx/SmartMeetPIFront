@@ -14,9 +14,7 @@ import { educationWork, hobbyInterests, introMySelfAbout } from '../../../shared
 import { ProfileAboutSkeletonComponent } from '../../../shared/skeleton-loader/profile-pages-skeleton/profile-about-skeleton/profile-about-skeleton.component';
 import { EventService } from '../../../shared/services/event.service';
 
-import { Event
-  
- } from '../../../shared/interface/event';
+import { Event} from '../../../shared/interface/event';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-about',
@@ -30,7 +28,8 @@ import { CommonModule } from '@angular/common';
 export class AboutComponent {
 
   events: Event[] = [];
-
+ meetLink: string | null = null;  // Pour stocker le lien Meet généré
+  errorMessage: string = '';
   public introMySelfAbout = introMySelfAbout;
   public hobbyInterest = hobbyInterests;
   public educationWork = educationWork;
@@ -65,8 +64,22 @@ export class AboutComponent {
     }
   }
   
+  onLancerMeet(idEvent: string) {
+    this.eventService.lancerMeetPourEvent(idEvent).subscribe((response: any) => {
+      console.log("Réponse reçue :", response);
+  
+      const meetLink = response.meetLink;
+  
+      if (meetLink) {
+        window.open(meetLink, '_blank');
+      } else {
+        alert("Aucun lien Meet reçu");
+      }
+    });
+  }
+  
 
-
+  
 
   
 }

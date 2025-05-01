@@ -20,9 +20,6 @@ export interface Event {
     name: string;
     fans: number;
     images: string;
-    isOwner?: boolean;
-    ownerId: string;
-    class?: string;
 
-    user : User[] ;
+    class?: string;
 }

@@ -31,7 +31,7 @@ export class UserService {
     const params = new HttpParams()
       .set('userId', userId)
       .set('keyword', keyword);
-    return this.http.get<User[]>('http://localhost:8888/api/users/search', { params });
+    return this.http.get<User[]>('http://localhost:8889/api/users/search', { params });
   }
 
   /**
@@ -50,7 +50,7 @@ export class UserService {
       formData.append('file', file);
     }
   
-    return this.http.put('http://localhost:8888/api/users/me', formData, {
+    return this.http.put('http://localhost:8889/api/users/me', formData, {
       withCredentials: true
     });
   }

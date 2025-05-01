@@ -1,3 +1,4 @@
+
 <div class="event-box {{events?.class}}">
     <!-- <div class="image-section bg-size"
     [ngStyle]="{'background-image': 'url(' +  events.photo  + ')'}"
@@ -5,9 +6,9 @@
     style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;"> -->
 
     <div class="image-section bg-size"
-       [ngStyle]="{'background-image': 'url(http://localhost:8888/uploads/' + events.photo + ')'}"
+       [ngStyle]="{'background-image': 'url(http://localhost:8889/uploads/' + events.photo + ')'}"
         style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
-    <img [src]="'http://localhost:8888/uploads/' + events.photo" class="img-fluid  bg-img" alt="event" style="display: none;">
+    <img [src]="'http://localhost:8889/uploads/' + events.photo" class="img-fluid  bg-img" alt="event" style="display: none;">
         <!-- <img [src]="events.photo" class="img-fluid  bg-img" alt="event" style="display: none;"> -->
         <div class="card-title">
             <h3>{{ events.nomEvent }}</h3> <!-- Titre de l'événement -->

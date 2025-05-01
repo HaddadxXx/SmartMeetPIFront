@@ -142,7 +142,8 @@ eventTemplate: any;
 
 
 
-  constructor(private modal: NgbModal ,private eventService: EventService ,private authService : AuthService ,private userService : UserService,
+  constructor(private modal: NgbModal ,private eventService: EventService ,
+    private authService : AuthService ,private userService : UserService,
      private router: Router , private sanitizer: DomSanitizer , private SessionService : SessionService ) { 
        // 💡 Sanitize dès ici :
   this.actions = [
@@ -210,12 +211,12 @@ eventTemplate: any;
   
   ngOnInit(): void { 
      // Récupérer l'utilisateur connecté
-  this.authService.getCurrentUser().subscribe(user => {
-    this.currentUserId = user.id; // Récupère l'ID de l'utilisateur
+  // this.authService.getCurrentUser().subscribe(user => {
+  //   this.currentUserId = user.id; // Récupère l'ID de l'utilisateur
 
     
     this.loadEvents();
-     });
+    //  });
   }
   
   /** 🔹 Charge les événements et leurs sessions */
@@ -224,7 +225,7 @@ eventTemplate: any;
       console.log('Events from service:', events); // Vérifie les données brutes
       
       this.events = events.map((event: Event) => {
-        const isOwner = event.ownerId && this.currentUserId === event.ownerId; // Vérifie si ownerId existe
+  //      const isOwner = event.ownerId && this.currentUserId === event.ownerId; // Vérifie si ownerId existe
 
         const calendarEvent = {
           title: event.nomEvent,
@@ -237,7 +238,7 @@ eventTemplate: any;
           meta: {
             id: event.idEvent,
             sessions: event.sessions,
-            ownerId: event.ownerId
+            // ownerId: event.ownerId
           }
         };
         console.log('Mapped event:', calendarEvent); // Vérifie chaque événement mappé
@@ -266,6 +267,7 @@ eventTemplate: any;
   }
   /** 🔹 Ajoute un nouvel événement */
   addEvent(): void {
+  //  const currentUser = this.authService.getCurrentUser().subscribe(user => {
     const newEvent: Event = {
       idEvent: '', // Généré par le backend
       nomEvent: 'Nouvel Événement',
@@ -283,8 +285,9 @@ eventTemplate: any;
       sessions: [],
       horaire: '',
       lieu: '',
-      ownerId: '', 
-      user : [],
+    //  ownerId: '', 
+      //user : [],
+     
     };
 
    

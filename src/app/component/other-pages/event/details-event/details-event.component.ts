@@ -44,6 +44,9 @@ export class DetailsEventComponent {
 
   availableThemes: string[] = ['Robotique', 'IA', 'Cybersécurité', 'Développement'];
   months: string[] = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+aiValidated: any;
+analysisResult: any;
+  resultIA: any;
  // selectedEvent: Event;
   //modalService: any;
  
@@ -115,8 +118,36 @@ selectEvent(event: Event) {
   this.selectedEvent = event;  // Assurez-vous que selectedEvent est bien défini
 }
 onFileSelected(event: any) {
-  this.selectedFile = event.target.files[0] as File;
+  const file: File = event.target.files[0];
+  if (file) {
+    this.selectedFile = file;
+
+    // Vérifie si selectedEvent et theme existent avant de faire l'appel
+    if (this.selectedEvent?.theme) {
+      // Appel à l'API d'analyse IA
+      this.eventService.analyzeFileWithAI(this.selectedFile, this.selectedEvent.theme).subscribe(
+        (response: any) => {
+          console.log("Réponse IA :", response);
+          this.resultIA = response;
+          this.analysisResult = response; // Pour affichage dans le template
+
+          // Vérifie si le statut contient "Validé" pour activer le bouton
+          this.aiValidated = response.status?.includes('Validé');
+        },
+        (error: any) => {
+          console.error("Erreur lors de l'analyse IA :", error);
+          this.aiValidated = false;
+        }
+      );
+    } else {
+      console.error('Le thème de l\'événement est manquant.');
+    }
+  }
 }
+
+
+
+
 
 onSubmitParticipation() {
   if (!this.selectedEvent?.idEvent || !this.participationData.email) {
@@ -129,6 +160,7 @@ onSubmitParticipation() {
   // Add required fields with type safety
   formData.append('email', this.participationData.email);
   formData.append('eventId', this.selectedEvent.idEvent);
+  
   
   // Add file only if it exists
   if (this.selectedFile) {

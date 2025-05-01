@@ -101,6 +101,12 @@
             </a>
 
         </li>
+        <li>
+            <a href="javascript:void(0)" (click)="openSessionModal()">
+                <h6>Create ressources</h6>
+            </a>
+
+        </li>
     </ul>
 </div>
 <!-- Modal pour créer une session -->
@@ -139,7 +145,7 @@
 <div class="row event-body">
     <div class="col-xl-6">
         <app-event-section [class]="class"></app-event-section>
-        <app-event-category></app-event-category>
+        <!-- <app-event-category></app-event-category> -->
     </div>
     <div class="col-xl-6">
         <app-calendar></app-calendar>

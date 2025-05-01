@@ -35,7 +35,7 @@ export class ProfileContentComponent {
   }
   getProfileImage(profilePicture: string | null): string {
     return profilePicture 
-      ? `url('http://localhost:8888/uploads/${profilePicture}')` 
-      : `url('http://localhost:8888/uploads/defaultuser.jpg')`;
+      ? `url('http://localhost:8889/uploads/${profilePicture}')` 
+      : `url('http://localhost:8889/uploads/defaultuser.jpg')`;
   }
 }
