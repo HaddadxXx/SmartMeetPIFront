@@ -285,6 +285,8 @@ eventTemplate: any;
       sessions: [],
       horaire: '',
       lieu: '',
+      participations: [] ,// valeur par défaut
+      ownerId:''
     //  ownerId: '', 
       //user : [],
      

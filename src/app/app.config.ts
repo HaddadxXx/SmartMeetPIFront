@@ -8,6 +8,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { routes } from './app.routes';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgChartsModule } from 'ng2-charts';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
@@ -19,6 +20,6 @@ export const appConfig: ApplicationConfig = {
     provide: DateAdapter,
     useFactory: adapterFactory
   })),
-  NgbModalModule ,NgbModal
+  NgbModalModule ,NgbModal , NgChartsModule ,
   ],
 };

@@ -9,6 +9,7 @@ import { Event } from '../../../../shared/interface/event';
 import { User, UserService } from '../../../../shared/services/user.service';
 import { AuthService } from '../../../../shared/services/auth.service';
 import { take, switchMap } from 'rxjs';
+import { VoiceRecognitionService } from '../../../../shared/services/voice-recognition.service';
 @Component({
   selector: 'app-add-event',
   standalone: true,
@@ -30,8 +31,8 @@ export class AddEventComponent {
       eventId: string | undefined;
       owner: any = null;
         //    currentUserId!: string;
-     
-      constructor(private fb: FormBuilder, private eventService: EventService ,
+        isRecording = false;
+      constructor(private fb: FormBuilder, private eventService: EventService ,private voiceService : VoiceRecognitionService,
         public commonServices: CommonService,private router: Router ,private userService: UserService,
       private authService : AuthService) {
         this.eventForm = this.fb.group({
@@ -99,15 +100,17 @@ export class AddEventComponent {
         );
       }
       
-
-           
-
-          
-
-            
- 
+      startVoice() {
+        this.voiceService.startListening(this.eventForm); // eventForm: FormGroup
+      }
+      
+      stopVoice() {
+        this.voiceService.stopListening();
+      }
 
             onSubmit() {
+              const userId = this.authService.getUserId();
+              
               if (!this.owner) {
                 console.error('Utilisateur non chargé.');
                 return;

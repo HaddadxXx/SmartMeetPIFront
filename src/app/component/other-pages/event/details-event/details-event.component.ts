@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { EventService } from '../../../../shared/services/event.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormsModule, FormSubmittedEvent, ReactiveFormsModule } from '@angular/forms';
@@ -17,6 +17,8 @@ import { User, UserService } from '../../../../shared/services/user.service';
 })
 export class DetailsEventComponent {
   totalPages: number = 0; // Nombre total de pages
+  currentUserId: string = ''; // ID de l'utilisateur connecté
+  message: string = ''; // Message de retour pour la vérification
 
   events: any[] = [];
   showFilters = false;
@@ -29,7 +31,7 @@ export class DetailsEventComponent {
     lastName: '',
     eventId: ''
   };
-
+  @Input() event!: Event;
   filteredEvents: any[] = [];
   currentPage: number = 0; // Page actuelle
   pageSize: number = 4; // Taille de la page (nombre d'événements par page)
@@ -60,6 +62,7 @@ analysisResult: any;
   ngOnInit(): void {
     this.loadEvents();
     this.loadPaginatedEvents();
+    //this.getCurrentUser();
   }
 
   loadEvents(): void {
@@ -68,7 +71,6 @@ analysisResult: any;
       error: (err) => console.error(err)
     });
   }
-  
  // Charger les événements avec pagination
  loadPaginatedEvents(): void {
   this.eventService.getPaginatedEvents(this.currentPage, this.pageSize).subscribe({
@@ -83,6 +85,23 @@ analysisResult: any;
     }
   });
 }
+  // Vérifier l'état de l'événement
+  verifierEtat(eventId: string): void {
+    console.log('Vérification de l\'état de l\'événement avec ID:', eventId);
+    this.eventService.verifierEtatEvenement(eventId).subscribe(
+      (response) => {
+        this.message = 'Événement vérifié avec succès';
+        console.log('Réponse après vérification:', response);
+      },
+      (error) => {
+        this.message = 'Erreur lors de la vérification de l\'événement';
+        console.error('Erreur lors de la vérification:', error);
+      }
+    );
+  }
+
+
+
 
 // Méthode pour naviguer vers une autre page de résultats
 goToPage(page: number): void {

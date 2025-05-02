@@ -9,6 +9,7 @@ import { FeatherIconComponent } from '../../../shared/components/common/feather-
 import { EventSkeletonComponent } from '../../../shared/skeleton-loader/others-pages-skeleton/event-skeleton/event-skeleton.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { EventCategoryComponent } from './event-category/event-category.component';
+import { NgChartsModule } from 'ng2-charts';
 
 import { ClickOutSideDirective } from '../../../shared/directives/click-out-side.directive';
 import { CommonService } from '../../../shared/services/common.service';
@@ -19,12 +20,17 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { HttpClient } from '@angular/common/http';
 import { SessionService } from '../../../shared/services/session.service';
 import { Session } from '../../../shared/interface/Session';
+import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
+import { ChartType, NgApexchartsModule } from 'ng-apexcharts';
+import { ReviewSectionComponent } from "../../favorite-page/review/review-section/review-section.component";
+import { reviewStatement } from '../../../shared/data/charts/apex-charts';
+import { review } from '../../../shared/data/favorite-page/favorite-page';
 @Component({
   selector: 'app-event',
   standalone: true,
-  imports: [FeatherIconComponent, EventsComponent, EventCategoryComponent,
-    EventSkeletonComponent,CalendarComponent,FormsModule,ReactiveFormsModule,
-    EventSectionComponent, CarouselModule, ClickOutSideDirective, RouterLink , CommonModule ],
+  imports: [FeatherIconComponent, EventsComponent, EventCategoryComponent, NgApexchartsModule,FeatherIconComponent,NgApexchartsModule,
+    EventSkeletonComponent, CalendarComponent, FormsModule, ReactiveFormsModule, NgChartsModule, NgChartsModule,
+    EventSectionComponent, CarouselModule, ClickOutSideDirective, RouterLink, CommonModule, ReviewSectionComponent],
   templateUrl: './event.component.html',
   styleUrl: './event.component.scss'
 })
@@ -47,7 +53,11 @@ export class EventComponent {
 
   public events: Event[] = [];
 
-  
+
+ public reviewStatement = reviewStatement;
+  public review = review;
+
+
   constructor(
     private fb: FormBuilder,
     public commonServices: CommonService,
@@ -62,7 +72,7 @@ export class EventComponent {
         this.currentUrl = event.url;
       }
     });
-    // Initialisation du formulaire de session
+    //Initialisation du formulaire de session
     this.sessionForm = this.fb.group({
       titre: ['', Validators.required],
       date: ['', Validators.required],
@@ -75,9 +85,12 @@ export class EventComponent {
     this.eventService.getAllEvents().subscribe((data: Event[]) => {
       this.events = data;
     });
+  
+   
   }
+  
 
-
+ 
   onSessionSubmit() {
     if (this.sessionForm.valid) {
         console.log('Session Data:', this.sessionForm.value);  // Debugging

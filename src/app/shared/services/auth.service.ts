@@ -8,7 +8,6 @@ import { FormsModule } from '@angular/forms'; //
 })
 export class AuthService {
   private apiUrl = 'http://localhost:8889/api/auth';
-
   constructor(private http: HttpClient) { }
 
   signin(email: string, password: string): Observable<any> {
@@ -41,6 +40,14 @@ export class AuthService {
   getCurrentUser(): Observable<any> {
     return this.http.get<any>(this.apiUrlme, { withCredentials: true });
   }
-
+  getUser(): any {
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user) : null;
+  }
+  getUserId(): string | null {
+    const user = this.getUser();
+    console.log('Utilisateur récupéré dans getUserId():', user);
+    return user ? user.id : null;
+  }
 
 }

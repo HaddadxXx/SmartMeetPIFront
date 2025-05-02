@@ -108,6 +108,15 @@
                 </div>
               </div>
             </div>
+           <!-- 🎤 Reconnaissance vocale globale -->
+<div class="form-group">
+  <button type="button" (click)="startVoice()" [disabled]="isRecording">
+    🎤 Parler pour tout le formulaire
+  </button>
+  <button type="button" (click)="stopVoice()" [disabled]="!isRecording">
+    🛑 Stop
+  </button>
+</div>
       
             <!-- Submit Button -->
             <div class="btn-container">

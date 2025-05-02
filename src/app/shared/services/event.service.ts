@@ -22,6 +22,7 @@ interface MeetResponse {
 
 
   private apiUrl = 'http://localhost:8889/events';
+  userId: any;
 
   constructor(private http: HttpClient ,private authService : AuthService ,private userService : UserService) { }
 
@@ -87,4 +88,23 @@ interface MeetResponse {
     // Faire une requête HTTP POST vers le backend Spring Boot
     return this.http.post<any>('http://localhost:8889/events/analyze', formData);
   }
+
+  getEvenementTendance(): Observable<Event> {
+    return this.http.get<Event>(`${this.apiUrl}/evenement-tendance`);
+  }
+
+   // Récupérer l'utilisateur connecté
+   getCurrentUser(): Observable<Event> {
+    return this.http.get<Event>(`${this.apiUrl}/getCurrentUser`);
+  }
+  
+
+  verifierEtatEvenement(eventId: string) {
+    return this.http.post(`${this.apiUrl}/verifier-etat/${eventId}`, null, {
+      responseType: 'text'
+    });
+  }
+
+
+
 }

@@ -53,8 +53,9 @@
     </div>
   </div>
 
+  
 
-
+<!-- event-details.component.html -->
 
   <div class="row d-flex flex-wrap gap-3">
   <div class="detailes-event section-b-space">
@@ -75,9 +76,13 @@
           </p>
   
           <img *ngIf="event.photo" [src]="'http://localhost:8889/uploads/' + event.photo" alt="Event image" />
-  
+
+          <button class="btn btn-solid"  (click)="verifierEtat(event.idEvent)">Vérifier l'état de l'événement</button>
+    
+          <!-- Affiche le message de retour après vérification -->
+          <p *ngIf="message">{{ message }}</p>
           <div class="mt-4 text-center">
-            <button class="btn btn-success btn-sm" (click)="openParticipationModal(participationModal, event.nomEvent)">
+            <button class="btn btn-solid"  (click)="openParticipationModal(participationModal, event.nomEvent)">
               <i class="fa fa-check"></i> Participer
             </button>
             

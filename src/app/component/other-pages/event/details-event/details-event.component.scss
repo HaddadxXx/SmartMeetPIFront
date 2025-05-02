@@ -120,3 +120,10 @@
   /* Style général de la modale */
 
 /* Style des sessions (liste) */
+
+
+
+button {
+  display: block; /* Assure-toi qu'il n'est pas caché */
+  visibility: visible; /* Assure-toi qu'il est visible */
+}

@@ -20,6 +20,7 @@ export interface Event {
     name: string;
     fans: number;
     images: string;
-
+    participations?: any[]; // Rendre optionnel ou fournir une valeur par défaut
     class?: string;
+    ownerId : string ;
 }
