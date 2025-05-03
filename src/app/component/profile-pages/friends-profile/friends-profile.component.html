@@ -1,0 +1,94 @@
+<div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
+    <app-friend-profile-skeleton></app-friend-profile-skeleton>
+</div>
+
+<div class="profile-cover bg-size"
+    style="background-image: url(assets/images/cover/2.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+    <img src="assets/images/cover/2.jpg" class="img-fluid bg-img" alt="cover" style="display: none;">
+    <div class="profile-box d-lg-block d-none friend-profile">
+        <div class="profile-content">
+            <div class="image-section">
+                <div class="profile-img bg-size">
+                    <div style="background-image: url(assets/images/user-sm/14.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+                        <img src="assets/images/user-sm/14.jpg" class="img-fluid bg-img" alt="profile" style="display: none;">
+                    </div>
+                    <span class="stats">
+                        <img src="assets/images/icon/verified.png" class="img-fluid" alt="verified">
+                    </span>
+                </div>
+            </div>
+            <div class="profile-detail">
+                <h2>kelin jasen <span>❤</span></h2>
+                <h5>kelin.jasen156&#64;gmail.com</h5>
+                <div class="counter-stats">
+                    <ul id="counter">
+                        <li>
+                            <h3 class="counter-value" data-count="">546</h3>
+                            <h5>following</h5>
+                        </li>
+                        <li>
+                            <h3 class="counter-value" data-count="">26335</h3>
+                            <h5>likes</h5>
+                        </li>
+                        <li>
+                            <h3 class="counter-value" data-count="">6845</h3>
+                            <h5>followers</h5>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-lg-none d-block">
+    <div class="profile-box">
+      <app-profile></app-profile>
+    </div>
+</div>
+<app-profile-menu [currentUrl]="currentUrl"></app-profile-menu>
+<div class="container-fluid section-t-space px-0 layout-default">
+    <div class="page-content">
+        <div class="content-left">
+            <app-about-intro-my-self [introMySelf]="introMySelf"></app-about-intro-my-self>
+            <div class="suggestion-box section-t-space d-xl-block d-none">
+                <app-friend-suggestion></app-friend-suggestion>
+            </div>
+            <div class="sticky-top d-xl-block d-none">
+                <div class="page-list section-t-space">
+                    <app-liked-pages [rating]="true"></app-liked-pages>
+                </div>
+            </div>
+        </div>
+        <div class="content-center">
+            <div class="post-panel infinite-loader-sec">
+                @for (item of visiblePosts; track item) {
+                <div class="post-wrapper col-grid-box {{item.class}}">
+                    <app-post-header [postData]="item"></app-post-header>
+                    <app-post-details [postData]="item"></app-post-details>
+                </div>
+                }
+            </div>
+            @if(visiblePosts){
+            <div class="post-loader" [class.no-more]="visiblePosts.length == 7">
+                @if (visiblePosts.length < 7) { <div class="loader-icon" (click)="refresh()">
+                    <app-feather-icon [icons]="'rotate-ccw'" [class]="'icon-theme iw-25 ih-25'"></app-feather-icon>
+            </div>
+            }@else {
+            <div class="no-more-text">
+                <p>no more post</p>
+            </div>
+            }
+        </div>
+        }
+    </div>
+    <div class="content-right d-xl-block d-none">
+        <div class="sticky-top">
+            <div class="gallery-section">
+                <app-gallery></app-gallery>
+            </div>
+            <div class="hashtag-list section-t-space">
+                <app-worldwide-trends></app-worldwide-trends>
+            </div>
+        </div>
+    </div>
+</div>

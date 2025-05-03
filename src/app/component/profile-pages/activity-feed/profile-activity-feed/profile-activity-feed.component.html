@@ -1,0 +1,58 @@
+<div class="card-title">
+    <h3>activity feed</h3>
+    <div class="settings">
+        <div class="setting-btn">
+            <a href="javascript:void(0)" class="d-flex">
+                <app-feather-icon [class]="'icon icon-theme stroke-width-3 iw-11 ih-11'"
+                    [icons]="'rotate-cw'"></app-feather-icon>
+            </a>
+        </div>
+        <div class="setting-btn ms-2 setting-dropdown" (clickOutside)="outSideClose()">
+            <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+                <a href="javascript:void(0)" [class.show]="isShow" (click)="isShow =!isShow">
+                    <app-feather-icon [class]="'icon-dark stroke-width-3 icon iw-11 ih-11'" [icons]="'sun'"></app-feather-icon>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 23px);">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <app-feather-icon [class]="'icon-font-light iw-16 ih-16'" [icons]="'edit'"></app-feather-icon>see all</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><app-feather-icon [class]="'icon-font-light iw-16 ih-16'" [icons]="'search'"></app-feather-icon>find page</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><app-feather-icon [class]="'icon-font-light iw-16 ih-16'" [icons]="'settings'"></app-feather-icon>settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="activity-content">
+    @for (item of activityFeed; track $index) {
+    <div class="activity-title">
+        <h4>{{item.title}}</h4>
+    </div>
+    <ul>
+        @for (items of item.data; track items) {
+        <li>
+            <div class="media">
+                <div class="img-part bg-size" [ngStyle]="{'background-image': 'url(' +  items.image  + ')'}"
+                    style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+                    <img [src]="items.image" class="img-fluid bg-img" alt="" style="display: none;">
+                </div>
+                <div class="media-body">
+                    <h4>{{items.title}} <span>{{items.span}}</span> photo</h4>
+                    <h6>{{items.time}}</h6>
+                </div>
+            </div>
+        </li>
+        }
+    </ul>
+    }
+    <div class="load-more">
+        <a href="javascript:void(0)" class="btn btn-solid">load more</a>
+    </div>
+</div>

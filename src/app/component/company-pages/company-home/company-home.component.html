@@ -1,0 +1,33 @@
+
+<app-loading></app-loading>
+<header class="no-sticky bg-transparent home-landing overflow-hidden">
+     <app-header [currentUrl]="'/company/home'"></app-header>
+</header>
+<section class="home-section overflow-hidden bg-size"
+    style="background-image: url(assets/images/company-landing/home-bg.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+      <app-home-section></app-home-section>
+</section>
+<section class="feature-section section-pt-space sm-pb-space overflow-hidden">
+    <app-our-features></app-our-features>
+</section>
+<section class="section-pb-space section-pt-space single-feature-section landing-bg overflow-hidden">
+    <app-register-friendbook></app-register-friendbook>
+</section>
+<section class="section-pb-space section-pt-space single-feature-section overflow-hidden">
+    <app-find-new-friends></app-find-new-friends>
+</section>
+<section class="section-pb-space section-pt-space single-feature-section landing-bg overflow-hidden">
+    <app-active-users></app-active-users>
+</section>
+<section class="testimonial-section section-pb-space section-pt-space single-feature-section overflow-hidden">
+    <app-testimonial></app-testimonial>
+</section>
+<section class="section-pb-space section-pt-space landing-bg blog-wrapper overflow-hidden">
+    <app-blog-section></app-blog-section>
+</section>
+<section class="section-pb-space section-pt-space single-feature-section overflow-hidden">
+    <app-register-section></app-register-section>
+</section>
+<footer class="footer-pt-space pb-0 footer-theme overflow-hidden">
+    <app-footer [footerClass]="'footer-pb-space'" [animation]="true" [logo]="'assets/images/icon/logo.png'"></app-footer>
+</footer>

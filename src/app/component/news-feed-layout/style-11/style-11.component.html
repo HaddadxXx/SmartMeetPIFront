@@ -1,0 +1,38 @@
+<div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
+    <app-skeleton-style-11></app-skeleton-style-11>
+</div>
+<div class="story-section ratio_115">
+    <app-stroy></app-stroy>
+</div>
+<div class="container-fluid section-t-space  px-0">
+    <div class="page-content">
+        <div class="content-center content-full w-100">
+            <div class="row">
+                <div class="col-xl-12">
+                    <app-create-post></app-create-post>
+                    <div class="overlay-bg"></div>
+                    <div class="post-panel infinite-loader-sec section-t-space">
+                        @for (item of visiblePosts; track item) {
+                        <div class="post-wrapper col-grid-box {{item.class}}">
+                            <app-post-header [postData]="item"></app-post-header>
+                            <app-post-details [postData]="item"></app-post-details>
+                        </div>
+                        }
+                    </div>
+                    @if(visiblePosts){
+                    <div class="post-loader" [class.no-more]="visiblePosts.length == 7">
+                        @if (visiblePosts.length < 7) { <div class="loader-icon" (click)="refresh()">
+                            <app-feather-icon [icons]="'rotate-ccw'" [class]="'icon-theme iw-25 ih-25'"></app-feather-icon>
+                    </div>
+                    }
+                    @else {
+                    <div class="no-more-text">
+                        <p>no more post</p>
+                    </div>
+                    }
+                </div>
+            }
+            </div>
+        </div>
+    </div>
+</div>

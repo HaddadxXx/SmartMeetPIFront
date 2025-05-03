@@ -1,0 +1,84 @@
+{
+    "allGamesData": [
+        {
+            "id": 1,
+            "image": "assets/images/game/12.jpg",
+            "title": "ludo club",
+            "subTitle": "moonfrog labs",
+            "description": "Petey and other 15 friends play",
+            "type": "simulation"
+        },
+        {
+            "id": 2,
+            "image": "assets/images/game/13.jpg",
+            "title": "ludo club",
+            "subTitle": "moonfrog labs",
+            "description": "Petey and other 15 friends play",
+            "type": "simulation"
+        },
+        {
+            "id": 3,
+            "image": "assets/images/game/14.jpg",
+            "title": "ludo club",
+            "subTitle": "moonfrog labs",
+            "description": "Petey and other 15 friends play",
+            "type": "action"
+        },
+        {
+            "id": 4,
+            "image": "assets/images/game/15.jpg",
+            "title": "ludo club",
+            "subTitle": "moonfrog labs",
+            "description": "Petey and other 15 friends play",
+            "type": "adventure"
+        },
+        {
+            "id": 5,
+            "image": "assets/images/game/16.jpg",
+            "title": "ludo club",
+            "subTitle": "moonfrog labs",
+            "description": "Petey and other 15 friends play",
+            "type": "adventure"
+        },
+        {
+            "id": 6,
+            "image": "assets/images/game/17.jpg",
+            "title": "ludo club",
+            "subTitle": "moonfrog labs",
+            "description": "Petey and other 15 friends play",
+            "type": "action"
+        },
+        {
+            "id": 7,
+            "image": "assets/images/game/18.jpg",
+            "title": "ludo club",
+            "subTitle": "moonfrog labs",
+            "description": "Petey and other 15 friends play",
+            "type": "kids"
+        },
+        {
+            "id": 8,
+            "image": "assets/images/game/19.jpg",
+            "title": "ludo club",
+            "subTitle": "moonfrog labs",
+            "description": "Petey and other 15 friends play",
+            "type": "kids"
+        },
+        {
+            "id": 9,
+            "image": "assets/images/game/20.jpg",
+            "title": "ludo club",
+            "subTitle": "moonfrog labs",
+            "description": "Petey and other 15 friends play",
+            "type": "simulation"
+        },
+        {
+            "id": 10,
+            "image": "assets/images/game/21.jpg",
+            "title": "ludo club",
+            "subTitle": "moonfrog labs",
+            "description": "Petey and other 15 friends play",
+            "type": "strategy"
+        }
+    ]
+}

@@ -1,0 +1,48 @@
+
+<div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
+<app-page-reviews-skeleton></app-page-reviews-skeleton>
+</div>
+
+<app-page-cover></app-page-cover>
+<app-profile-menu [currentUrl]="currentUrl"></app-profile-menu>
+<div class="container-fluid section-t-space px-0">
+    <div class="row">
+        <div class="content-left col-4 order-1 res-full-width">
+            <app-review-section></app-review-section>
+        </div>
+        <div class="content-center col-xl-8">
+            <div class="profile-menu section-b-space ms-0 me-0">
+                <ul>
+                    <li class="active">
+                        <a href="javascript:void(0)">
+                            <app-feather-icon [icons]="'clock'" [class]="'iw-14 ih-14'"></app-feather-icon>
+                            <h6>most helpful</h6>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <app-feather-icon [icons]="'info'" [class]="'iw-14 ih-14'"></app-feather-icon>
+                            <h6>most recent</h6>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="post-panel">
+                @for (item of post; track item) {
+                <div class="post-wrapper col-grid-box {{item.class}}">
+                    <app-post-header [postData]="item"></app-post-header>
+                    <div class="post-details">
+                        @if(item.description){
+                        <app-post-details-box [postData]="item"></app-post-details-box>
+                        }
+                        <div class="like-panel">
+                            <app-like-panel></app-like-panel>
+                        </div>
+                        <app-post-react [data]="item"></app-post-react>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

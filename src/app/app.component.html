@@ -1,0 +1,16 @@
+<!-- app.component.html -->
+<ng-container *ngIf="isBackOffice(); else frontOffice">
+  <div class="d-flex min-vh-100">
+    <app-sidebar></app-sidebar>
+    <div class="flex-grow-1">
+      <app-navbar></app-navbar>
+      <div class="container-fluid p-3">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #frontOffice>
+  <router-outlet></router-outlet>
+</ng-template>

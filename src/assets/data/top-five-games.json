@@ -1,0 +1,39 @@
+{
+    "topFiveGames": [
+        {
+            "image": "assets/images/game/1.jpg",
+            "gameName": "League of Legends",
+            "type": "Action",
+            "user": "2,55,415",
+            "active": true
+        },
+        {
+            "image": "assets/images/game/2.jpg",
+            "gameName": "Minecraft",
+            "type": "Strategy",
+            "user": "1,55,415",
+            "active": false
+        },
+        {
+            "image": "assets/images/game/3.jpg",
+            "gameName": "Call of Duty",
+            "type": "Adventure",
+            "user": "2,65,465",
+            "active": false
+        },
+        {
+            "image": "assets/images/game/4.jpg",
+            "gameName": "Counter-Strike",
+            "type": "Simulation",
+            "user": "7,55,515",
+            "active": false
+        },
+        {
+            "image": "assets/images/game/5.jpg",
+            "gameName": "Siege",
+            "type": "Sports",
+            "user": "4,55,455",
+            "active": false
+        }
+    ]
+}

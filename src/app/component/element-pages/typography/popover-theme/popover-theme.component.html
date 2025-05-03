@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card-header">
+                <h4>theme tooltip</h4>
+                <span>Friendbook use Tippy tooltip.here is th example.you can change direction in
+                    tippy-setting.js</span>
+            </div>
+            <div class="card-body">
+                <ul class="d-flex tooltip-sec">
+                    <li>
+                        <a [routerLink]="['/news-feed-layout/style-1']">
+                            <app-feather-icon [icons]="'file'" [class]="'bar-icon'"></app-feather-icon>
+                            <div class="tooltip-cls">
+                                <span>newsfeed</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="ms-3">
+                        <a [routerLink]="['/favorite/page-home']">
+                            <app-feather-icon [icons]="'star'"></app-feather-icon>
+                            <div class="tooltip-cls">
+                                <span>Favourite</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="ms-3">
+                        <a href="javascript:void(0)">
+                            <app-feather-icon [icons]="'users'"></app-feather-icon>
+                            <div class="tooltip-cls">
+                                <span>users</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="ms-3">
+                        <a [routerLink]="['/others/music']">
+                            <app-feather-icon [icons]="'headphones'"></app-feather-icon>
+                            <div class="tooltip-cls">
+                                <span>Music</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="ms-3">
+                        <a [routerLink]="['/others/weather']">
+                            <app-feather-icon [icons]="'cloud'"></app-feather-icon>
+                            <div class="tooltip-cls">
+                                <span>Weather</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

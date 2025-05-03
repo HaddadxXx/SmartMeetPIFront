@@ -1,0 +1,56 @@
+<div class="birthday-section create-page" style="background-image: url(assets/images/event-bg.jpg);
+background-size: cover;
+background-position: center center;
+background-repeat: no-repeat;
+display: block;">
+    <img src="assets/images/event-bg.jpg" class="img-fluid  bg-img" alt="birthday"
+        style="display: none;">
+    <div class="birthday-top">
+        <div class="setting">
+            <div class="setting-btn light-btn">
+                <a href="javascript:void(0)" class="d-flex">
+                    <app-feather-icon [icons]="'rotate-cw'"
+                        [class]="'icon icon-light stroke-width-3 iw-11 ih-11'"></app-feather-icon>
+                </a>
+            </div>
+            <div class="setting-btn light-btn setting-dropdown" (clickOutside)="outSideClose()">
+                <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+                    <a class="d-flex" href="javascript:void(0)" [class.show]="isShow" (click)="isShow =!isShow">
+                        <app-feather-icon [icons]="'sun'"
+                            [class]="'icon-light stroke-width-3 iw-12 ih-12'"></app-feather-icon>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow" 
+                     style="position: absolute;inset: 0px auto auto 0px;margin: 0px;transform: translate(-148px, 14px);">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'edit'" [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>edit profile</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'user'" [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon> view profile</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="birthday-content">
+        <div class="image-section">
+            <div class="event-group">
+                <div class="center-profile">
+                    <img src="assets/images/icon/electricity.png" class="img-fluid  m-auto" alt="user">
+                </div>
+            </div>
+        </div>
+        <div class="details">
+            <h3>create your</h3>
+            <h6>own page</h6>
+            <p>Lorem 5th Sept 2019 dummy text of the printing and typesetting industry.</p>
+            <div class="create-btn">
+                <a href="javascript:void(0)" class="btn">create now</a>
+            </div>
+        </div>
+    </div>
+</div>

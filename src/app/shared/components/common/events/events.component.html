@@ -1,0 +1,64 @@
+<div class="event-box {{events.class}}">
+    <div class="image-section bg-size"
+    [ngStyle]="{'background-image': 'url(' +  events.image  + ')'}"
+    style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+        <img [src]="events.image" class="img-fluid  bg-img" alt="event" style="display: none;">
+        <div class="card-title">
+            <h3>event</h3>
+            <div class="settings">
+                <div class="setting-btn">
+                    <a href="javascript:void(0)" class="d-flex">
+                        <app-feather-icon [icons]="'rotate-cw'"
+                            [class]="'icon icon-dark stroke-width-3 iw-11 ih-11'"></app-feather-icon>
+                    </a>
+                </div>
+                <div class="setting-btn ms-2 setting-dropdown" (clickOutside)="outSideClose()">
+                    <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+                        <a href="javascript:void(0)" (click)="isShow = !isShow">
+                            <app-feather-icon [icons]="'sun'"
+                                [class]="'icon-dark stroke-width-3 icon iw-11 ih-11'"></app-feather-icon>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow"
+                            style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-149px, 23px);">
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <app-feather-icon [icons]="'edit'"
+                                            [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>remind me</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <app-feather-icon [icons]="'settings'"
+                                            [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>setting</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (commonService.urls) {
+        <div class="play-btn" (click)="commonService.videoPlay(commonService.urls)">
+            <img src="assets/images/icon/play.png" class="img-fluid " alt="play">
+        </div>
+        } @else {
+        <div class="play-btn">
+            <img src="assets/images/icon/play.png" class="img-fluid " alt="play">
+        </div>
+        }
+    </div>
+    <div class="event-content">
+        <h3>{{events.title}}</h3>
+        <h6>{{events.subTitle}}</h6>
+        <p>{{events.desc}}
+            <span>{{events.span}}</span>
+        </p>
+        <div class="bottom-part">
+            <a href="javascript:void(0)" class="event-btn">{{events.link}}</a>
+        </div>
+        <a href="javascript:void(0)" class="share-btn">
+            <app-feather-icon [icons]="'corner-up-right'"
+                [class]="'icon-dark stroke-width-3 iw-14 ih-14'"></app-feather-icon>
+        </a>
+    </div>
+</div>

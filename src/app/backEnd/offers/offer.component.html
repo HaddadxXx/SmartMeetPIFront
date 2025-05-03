@@ -1,0 +1,58 @@
+<!-- Tableau des offres de sponsoring -->
+<div class="card p-4">
+    <h1 class="mb-3">All Sponsorship Offers in One Place</h1>
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="bg-light">
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Creation Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let offer of paginatedOffers">
+            <td>{{ offer.title }}</td>
+            <td>{{ offer.description }}</td>
+            <td>{{ offer.amount }}</td>
+            <td>{{ offer.creationDate | date:'dd/MM/yyyy' }}</td>
+            <td>
+              <span [ngClass]="{'badge bg-success fw-bold': offer.status === 'AVAILABLE', 'badge bg-danger fw-bold': offer.status === 'UNAVAILABLE'}">
+                {{ offer.status }}
+              </span>
+            </td>
+            <td>
+           
+
+              <button type="button" class="btn btn-solid"  (click)="setDeleteOffer(offer)">
+               Delete
+              </button>
+ 
+             
+              
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+         <!-- Ici la pagination -->
+    <nav *ngIf="totalPages > 1" class="mt-3">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <button class="page-link" (click)="currentPage = currentPage - 1" [disabled]="currentPage === 1">Previous</button>
+        </li>
+        <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" 
+            [class.active]="currentPage === i + 1">
+          <button class="page-link" (click)="currentPage = i + 1">{{ i + 1 }}</button>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <button class="page-link" (click)="currentPage = currentPage + 1" [disabled]="currentPage === totalPages">Next</button>
+        </li>
+      </ul>
+    </nav>
+
+    </div>
+  </div>

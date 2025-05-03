@@ -1,0 +1,39 @@
+<header>
+    <div class="mobile-fix-menu"></div>
+    <div class="container-fluid custom-padding">
+        <div class="header-section">
+            <div class="header-left">
+                <a class="nav-sidebar me-3 d-flex" (click)="commonServices.isSidebar = true">
+                    <app-feather-icon [icons]="'menu'" [class]="'icon-light stroke-width-3 iw-16 ih-16'"></app-feather-icon>
+                </a>
+                <app-brand-logo></app-brand-logo>
+                <app-search-box></app-search-box>
+            </div>
+            <div class="header-right">
+                <ul class="option-list">
+                    <li class="header-btn home-btn d-sm-none d-block">
+                        <a class="main-link" [routerLink]="['/news-feed-layout/style-1']">
+                            <app-feather-icon [icons]="'home'"
+                                [class]="'icon-light stroke-width-3 iw-16 ih-16'"></app-feather-icon>
+                        </a>
+                    </li>
+                    <li class="header-btn custom-dropdown dropdown-lg add-friend">
+                        <app-friend-request></app-friend-request>
+                    </li>
+                    <li class="header-btn custom-dropdown dropdown-lg btn-group message-btn">
+                        <app-messages></app-messages>
+                    </li>
+                    <li class="header-btn custom-dropdown">
+                        <app-mode></app-mode>
+                    </li>
+                    <li class="header-btn custom-dropdown dropdown-lg btn-group notification-btn">
+                        <app-notification></app-notification>
+                    </li>
+                    <li class="header-btn custom-dropdown profile-btn btn-group">
+                        <app-user-profile></app-user-profile>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>

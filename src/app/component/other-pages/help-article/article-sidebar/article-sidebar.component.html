@@ -1,0 +1,15 @@
+<div class="article-sidebar sticky-cls-top theme-card">
+    <div class="sidebar-title">
+        <h3>Related topics</h3>
+    </div>
+    <ul>
+        @for (item of articleSidebar; track articleSidebar;let i = $index) {
+        <li class="active" [class.active]="i === 0">
+            <a href="javascript:void(0)">
+                <app-feather-icon [icons]="'file-text'"></app-feather-icon>
+                <h6>{{item.heading}}</h6>
+            </a>
+        </li>
+        }
+    </ul>
+</div>

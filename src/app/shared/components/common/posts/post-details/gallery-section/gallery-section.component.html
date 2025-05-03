@@ -1,0 +1,44 @@
+<div class="img-wrapper">
+    <div class="gallery-section">
+        <div class="portfolio-section ratio_square">
+            <div class="container-fluid p-0">
+                <div class="row">
+                    @for (item of data; track item) {
+                    <div class="{{item.class}}">
+                        @if(item.subClass){
+                        @for (items of item.subClass; track items) {
+                        <div class="{{items.class}}">
+                            <div class="overlay {{items.moreClass}}" (click)="openModel()">
+                                <div class="portfolio-image">
+                                    <a href="javascript:void(0)" class="bg-size"
+                                        [ngStyle]="{'background-image': 'url(' +  items.url  + ')'}"
+                                        style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                                        <img [src]="items.url" alt="" class="img-fluid  bg-img"
+                                            style="display: none;">
+                                            @if(items.more){
+                                                <span>+20</span>
+                                            }
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                        }
+                        @else {
+                        <div class="overlay" (click)="openModel()">
+                            <div class="portfolio-image">
+                                <a href="javascript:void(0)" class="bg-size" [ngStyle]="{'background-image': 'url(' +  item.url  + ')'}"
+                                    style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                                    <img [src]="item.url" alt="" class="img-fluid  bg-img"
+                                        style="display: none;">
+                                </a>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

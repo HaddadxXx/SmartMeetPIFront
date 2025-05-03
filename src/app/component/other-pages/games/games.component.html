@@ -1,0 +1,54 @@
+
+<div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
+     <app-games-skeleton></app-games-skeleton>
+</div>
+<div class="event-cover light-cover">
+    <div class="event-img"
+        style="background-image: url(assets/images/cover/16.jpg); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+        <img src="assets/images/cover/16.jpg" class="img-fluid  bg-img" alt="" style="display: none;">
+        <div class="event-content">
+            <h1>online Games</h1>
+        </div>
+        <div class="cover-img-detail">
+            <span>12 dec</span>
+            <h3>last added 10 songs</h3>
+            <a href="javascript:void(0)">view more <i class="fas ms-1 fa-arrow-right"></i></a>
+        </div>
+        <div class="settings">
+            <div class="setting-btn">
+                <a href="javascript:void(0)">
+                    <app-feather-icon [icons]="'rotate-cw'" [class]="'icon icon-dark stroke-width-3 iw-11 ih-11'"></app-feather-icon>
+                </a>
+            </div>
+            <div class="setting-btn ms-2 setting-dropdown" (clickOutside)="outSideClose()">
+                <div class=" btn-group custom-dropdown arrow-none dropdown-sm">
+                    <a href="javascript:void(0)" [class.show]="isShow" (click)="isShow =!isShow">
+                        <app-feather-icon [icons]="'sun'" [class]="'icon-dark stroke-width-3 icon iw-11 ih-11'"></app-feather-icon>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow" style="position: absolute;
+                    inset: 0px auto auto 0px;
+                    margin: 0px;
+                    transform: translate(-149px, 23px);">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'edit'" [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>edit profile</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <app-feather-icon [icons]="'user'" [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>view profile</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-popular-your-friends></app-popular-your-friends>
+<div class="container-fluid section-b-space section-t-space px-0">
+    <app-top-5-games></app-top-5-games>
+</div>
+<div class="filter-section section-b-space">
+      <app-all-games></app-all-games>
+</div>

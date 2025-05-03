@@ -1,0 +1,222 @@
+{
+    "style11": [
+        {
+            "id": 1,
+            "profileImage": "assets/images/user-sm/1.jpg",
+            "userName": "sufiya eliza",
+            "uploadTime": "30 mins ago",
+            "postImage": "assets/images/post/30.jpg",
+            "title": "Celebration new album song launched",
+            "spanTag": "#Musiccelebration,",
+            "tag": "#music, #party, #music",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. has been the industry's standard dummy text ever since the 1500s",
+            "class": "section-t-space d-block",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name": "Sufiya Eliza"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "profileImage": "assets/images/user-sm/1.jpg",
+            "userName": "Gemix Store - Online Shopping App",
+            "uploadTime": "2 mins ago",
+            "title": "Today Our Three Cute Puppy Dog Birthday !!!!",
+            "carousel": [
+                {
+                    "src": "assets/images/products/4.jpg",
+                    "title": "Natural juice",
+                    "desc": "Fresh and natural, Orange Juice. -50%"
+                },
+                {
+                    "src": "assets/images/products/5.jpg",
+                    "title": "Natural juice",
+                    "desc": "Fresh and natural, Orange Juice. -50%"
+                },
+                {
+                    "src": "assets/images/products/6.jpg",
+                    "title": "Natural juice",
+                    "desc": "Fresh and natural, OrangeJuice. -50%"
+                }
+             
+            ],
+            "spanTag": "#Onlineshopping,",
+            "tag": "#shopping, #sale,#bigdiscount",
+            "description": "$1 To win $99 deals for new users save more in group buy&flash sale, Limited time sale .",
+            "span":"Hurry Up!!!!!",
+            "class": "section-t-space d-block",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name": "Sufiya Eliza"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "profileImage": "assets/images/user-sm/14.jpg",
+            "userName": "sufiya eliza",
+            "uploadTime": "30 mins ago",
+            "postImage": "assets/images/post/10.jpg",
+            "title": "Celebration new album song launched",
+            "spanTag": "#Musiccelebration,",
+            "tag": "#music, #party, #music",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. has been the industry's standard dummy text ever since the 1500s",
+            "class": "section-t-space d-block",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name": "Sufiya Eliza"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "profileImage": "assets/images/user-sm/13.jpg",
+            "userName": "sufiya eliza",
+            "uploadTime": "30 mins ago",
+            "title": "Celebration new album song launched",
+            "spanTag": "#Musiccelebration,",
+            "tag": "#music, #party, #music",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.has been the industry's standard dummy text ever since the 1500s",
+            "class": "section-t-space d-block",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name": "Sufiya Eliza"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "profileImage": "assets/images/user-sm/1.jpg",
+            "userName": "sufiya eliza",
+            "uploadTime": "30 mins ago",
+            "gallerySrc": [
+                {
+                    "class": "col-8 pt-cls",
+                    "url": "assets/images/story/9.jpg"
+                },
+                {
+                    "class": "col-4 row m-0",
+                    "subClass": [
+                        {
+                            "class":"col-12 pt-cls p-0",
+                            "url": "assets/images/story/10.jpg"
+                        },
+                        {
+                            "class":"col-12 pt-cls p-0",
+                            "url": "assets/images/story/11.jpg",
+                            "more":true,
+                            "moreClass":"image-plus"
+                        }
+                    ]
+                }
+            ],
+            "title": "Celebration new album song launched",
+            "spanTag": "#Musiccelebration,",
+            "tag": "#music, #party, #music",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.has been the industry's standard dummy text ever since the 1500s",
+            "class": "section-t-space d-block",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name": "Sufiya Eliza"
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "profileImage": "assets/images/user-sm/1.jpg",
+            "userName": "sufiya eliza",
+            "uploadTime": "30 mins ago",
+            "title": "Celebration new album song launched",
+            "spanTag": "#Musiccelebration,",
+            "tag": "#music, #party, #music",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.has been the industry's standard dummy text ever since the 1500s",
+            "class": "section-t-space d-block",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name": "Sufiya Eliza"
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "profileImage": "assets/images/user-sm/1.jpg",
+            "userName": "sufiya eliza",
+            "uploadTime": "30 mins ago",
+            "isUrl": "https://giphy.com/embed/xl2zRzM8sVo3td58kS",
+            "title": "Celebration new album song launched",
+            "spanTag": "#Musiccelebration,",
+            "tag": "#music, #party, #music",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. has been the industry's standard dummy text ever since the 1500s",
+            "class": "section-t-space d-block",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name": "Sufiya Eliza"
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name": "Sufiya Eliza"
+                }
+            ]
+        }
+    ]
+}

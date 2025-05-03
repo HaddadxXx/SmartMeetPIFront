@@ -1,0 +1,76 @@
+<div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
+    <app-weathers-skeleton></app-weathers-skeleton>
+</div>
+
+<div class="event-cover bg-theme">
+    <div class="event-img"
+        style="background-image: url(assets/images/20.jpg); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+        <img src="assets/images/20.jpg" class="img-fluid  bg-img" alt="" style="display: none;">
+        <div class="event-content">
+        </div>
+        <div class="cover-img-detail">
+            
+        </div>
+        <div class="settings">
+            <div class="setting-btn">
+                <a href="javascript:void(0)">
+                    <app-feather-icon [icons]="'rotate-cw'"
+                        [class]="'icon icon-dark stroke-width-3 iw-11 ih-11'"></app-feather-icon>
+                </a>
+            </div>
+            <div class="setting-btn ms-2 setting-dropdown" (clickOutside)="close()">
+                <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+                    <a href="javascript:void(0)" [class.show]="isOpen" (click)="isOpen =!isOpen">
+                        <app-feather-icon [icons]="'sun'"
+                            [class]="'icon-dark stroke-width-3 icon iw-11 ih-11'"></app-feather-icon>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isOpen"
+                        style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-149px, 23px);">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)"><app-feather-icon [icons]="'edit'"
+                                        [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>edit profile</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><app-feather-icon [icons]="'user'"
+                                        [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>view profile</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="event-timeline weather-timeline">
+        <div class="timeline-title">
+            <div class="media">
+                <img src="assets/images/icon/event.png" class="img-fluid " alt="">
+                <div class="media-body">
+                    <h4>hourly forecast</h4>
+                </div>
+            </div>
+        </div>
+        <ul class="timeline-content">
+            @for (item of hourlyForecast; track item) {
+            <li>
+                <img [src]="item.svg" alt="">
+                <h4>{{item.celsius}}º</h4>
+                <h6>{{item.time}} AM</h6>
+            </li>
+            }
+        </ul>
+    </div>
+</div>
+<div class="container-fluid section-t-space px-0">
+    <div class="page-content">
+        <div class="content-left">
+            
+            <div>
+                <div >
+                    <app-sponsor-request></app-sponsor-request>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

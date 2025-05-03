@@ -1,0 +1,120 @@
+<div class="ldr-comments">
+    <ul>
+        <li>
+            <div class="media">
+                <div class="ldr-img"></div>
+                <div class="media-body">
+                    <div class="contents">
+                        <div class="ldr-content"></div>
+                        <div class="ldr-content"></div>
+                    </div>
+                </div>
+            </div>
+            <ul class="sub-comment">
+                <li>
+                    <div class="media">
+                        <div class="ldr-img"></div>
+                        <div class="media-body">
+                            <div class="contents">
+                                <div class="ldr-content"></div>
+                                <div class="ldr-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <div class="media">
+                <div class="ldr-img"></div>
+                <div class="media-body">
+                    <div class="contents">
+                        <div class="ldr-content"></div>
+                        <div class="ldr-content"></div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="media">
+                <div class="ldr-img"></div>
+                <div class="media-body">
+                    <div class="contents">
+                        <div class="ldr-content"></div>
+                        <div class="ldr-content"></div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+@for (item of comment; track item) {
+<div class="main-comment">
+    <div class="media">
+        <a href="javascript:void(0)" class="user-img popover-cls"
+        #data="ngbPopover" [ngbPopover]="popContent" triggers=""
+            (click)="commonServices.toggle(data, item.images , item.uname)" placement="right"   
+            [ngStyle]="{'background-image': 'url(' +  item.images  + ')'}"
+            style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+            <img [src]="item.images" class="img-fluid  bg-img" alt="user"
+                style="display: none;">
+        </a>
+        <div class="media-body">
+            <a href="javascript:void(0)">
+                <h5>{{item.uname}}</h5>
+            </a>
+            <p>{{item.comment}}
+            </p>
+            <ul class="comment-option">
+                @if(item.likes){
+                <li><a href="javascript:void(0)">like ({{item.likes}})</a></li>
+                } @else {
+                <li><a href="javascript:void(0)">like</a></li>
+                }
+                <li><a href="javascript:void(0)">reply</a></li>
+                <li><a href="javascript:void(0)">translate</a></li>
+            </ul>
+        </div>
+        <div class="comment-time">
+            <h6>50 mins ago</h6>
+        </div>
+    </div>
+    <div class="sub-comment">
+        @for (items of item.reply; track items) {
+        <div class="media">
+            <a href="javascript:void(0)" class="user-img popover-cls"
+            #data="ngbPopover" [ngbPopover]="popContent" triggers=""
+            (click)="commonServices.toggle(data, items.images , items.uname)" placement="right"   
+                [ngStyle]="{'background-image': 'url(' +  items.images  + ')'}"
+                style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                <img [src]="items.images" class="img-fluid  bg-img" alt="user"
+                    style="display: none;">
+            </a>
+            <div class="media-body">
+                <a href="javascript:void(0)">
+                    <h5>{{items.uname}}</h5>
+                </a>
+                <p>{{items.comment}}</p>
+                <ul class="comment-option">
+                    <li><a href="javascript:void(0)">like</a></li>
+                    <li><a href="javascript:void(0)">reply</a></li>
+                    <li><a href="javascript:void(0)">translate</a></li>
+                </ul>
+            </div>
+            <div class="comment-time">
+                <h6>50 mins ago</h6>
+            </div>
+        </div>
+        }   
+        @if (item.reply) {
+        <a href="javascript:void(0)" class="loader">
+            <app-feather-icon [class]="'iw-15 ih-15'" [icons]="'rotate-cw'"></app-feather-icon>load more
+            replies
+        </a>
+        }
+    </div>
+</div>
+}   
+<ng-template #popContent>
+    <app-popover-loader [data]="commonServices.popoverData"></app-popover-loader>
+</ng-template>

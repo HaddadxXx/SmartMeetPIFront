@@ -1,0 +1,19 @@
+<app-loading></app-loading>
+<header class="no-sticky bg-transparent">
+    <app-header [currentUrl]="currentUrl"></app-header>
+</header>
+<section class="breadcrumb-section breadcrumb-sm bg-size"
+    style="background-image: url(assets/images/breadcrumb.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+    @if(title){
+        <app-title-section [title]="title"></app-title-section>
+    }
+</section>
+<section class="section-pb-space section-pt-space bg-white">
+  <app-company-blog-section></app-company-blog-section>
+</section>
+<section>
+    <app-download></app-download>
+</section>
+<footer class="footer-t-space pb-0">
+    <app-footer [footerClass]="'footer-b-space'"></app-footer>
+</footer>

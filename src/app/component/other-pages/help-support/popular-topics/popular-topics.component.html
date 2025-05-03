@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="title">
+                <h3>Your Offers</h3>
+            </div>
+        </div>
+         <!-- Tableau des offres de sponsoring -->
+  <div class="card p-4">
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="bg-light">
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Creation Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let offer of offerArray">
+            <td>{{ offer.title }}</td>
+            <td>{{ offer.description }}</td>
+            <td>{{ offer.amount }}</td>
+            <td>{{ offer.creationDate | date:'dd/MM/yyyy' }}</td>
+            <td>
+              <span [ngClass]="{'badge bg-success fw-bold': offer.status === 'AVAILABLE', 'badge bg-danger fw-bold': offer.status === 'UNAVAILABLE'}">
+                {{ offer.status }}
+              </span>
+            </td>
+            <td>
+              <button type="button" class="btn btn-solid" (click)="setUpdateOffer(offer)">
+                Modifier
+              </button>
+              <button class="btn btn-solid" (click)="openAffectationModal(offer)">Affecter une offre</button>
+
+              <button type="button" class="btn btn-solid"  (click)="setDeleteOffer(offer)">
+                Supprimer
+              </button>
+ 
+             
+              <button class="btn btn-solid" *ngIf="offer.contractId" (click)="downloadContract(offer.contractId)">
+                Télécharger le contrat 📄
+              </button>
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- Modale d'affectation (Placez ce bloc à la fin du fichier) -->
+<div *ngIf="showModal" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h2>Associer une Offre de Sponsoring à un Événement</h2>
+
+    <label for="eventSelect">Sélectionnez un événement :</label>
+    <select [(ngModel)]="selectedEventId" class="form-control">
+      <option *ngFor="let event of eventArray" [value]="event.id">{{ event.name }}</option>
+    </select>
+
+    <button class="btn btn-primary mt-3" (click)="affecterSponsoring()">Associer</button>
+  </div>
+</div>
+    </div>
+</div>

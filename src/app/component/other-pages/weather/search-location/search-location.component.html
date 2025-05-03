@@ -1,0 +1,58 @@
+<div class="card-title">
+    <h3>search location</h3>
+    <div class="settings">
+        <div class="setting-btn">
+            <a href="javascript:void(0)" class="d-flex">
+                <app-feather-icon [icons]="'rotate-cw'"
+                    [class]="'icon icon-dark stroke-width-3 iw-11 ih-11'"></app-feather-icon>
+            </a>
+        </div>
+        <div class="setting-btn ms-2 setting-dropdown" (clickOutside)="outSideClose()">
+            <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+                <a class="d-flex" href="javascript:void(0)" [class.show]="isShow" (click)="isShow =!isShow">
+                    <app-feather-icon [icons]="'sun'"
+                        [class]="'icon-dark stroke-width-3 iw-12 ih-12'"></app-feather-icon>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow"
+                    style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 14px);">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <app-feather-icon [icons]="'edit'"
+                                    [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>change city</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <app-feather-icon [icons]="'settings'"
+                                    [class]="'icon-font-light iw-16 ih-16'"></app-feather-icon>setting</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form class="theme-form">
+    <div class="input-group">
+        <input class="form-control" type="text" placeholder="Search location">
+    </div>
+    <div class="input-group">
+        <select class="custom-select">
+            <option selected>Unit...</option>
+            <option value="1">ºC- Celsuis</option>
+            <option value="2">ºF - Fahrenheit</option>
+            <option value="3">ºK - Kelvin</option>
+        </select>
+    </div>
+    <div class="input-group">
+        <select class="custom-select">
+            <option selected>forecast days...</option>
+            <option value="1">next 7 days</option>
+            <option value="2">next 15 days</option>
+            <option value="3">next 1 month</option>
+        </select>
+    </div>
+    <div class="btn-section text-right">
+        <a href="javascript:void(0)" class="btn btn-solid">search</a>
+    </div>
+</form>

@@ -1,0 +1,107 @@
+
+<div class="card p-4 mb-4">
+  <h1 class="mb-6">Créer une demande de sponsoring</h1>
+  <form>
+    <div class="form-group mb-3">
+      <label>Description de l'événement</label>
+      <textarea 
+        [(ngModel)]="eventDescription" 
+        [ngModelOptions]="{standalone: true}" 
+        class="form-control" 
+        placeholder="Décrivez votre événement en détail"
+        rows="4"
+        required
+      ></textarea>
+      <div *ngIf="serverErrors?.eventDescription" class="text-danger small mt-1">
+        {{ serverErrors.eventDescription }}
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Date de demande</label>
+          <input 
+            type="date" 
+            [(ngModel)]="requestDate" 
+            [ngModelOptions]="{standalone: true}" 
+            class="form-control"
+            [min]="minDate"
+          >
+          <div *ngIf="serverErrors?.requestDate" class="text-danger small mt-1">
+            {{ serverErrors.requestDate }}
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Statut</label>
+          <select 
+            [(ngModel)]="statusR" 
+            [ngModelOptions]="{standalone: true}" 
+            class="form-select"
+          >
+            <option value="PENDING">En attente</option>
+            <option value="APPROVED">Approuvé</option>
+            <option value="REJECTED">Rejeté</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4 d-flex gap-2">
+      <button type="button" class="btn btn-primary px-4" (click)="saveRequest()">
+        {{ currentRequestID ? 'Modifier' : 'Créer' }}
+      </button>
+      <button type="button" class="btn btn-outline-secondary px-4" (click)="resetForm()">
+        Annuler
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="card p-4">
+  <h2 class="mb-4">Historique des demandes</h2>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th width="40%">Description</th>
+          <th width="20%">Date</th>
+          <th width="20%">Statut</th>
+          <th width="20%">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of requestArray">
+          <td class="text-break">{{ request.eventDescription }}</td>
+          <td>{{ request.requestDate | date:'dd/MM/yyyy' }}</td>
+          <td>
+            <span class="badge rounded-pill p-2" 
+              [ngClass]="{
+                'bg-warning': request.statusR === 'PENDING',
+                'bg-success': request.statusR === 'APPROVED',
+                'bg-danger': request.statusR === 'REJECTED'
+              }">
+              {{ request.statusR | lowercase }}
+            </span>
+          </td>
+          <td>
+            <div class="d-flex gap-2">
+              <button class="btn btn-primary px-4"  (click)="setUpdateRequest(request)">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn btn-primary px-4"  (click)="setDeleteRequest(request.id)">
+                <i class="bi bi-trash"></i>
+              </button>
+              
+              <button (click)="affecterRequest(eventId, request.id)">Associer à un Événement</button>
+
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

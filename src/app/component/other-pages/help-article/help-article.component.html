@@ -1,0 +1,42 @@
+<app-loading></app-loading>
+<header class="no-sticky bg-transparent">
+    <app-header-one></app-header-one>
+</header>
+<section class="breadcrumb-section bg-size"
+    style="background-image: url(assets/images/breadcrumb.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+    <img src="assets/images/breadcrumb.jpg" class="img-fluid bg-img" alt="" style="display: none;">
+    <div class="animation-emoji">
+        <app-animation-emoji></app-animation-emoji>
+    </div>
+    <div class="help-search">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-12 m-auto">
+                    <h2>how can we help you?</h2>
+                    <form>
+                        <input type="search" class="form-control" placeholder="Search something here...">
+                        <span>popular topics: privacy, security, profile</span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-pt-space section-pb-space article-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 order-lg-1">
+                 <app-article-part></app-article-part>
+            </div>
+            <div class="col-lg-3">
+                <app-article-sidebar></app-article-sidebar>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <app-download></app-download>
+</section>
+<footer class="footer-t-space">
+    <app-footer [footerClass]="'footer-b-space'"></app-footer>
+</footer>

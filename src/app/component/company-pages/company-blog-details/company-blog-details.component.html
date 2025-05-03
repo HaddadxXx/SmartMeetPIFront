@@ -1,0 +1,75 @@
+<app-loading></app-loading>
+
+<header class="no-sticky bg-transparent">
+    <app-header [currentUrl]="currentUrl"></app-header>
+</header>
+
+<section class="breadcrumb-section breadcrumb-sm bg-size"
+    style="background-image: url(assets/images/breadcrumb.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+    @if(title){
+    <app-title-section [title]="title"></app-title-section>
+    }
+</section>
+<section class="section-pb-space section-pt-space bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 order-lg-1">
+                <div class="blog-single-detail bg-size">
+                    <div class="top-image"
+                        style="background-image: url(assets/images/blog/1.jpg);background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+                        <img src="assets/images/blog/1.jpg" alt="" class="img-fluid bg-img" style="display: none;">
+                        <div class="blog-label">
+                            <h6><app-feather-icon [icons]="'heart'" [class]="'iw-13 ih-13'"></app-feather-icon>10</h6>
+                            <h6><app-feather-icon [icons]="'message-circle'" [class]="'iw-14 ih-14'"></app-feather-icon>5</h6>
+                        </div>
+                    </div>
+                    <div class="blog-details">
+                        <div class="detail">
+                            <h6><app-feather-icon [icons]="'user'" [class]="'iw-15 ih-15'"></app-feather-icon>page turner</h6>
+                            <h6><app-feather-icon [icons]="'clock'" [class]="'iw-15 ih-15'"></app-feather-icon>20 June, 2024</h6>
+                        </div>
+                        <a href="javascript:void(0)">
+                            <h2>increase your friendbook followers - post, like, comments</h2>
+                        </a>
+                    </div>
+                    <div class="detail-part">
+                        @for (item of detailPart; track item) {
+                        <p>{{item.data}}</p>
+                        }
+                    </div>
+                    <div class="blog-comment">
+                        <app-blog-comment></app-blog-comment>
+                    </div>
+                    <div class="leave-comment">
+                        <h3 class="comment">leave a comment</h3>
+                        <form class="theme-form">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <input class="form-control" placeholder="Enter Your Name" required="" type="text">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input class="form-control" id="inputEmail4" placeholder="Enter Your Email" required="" type="email">
+                                </div>
+                                <div class="form-group col-md-12 mt-4">
+                                    <textarea class="form-control" id="exampleTextarea" placeholder="Leave a Comment" required="" rows="4"></textarea>
+                                </div>
+                            </div>
+                            <div class="submit-btn">
+                                <button class="btn btn-solid" type="submit">post comment</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 order-lg-0">
+                <app-blog-filter></app-blog-filter>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <app-download></app-download>
+</section>
+<footer class="footer-t-space pb-0">
+    <app-footer [footerClass]="'footer-b-space'"></app-footer>
+</footer>

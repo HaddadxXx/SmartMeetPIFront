@@ -1,0 +1,24 @@
+<a class="main-link" (click)="isMobile = !isMobile">
+    <app-feather-icon [icons]="'grid'" [class]="'icon-light stroke-width-3 iw-16 ih-16'"></app-feather-icon>
+</a>
+<div class="overlay-bg app-overlay" [class.show]="isMobile"></div>
+<div class="app-box" [class.show]="isMobile">
+    <div class="row">
+        @for (item of menuItemsData; track item) {
+        <div class="col-4">
+            <div class="app-icon">
+                <a [routerLink]="item.path" (click)="isMobile = false">
+                    <div class="icon">
+                        @if(item.iconType === 'feather'){
+                        <app-feather-icon [icons]="item.icons" [class]="'bar-icon'"></app-feather-icon>
+                        } @else {
+                        <app-svg-icon [class]="item.class" [icons]="item.icons"></app-svg-icon>
+                        }
+                    </div>
+                    <h5>{{item.title}}</h5>
+                </a>
+            </div>
+        </div>
+        }
+    </div>
+</div>

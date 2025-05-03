@@ -1,0 +1,68 @@
+<header [ngClass]="getClass().header">
+    <app-header [currentUrl]="currentUrl"></app-header>
+</header>
+<div class="page-body container-fluid" [ngClass]="getClass().body">
+    @if(currentUrl.includes('/news-feed-layout/style-10') || currentUrl.includes('/news-feed-layout/style-11')){
+    <div class="panel-sidebar">
+        <div class="sticky-cls">
+            <div class="sidebar-panel panel-lg dark-sidebar">
+                <app-sidebar [currentUrl]="currentUrl"></app-sidebar>
+            </div>
+            <div class="page-list section-t-space">
+                <app-liked-pages [rating]="false"></app-liked-pages>
+            </div>
+        </div>
+    </div>
+    }@else {
+    <div class="sidebar-panel" [class.show]="commonServices.isSidebar" [ngClass]="getClass().sidebar">
+        <app-sidebar [currentUrl]="currentUrl"></app-sidebar>
+    </div>
+    }
+    @if (currentUrl.includes('/news-feed-layout/style-6')) {
+    <div class="page-content content-sidebar m-0">
+        <div class="content-left p-0">
+            <div class="profile-box">
+                <app-profile-box></app-profile-box>
+            </div>
+            <div class="suggestion-box section-t-space">
+                <app-friend-suggestion></app-friend-suggestion>
+            </div>
+            <div class="sticky-top sticky-xl-top">
+                <div class="page-list section-t-space">
+                    <app-liked-pages [rating]="true"></app-liked-pages>
+                </div>
+                <div class="weather-section section-t-space">
+                    <app-common-weather></app-common-weather>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+    <div class="page-center" [ngClass]="getClass().center">
+        <router-outlet></router-outlet>
+    </div>
+    @if (currentUrl.includes('news-feed-layout/style-8')) {
+    <div class="page-content content-sidebar m-0">
+        <div class="content-left p-0">
+            <div class="profile-box">
+                <app-profile-box></app-profile-box>
+            </div>
+            <div class="suggestion-box section-t-space">
+                <app-friend-suggestion></app-friend-suggestion>
+            </div>
+            <div class="sticky-top sticky-xl-top">
+                <div class="page-list section-t-space">
+                    <app-liked-pages [rating]="true"></app-liked-pages>
+                </div>
+                <div class="weather-section section-t-space">
+                    <app-common-weather></app-common-weather>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+    <div class="conversation-panel xl-light" [ngClass]="getClass().panel">
+        <app-friends-conversation></app-friends-conversation>
+    </div>
+</div>
+<app-theme-settings></app-theme-settings>

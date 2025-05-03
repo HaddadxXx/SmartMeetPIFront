@@ -1,0 +1,22 @@
+{
+    "friendSuggestion": [
+        {
+            "images": "assets/images/story/2.jpg",
+            "name": "josephin water",
+            "title": "active now",
+            "class": "pink"
+        },
+        {
+            "images": "assets/images/story/7.jpg",
+            "name": "josephin water",
+            "title": "active now",
+            "class": "blue"
+        },
+        {
+            "images": "assets/images/story/1.jpg",
+            "name": "josephin water",
+            "title": "active now",
+            "class": "skin"
+        }
+    ]
+}

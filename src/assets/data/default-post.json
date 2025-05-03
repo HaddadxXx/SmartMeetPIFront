@@ -1,0 +1,277 @@
+{
+    
+    "homePost": [
+        {
+            "id": 1,
+            "profileImage": "assets/images/user-sm/15.jpg",
+            "userName": "sufiya eliza",
+            "uploadTime": "30 mins ago",
+            "video" : "https://www.youtube.com/embed/TKnufs85hXk",
+            "postImage": "assets/images/post/19.jpg",
+            "title": "Today Our Three Cute Puppy Dog Birthday !!!!",
+            "spanTag": "#ourcutepuppy,",
+            "tag": "#puppy, #birthday, #dog",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. has been the industry's standard dummy text ever since the 1500s",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name":"Sufiya Eliza"
+
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name":"Sufiya Eliza"
+
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name":"Sufiya Eliza"
+
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "profileImage": "assets/images/user-sm/14.jpg",
+            "userName": "sufiya eliza",
+            "uploadTime": "30 mins ago",
+            "postImage": "assets/images/post/18.jpg",
+            "title": "Celebration new album song launched",
+            "spanTag": "#Musiccelebration,",
+            "tag": "#music, #party, #music",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.has been the industry's standard dummy text ever since the 1500s",
+            "class":"section-t-space",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name":"Sufiya Eliza"
+
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name":"Sufiya Eliza"
+
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name":"Sufiya Eliza"
+
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "profileImage": "assets/images/user-sm/11.jpg",
+            "userName": "sufiya eliza",
+            "uploadTime": "30 mins ago",
+            "title": "Celebration new album song launched",
+            "spanTag": "#Musiccelebration,",
+            "tag": "#music, #party, #music",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.has been the industry's standard dummy text ever since the 1500s",
+            "class":"section-t-space",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name":"Sufiya Eliza"
+
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name":"Sufiya Eliza"
+
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name":"Sufiya Eliza"
+
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "profileImage": "assets/images/user-sm/10.jpg",
+            "userName": "sufiya eliza",
+            "uploadTime": "30 mins ago",
+            "isUrl": "https://giphy.com/embed/xl2zRzM8sVo3td58kS",
+            "title": "Celebration new album song launched",
+            "spanTag": "#Musiccelebration,",
+            "tag": "#music, #party, #music",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.has been the industry's standard dummy text ever since the 1500s",
+            "class":"section-t-space",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name":"Sufiya Eliza"
+
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name":"Sufiya Eliza"
+
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name":"Sufiya Eliza"
+
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "profileImage": "assets/images/user-sm/15.jpg",
+            "userName": "sufiya eliza",
+            "uploadTime": "30 mins ago",
+            "title": "Celebration new album song launched",
+            "spanTag": "#Musiccelebration,",
+            "tag": "#music, #party, #music",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. has been the industry's standard dummy text ever since the 1500s",
+            "class":"section-t-space",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name":"Sufiya Eliza"
+
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name":"Sufiya Eliza"
+
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name":"Sufiya Eliza"
+
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "profileImage": "assets/images/user-sm/15.jpg",
+            "userName": "sufiya eliza",
+            "uploadTime": "30 mins ago",
+            "postImage": "assets/images/post/2.jpg",
+            "title": "Celebration new album song launched",
+            "spanTag": "#Musiccelebration,",
+            "tag": "#music, #party, #music",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. has been the industry's standard dummy text ever since the 1500s",
+            "class":"section-t-space",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name":"Sufiya Eliza"
+
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name":"Sufiya Eliza"
+
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name":"Sufiya Eliza"
+
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "profileImage": "assets/images/user-sm/10.jpg",
+            "userName": "sufiya eliza",
+            "uploadTime": "30 mins ago",
+            "title": "Celebration new album song launched",
+            "spanTag": "#Musiccelebration,",
+            "tag": "#music, #party, #music",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.has been the industry's standard dummy text ever since the 1500s",
+            "class":"section-t-space",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name":"Sufiya Eliza"
+
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name":"Sufiya Eliza"
+
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name":"Sufiya Eliza"
+
+                }
+            ]
+        }
+    ],
+    "reviewPost": [
+        {
+            "id": 1,
+            "userName": "Sufiya Eliza",
+            "isDescription": true,
+            "details":"Recommends",
+            "profileImage": "assets/images/user-sm/15.jpg"
+        },
+        {
+            "id": 2,
+            "userName": "Bob Frapples",
+            "isDescription": true,
+            "details":"Reviewed",
+            "class": "section-t-space",
+            "profileImage": "assets/images/user-sm/12.jpg",
+            "description": "Best acadamy for dance, environment is so good.We had a great time learning the dances. Teacher was lovely as was the organisers. Lots of energy and quite a few laughs. Loads of fun!",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name":"Sufiya Eliza"
+
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name":"Sufiya Eliza"
+
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name":"Sufiya Eliza"
+
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "userName": "Bob Frapples",
+            "isDescription": true,
+            "details":"Reviewed",
+            "class": "section-t-space",
+            "profileImage": "assets/images/user-sm/11.jpg",
+            "description": "The Team of Dance Academy were very welcoming, enthusiastic and full of energy. We had an incredible time which was fun and exciting. Relaxed atmosphere full of laughter.",
+            "images": [
+                {
+                    "url": "assets/images/user-sm/1.jpg",
+                    "name":"Sufiya Eliza"
+
+                },
+                {
+                    "url": "assets/images/user-sm/2.jpg",
+                    "name":"Sufiya Eliza"
+
+                },
+                {
+                    "url": "assets/images/user-sm/3.jpg",
+                    "name":"Sufiya Eliza"
+
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "userName": "sufiya eliza",
+            "isDescription": true,
+            "details":"Reviewed",
+            "class": "section-t-space",
+            "profileImage": "assets/images/user-sm/14.jpg"
+        }
+    ]
+}
+
+
+

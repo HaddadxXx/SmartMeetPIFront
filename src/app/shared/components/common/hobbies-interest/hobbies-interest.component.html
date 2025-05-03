@@ -1,0 +1,27 @@
+<div class="card-title">
+  @for (item of hobbyInterests; track item) {
+  <h3>{{ item.title }}</h3>
+  }
+  <div class="settings">
+    <div class="setting-btn">
+      <a href="javascript:void(0)" (click)="editProfile()">
+        <app-feather-icon [icons]="'edit-2'" [class]="'icon icon-dark stroke-width-3 iw-11 ih-11'"></app-feather-icon>
+      </a>
+    </div>
+  </div>
+</div>
+<ul class="about-list">
+  @if(hobbyInterests)
+  {
+  @for (items of hobbyInterests; track items) {
+  @for (items of items.value; track $index) {
+  <li>
+    <h5 class="title">{{ items.title }} :</h5>
+    <h6 class="content">
+      {{ items.content }}
+    </h6>
+  </li>
+  }
+  }
+  }
+</ul>

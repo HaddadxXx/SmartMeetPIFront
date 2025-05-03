@@ -1,0 +1,75 @@
+<div class="card-title">
+    <h3>#worldwide trends</h3>
+    <div class="settings">
+        <div class="setting-btn">
+            <a href="javascript:void(0)" class="d-flex">
+                <app-feather-icon [icons]="'rotate-cw'"
+                    [class]="'icon icon-dark stroke-width-3 iw-11 ih-11'"></app-feather-icon>
+            </a>
+        </div>
+        <div class="setting-btn ms-2 setting-dropdown" (clickOutside)="outSideClose()">
+            <div class=" btn-group custom-dropdown arrow-none dropdown-sm">
+                <a href="javascript:void(0)" [class.show]="isShow" (click)="isShow =!isShow">
+                    <app-feather-icon [class]="'icon-dark stroke-width-3 icon iw-11 ih-11'"
+                        [icons]="'sun'"></app-feather-icon>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="isShow"
+                    style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 23px);">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <app-feather-icon [icons]="'edit'"
+                                    class="'icon-font-light iw-16 ih-16'"></app-feather-icon>see all</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <app-feather-icon [icons]="'search'"
+                                    class="'icon-font-light iw-16 ih-16'"></app-feather-icon>find page</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <app-feather-icon [icons]="'settings'"
+                                    class="'icon-font-light iw-16 ih-16'"></app-feather-icon>settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hashtag-content">
+    <ul>
+        <li>
+            <a href="javascript:void(0)">
+                <h5>#CitizenshipAmendmentBill2019</h5>
+            </a>
+            <h6>
+                <app-feather-icon [icons]="'mail'" [class]="'iw-11 ih-11'"></app-feather-icon>15k post
+            </h6>
+        </li>
+        <li>
+            <a href="javascript:void(0)">
+                <h5>#BestFriend</h5>
+            </a>
+            <h6>
+                <app-feather-icon [icons]="'mail'" [class]="'iw-11 ih-11'"></app-feather-icon>574k post
+            </h6>
+        </li>
+        <li>
+            <a href="javascript:void(0)">
+                <h5>#loveYourSelf</h5>
+            </a>
+            <h6>
+                <app-feather-icon [icons]="'mail'" [class]="'iw-11 ih-11'"></app-feather-icon>125k post
+            </h6>
+        </li>
+        <li>
+            <a href="javascript:void(0)">
+                <h5>#planWalkEvent</h5>
+            </a>
+            <h6>
+                <app-feather-icon [icons]="'mail'" [class]="'iw-11 ih-11'"></app-feather-icon>105k post
+            </h6>
+        </li>
+    </ul>
+</div>

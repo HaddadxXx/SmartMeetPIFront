@@ -1,0 +1,7 @@
+@if (currentUrl.includes('/news-feed-layout/style-6') || currentUrl.includes('/news-feed-layout/style-7')) {
+<app-header-two></app-header-two>
+}@else if(currentUrl.includes('/news-feed-layout/style-8')){
+<app-header-three></app-header-three>
+} @else {
+<app-header-one [currentUrl]="currentUrl"></app-header-one>
+}

@@ -1,0 +1,9 @@
+@if (currentUrl.includes('/news-feed-layout/style-3') || currentUrl.includes('news-feed-layout/style-4') ||
+currentUrl.includes('news-feed-layout/style-8') ||
+currentUrl.includes('news-feed-layout/style-9')) {
+<app-sidebar-two [currentUrl]="currentUrl"></app-sidebar-two>
+} @else if(currentUrl.includes('/news-feed-layout/style-10') || currentUrl.includes('/news-feed-layout/style-11')) {
+<app-sidebar-three [currentUrl]="currentUrl"></app-sidebar-three>
+} @else {
+<app-sidebar-one></app-sidebar-one>
+}

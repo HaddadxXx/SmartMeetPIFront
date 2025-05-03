@@ -1,0 +1,35 @@
+<div class="search-box" [class.show]="isOpen" (clickOutside)="outSideClose()">
+    <app-feather-icon [icons]="'search'" [class]="'icon iw-16 icon-light'"></app-feather-icon>
+    <input type="text" 
+           class="form-control search-type" 
+           placeholder="find friends..."
+           (click)="isOpen = !isOpen"
+           (input)="onSearchChange($event)"
+           [value]="searchKeyword">
+    <div class="icon-close" (click)="isOpen = false">
+        <app-feather-icon [icons]="'x'" [class]="'iw-16 icon-light'"></app-feather-icon>
+    </div>
+    
+    <!-- Affichage des suggestions de recherche -->
+    <div class="search-suggestion" *ngIf="searchResults && searchResults.length "  style="width: 500px">
+        <span class="recent">Résults</span>
+        <ul class="friend-list">
+            <li *ngFor="let user of searchResults">
+                <div class="media">
+                    <!-- Affichage de la photo de profil ou une image par défaut -->
+                    <img [src]="user.profilePicture ? 
+                    'http://localhost:8080/uploads/' + user.profilePicture : 
+                    'http://localhost:8080/uploads/defaultuser.jpg'" 
+                   alt="user"
+                   class="avatar">
+                    <div class="media-body">
+                        <div>
+                            <h5 class="mt-0">{{ user.firstName }} {{ user.lastName }}</h5>
+                            <h6>{{ user.email }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
