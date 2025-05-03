@@ -286,7 +286,9 @@ eventTemplate: any;
       horaire: '',
       lieu: '',
       participations: [] ,// valeur par défaut
-      ownerId:''
+      ownerId:'',
+      nbParticipations: 0, // champ temporaire reçu du backend
+      tendanceRank: 0  // rang dans le top 5
     //  ownerId: '', 
       //user : [],
      

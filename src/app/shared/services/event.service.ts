@@ -104,7 +104,9 @@ interface MeetResponse {
       responseType: 'text'
     });
   }
-
+  getTopTrendingEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(`${this.apiUrl}/events/tendance`);
+  }
 
 
 }

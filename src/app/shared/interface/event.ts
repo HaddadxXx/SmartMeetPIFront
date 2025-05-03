@@ -23,4 +23,6 @@ export interface Event {
     participations?: any[]; // Rendre optionnel ou fournir une valeur par défaut
     class?: string;
     ownerId : string ;
+    nbParticipations: number; // champ temporaire reçu du backend
+    tendanceRank: number;     // rang dans le top 5
 }

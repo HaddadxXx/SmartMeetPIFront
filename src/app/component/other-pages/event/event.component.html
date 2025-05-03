@@ -199,3 +199,49 @@
 
     </div>
 </div>
+
+  <!-- Nouvelle section pour le graphique -->
+  <div class="col-12 mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Top 5 des événements tendance</h5>
+            <div *ngIf="trendingEvents.length > 0" class="chart-container" style="height: 400px;">
+                <canvas baseChart
+                        [data]="barChartData"
+                        [options]="barChartOptions"></canvas>
+            </div>
+            <div *ngIf="trendingEvents.length === 0" class="alert alert-info">
+                Aucun événement tendance disponible pour le moment.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optionnel : Affichage sous forme de liste -->
+<!-- <div class="col-12 mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Liste des événements tendance</h5>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Rang</th>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Participations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let event of trendingEvents">
+                            <td>{{ event.tendanceRank }}</td>
+                            <td>{{ event.nomEvent }}</td>
+                            <td>{{ event.nbParticipations }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div> -->

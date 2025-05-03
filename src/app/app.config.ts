@@ -20,6 +20,6 @@ export const appConfig: ApplicationConfig = {
     provide: DateAdapter,
     useFactory: adapterFactory
   })),
-  NgbModalModule ,NgbModal , NgChartsModule ,
+  NgbModalModule ,NgbModal , NgChartsModule 
   ],
 };

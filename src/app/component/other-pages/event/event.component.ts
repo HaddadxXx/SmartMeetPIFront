@@ -10,7 +10,9 @@ import { EventSkeletonComponent } from '../../../shared/skeleton-loader/others-p
 import { CalendarComponent } from './calendar/calendar.component';
 import { EventCategoryComponent } from './event-category/event-category.component';
 import { NgChartsModule } from 'ng2-charts';
-
+import {  BaseChartDirective } from 'ng2-charts';
+import { registerables } from 'chart.js';
+import { Chart } from 'chart.js';
 import { ClickOutSideDirective } from '../../../shared/directives/click-out-side.directive';
 import { CommonService } from '../../../shared/services/common.service';
 import { EventService } from '../../../shared/services/event.service';
@@ -52,12 +54,66 @@ export class EventComponent {
 
 
   public events: Event[] = [];
+trendingEvents: Event[] = [];
 
 
  public reviewStatement = reviewStatement;
   public review = review;
 
+// Ajoutez ces propriétés pour le graphique
+public barChartOptions: ChartConfiguration<'bar'>['options'] = {
+  responsive: true,
+  scales: {
+    x: {
+      title: {
+        display: true,
+        text: 'Événements'
+      }
+    },
+    y: {
+      title: {
+        display: true,
+        text: 'Nombre de participations'
+      },
+      beginAtZero: true
+    }
+  },
+  plugins: {
+    title: {
+      display: true,
+      text: 'Top 5 des événements tendance'
+    },
+    legend: {
+      display: false
+    }
+  }
+};
 
+public barChartData: ChartData<'bar'> = {
+  labels: [],
+  datasets: [
+    {
+      data: [],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.7)',
+        'rgba(54, 162, 235, 0.7)',
+        'rgba(255, 206, 86, 0.7)',
+        'rgba(75, 192, 192, 0.7)',
+        'rgba(153, 102, 255, 0.7)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)'
+      ],
+      borderWidth: 1
+    }
+  ]
+};
+
+public barChartType: ChartType = 'bar';
   constructor(
     private fb: FormBuilder,
     public commonServices: CommonService,
@@ -86,7 +142,19 @@ export class EventComponent {
       this.events = data;
     });
   
-   
+    this.eventService.getAllEvents().subscribe((data: Event[]) => {
+      this.events = data;
+    });
+  
+    this.eventService.getTopTrendingEvents().subscribe({
+      next: (data) => {
+        this.trendingEvents = data;
+        // Mise à jour des données du graphique
+        this.barChartData.labels = this.trendingEvents.map(event => event.nomEvent);
+        this.barChartData.datasets[0].data = this.trendingEvents.map(event => event.nbParticipations || 0);
+      },
+      error: (err) => console.error('Erreur lors de la récupération des tendances :', err)
+    });
   }
   
 
