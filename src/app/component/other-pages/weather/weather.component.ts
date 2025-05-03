@@ -4,7 +4,11 @@ import { FeatherIconComponent } from '../../../shared/components/common/feather-
 import { WeatherSectionComponent } from './weather-section/weather-section.component';
 import { SearchLocationComponent } from './search-location/search-location.component';
 import { WeathersSkeletonComponent } from '../../../shared/skeleton-loader/others-pages-skeleton/weathers-skeleton/weathers-skeleton.component';
+<<<<<<< HEAD
 import { SponsorRequestComponent } from 'c:/Users/acer/Downloads/nchalahLekher/src/app/component/other-pages/weather/sponsorRequest/sponsorRequest.component';
+=======
+
+>>>>>>> NEW_Event_Session
 import { ClickOutSideDirective } from '../../../shared/directives/click-out-side.directive';
 import { CommonService } from '../../../shared/services/common.service';
 
@@ -14,7 +18,11 @@ import { hourlyForecast } from '../../../shared/data/others-pages/others-pages';
   selector: 'app-weather',
   standalone: true,
   imports: [FeatherIconComponent, SearchLocationComponent, WeatherSectionComponent,
+<<<<<<< HEAD
     WeathersSkeletonComponent,ClickOutSideDirective, SponsorRequestComponent],
+=======
+    WeathersSkeletonComponent,ClickOutSideDirective],
+>>>>>>> NEW_Event_Session
   templateUrl: './weather.component.html',
   styleUrl: './weather.component.scss'
 })

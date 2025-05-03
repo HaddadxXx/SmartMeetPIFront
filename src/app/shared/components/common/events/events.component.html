@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="event-box {{events.class}}">
     <div class="image-section bg-size"
     [ngStyle]="{'background-image': 'url(' +  events.image  + ')'}"
@@ -5,6 +6,22 @@
         <img [src]="events.image" class="img-fluid  bg-img" alt="event" style="display: none;">
         <div class="card-title">
             <h3>event</h3>
+=======
+
+<div class="event-box {{events?.class}}">
+    <!-- <div class="image-section bg-size"
+    [ngStyle]="{'background-image': 'url(' +  events.photo  + ')'}"
+    
+    style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;"> -->
+
+    <div class="image-section bg-size"
+       [ngStyle]="{'background-image': 'url(http://localhost:8889/uploads/' + events.photo + ')'}"
+        style="background-size: cover;background-position: center center;background-repeat: no-repeat;display: block;">
+    <img [src]="'http://localhost:8889/uploads/' + events.photo" class="img-fluid  bg-img" alt="event" style="display: none;">
+        <!-- <img [src]="events.photo" class="img-fluid  bg-img" alt="event" style="display: none;"> -->
+        <div class="card-title">
+            <h3>{{ events.nomEvent }}</h3> <!-- Titre de l'événement -->
+>>>>>>> NEW_Event_Session
             <div class="settings">
                 <div class="setting-btn">
                     <a href="javascript:void(0)" class="d-flex">
@@ -48,6 +65,7 @@
         }
     </div>
     <div class="event-content">
+<<<<<<< HEAD
         <h3>{{events.title}}</h3>
         <h6>{{events.subTitle}}</h6>
         <p>{{events.desc}}
@@ -56,6 +74,17 @@
         <div class="bottom-part">
             <a href="javascript:void(0)" class="event-btn">{{events.link}}</a>
         </div>
+=======
+        <h3>{{ events.nomEvent }}</h3>
+    <h6>{{ events.theme }}</h6>
+    <p>{{ events.description }}
+            <!-- <span>{{events.span}}</span> -->
+        </p>
+        {{events.sessions}}
+        <!-- <div class="bottom-part">
+            <a href="javascript:void(0)" class="event-btn">{{events.link}}</a>
+        </div> -->
+>>>>>>> NEW_Event_Session
         <a href="javascript:void(0)" class="share-btn">
             <app-feather-icon [icons]="'corner-up-right'"
                 [class]="'icon-dark stroke-width-3 iw-14 ih-14'"></app-feather-icon>

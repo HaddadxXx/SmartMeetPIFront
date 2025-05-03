@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <div class="event-section">
+=======
+<!-- <div class="event-section">
+>>>>>>> NEW_Event_Session
     <div class="event_category no-arrow default-space">
         <owl-carousel-o [options]="storyDataOptions">
             <ng-template carouselSlide>
@@ -18,4 +22,17 @@
             </ng-template>
         </owl-carousel-o>
     </div>
+<<<<<<< HEAD
 </div>
+=======
+</div> -->
+<div class="event_category no-arrow default-space">
+    <owl-carousel-o [options]="storyDataOptions">
+      <ng-container *ngFor="let event of allEvents">
+        <ng-template carouselSlide>
+          <app-events [events]="event"></app-events>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+>>>>>>> NEW_Event_Session

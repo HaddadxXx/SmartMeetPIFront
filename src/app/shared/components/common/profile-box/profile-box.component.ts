@@ -3,12 +3,19 @@ import { FeatherIconComponent } from '../feather-icon/feather-icon.component';
 import { ClickOutSideDirective } from '../../../directives/click-out-side.directive';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+<<<<<<< HEAD
 import { CommonModule } from '@angular/common';
+=======
+>>>>>>> NEW_Event_Session
 @Component({
   selector: 'app-profile-box',
   templateUrl: './profile-box.component.html',
   styleUrl: './profile-box.component.scss',
+<<<<<<< HEAD
   imports: [FeatherIconComponent,ClickOutSideDirective,RouterModule,CommonModule],
+=======
+  imports: [FeatherIconComponent,ClickOutSideDirective,RouterModule],
+>>>>>>> NEW_Event_Session
   standalone:true
 })
 
@@ -31,12 +38,16 @@ export class ProfileBoxComponent {
       console.error("Erreur lors de la récupération de l'utilisateur :", error);
     });
   }
+<<<<<<< HEAD
  
   getProfileImage(profilePicture: string | null): string {
     return profilePicture 
       ? `url('http://localhost:8084/uploads/${profilePicture}')` 
       : `url('http://localhost:8084/uploads/defaultuser.jpg')`;
   }
+=======
+  
+>>>>>>> NEW_Event_Session
 
 
 }

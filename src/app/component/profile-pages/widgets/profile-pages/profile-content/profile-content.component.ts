@@ -35,7 +35,12 @@ export class ProfileContentComponent {
   }
   getProfileImage(profilePicture: string | null): string {
     return profilePicture 
+<<<<<<< HEAD
       ? `url('http://localhost:8084/uploads/${profilePicture}')` 
       : `url('http://localhost:8084/uploads/defaultuser.jpg')`;
+=======
+      ? `url('http://localhost:8889/uploads/${profilePicture}')` 
+      : `url('http://localhost:8889/uploads/defaultuser.jpg')`;
+>>>>>>> NEW_Event_Session
   }
 }

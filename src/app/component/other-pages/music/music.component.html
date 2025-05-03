@@ -4,6 +4,7 @@
 
 <div class="event-cover bg-none">
     <div class="event-img"
+<<<<<<< HEAD
         style="background-image: url(assets/images/cover/sponsor2.jpg); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
         <img src="assets/images/cover/sponsor2.jpg" class="img-fluid  bg-img" alt="" style="display: none;">
         <div class="event-content">
@@ -12,6 +13,16 @@
         <div class="cover-img-detail">
             <span>12 dec</span>
             
+=======
+        style="background-image: url(assets/images/cover/7.jpg); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+        <img src="assets/images/cover/7.jpg" class="img-fluid  bg-img" alt="" style="display: none;">
+        <div class="event-content">
+            <h1>Feel Music</h1>
+        </div>
+        <div class="cover-img-detail">
+            <span>12 dec</span>
+            <h3>last added 10 songs</h3>
+>>>>>>> NEW_Event_Session
             <a href="javascript:void(0)">view more
                 <i class="fas ms-1 fa-arrow-right"></i>
             </a>
@@ -48,6 +59,7 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     <div class="profile-menu ms-0 me-0">
     
         <ul class="right-menu d-xl-flex d-none">
@@ -58,10 +70,30 @@
                 
             </li>
            
+=======
+    <div class="event-timeline">
+        <div class="timeline-title">
+            <div class="media">
+                <img src="assets/images/icon/event.png" class="img-fluid " alt="">
+                <div class="media-body">
+                    <h4>timeline</h4>
+                    <h6>45 total your attended events</h6>
+                </div>
+            </div>
+        </div>
+        <ul class="timeline-content">
+            @for (item of timeline; track item) {
+            <li>
+                <h4>{{item.year}}</h4>
+                <h6>{{item.song}} songs</h6>
+            </li>
+            }
+>>>>>>> NEW_Event_Session
         </ul>
     </div>
 </div>
 
+<<<<<<< HEAD
 
 <div class="container-fluid section-t-space px-0">
     <div class="page-content">
@@ -72,5 +104,24 @@
         
           
         
+=======
+<app-your-favorite-artist></app-your-favorite-artist>
+
+<div class="container-fluid section-t-space px-0">
+    <div class="page-content">
+        <div class="content-left">
+            <div class="player-box">
+                <app-now-playing></app-now-playing>
+            </div>
+        </div>
+        <div class="content-center">
+            <app-favorite-playlist></app-favorite-playlist>
+        </div>
+        <div class="content-right">
+            <div class="playlist-sec">
+                <app-popular-songs></app-popular-songs>
+            </div>
+        </div>
+>>>>>>> NEW_Event_Session
     </div>
 </div>

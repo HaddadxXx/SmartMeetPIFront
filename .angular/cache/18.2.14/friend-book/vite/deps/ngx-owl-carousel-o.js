@@ -1,15 +1,26 @@
 import {
+<<<<<<< HEAD
   ActivatedRoute,
   NavigationEnd,
   Router
 } from "./chunk-H2MKVOAY.js";
 import {
+=======
+>>>>>>> NEW_Event_Session
   animate,
   state,
   style,
   transition,
   trigger
 } from "./chunk-THTCJ5QB.js";
+<<<<<<< HEAD
+=======
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router
+} from "./chunk-H2MKVOAY.js";
+>>>>>>> NEW_Event_Session
 import "./chunk-SU7COBZD.js";
 import "./chunk-C46EFIB6.js";
 import {

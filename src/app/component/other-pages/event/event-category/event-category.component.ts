@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { CommonModule } from '@angular/common';
@@ -7,11 +8,23 @@ import { FormsModule } from '@angular/forms'; // 👈 importe FormsModule
 
 import { EventCategoryService } from '../../../../shared/services/event-category.service';
 import { event } from '../../../../shared/interface/event';
+=======
+import { Component } from '@angular/core';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { CommonModule } from '@angular/common';
+
+import { FeatherIconComponent } from '../../../../shared/components/common/feather-icon/feather-icon.component';
+
+import { EventCategoryService } from '../../../../shared/services/event-category.service';
+import { Event } from '../../../../shared/interface/event';
+import { RouterLink } from '@angular/router';
+>>>>>>> NEW_Event_Session
 
 @Component({
   selector: 'app-event-category',
   templateUrl: './event-category.component.html',
   styleUrl: './event-category.component.scss',
+<<<<<<< HEAD
   imports: [FeatherIconComponent,CarouselModule,CommonModule, FormsModule],
   standalone:true
 })
@@ -182,3 +195,43 @@ export class EventCategoryComponent implements OnInit {
       }
       
   
+=======
+  imports: [FeatherIconComponent,CarouselModule,CommonModule , RouterLink],
+  standalone:true
+})
+
+export class EventCategoryComponent {
+
+  public eventCategoryList :Event[];
+
+  public storyDataOptions = {
+    loop: true,
+    margin: 20,
+    autoplay: false,
+    autoplayTimeout: 1000,
+    autoplayHoverPause: false,
+    dots: false,
+    nav: false,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      300: {
+        items: 3,
+      },
+      1000: {
+        items: 8,
+      },
+    },
+  };
+
+  constructor(public eventServices:EventCategoryService){}
+
+  ngOnInit(){
+    this.eventServices.eventCategory().subscribe(response =>{
+       this.eventCategoryList = response.eventCategory;
+    })
+  }
+
+}
+>>>>>>> NEW_Event_Session

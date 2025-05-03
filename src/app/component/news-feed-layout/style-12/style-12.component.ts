@@ -17,7 +17,11 @@ import { GamesComponent } from '../../other-pages/games/games.component';
 import { CommonService } from '../../../shared/services/common.service';
 import { PostService } from '../../../shared/services/news-feed-layout/post.service';
 
+<<<<<<< HEAD
 import { event } from '../../../shared/data/common';
+=======
+//import { event } from '../../../shared/data/common';
+>>>>>>> NEW_Event_Session
 import { profile } from '../../../shared/interface/post';
 import { SkeletonStyle12Component } from '../../../shared/skeleton-loader/news-feed-layout-skeleton/skeleton-style-12/skeleton-style-12.component';
 

@@ -4,7 +4,12 @@ import { EventComponent } from "./event/event.component";
 import { GamesComponent } from "./games/games.component";
 import { MusicComponent } from "./music/music.component";
 import { WeatherComponent } from "./weather/weather.component";
+<<<<<<< HEAD
 
+=======
+import { AddEventComponent } from "./event/add-event/add-event.component";
+import { DetailsEventComponent } from "./event/details-event/details-event.component";
+>>>>>>> NEW_Event_Session
 
 export default [
     {
@@ -30,12 +35,23 @@ export default [
                 path: 'games',
                 component : GamesComponent
             },
+<<<<<<< HEAD
            
          //  {
            //     path: 'add-event',
            //     component : AddEventComponent
         // },
 
+=======
+            {
+                path : 'add-event',
+                component : AddEventComponent
+            },
+            {
+                path : 'details',
+                component : DetailsEventComponent
+            },
+>>>>>>> NEW_Event_Session
         ]
     },
 ] as Routes;

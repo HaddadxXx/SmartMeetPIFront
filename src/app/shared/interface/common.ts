@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export interface events {
     image?: string;
     title?: string;
@@ -7,6 +8,35 @@ export interface events {
     link?: string;
     video?: string;
     class?:string;
+=======
+export interface Event {
+    // image?: string;
+    // title?: string;
+    // subTitle?: string;
+    // desc?: string;
+    // span?: string;
+    // link?: string;
+    // video?: string;
+    // class?:string;
+    idEvent ? : string ;
+    nomEvent :string ;
+    theme : string ;
+    description: string ;
+    dateDebut: string ;
+    dateFin : string ;
+    capacite : number ;
+    typeEvent : string;
+//    sessions?: Session[]; 
+    horaire: string ;
+    lieu : string ;
+    photo : string ;
+    name: string;
+    fans: number;
+    images: string;
+    link?: string;
+    
+    class?: string;
+>>>>>>> NEW_Event_Session
 }
 
 export interface title {

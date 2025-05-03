@@ -6,8 +6,11 @@ import { fullRoutes } from './shared/routes/full-routes';
 import { contentRoutes } from './shared/routes/routes';
 import { AuthLoginComponent } from './auth/auth-login/auth-login.component';
 import { DashboardComponent } from './backEnd/dashboard/dashboard.component';
+<<<<<<< HEAD
 import { OfferComponent } from './backEnd/offers/offer.component'
 ;
+=======
+>>>>>>> NEW_Event_Session
 import { UsersComponent } from './backEnd/users/users.component';
 import { ReportsComponent } from './backEnd/reports/reports.component';
 import { SettingsComponent } from './backEnd/settings/settings.component';
@@ -23,8 +26,11 @@ export const routes: Routes = [
  { path: 'dashboard', component: DashboardComponent },
   { path: 'users', component: UsersComponent },
   { path: 'reports', component: ReportsComponent },
+<<<<<<< HEAD
   { path: 'offers', component: OfferComponent },
 
+=======
+>>>>>>> NEW_Event_Session
   { path: 'settings', component: SettingsComponent },
   { path: 'auth/signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },

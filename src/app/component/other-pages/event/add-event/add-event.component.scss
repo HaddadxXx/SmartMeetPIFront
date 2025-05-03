@@ -1,0 +1,137 @@
+/* Base styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f9fc;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    padding: 20px;
+    margin: 0 auto;
+    height: auto !important;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Form styles */
+  form {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 30px;
+    width: 100%;
+  }
+  
+  h2 {
+    color: #3a4a5d;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+  }
+  
+  .form-group {
+    padding: 0 15px;
+    margin-bottom: 20px;
+    width: calc(50% - 30px);
+    box-sizing: border-box;
+  }
+  
+  .form-group.full-width {
+    width: calc(100% - 30px);
+  }
+  
+  .form-label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #4a5568;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+  }
+  
+  .form-control:focus {
+    border-color: #4299e1;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+  }
+  
+  textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .text-danger {
+    color: #e53e3e;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  /* Button styles */
+  .btn-container {
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .btn-primary {
+    background-color: #4299e1;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #3182ce;
+  }
+  
+  .btn-primary:disabled {
+    background-color: #a0aec0;
+    cursor: not-allowed;
+  }
+  
+  /* File upload styling */
+  input[type="file"] {
+    padding: 10px 0;
+  }
+  
+  /* Date and time inputs */
+  input[type="date"],
+  input[type="time"] {
+    padding: 11px 15px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .form-group {
+      width: calc(100% - 30px);
+    }
+    
+    .container {
+      padding: 10px;
+    }
+    
+    form {
+      padding: 20px;
+    }
+  }

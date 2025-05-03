@@ -17,10 +17,17 @@ import { ProfilePagesComponent } from '../widgets/profile-pages/profile-pages.co
 import { TimeLineSkeletonComponent } from '../../../shared/skeleton-loader/profile-pages-skeleton/time-line-skeleton/time-line-skeleton.component';
 
 import { ProfilePagesService } from '../../../shared/services/profile-Pages/profile-pages.service';
+<<<<<<< HEAD
 
 import { Router, RouterModule } from '@angular/router';
 import { introMySelf } from '../../../shared/data/profile-pages/time-line';
 import { events } from '../../../shared/interface/common';
+=======
+import { Event } from '../../../shared/interface/event';
+import { Router, RouterModule } from '@angular/router';
+import { introMySelf } from '../../../shared/data/profile-pages/time-line';
+//import { events } from '../../../shared/interface/common';
+>>>>>>> NEW_Event_Session
 import { profile } from '../../../shared/interface/post';
 import { CommonService } from '../../../shared/services/common.service';
 
@@ -45,6 +52,7 @@ export class TimelineComponent {
   public displayCount: number = 5;
   public currentUrl : string;
 
+<<<<<<< HEAD
   public event: events = {
     image: 'assets/images/post/12.jpg',
     title: 'happy life event',
@@ -54,6 +62,17 @@ export class TimelineComponent {
     link: 'interested / not in..',
     class: 'section-t-space ratio2_3'
   }
+=======
+  // public event: events = {
+  //   image: 'assets/images/post/12.jpg',
+  //   title: 'happy life event',
+  //   subTitle: '26 january 2024',
+  //   desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+  //   span: '15256 People Going',
+  //   link: 'interested / not in..',
+  //   class: 'section-t-space ratio2_3'
+  // }
+>>>>>>> NEW_Event_Session
 
   constructor(public profileServices: ProfilePagesService,private router: Router,
     public commonServices:CommonService) {

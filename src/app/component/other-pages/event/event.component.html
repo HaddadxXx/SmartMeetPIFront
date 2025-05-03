@@ -4,15 +4,25 @@
 
 <div class="event-cover">
     <div class="event-img"
+<<<<<<< HEAD
         style="background-image: url(assets/images/cover/5.jpg);background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
         <img src="assets/images/cover/5.jpg" class="img-fluid  bg-img" alt="" style="display: none;">
+=======
+        style="background-image: url(assets/images/cover/event.png);background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+        <img src="assets/images/cover/event.png" class="img-fluid  bg-img" alt="" style="display: none;">
+>>>>>>> NEW_Event_Session
         <div class="event-content">
             <h1>latest events</h1>
         </div>
         <div class="cover-img-detail">
             <span>12 dec</span>
+<<<<<<< HEAD
             <h3>last added 10 songs</h3>
             <a href="javascript:void(0)">view more
+=======
+            <!-- <h3>last added 10 songs</h3> -->
+            <a [routerLink]="['/others', 'details']"> view more
+>>>>>>> NEW_Event_Session
                 <app-feather-icon [class]="'fas ms-1 fa-arrow-right'"></app-feather-icon>
             </a>
         </div>
@@ -48,7 +58,11 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     <div class="event-timeline">
+=======
+    <!-- <div class="event-timeline">
+>>>>>>> NEW_Event_Session
         <div class="timeline-title">
             <div class="media">
                 <img src="assets/images/icon/event.png" class="img-fluid " alt="">
@@ -85,6 +99,7 @@
             </li>
         </ul>
     </div>
+<<<<<<< HEAD
 </div>
 <div class="row event-body">
     <div class="col-xl-6">
@@ -93,3 +108,165 @@
     </div>
     
 </div>
+=======
+</div> -->
+<div class="profile-menu ms-0 me-0">
+    
+    <ul class="right-menu d-xl-flex d-none">
+        <li>
+            <a [routerLink]="['/others', 'add-event']">
+                <h6>Create Event</h6>
+            </a>
+            
+        </li>
+        <li>
+            <a href="javascript:void(0)" (click)="openSessionModal()">
+                <h6>Create Session</h6>
+            </a>
+
+        </li>
+        <li>
+            <a href="javascript:void(0)" (click)="openSessionModal()">
+                <h6>Create ressources</h6>
+            </a>
+
+        </li>
+    </ul>
+</div>
+<!-- Modal pour créer une session -->
+<div *ngIf="showSessionModal" class="modal-overlay">
+    <div class="modal">
+        <div class="modal-content">
+            <h2>Create session</h2>
+            <form [formGroup]="sessionForm" (ngSubmit)="onSessionSubmit()">
+                <div class="form-group">
+                    <label>Session Name </label>
+                    <input type="text" formControlName="titre" class="form-control" placeholder="Entrez le nom de la session">
+                </div>
+                <div class="form-group">
+                    <label>Date Session </label>
+                    <input type="date" formControlName="date" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Event</label>
+                    <select formControlName="nomEvent" class="form-control">
+                        <option *ngFor="let event of events" [value]="event.nomEvent">{{ event.nomEvent }}</option>
+                    </select>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-success">Create</button>
+                
+                <button type="button" class="btn btn-secondary" (click)="closeSessionModal()">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- <div class="content-left col-4 order-1 res-full-width">
+    <div class="review-bottom">
+        <div class="review-statement section-b-space">
+            <div class="card-title">
+                <h3>Review Statement</h3>
+                <div class="settings">
+                    <div class="setting-btn">
+                        <a href="javascript:void(0)">
+                            <app-feather-icon [icons]="'rotate-cw'" [class]="'icon icon-dark stroke-width-3 iw-11 ih-11'"></app-feather-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="chart-container">
+                <apx-chart 
+                [series]="reviewStatement.series" 
+                [chart]="reviewStatement.chart"
+                [legend]="reviewStatement.legend" 
+                [plotOptions]="reviewStatement.plotOptions" 
+                [colors]="reviewStatement.colors"
+                [labels]="reviewStatement.labels" 
+                [responsive]="reviewStatement.responsive">
+            </apx-chart>
+            </div>
+        </div>
+</div> -->
+<!-- <div *ngFor="let event of events">
+    <h3>{{ event.nomEvent }}</h3>
+    <p>{{ event.description }}</p>
+    <img [src]="'http://localhost:8888/uploads/' + event.photo" alt="Image de l'événement" />
+</div> -->
+<div class="row event-body">
+    <div class="col-xl-6">
+        <app-event-section [class]="class"></app-event-section>
+        <!-- <app-event-category></app-event-category> -->
+            <!-- <div class="col-10 suggestion-box"> -->
+                 <!-- <div class="event-slider ratio_115 no-arrow default-space">
+
+                </div> -->
+                <!-- <div *ngIf="barChartData.datasets.length > 0" class="chart-container">
+                    <canvas baseChart
+                            [data]="barChartData"
+                            [options]="barChartOptions"
+                            [type]="barChartType">
+                    </canvas>
+                  </div>
+                  
+                  <div *ngIf="barChartData.datasets.length === 0">
+                    <p>Aucun événement tendance disponible pour le moment.</p>
+                  </div> -->
+    </div>
+    <div class="col-xl-6">
+        <app-calendar></app-calendar>
+    </div>
+
+    <div class ="col-xl-6">
+        
+
+
+
+    </div>
+</div>
+
+  <!-- Nouvelle section pour le graphique -->
+  <div class="col-12 mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Top 5 des événements tendance</h5>
+            <div *ngIf="trendingEvents.length > 0" class="chart-container" style="height: 400px;">
+                <canvas baseChart
+                        [data]="barChartData"
+                        [options]="barChartOptions"></canvas>
+            </div>
+            <div *ngIf="trendingEvents.length === 0" class="alert alert-info">
+                Aucun événement tendance disponible pour le moment.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optionnel : Affichage sous forme de liste -->
+<!-- <div class="col-12 mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Liste des événements tendance</h5>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Rang</th>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Participations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let event of trendingEvents">
+                            <td>{{ event.tendanceRank }}</td>
+                            <td>{{ event.nomEvent }}</td>
+                            <td>{{ event.nbParticipations }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div> -->
+>>>>>>> NEW_Event_Session

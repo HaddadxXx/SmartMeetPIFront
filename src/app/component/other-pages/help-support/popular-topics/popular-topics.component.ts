@@ -1,16 +1,23 @@
 import { Component } from '@angular/core';
 import { popularTopics } from '../../../../shared/data/others-pages/messenger';
 import { RouterModule } from '@angular/router';
+<<<<<<< HEAD
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SponsoringOfferService } from 'c:/Users/acer/Desktop/SmartMeetPIFront-main (2)/SmartMeetPIFront-main/src/app/shared/services/sponsoring-offer.service';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'c:/Users/acer/Desktop/SmartMeetPIFront-main (2)/SmartMeetPIFront-main/src/app/shared/services/auth.service';
+=======
+>>>>>>> NEW_Event_Session
 
 @Component({
   selector: 'app-popular-topics',
   standalone: true,
+<<<<<<< HEAD
   imports: [RouterModule,CommonModule, FormsModule],
+=======
+  imports: [RouterModule],
+>>>>>>> NEW_Event_Session
   templateUrl: './popular-topics.component.html',
   styleUrl: './popular-topics.component.scss'
 })
@@ -18,6 +25,7 @@ import { AuthService } from 'c:/Users/acer/Desktop/SmartMeetPIFront-main (2)/Sma
 
 export class PopularTopicsComponent {
   public popularTopics = popularTopics;
+<<<<<<< HEAD
   offerArray: any[] = [];
   eventArray: any[] = []; // Liste des événements à afficher dans la modale
   title: string = '';
@@ -241,4 +249,7 @@ downloadContract(contractId: string) {
   const url = `http://localhost:8084/api/contracts/download/${contractId}`;
   window.open(url, '_blank');
 }
+=======
+
+>>>>>>> NEW_Event_Session
 }

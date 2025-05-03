@@ -18,7 +18,11 @@ export class SearchBoxComponent {
 
   // Remplacer 'CURRENT_USER_ID' par l'ID de l'utilisateur connecté.
   // Dans une application réelle, cet ID proviendrait par exemple d'un service d'authentification.
+<<<<<<< HEAD
   private currentUserId: string = '67b48a3af233692bf6f47a5d';
+=======
+  private currentUserId: string = '';
+>>>>>>> NEW_Event_Session
 
   constructor(private userService: UserService) {}
 
@@ -50,7 +54,12 @@ export class SearchBoxComponent {
   }
   getProfileImage(profilePicture: string | null): string {
     return profilePicture 
+<<<<<<< HEAD
       ? `url('http://localhost:8080/uploads/${profilePicture}')` 
       : `url('http://localhost:8080/uploads/defaultuser.jpg')`;
+=======
+      ? `url('http://localhost:8889/uploads/${profilePicture}')` 
+      : `url('http://localhost:8889/uploads/defaultuser.jpg')`;
+>>>>>>> NEW_Event_Session
   }
 }

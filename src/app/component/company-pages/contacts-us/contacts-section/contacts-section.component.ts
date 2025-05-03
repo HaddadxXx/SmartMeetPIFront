@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+<<<<<<< HEAD
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SponsoringOfferService } from 'c:/Users/acer/Desktop/SmartMeetPIFront-main (2)/SmartMeetPIFront-main/src/app/shared/services/sponsoring-offer.service';
@@ -73,3 +74,16 @@ export class ContactsSectionComponent implements OnInit {
 // Register Chart.js components
 const { register } = Chart;
 Chart.register(...registerables);
+=======
+
+@Component({
+  selector: 'app-contacts-section',
+  standalone: true,
+  imports: [],
+  templateUrl: './contacts-section.component.html',
+  styleUrl: './contacts-section.component.scss'
+})
+export class ContactsSectionComponent {
+
+}
+>>>>>>> NEW_Event_Session

@@ -1,5 +1,9 @@
 import { CommonModule } from '@angular/common';
+<<<<<<< HEAD
 import { Component } from '@angular/core';
+=======
+import { Component, Input } from '@angular/core';
+>>>>>>> NEW_Event_Session
 
 import { BirthdaySectionComponent } from '../../../shared/components/common/birthday-section/birthday-section.component';
 import { CommonWeatherComponent } from '../../../shared/components/common/common-weather/common-weather.component';
@@ -22,10 +26,19 @@ import { SkeletonStyle1Component } from '../../../shared/skeleton-loader/news-fe
 import { AddFriendCarouselComponent } from './add-friend-carousel/add-friend-carousel.component';
 
 import { PostService } from '../../../shared/services/news-feed-layout/post.service';
+<<<<<<< HEAD
 
 import { event } from '../../../shared/data/common';
 import { profile } from '../../../shared/interface/post';
 import { CommonService } from '../../../shared/services/common.service';
+=======
+import { Event } from '../../../shared/interface/event';
+//import { event } from '../../../shared/data/common';
+import { profile } from '../../../shared/interface/post';
+import { CommonService } from '../../../shared/services/common.service';
+import { EventComponent } from '../../other-pages/event/event.component';
+import { EventService } from '../../../shared/services/event.service';
+>>>>>>> NEW_Event_Session
 
 @Component({
   selector: 'app-style-1',
@@ -33,23 +46,41 @@ import { CommonService } from '../../../shared/services/common.service';
   imports: [StroyComponent, SidebarComponent, ProfileBoxComponent,
     FriendSuggestionComponent, LikedPagesComponent, CommonWeatherComponent,
     YourGamesComponent, EventsComponent, GalleryComponent,
+<<<<<<< HEAD
     FeatherIconComponent, AddFriendCarouselComponent,
     PostDetailsComponent, DetailBoxComponent, SkeletonStyle1Component,
     PostHeaderComponent, LikePanelComponent, PostReactComponent,
     CreatePostComponent, BirthdaySectionComponent, CommonModule],
+=======
+    FeatherIconComponent, AddFriendCarouselComponent,EventComponent ,
+    PostDetailsComponent, DetailBoxComponent, SkeletonStyle1Component,
+    PostHeaderComponent, LikePanelComponent, PostReactComponent,
+    CreatePostComponent, BirthdaySectionComponent, CommonModule ],
+>>>>>>> NEW_Event_Session
   templateUrl: './style-1.component.html',
   styleUrl: './style-1.component.scss'
 })
 
 export class Style1Component {
+<<<<<<< HEAD
 
   public event = event;
+=======
+  public allEvents: any[] = [];
+
+ // @Input() events: Event  ;
+  @Input() event: Event;  
+ @Input() events: Event[] = [];
+
+ // public event = event;
+>>>>>>> NEW_Event_Session
   public isCreatePost: boolean = true;
   public visiblePosts: profile[];
   public post: profile[];
   public displayCount: number = 4;
 
   constructor(public postServices: PostService,
+<<<<<<< HEAD
     public commonServices: CommonService) {
   }
 
@@ -62,6 +93,33 @@ export class Style1Component {
           index === 0 ? element.active = true : element.active = false;
         });
       }
+=======
+    public commonServices: CommonService ,private eventService: EventService, ) {
+  }
+
+  // ngOnInit() {
+  //   this.postServices.style1().subscribe((data) => {
+  //     if (data.style1) {
+  //       this.post = data.style1;
+  //       this.visiblePosts = this.post.slice(0, this.displayCount);
+  //       this.post.filter((element, index) => {
+  //         index === 0 ? element.active = true : element.active = false;
+  //       });
+  //     }
+  //   });
+    
+  // } 
+  
+  ngOnInit(): void {
+    // this.eventService.getAllEvents().subscribe((data: Event[]) => {
+    //   this.events = data;
+    // });
+    this.loadEvents();
+  }
+  loadEvents() {
+    this.eventService.getAllEvents().subscribe((events) => {
+      this.allEvents = events;
+>>>>>>> NEW_Event_Session
     });
   }
 

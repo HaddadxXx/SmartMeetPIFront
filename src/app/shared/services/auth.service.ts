@@ -7,8 +7,12 @@ import { FormsModule } from '@angular/forms'; //
   providedIn: 'root'
 })
 export class AuthService {
+<<<<<<< HEAD
   private apiUrl = 'http://localhost:8084/api/auth';
 
+=======
+  private apiUrl = 'http://localhost:8889/api/auth';
+>>>>>>> NEW_Event_Session
   constructor(private http: HttpClient) { }
 
   signin(email: string, password: string): Observable<any> {
@@ -21,7 +25,11 @@ export class AuthService {
   }
 
   signup(user: any): Observable<any> {
+<<<<<<< HEAD
     return this.http.post('http://localhost:8084/api/auth/signup', {
+=======
+    return this.http.post('http://localhost:8889/api/auth/signup', {
+>>>>>>> NEW_Event_Session
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
@@ -32,17 +40,37 @@ export class AuthService {
 
   
   verifySignupCode(email: string, code: string) {
+<<<<<<< HEAD
     const url = `http://localhost:8084/api/auth/verify-code?email=${email}&code=${code}`;
     return this.http.get(url);
   }
 
   private apiUrlme = 'http://localhost:8084/api/users/me'; // Endpoint pour récupérer l'utilisateur connecté
+=======
+    const url = `http://localhost:8889/api/auth/verify-code?email=${email}&code=${code}`;
+    return this.http.get(url);
+  }
+
+  private apiUrlme = 'http://localhost:8889/api/users/me'; // Endpoint pour récupérer l'utilisateur connecté
+>>>>>>> NEW_Event_Session
   // Récupérer l'utilisateur connecté
   getCurrentUser(): Observable<any> {
     return this.http.get<any>(this.apiUrlme, { withCredentials: true });
   }
+<<<<<<< HEAD
  
   
 
+=======
+  getUser(): any {
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user) : null;
+  }
+  getUserId(): string | null {
+    const user = this.getUser();
+    console.log('Utilisateur récupéré dans getUserId():', user);
+    return user ? user.id : null;
+  }
+>>>>>>> NEW_Event_Session
 
 }

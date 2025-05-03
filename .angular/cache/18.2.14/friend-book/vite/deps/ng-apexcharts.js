@@ -84,7 +84,11 @@ var ChartComponent = class _ChartComponent {
     return __async(this, null, function* () {
       const {
         default: ApexCharts
+<<<<<<< HEAD
       } = yield import("./apexcharts.esm-4MTK72UE.js");
+=======
+      } = yield import("./apexcharts.esm-QWIMT6VG.js");
+>>>>>>> NEW_Event_Session
       window.ApexCharts ||= ApexCharts;
       const options = {};
       const properties = ["annotations", "chart", "colors", "dataLabels", "series", "stroke", "labels", "legend", "fill", "tooltip", "plotOptions", "responsive", "markers", "noData", "xaxis", "yaxis", "forecastDataPoints", "grid", "states", "title", "subtitle", "theme"];
