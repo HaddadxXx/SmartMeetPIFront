@@ -57,40 +57,54 @@
 
 <!-- event-details.component.html -->
 
-  <div class="row d-flex flex-wrap gap-3">
+<div class="row d-flex flex-wrap gap-3">
   <div class="detailes-event section-b-space">
-    <!-- <h5 class="mb-4">Événements disponibles</h5> -->
     <div class="row d-flex flex-wrap gap-3">
       <div class="detailes-event-card" *ngFor="let event of events">
-        <div class="border">
-          <p><strong>🎯 Nom de l'événement :</strong> {{ event.nomEvent }}</p>
-          <p><strong>📚 Thème :</strong> {{ event.theme }}</p>
-          <p><strong>📝 Description :</strong><br> {{ event.description }}</p>
-  
-          <p class="text-muted small mt-2">
-            <i class="fa fa-calendar"></i>
-            {{ event.dateDebut | date:'longDate' }} - {{ event.dateFin | date:'longDate' }}<br>
-            <i class="fa fa-map-marker"></i>
-            <strong>Lieu :</strong>
-            {{ event.lieu?.toLowerCase() === 'en ligne' || event.typeEvent?.toLowerCase() === 'en ligne' ? 'En ligne' : event.lieu }}
+        <div class="border p-3 rounded shadow-sm">
+          <p><strong>🎯 Event Name:</strong> {{ event.nomEvent }}</p>
+          <p><strong>📚 Theme:</strong> {{ event.theme }}</p>
+          <p><strong>📝 Description:</strong><br> {{ event.description }}</p>
+          <p><strong>📅 Start Date:</strong> {{ event.dateDebut | date:'longDate' }}</p>
+          <p><strong>📅 End Date:</strong> {{ event.dateFin | date:'longDate' }}</p>
+          <p><strong>👥 Capacity:</strong> {{ event.capacite }}</p>
+          <p><strong>🧭 Type:</strong> {{ event.typeEvent }}</p>
+          <p><strong>🕒 Schedule:</strong> {{ event.horaire }}</p>
+          <p><strong>📍 Location:</strong>
+            {{ event.lieu?.toLowerCase() === 'en ligne' || event.typeEvent?.toLowerCase() === 'en ligne' ? 'Online' : event.lieu }}
           </p>
-  
-          <img *ngIf="event.photo" [src]="'http://localhost:8889/uploads/' + event.photo" alt="Event image" />
 
-          <button class="btn btn-solid"  (click)="verifierEtat(event.idEvent)">Vérifier l'état de l'événement</button>
-    
-          <!-- Affiche le message de retour après vérification -->
+          <div *ngIf="event.participations?.length">
+            <p><strong>✅ Participants:</strong></p>
+            <ul>
+              <li *ngFor="let part of event.participations">{{ part?.user?.name || 'Unknown participant' }}</li>
+            </ul>
+          </div>
+
+          <div *ngIf="event.sessions?.length">
+            <p><strong>📅 Sessions:</strong></p>
+            <ul>
+              <li *ngFor="let session of event.sessions">{{ session?.title || 'Unnamed Session' }}</li>
+            </ul>
+          </div>
+
+          <img *ngIf="event.photo" [src]="'http://localhost:8889/uploads/' + event.photo" alt="Event image" class="img-fluid my-2" />
+
+          <button class="btn btn-outline-primary mt-2" (click)="verifierEtat(event.idEvent)">
+            Check Status
+          </button>
+
           <p *ngIf="message">{{ message }}</p>
+
           <div class="mt-4 text-center">
-            <button class="btn btn-solid"  (click)="openParticipationModal(participationModal, event.nomEvent)">
-              <i class="fa fa-check"></i> Participer
+            <button class="btn btn-success" (click)="openParticipationModal(participationModal, event.nomEvent)">
+              <i class="fa fa-check"></i> Participate
             </button>
-            
           </div>
         </div>
       </div>
     </div>
-  
+  </div>
     <!-- Pagination -->
     <nav aria-label="Page navigation" class="mt-4">
       <ul class="pagination justify-content-center">
@@ -103,7 +117,7 @@
         </li>
   
         <li class="page-item" [class.disabled]="currentPage >= totalPages - 1">
-          <a class="page-link" href="javascript:void(0)" (click)="currentPage < totalPages - 1 && goToPage(currentPage + 1)">Suivant</a>
+          <a class="page-link" href="javascript:void(0)" (click)="currentPage < totalPages - 1 && goToPage(currentPage + 1)">Next</a>
         </li>
       </ul>
     </nav>
@@ -136,11 +150,11 @@
       <div class="row g-3">
         
         <div class="col-md-6">
-          <label>Nom</label>
+          <label>FirstName</label>
           <input type="text" class="form-control" name="nom" ngModel />
         </div>
         <div class="col-md-6">
-          <label>Prénom</label>
+          <label>LastName</label>
           <input type="text" class="form-control" name="prenom" ngModel />
         </div>
         <div class="col-md-6">
@@ -148,11 +162,11 @@
           <input type="email" class="form-control" name="email" [(ngModel)]="participationData.email" required />
         </div>
         <div class="col-md-6">
-          <label>Fichier (CV, etc.)</label>
+          <label>Folders</label>
           <input type="file" class="form-control" (change)="onFileSelected($event)" />
         </div>
         <div class="col-12">
-          <label>Sessions de l'événement :</label>
+          <label>Associated Event</label>
           <li *ngFor="let session of selectedEvent?.sessions">{{ session.titre }}</li>
           <!-- <li *ngFor="let session of selectedEvent?.sessions">{{ session.titre }}</li> -->
           <ng-template #noSessions><em>Aucune session</em></ng-template>
