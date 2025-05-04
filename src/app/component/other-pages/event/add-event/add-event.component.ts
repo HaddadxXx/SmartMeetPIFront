@@ -19,19 +19,26 @@ import { VoiceRecognitionService } from '../../../../shared/services/voice-recog
 })
 export class AddEventComponent {
   selectedFile: File;
+  
   cancel() {
     throw new Error('Method not implemented.');
     }
       eventForm: FormGroup;
       successMessage: string = '';
       errorMessage: string = '';
-      eventTypes: string[] = ['ENLIGNE', ' PRESENTIEL'];
+      eventTypes: string[] = ['ONLINE', ' ON SITE'];
       isEditMode: any;
-    
-      eventId: string | undefined;
+      eventId?: string; // Déclaré comme string | undefined
+   //   eventId: string | undefined;
       owner: any = null;
         //    currentUserId!: string;
         isRecording = false;
+
+
+
+
+
+
       constructor(private fb: FormBuilder, private eventService: EventService ,private voiceService : VoiceRecognitionService,
         public commonServices: CommonService,private router: Router ,private userService: UserService,
       private authService : AuthService) {
@@ -46,31 +53,41 @@ export class AddEventComponent {
           horaire: ['', Validators.required],
           lieu: [{ value: '', disabled: true }], 
           
-        
         });
-
-
         
-
       // Vérifier si on est en mode édition
       const navigation = this.router.getCurrentNavigation();
       const state = navigation?.extras.state as { eventData?: Event };
       
-      if (state?.eventData) {
-          this.isEditMode = true;
-          this.eventId = state.eventData.idEvent;
-          this.eventForm.patchValue(state.eventData); // Remplir le formulaire avec les données existantes
-         
-      } else {
-          this.isEditMode = false;
-      }
-      
+       
+    if (state?.eventData) {
+      this.initializeEditMode(state.eventData);
+    }
+  }
+
+  private initializeEditMode(eventData: Event): void {
+    this.isEditMode = true;
+    this.eventId = eventData.idEvent; // Simple assignation
+    
+    // Formatage des dates pour l'input
+    const formattedEventData = {
+      ...eventData,
+      dateDebut: this.formatDateForInput(eventData.dateDebut),
+      dateFin: this.formatDateForInput(eventData.dateFin)
+    };
+
+    this.eventForm.patchValue(formattedEventData);
+    this.onTypeChange(); // Pour gérer l'état du champ lieu
   
         
       }
      
       
-    
+      private formatDateForInput(dateString: string): string {
+        if (!dateString) return '';
+        const date = new Date(dateString);
+        return date.toISOString().split('T')[0];
+      }
       
       onTypeChange() {
         const typeEvent = this.eventForm.controls['typeEvent'].value;
@@ -108,45 +125,123 @@ export class AddEventComponent {
         this.voiceService.stopListening();
       }
 
-            onSubmit() {
-              const userId = this.authService.getUserId();
-              
-              if (!this.owner) {
-                console.error('Utilisateur non chargé.');
-                return;
+   onSubmit() {
+        if (!this.owner) {
+          console.error('Utilisateur non chargé.');
+          return;
+        }
+    
+        if (this.eventForm.invalid) {
+          this.markAllAsTouched();
+          return;
+        }
+    
+        const formData = new FormData();
+        const eventObject = this.eventForm.value;
+        const ownerId = localStorage.getItem('userId');
+    
+        if (ownerId) {
+          eventObject.ownerId = ownerId;
+        }
+    
+        formData.append('event', new Blob([JSON.stringify(eventObject)], { 
+          type: 'application/json' 
+        }));
+    
+        if (this.selectedFile) {
+          formData.append('file', this.selectedFile);
+        }
+    
+        if (this.isEditMode && this.eventId) {
+          this.updateEvent(formData);
+        } else {
+          this.createEvent(formData);
+        }
+      }
+    
+      private createEvent(formData: FormData) {
+        this.eventService.createEvent(formData).subscribe({
+          next: (response) => {
+            this.handleSuccess('Événement créé avec succès !');
+          },
+          error: (error) => {
+            this.handleError('Erreur lors de la création de l\'événement', error);
+          }
+        });
+      }
+    
+      private updateEvent(formData: FormData) {
+        if (!this.eventId || typeof this.eventId !== 'string') {
+          this.errorMessage = 'ID événement invalide - impossible de mettre à jour';
+          console.error('Erreur: eventId est invalide', this.eventId);
+          return;
+        }
+      
+        const eventId: string = this.eventId;
+      
+        // 1. Récupérer l'événement existant
+        this.eventService.getEventById(eventId).subscribe({
+          next: (existingEvent) => {
+            // 2. Préparer les données de mise à jour
+            const updateData = new FormData();
+            const eventData = {
+              ...this.eventForm.value,
+              idEvent: eventId,
+              ownerId: this.owner?.id || localStorage.getItem('userId') || '',
+              // Ne pas écraser la photo existante si aucun nouveau fichier n'est sélectionné
+              photo: this.selectedFile ? undefined : existingEvent.photo,
+              sessions: existingEvent.sessions || [],
+              participations: existingEvent.participations || [],
+              nbParticipations: existingEvent.nbParticipations,
+              tendanceRank: existingEvent.tendanceRank,
+              pourcentageParticipation: existingEvent.pourcentageParticipation
+            };
+      
+            updateData.append('event', new Blob([JSON.stringify(eventData)], {
+              type: 'application/json'
+            }));
+      
+            // Ajouter le fichier seulement s'il est sélectionné
+            if (this.selectedFile) {
+              updateData.append('file', this.selectedFile);
+            }
+      
+            // 3. Envoyer la mise à jour
+            this.eventService.updateEvent(eventId, updateData).subscribe({
+              next: (updatedEvent) => {
+                this.handleSuccess('Événement mis à jour avec succès !');
+              },
+              error: (error) => {
+                this.handleError('Erreur lors de la mise à jour', error);
               }
-              const formData = new FormData();
-              const eventObject = this.eventForm.value;
-
-               // ✨ Ajouter ici le userOwner à ton eventObject
-               const ownerId = localStorage.getItem('userId');
-               eventObject.ownerId = ownerId;
-                  formData.append('event', new Blob([JSON.stringify(eventObject)], { type: 'application/json' }));
-
-                  if (this.selectedFile) {
-                    formData.append('file', this.selectedFile);
-                  }
-
-                  console.log('Formulaire envoyé :', eventObject);
-                //  console.log('user owner :',Response);
-                  
-                this.eventService.createEvent(formData).subscribe({
-                  next: (response) => {
-                    console.log('Événement ajouté : ', response);
-                    console.log('ID de l\'utilisateur propriétaire :',ownerId);
-                    this.successMessage = 'Événement ajouté avec succès !';
-                    setTimeout(() => {
-                      this.router.navigate(['others/event-calendar']);
-                    }, 1500);
-                  },
-
-                  error: (error) => {
-                    console.error('Erreur lors de l\'ajout de l\'événement :', error);
-                    this.errorMessage = 'Erreur lors de l\'ajout de l\'événement.';
-                  }
-            
-  }  );
-            
-            
-}
-}
+            });
+          },
+          error: (error) => {
+            console.error('Erreur lors de la récupération de l\'événement', error);
+            this.errorMessage = 'Impossible de charger les données de l\'événement';
+          }
+        });
+      }
+    
+      private handleSuccess(message: string) {
+        this.successMessage = message;
+        setTimeout(() => {
+          this.router.navigate(['others/event-calendar']);
+        }, 1500);
+      }
+    
+      private handleError(message: string, error: any) {
+        console.error(`${message}:`, error);
+        this.errorMessage = message;
+      }
+    
+      private markAllAsTouched() {
+        Object.values(this.eventForm.controls).forEach(control => {
+          control.markAsTouched();
+        });
+      }
+    
+      // cancel() {
+      //   this.router.navigate(['others/event-calendar']);
+      // }
+    }

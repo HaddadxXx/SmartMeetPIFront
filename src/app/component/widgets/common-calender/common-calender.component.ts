@@ -198,14 +198,26 @@ eventTemplate: any;
 
   handleEvent(action: string, event: CalendarEvent): void {
     console.log(`${action} event`, event);
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
-    // Exemple d'action personnalisée
-  if (confirm(`Modifier l'événement "${event.title}" ?`)) {
-    // Redirige vers la page de modification avec l'ID ou autre donnée
-    this.router.navigate(['/others/add-event', event.meta?.id]);
-  }
-  }
+    
+    if (action === 'Edited') {
+        // Récupère les données complètes de l'événement depuis le backend
+        this.eventService.getEventById(event.meta?.id).subscribe(
+            (fullEvent: Event) => {
+                // Redirige vers la page d'édition avec les données
+                this.router.navigate(['/others/add-event'], {
+                    state: { eventData: fullEvent }
+                });
+            },
+            (error) => {
+                console.error('Error fetching event details:', error);
+            }
+        );
+    } else {
+        // Pour les autres actions (affichage modal)
+        this.modalData = { event, action };
+        this.modal.open(this.modalContent, { size: 'lg' });
+    }
+}
 
 
   
@@ -288,7 +300,9 @@ eventTemplate: any;
       participations: [] ,// valeur par défaut
       ownerId:'',
       nbParticipations: 0, // champ temporaire reçu du backend
-      tendanceRank: 0  // rang dans le top 5
+      tendanceRank: 0 , // rang dans le top 5
+      pourcentageParticipation: 0
+
     //  ownerId: '', 
       //user : [],
      

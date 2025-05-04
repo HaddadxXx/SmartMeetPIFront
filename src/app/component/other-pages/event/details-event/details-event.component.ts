@@ -34,7 +34,7 @@ export class DetailsEventComponent {
   @Input() event!: Event;
   filteredEvents: any[] = [];
   currentPage: number = 0; // Page actuelle
-  pageSize: number = 4; // Taille de la page (nombre d'événements par page)
+  pageSize: number = 3; // Taille de la page (nombre d'événements par page)
  // totalPages = 0;
 
   selectedThemes : Boolean =false ;

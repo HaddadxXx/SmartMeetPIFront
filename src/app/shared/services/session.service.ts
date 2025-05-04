@@ -7,12 +7,12 @@ import { Session } from "../interface/Session";
   providedIn: 'root',
 })
 export class SessionService {
-  private apiUrl = 'http://localhost:8889/sessions'; // Remplace par l'URL correcte de ton backend
+  private apiUrl = 'http://localhost:8889/Session'; // Remplace par l'URL correcte de ton backend
 
   constructor(private http: HttpClient) {}
 
-  getAllSessions(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/getAllSessions`);
+  getAllSessions(): Observable<Session[]> {
+    return this.http.get<Session[]>(`${this.apiUrl}/getAllSessions`);
   }
 
   // Supprimer une session

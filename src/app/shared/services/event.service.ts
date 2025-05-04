@@ -44,10 +44,10 @@ interface MeetResponse {
     return this.http.post(`${this.apiUrl}/addEvenement`, formData);
   }
     
-  // Mettre à jour un événement
-  updateEvent(id: string, event: Event): Observable<Event> {
-    return this.http.put<Event>(`${this.apiUrl}/${id}`, event);
+  updateEvent(id: string, formData: FormData): Observable<Event> {
+    return this.http.put<Event>(`${this.apiUrl}/${id}`, formData);
   }
+  
   ajouterSessionEtAffecterAEvenement(sessionData: any, eventName: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/ajouterSessionEtAffecterAEvenement/${encodeURIComponent(eventName)}`, sessionData);
   }
@@ -105,8 +105,12 @@ interface MeetResponse {
     });
   }
   getTopTrendingEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.apiUrl}/events/tendance`);
+    return this.http.get<Event[]>(`${this.apiUrl}/tendance`);
   }
+
+  getEventById(id: string): Observable<Event> {
+    return this.http.get<Event>(`${this.apiUrl}/getEventById/${id}`);
+}
 
 
 }

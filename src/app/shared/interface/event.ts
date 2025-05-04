@@ -5,7 +5,7 @@ export interface eventCategory {
 }
 
 export interface Event {
-    idEvent ? : string ;
+    idEvent ?: string ;
     nomEvent :string ;
     theme : string ;
     description: string ;
@@ -25,4 +25,6 @@ export interface Event {
     ownerId : string ;
     nbParticipations: number; // champ temporaire reçu du backend
     tendanceRank: number;     // rang dans le top 5
+    pourcentageParticipation: number;
+
 }
