@@ -11,7 +11,7 @@ export interface User {
 
 export interface Event {
   id: string;
-  name: string;
+  nomEvent: string;
   typeE: string;
   dateE: string;
   lieu: string;
