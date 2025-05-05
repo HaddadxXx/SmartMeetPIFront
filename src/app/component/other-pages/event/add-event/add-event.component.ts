@@ -52,6 +52,7 @@ export class AddEventComponent {
           capacite : ['', Validators.required],
           horaire: ['', Validators.required],
           lieu: [{ value: '', disabled: true }], 
+          budget: ['', Validators.required]
           
         });
         

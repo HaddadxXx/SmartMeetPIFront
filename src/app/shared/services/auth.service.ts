@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { FormsModule } from '@angular/forms'; // 
 
 @Injectable({
@@ -44,10 +44,30 @@ export class AuthService {
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null;
   }
+
+  
   getUserId(): string | null {
     const user = this.getUser();
     console.log('Utilisateur récupéré dans getUserId():', user);
     return user ? user.id : null;
+  }
+
+
+
+  // Variable pour stocker l'email de l'utilisateur connecté
+  private userEmailSubject = new BehaviorSubject<string | null>(null);
+  userEmail$ = this.userEmailSubject.asObservable();
+
+  
+
+  // Méthode pour définir l'email de l'utilisateur
+  setUserEmail(email: string) {
+    this.userEmailSubject.next(email);
+  }
+
+  // Méthode pour obtenir l'email de l'utilisateur connecté
+  getUserEmail(): string | null {
+    return this.userEmailSubject.value;
   }
 
 }

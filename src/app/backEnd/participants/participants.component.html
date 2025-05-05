@@ -1,0 +1,66 @@
+<div class="events-container">
+    <h2 class="page-title">Liste des Événements</h2>
+    
+    <div *ngIf="loading" class="loading-spinner">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  
+    <div *ngIf="!loading">
+      <table class="events-table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Thème</th>
+            <th>Date début</th>
+            <th>Date fin</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let event of events">
+            <td>{{ event.nomEvent }}</td>
+            <td>{{ event.theme }}</td>
+            <td>{{ event.dateDebut | date:'mediumDate' }}</td>
+            <td>{{ event.dateFin | date:'mediumDate' }}</td>
+          
+            <td>
+              <button class="btn btn-primary btn-sm" (click)="loadParticipants(event.idEvent!)">
+                Voir participants
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Modal pour afficher les participants -->
+    <div *ngIf="showParticipants" class="participants-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            Participants pour {{ selectedEvent?.nomEvent }}
+          </h5>
+          <button type="button" class="close-btn" (click)="closeParticipants()">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <div *ngIf="participants.length === 0" class="no-participants">
+            Aucun participant inscrit à cet événement.
+          </div>
+          <ul *ngIf="participants.length > 0" class="participants-list">
+            <li *ngFor="let email of participants" class="participant-item">
+              {{ email }}
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="closeParticipants()">
+            Fermer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

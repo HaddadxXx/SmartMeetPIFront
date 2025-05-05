@@ -1,0 +1,41 @@
+<h5 class="card-title">List of the events </h5>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Theme</th>
+      <th>Description</th>
+      <th>Begin Date </th>
+      <th>End Date </th>
+      <th>Location</th>
+      <th>Photo</th>
+      <th>Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let event of events">
+      <td>{{ event.nomEvent }}</td>
+      <td>{{ event.theme }}</td>
+      <td>{{ event.description }}</td>
+      <td>{{ event.dateDebut | date:'longDate' }}</td>
+      <td>{{ event.dateFin | date:'longDate' }}</td>
+      <td>
+        {{ event.lieu?.toLowerCase() === 'en ligne' || event.typeEvent?.toLowerCase() === 'en ligne' ? 'En ligne' : event.lieu }}
+      </td>
+      <td>
+        <img *ngIf="event.photo" [src]="'http://localhost:8889/uploads/' + event.photo" alt="event photo" width="100">
+      </td>
+      <td>
+        <div class="btn-group btn-group-sm">
+    
+            <button class="btn btn-outline-danger" 
+                    title="Delete"
+                    (click)="event.idEvent &&  onDeleteEvent(event.idEvent)">
+                <i class="fa fa-trash"></i>
+            </button>
+        </div>
+    </td>
+    </tr>
+  </tbody>
+</table>

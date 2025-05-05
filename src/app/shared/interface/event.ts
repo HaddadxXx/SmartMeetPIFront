@@ -5,6 +5,7 @@ export interface eventCategory {
 }
 
 export interface Event {
+  participantsEmails?: string[]; // Optionnel et correctement typé
     idEvent ?: string ;
     nomEvent :string ;
     theme : string ;
@@ -12,6 +13,7 @@ export interface Event {
     dateDebut: string ;
     dateFin : string ;
     capacite : number ;
+    budget : number ;
     typeEvent : string;
    sessions?: Session[]; 
     horaire: string ;

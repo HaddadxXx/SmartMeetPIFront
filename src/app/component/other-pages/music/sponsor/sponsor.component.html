@@ -1,0 +1,208 @@
+<div class="container">
+  <div class="row">
+      <div class="col-lg-5">
+          <div class="left-part">
+              <div>
+                  <div class="contact-img">
+                      <img src="assets/svg/money.svg" class="img-fluid" alt="">
+                  </div>
+                  <div class="contact-detail">
+                      <div class="row">
+                          <div class="col-sm-6">
+                              <div class="detail-box">
+                                 
+                              </div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="detail-box">
+                                 
+                              </div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="detail-box">
+                                 
+                              </div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="detail-box">
+                                  
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-6">
+          <div class="card p-4">
+              <div class="title">
+                  <h2>we're always happy to sponsor you</h2>
+                  
+              </div>
+              <form class="theme-form form-sm">
+                  <div class="row">
+                      <div class="form-group col-md-6">
+                          <label>title</label>
+                          <input 
+                          type="text" 
+                          [(ngModel)]="title" 
+                          [ngModelOptions]="{standalone: true}" 
+                          class="form-control" 
+                          id="title" 
+                          name="title" 
+                          placeholder="Entrez le titre"
+                          required
+                        >
+                        <div *ngIf="serverErrors?.title" class="text-danger">{{ serverErrors.title }}</div>
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="description">Description</label>
+                          <textarea 
+                            [(ngModel)]="description" 
+                            [ngModelOptions]="{standalone: true}" 
+                            class="form-control" 
+                            id="description" 
+                            name="description" 
+                            placeholder="Entrez la description"
+                            required
+                          ></textarea>
+                          <div *ngIf="serverErrors?.description" class="text-danger">{{ serverErrors.description }}</div>
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="amount">Amount</label>
+      <input 
+        type="number" 
+        [(ngModel)]="amount" 
+        [ngModelOptions]="{standalone: true}" 
+        class="form-control" 
+        id="amount" 
+        name="amount" 
+        placeholder="0"
+        min="1000"
+      >
+      <div *ngIf="serverErrors?.amount" class="text-danger">{{ serverErrors.amount }}</div>
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="creationDate">Creation</label>
+      <input 
+        type="date" 
+        [(ngModel)]="creationDateString" 
+        [ngModelOptions]="{standalone: true}" 
+        class="form-control" 
+        id="creationDate" 
+        name="creationDate"
+        [min]="minDate"
+        required
+      >
+      <div *ngIf="serverErrors?.creationDate" class="text-danger">{{ serverErrors.creationDate }}</div>
+      <div *ngIf="submitted && !creationDateString" class="text-danger">
+        The creation date is required.
+    </div>
+                      </div>
+                      <div class="form-group col-12">
+                          <label for="status">Status</label>
+                          <select 
+                            [(ngModel)]="status" 
+                            [ngModelOptions]="{standalone: true}" 
+                            class="form-control" 
+                            id="status" 
+                            name="status"
+                          >
+                            <option value="AVAILABLE">Available</option>
+                            <option value="UNAVAILABLE">Unavailable</option>
+                          </select>
+                          <div *ngIf="serverErrors?.status" class="text-danger">{{ serverErrors.status }}</div>
+                      </div>
+                      
+                  </div>
+                  <div class="text-right">
+                      <button type="button" class="btn btn-solid" (click)="saveOffer()">add</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+  
+  <!-- Tableau des offres de sponsoring -->
+  <div class="card p-4">
+    <h1 class="mb-3">All Sponsorship Offers in One Place</h1>
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="bg-light">
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Creation Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let offer of paginatedOffers">
+            <td>{{ offer.title }}</td>
+            <td>{{ offer.description }}</td>
+            <td>{{ offer.amount }}</td>
+            <td>{{ offer.creationDate | date:'dd/MM/yyyy' }}</td>
+            <td>
+              <span [ngClass]="{'badge bg-success fw-bold': offer.status === 'AVAILABLE', 'badge bg-danger fw-bold': offer.status === 'UNAVAILABLE'}">
+                {{ offer.status }}
+              </span>
+            </td>
+            <td>
+            <button   type="button" class="btn btn-solid" (click)="setUpdateOffer(offer) ">
+              Edit
+              </button> 
+              <button class="btn btn-solid" (click)="openAffectationModal(offer)">Assign to an Event</button>
+
+              <button type="button" class="btn btn-solid"  (click)="setDeleteOffer(offer)">
+               Delete
+              </button>
+ 
+             
+              <button class="btn btn-solid" *ngIf="offer.contractId" (click)="downloadContract(offer.contractId)">
+                Download the contract 📄
+              </button>
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+         <!-- Ici la pagination -->
+    <nav *ngIf="totalPages > 1" class="mt-3">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <button class="page-link" (click)="currentPage = currentPage - 1" [disabled]="currentPage === 1">Previous</button>
+        </li>
+        <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" 
+            [class.active]="currentPage === i + 1">
+          <button class="page-link" (click)="currentPage = i + 1">{{ i + 1 }}</button>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <button class="page-link" (click)="currentPage = currentPage + 1" [disabled]="currentPage === totalPages">Next</button>
+        </li>
+      </ul>
+    </nav>
+
+    </div>
+  </div>
+  <!-- Modale d'affectation (Placez ce bloc à la fin du fichier) -->
+  <div *ngIf="showModal" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>Link a Sponsorship Offer to an Event</h2>
+  
+      <p *ngIf="isLoadingRecommendation">Loading recommendation...</p>
+  
+      <ng-container *ngIf="!isLoadingRecommendation">
+        <label for="eventSelect">Select an event:</label>
+        <select [(ngModel)]="selectedEventId" class="form-control">
+          <option *ngFor="let event of eventArray" [value]="event.id">{{ event.name }}</option>
+        </select>
+  
+        <button class="btn btn-primary mt-3" (click)="affecterSponsoring()">Link</button>
+      </ng-container>
+    </div>
+  </div>
+  

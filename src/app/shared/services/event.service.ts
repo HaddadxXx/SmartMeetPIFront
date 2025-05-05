@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Event } from '../../shared/interface/event';
 //import { Session } from '../interface/Session';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { AuthService } from './auth.service';
 import { UserService } from './user.service';
 interface MeetResponse {
@@ -41,7 +41,7 @@ interface MeetResponse {
     return this.http.post<MeetResponse>(`http://localhost:8889/events/lancerMeetPourEvent/${eventId}`, {});
   }
   createEvent(formData: FormData) {
-    return this.http.post(`${this.apiUrl}/addEvenement`, formData);
+    return this.http.post(`${this.apiUrl}/addEvenement`, formData , { withCredentials: true });
   }
     
   updateEvent(id: string, formData: FormData): Observable<Event> {
@@ -112,5 +112,18 @@ interface MeetResponse {
     return this.http.get<Event>(`${this.apiUrl}/getEventById/${id}`);
 }
 
+getParticipantsEmailsByEventId(eventId: string): Observable<string[]> {
+  return this.http.get<string[]>(`${this.apiUrl}/participants-emails/${eventId}`);
+}
+
+
+getEventsByOwnerId(email: string): Observable<Event[]> {
+  console.log("Requête pour récupérer les événements pour l'email:", email);
+  return this.http.get<Event[]>(`${this.apiUrl}?email=${email}`,  { withCredentials: true }).pipe(
+    tap((response) => {
+      console.log("Réponse du backend:", response); // Ajoute un log ici
+    })
+  );
+}
 
 }

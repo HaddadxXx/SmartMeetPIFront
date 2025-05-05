@@ -47,7 +47,9 @@
                             <button class="btn btn-solid" (click)="event.idEvent ? onLancerMeet(event.idEvent) : null">
                               <i class="fa fa-play-circle" ></i> Lancer Meet
                             </button>
-                            
+                            <div *ngIf="events.length === 0 && !loading" class="alert alert-warning">
+                              Aucun événement trouvé pour cet utilisateur.
+                            </div>
                           </div>
                         </div>
                       </div>

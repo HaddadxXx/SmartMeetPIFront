@@ -100,6 +100,14 @@
             <button class="btn btn-success" (click)="openParticipationModal(participationModal, event.nomEvent)">
               <i class="fa fa-check"></i> Participate
             </button>
+        <br>
+      <button *ngIf="event.contractId" (click)="downloadContract(event.contractId)">
+         Télécharger le contrat 📄
+</button>
+
+<br>
+            <div class="mt-6 text-center">
+              <button class="btn btn-primary me-2" (click)="openAffectationModal(event)">Affect to </button>
           </div>
         </div>
       </div>
@@ -191,3 +199,24 @@ Résultat : {{ analysisResult.status }}
     </form>
   </div>
 </ng-template>
+
+
+<!-- MODALE D'AFFECTATION -->
+<div *ngIf="showModal" class="modal-backdrop d-flex justify-content-center align-items-center">
+  <div class="modal-content p-4 bg-white rounded shadow" style="width: 400px;">
+    <h4 class="mb-3">Affecter une offre à l'événement</h4>
+    <div class="mb-3">
+      <select [(ngModel)]="selectedOfferId" class="form-select">
+        <option value="" disabled selected>Choisissez une offre</option>
+        <option *ngFor="let offer of offers" [value]="offer.id">
+          {{ offer.title }} - {{ offer.amount }} DT
+        </option>
+      </select>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-primary me-2" (click)="affecterEvenement()">Affecter</button>
+      <button class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+    </div>
+  </div>
+</div>

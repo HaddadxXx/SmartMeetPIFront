@@ -5,11 +5,16 @@ import { TitleSectionComponent } from "../../widgets/title-section/title-section
 import { FooterComponent } from "../../widgets/footer/footer.component";
 import { DownloadComponent } from "../../widgets/download/download.component";
 import { ContactsSectionComponent } from "./contacts-section/contacts-section.component";
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { SponsoringOfferService } from 'C:/Users/User/OneDrive/Bureau/integration/SmartMeetPIFront/src/app/shared/services/sponsoring-offer.service';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'C:/Users/User/OneDrive/Bureau/integration/SmartMeetPIFront/src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-contacts-us',
   standalone: true,
-  imports: [HeaderOneComponent, TitleSectionComponent, FooterComponent, DownloadComponent, ContactsSectionComponent],
+  imports: [HeaderOneComponent, TitleSectionComponent, FooterComponent, DownloadComponent, ContactsSectionComponent,CommonModule, FormsModule],
   templateUrl: './contacts-us.component.html',
   styleUrl: './contacts-us.component.scss'
 })

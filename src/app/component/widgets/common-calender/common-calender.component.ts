@@ -301,7 +301,8 @@ eventTemplate: any;
       ownerId:'',
       nbParticipations: 0, // champ temporaire reçu du backend
       tendanceRank: 0 , // rang dans le top 5
-      pourcentageParticipation: 0
+      pourcentageParticipation: 0,
+      budget:0
 
     //  ownerId: '', 
       //user : [],

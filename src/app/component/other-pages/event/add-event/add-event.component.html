@@ -61,6 +61,15 @@
                   <small *ngIf="eventForm.controls['capacite'].errors?.['min']">Capacity must be at least 1.</small>
                 </div>
               </div>
+              <!-- budget -->
+              <div class="form-group">
+                <label for="budget" class="form-label">budget:</label>
+                <input id="budget" formControlName="budget" type="number" class="form-control" placeholder="Enter event capacity" required min="1">
+                <div *ngIf="eventForm.controls['budget'].invalid && eventForm.controls['budget'].touched" class="text-danger">
+                  <small *ngIf="eventForm.controls['budget'].errors?.['required']">Capacity is required.</small>
+                  <small *ngIf="eventForm.controls['budget'].errors?.['min']">Capacity must be at least 1.</small>
+                </div>
+              </div>
       
               <!-- Start Date -->
               <div class="form-group">

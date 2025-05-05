@@ -8,14 +8,34 @@ import { Event } from '../../../../shared/interface/event';
 import { Session } from '../../../../shared/interface/Session';
 import { NgbModal, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { User, UserService } from '../../../../shared/services/user.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-details-event',
   standalone: true,
-  imports: [CommonModule , FormsModule , ReactiveFormsModule  , RouterModule ,NgbModalModule , NgbModule],
+  imports: [CommonModule , FormsModule , ReactiveFormsModule  , RouterModule ,NgbModalModule , NgbModule , ReactiveFormsModule],
   templateUrl: './details-event.component.html',
   styleUrl: './details-event.component.scss'
 })
 export class DetailsEventComponent {
+
+  budget: number = 0;
+  submitted = false;
+  serverErrors: any = {};
+  contractId?: string; // optionnel
+  eventCategory: any[] = [];
+event: any = {};  
+
+  //events: any[] = [];
+  isEditing = false;
+  editingId: number | null = null;
+  offers: any[] = [];
+  selectedEventId?: string = '';
+  selectedOfferId: string = '';
+  showModal: boolean = false;
+
+
+
+//////////////////////////
   totalPages: number = 0; // Nombre total de pages
   currentUserId: string = ''; // ID de l'utilisateur connecté
   message: string = ''; // Message de retour pour la vérification
@@ -31,7 +51,9 @@ export class DetailsEventComponent {
     lastName: '',
     eventId: ''
   };
-  @Input() event!: Event;
+
+
+ // @Input() event!: Event;
   filteredEvents: any[] = [];
   currentPage: number = 0; // Page actuelle
   pageSize: number = 3; // Taille de la page (nombre d'événements par page)
@@ -57,12 +79,14 @@ analysisResult: any;
     // Implémenter la logique de filtrage ici selon tes données récupérées
   }
 
-  constructor(private eventService: EventService , private authService :AuthService , private modalService: NgbModal , private userService : UserService) {}
+  constructor(private eventService: EventService , private http : HttpClient ,
+     private authService :AuthService , private modalService: NgbModal , private userService : UserService) {}
 
   ngOnInit(): void {
     this.loadEvents();
     this.loadPaginatedEvents();
     //this.getCurrentUser();
+    
   }
 
   loadEvents(): void {
@@ -218,4 +242,82 @@ loadCurrentUser() {
   });
 }
 
+
+
+
+///////////////////////////////////////////
+openAffectationModal(event: any) {
+  console.log("openAffectationModal appelé avec :", event);
+  this.selectedEventId = event.idEvent;
+  console.log("ID affecté :", this.selectedEventId);
+
+  this.showModal = true;
+
+  // Récupérer les offres de sponsoring
+  this.http.get("http://localhost:8889/api/offers")
+    .subscribe({
+      next: (data: any) => {
+        this.offers = data;
+      },
+      error: (err) => console.error("Erreur lors de la récupération des offres :", err)
+    });
 }
+affecterEvenement() {
+
+  console.log("Début de l'affectation...");
+  console.log("ID de l'événement sélectionné :", this.selectedEventId);
+  console.log("ID de l'offre sélectionnée :", this.selectedOfferId);
+
+  if (!this.selectedEventId || !this.selectedOfferId) {
+    alert("Veuillez sélectionner une offre !");
+    return;
+  }
+
+  const url = `http://localhost:8889/events/affecter-sponsoring/${this.selectedEventId}/${this.selectedOfferId}`;
+  console.log("URL de la requête PUT :", url);
+
+  this.http.put(url, {}, { responseType: 'text' })
+    .subscribe({
+      next: () => {
+        alert("Événement affecté à l'offre avec succès !");
+        this.closeModal();
+      },
+      error: (error) => {
+        console.error("Erreur lors de l'affectation :", error);
+        alert("L'événement est déjà affecté à cette offre");
+      }
+    });
+}
+closeModal() {
+  this.showModal = false;
+  this.selectedEventId = '';
+  this.selectedOfferId = '';
+}
+/*downloadContract(contractId: string) {
+  const url = http://localhost:8084/api/contracts/download/${contractId};
+
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erreur lors du téléchargement du contrat.');
+      }
+      return response.blob();
+    })
+    .then(blob => {
+      const fileURL = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = fileURL;
+      a.download = contract_${contractId}.pdf;
+      a.click();
+    })
+    .catch(error => {
+      console.error("Erreur:", error);
+      alert("Une erreur s'est produite pendant le téléchargement du contrat.");
+    });
+}*/
+    downloadContract(contractId: string) {
+      const url = 'http://localhost:8889/api/contracts/download/${contractId}';
+      window.open(url, '_blank');
+    }
+    }
+

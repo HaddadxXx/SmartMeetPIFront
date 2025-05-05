@@ -28,7 +28,8 @@ import { SessionService } from '../../../shared/services/session.service';
 })
 
 export class AboutComponent {
-
+  
+  userEmail: string = '';  // Email de l'utilisateur connecté
   events: Event[] = [];
  meetLink: string | null = null;  // Pour stocker le lien Meet généré
   errorMessage: string = '';

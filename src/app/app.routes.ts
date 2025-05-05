@@ -14,6 +14,10 @@ import { NgModule } from '@angular/core';
 import { SignupComponent } from '../app/auth/auth-login/signup.component';
 import { VerifComponent } from '../app/auth/auth-login/verif.component';
 import { PageHomeComponent } from './component/favorite-page/page-home/page-home.component';
+import { OfferComponent } from './backEnd/offers/offer.component';
+import { EventComponent } from './backEnd/event/event.component';
+import { SessionsComponent } from './backEnd/sessions/sessions.component';
+import { ParticipantsComponent } from './backEnd/participants/participants.component';
 
 export const routes: Routes = [
   { path: 'group', redirectTo: 'favorite/group-listing', pathMatch: 'full' },
@@ -22,6 +26,11 @@ export const routes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'reports', component: ReportsComponent },
   { path: 'settings', component: SettingsComponent },
+  { path: 'offers', component: OfferComponent },
+  { path: 'event', component: EventComponent },
+  { path: 'sessions', component: SessionsComponent },
+  { path: 'partipations', component: ParticipantsComponent },
+
   { path: 'auth/signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'auth/verif', component: VerifComponent },
