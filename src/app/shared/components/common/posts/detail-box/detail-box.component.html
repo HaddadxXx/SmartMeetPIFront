@@ -22,7 +22,9 @@
             </li>
             }
         </ul>
-        <h6>+12 people react this post</h6>
+        <p *ngIf="emojiCount > 0">+{{ emojiCount }} {{ emojiCount === 1 ? 'person reacts' : 'people react' }} to this post</p>
+
+
     </div>
 </div>
 

@@ -1,4 +1,6 @@
 import { events, title } from "../interface/common"
+import { PickerComponent } from '@ctrl/ngx-emoji-mart';
+
 
 export const event: events = {
      image: 'assets/images/event/1.jpg',
@@ -172,6 +174,15 @@ export const emojiList = [
           images: 'assets/svg/emoji/042.svg'
      },
 ]
+
+export const emojiToReactionTypeMap: { [key: string]: string } = {
+     'assets/svg/emoji/040.svg': 'LIKE',
+     'assets/svg/emoji/113.svg': 'LOVE',
+     'assets/svg/emoji/027.svg': 'SAD',
+     'assets/svg/emoji/052.svg': 'WOW',
+     'assets/svg/emoji/039.svg': 'ANGRY',
+     'assets/svg/emoji/042.svg': 'LAUGH'
+   };
 
 export const comment = [
      {

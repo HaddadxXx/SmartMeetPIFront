@@ -1,18 +1,73 @@
+<!-- post-details-box.component.html -->
 <div class="detail-box">
-    @if(postData){
-        <h4>{{postData.description}}</h4>
+    @if(postData) {
+      <h4>{{ postData.description }}</h4>
     }
-    @if(postData.images){
-        <div class="people-likes">
-            <ul>
-                @for (items of postData.images; track items) {
-                    <li class="popover-cls" [ngStyle]="{'background-image': 'url(' +  items.url  + ')'}"
-                    style=" background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
-                    <img [src]="items.url" class="img-fluid  bg-img" alt="" style="display: none;">
-                </li>
-            }
+    
+    @if(postData.images) {
+      <div class="people-likes">
+        <ul>
+          @for (items of postData.images; track items) {
+            <li class="popover-cls" 
+                [ngStyle]="{'background-image': 'url(' + items.url + ')'}"
+                style="background-size: cover; background-position: center; background-repeat: no-repeat; display: block;">
+              <img [src]="items.url" class="img-fluid bg-img" alt="" style="display: none;">
+            </li>
+          }
         </ul>
         <h6>+12 people react this post</h6>
+      </div>
+    }
+  
+    <!-- Section commentaires ajoutée -->
+    <div class="comment-section mt-3">
+      <a href="javascript:void(0)" (click)="toggleCommentSuggestions()" class="comment-trigger">
+        <app-feather-icon class="iw-18 ih-18" icons="message-square"></app-feather-icon>
+        Générer commentaires
+      </a>
+  
+      @if(isActive) {
+        <div class="suggestions-box p-2 bg-light rounded shadow-sm my-2">
+          <div class="d-flex flex-nowrap overflow-auto gap-2">
+            @for (c of generatedComments; track c) {
+              <button type="button" 
+                      class="btn btn-outline-secondary btn-sm text-nowrap"
+                      (click)="selectComment(c)">
+                {{ c }}
+              </button>
+            }
+          </div>
+        </div>
+      }
+  
+      @if(selectedComment) {
+        <div class="comment-preview bg-white p-3 rounded shadow-sm mb-3">
+          <div class="d-flex align-items-center gap-3">
+            <img src="assets/avatar.png" 
+                 class="user-avatar rounded-circle" 
+                 width="40" 
+                 height="40" 
+                 alt="Avatar">
+            
+            <div class="flex-grow-1">
+              <strong>Votre commentaire :</strong>
+              <p class="mb-0">{{ selectedComment }}</p>
+            </div>
+            
+            <button type="button" 
+                    class="btn btn-primary"
+                    (click)="submitComment()">
+              Publier
+            </button>
+          </div>
+        </div>
+      }
+  
+      @if(errorMessage) {
+        <div class="alert alert-danger mt-2">
+          {{ errorMessage }}
+        </div>
+      }
     </div>
-}
-</div>
+  </div>
+  

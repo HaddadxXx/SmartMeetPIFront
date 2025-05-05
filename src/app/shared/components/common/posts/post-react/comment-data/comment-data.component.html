@@ -1,5 +1,7 @@
 <div class="ldr-comments">
+  
     <ul>
+      
         <li>
             <div class="media">
                 <div class="ldr-img"></div>
@@ -24,6 +26,7 @@
                 </li>
             </ul>
         </li>
+       
         <li>
             <div class="media">
                 <div class="ldr-img"></div>
@@ -35,6 +38,8 @@
                 </div>
             </div>
         </li>
+
+       
         <li>
             <div class="media">
                 <div class="ldr-img"></div>
@@ -48,7 +53,12 @@
         </li>
     </ul>
 </div>
-@for (item of comment; track item) {
+
+
+
+
+
+@for (item of comments; track item.id) {
 <div class="main-comment">
     <div class="media">
         <a href="javascript:void(0)" class="user-img popover-cls"
@@ -60,23 +70,569 @@
                 style="display: none;">
         </a>
         <div class="media-body">
+            <!-- Suggestions générées dynamiquement -->
+<div *ngIf="isActive" class="suggestions-box p-2 bg-light rounded shadow-sm mb-2">
+  
+</div>
+
+<!-- Barre de commentaire stylisée
+<div *ngIf="isActive" class="comment-bar d-flex align-items-center gap-2">
+  <img class="user-avatar rounded-circle" src="assets/avatar.png" width="32" height="32" alt="avatar">
+  <input (click)="selectedComment" type="text" class="form-control" placeholder="Ajouter un commentaire…" />
+  
+</div> -->
+
+           
             <a href="javascript:void(0)">
-                <h5>{{item.uname}}</h5>
-            </a>
-            <p>{{item.comment}}
-            </p>
-            <ul class="comment-option">
-                @if(item.likes){
-                <li><a href="javascript:void(0)">like ({{item.likes}})</a></li>
-                } @else {
-                <li><a href="javascript:void(0)">like</a></li>
-                }
-                <li><a href="javascript:void(0)">reply</a></li>
-                <li><a href="javascript:void(0)">translate</a></li>
+                <h5>{{ item.userFirstName }} {{ item.userLastName }}</h5>
+                
+
+
+
+                <p>
+                  {{ item.text }}
+                  <span 
+                  [style.color]="getEmotionColor(item.emotion)"
+                  style="font-weight: bold; margin-left: 10px;"
+                  title="Emotion détectée"
+                >
+                  [{{ item.emotion | titlecase }}]
+                </span>
+                </p>
+                <!--<div *ngIf="!isOffensive">
+                  <p>{{ item.text }}</p>  
+                </div>-->
+                
+                <!-- Affiche un message si le commentaire est offensant -->
+                <!--<div *ngIf="isOffensive" class="error-message">
+                  <p>❌ Le commentaire contient des mots offensants et n'a pas été publié.</p>
+                </div>--> 
+
+
+   </a>
+   <div class="media-body">
+    <a href="javascript:void(0)">
+        <h5>{{item.uname}}</h5>
+    </a>
+    <p>{{item.comment}}</p>
+    <ul class="comment-option">
+        <li><a href="javascript:void(0)">like</a></li>
+        <li><a href="javascript:void(0)" (click)="toggleReplyInput(item.id)" >{{ activeReplyId === item.id ? 'Cancel' : 'Replay' }}</a></li>
+        <li><a href="javascript:void(0)"(click)="translateComment(item.id)">translate</a></li>
+<p *ngIf="item.translatedText">translate {{ item.translatedText }}</p>
+        
+
+          
+        
+        
+    </ul>
+</div>
+
+<!-- Suggestions sous forme de boutons 
+<div *ngIf="isActive" class="suggestions-box p-2 bg-light rounded shadow-sm mb-2 d-flex flex-wrap gap-2">
+  <button
+    *ngFor="let c of generatedComments"
+    class="btn btn-outline-secondary btn-sm"
+    (click)="selectComment(c)"
+  >
+    {{ c }}
+  </button>
+</div>-->
+
+<!-- Validation du commentaire choisi 
+<div *ngIf="selectedComment" class="comment-bar d-flex align-items-center gap-2 mb-3">
+  <img class="user-avatar rounded-circle" src="assets/avatar.png" width="32" height="32" alt="avatar" />
+  <div class="flex-grow-1">
+    <strong>:</strong>
+    <p class="m-0">{{ selectedComment }}</p>
+  </div>
+  <button class="btn btn-primary" (click)="submitComment()">
+    V
+  </button>
+</div>-->
+<!-- Suggestions -->
+<!-- Bouton "Voir plus" -->
+
+<!-- Conteneur global du commentaire avec position relative -->
+<div style="position: relative; display: inline-block; width: fit-content;">
+    <!-- Bouton des trois points -->
+    <div class="setting-btn ms-auto setting-dropdown no-bg" (clickOutside)="outSideClose(item)">
+      <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+        <div role="button" (click)="toggleDropdown(item)" style="display: flex; justify-content: flex-end;">
+          <app-feather-icon [class]="'icon icon-font-color iw-14'" [icons]="'more-horizontal'"></app-feather-icon>
+        </div>
+      </div>
+    </div>
+
+  
+    <!-- Menu déroulant -->
+    <div class="dropdown-menu dropdown-menu-right custom-dropdown" 
+      [class.show]="item.isShow" 
+      style="position: absolute; top: 100%; right: 0; z-index: 1000; min-width: 200px;">
+      <ul class="mb-0">
+         <li>
+                <a href="javascript:void(0)">
+<app-feather-icon 
+                    [class]="'icon-font-light iw-16 ih-16'" 
+                    [icons]="'bookmark'">
+                  </app-feather-icon>
+saveComment </a>
+              </li>
+              <li>
+
+
+        <li>
+                <a href="javascript:void(0)">
+                  <app-feather-icon 
+                    [class]="'icon-font-light iw-16 ih-16'" 
+                    [icons]="'x-square'">
+                  </app-feather-icon>
+                  hideComment
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" (click)="startEditing(item)">
+             <app-feather-icon 
+                    class="icon-font-light iw-16 ih-16" 
+                    [icons]="'edit'">
+                  </app-feather-icon>
+                  Éditer
+                </a>
+              </li>
+
+        
+        <!-- Formulaire d'édition -->
+        <div *ngIf="editingCommentId === item.id" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
+          <input 
+            [value]="editedText" 
+            placeholder="Modifier le commentaire..." 
+            (input)="onInputChange($event)" 
+           style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 12px;"
+          />
+<div style="display: flex; gap: 10px;">
+
+          <button (click)="saveEdit(item.id, item.userId)" style="background-color: #007bff; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;" >Sauvegarder</button>
+          <button (click)="cancelEditing()"style="background-color: #e0e0e0; color: #333; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Annuler</button>
+        </div>
+</div>
+  
+        <li>
+          <a href="javascript:void(0)" (click)="deleteComment(item.id)">
+            <app-feather-icon 
+                    [class]="'icon-font-light iw-16 ih-16'" 
+                    [icons]="'trash-2'">
+                  </app-feather-icon>
+ Supprimer
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+   <!--<div>
+    <button class="btn btn-sm btn-link text-primary"
+            (click)="toggleReplyInput(item.id)">
+      {{ activeReplyId === item.id ? 'Cancel' : 'Replay' }}
+    </button>
+  </div>-->
+
+<!-- Champ de saisie de la réponse -->
+<div *ngIf="activeReplyId === item.id" class="reply-form mb-3">
+  <div class="form-control comment-field" style="background-color: #f0f2f5; border-radius: 1px; padding: 5px 8px;">
+    <div class="d-flex align-items-center gap-2">
+        <input
+          type="text"
+          [value]="replyTexts[item.id] || ''"
+          placeholder="Write a reply..."
+          (input)="onInputChanges($event, item.id)"
+          class="reply-input flex-grow-1"
+          style="border: none; background: transparent; outline: none; padding: 4px;"
+        />
+        
+        <div class="d-flex align-items-center gap-3">
+          <!-- Emoji Picker -->
+          <button type="button" class="btn btn-icon" (click)="toggleEmojiPicker()">
+            <app-feather-icon class="iw-16 ih-16" icons="smile"></app-feather-icon>
+          </button>
+  
+          <!-- Camera Icon -->
+          <button type="button" class="btn btn-icon">
+            <app-feather-icon class="iw-16 ih-16" icons="camera"></app-feather-icon>
+          </button>
+  
+          <!-- Send Button -->
+          <button 
+            type="button" 
+            class="btn btn-icon text-primary" 
+            (click)="addReply(item.id)"
+            [disabled]="!replyTexts[item.id]?.trim()"
+          >
+            <app-feather-icon class="iw-18 ih-18" icons="send"></app-feather-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+ <!-- Liste des réponses -->
+<div class="replies-container mt-3">
+  <button 
+    (click)="toggleReplies(item)" 
+    class="btn btn-link text-decoration-none p-0 d-flex align-items-center gap-2"
+  >
+    <span 
+      [ngClass]="{ 'rotate-180': item.showReplies }" 
+      class="transition-all"
+    >⌃</span>
+    <span class="text-muted small">{{ item.replies?.length || 0 }} réponses</span>
+  </button>
+
+  <ul *ngIf="item.showReplies" class="list-unstyled mt-2">
+    <li *ngFor="let reply of item.replies; trackBy: trackByReplyId" class="mb-3">
+      <!-- Conteneur de chaque réponse -->
+      <div class="d-flex gap-3" style="position: relative;">
+        <!-- Avatar -->
+        <div class="flex-shrink-0">
+          <div 
+            class="rounded-circle bg-light d-flex align-items-center justify-content-center" 
+            style="width: 32px; height: 32px;"
+          >
+            <span class="small">
+              {{ reply.firstName?.charAt(0) || reply.user?.firstName?.charAt(0) || '?' }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Contenu de la réponse -->
+        <div class="flex-grow-1">
+          <!-- En-tête de la réponse -->
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <strong class="small">
+              <span *ngIf="reply.firstName">
+                {{ reply.firstName }} {{ reply.lastName }}
+              </span>
+              <span *ngIf="reply.user?.firstName">
+                {{ reply.user.firstName }} {{ reply.user.lastName }}
+              </span>
+              <span *ngIf="reply.userId === currentUserId">Vous</span>
+            </strong>
+            <span class="text-muted small">
+              {{ reply.createdAt | date:'HH:mm' }}
+            </span>
+          </div>
+
+          <!-- Texte de la réponse -->
+          <div class="bg-light rounded p-3" style="background-color: #fff!important;">
+            <p class="mb-0 small">{{ reply.text }}</p> 
+          </div>
+
+          <ul class="comment-option">
+            <li><a href="javascript:void(0)">Like</a></li>
+            <li>
+              <a href="javascript:void(0)" (click)="toggleReReplayInput(reply.id)">
+                {{ activeReReplayId === reply.id ? 'Cancel' : 'Reply' }}
+              </a>
+            </li>
+            <li><a href="javascript:void(0)">Translate</a></li>
+          </ul>
+        
+
+          <div *ngIf="activeReReplayId === reply.id" style="margin-top: 10px;">
+          <div class="form-control comment-field" style="background-color: #f0f2f5; border-radius: 1px; padding: 5px 8px;">
+            <div class="d-flex align-items-center gap-2">
+              <input   
+              type="text"
+              [(ngModel)]="replayReplyTexts[reply.id]"  
+              placeholder="Write a rereply..."
+              (input)="onInputChangeReplay($event, reply.id)"
+              class="reply-input flex-grow-1"
+              style="border: none; background: transparent; outline: none; padding: 4px;"
+            />
+        
+              <div class="d-flex align-items-center gap-3">
+                <!-- Emoji Picker -->
+                <button type="button" class="btn btn-icon" (click)="toggleEmojiPicker()">
+                  <app-feather-icon class="iw-16 ih-16" icons="smile"></app-feather-icon>
+                </button>
+        
+                <!-- Camera Icon -->
+                <button type="button" class="btn btn-icon">
+                  <app-feather-icon class="iw-16 ih-16" icons="camera"></app-feather-icon>
+                </button>
+        
+                <button
+                type="button"
+                class="btn btn-icon text-primary"
+                (click)="addReReplay(reply.id)"
+                [disabled]="!reply.id || !replayReplyTexts[reply.id]?.trim()"
+              >
+                
+              
+                  <app-feather-icon class="iw-18 ih-18" icons="send"></app-feather-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+        <div class="replies-container mt-3">
+          <button 
+          (click)="toggleReReplayInputs(reply)" 
+          class="btn btn-link text-decoration-none p-0 d-flex align-items-center gap-2"
+        >
+          <span 
+            [ngClass]="{ 'rotate-180': reply.showReReplies }" 
+            class="transition-all"
+          >⌃</span>
+          <span class="text-muted small">{{ reply.reReplies?.length || 0 }} réponses</span>
+        </button>
+
+
+        <div (click)="loadReReplies(reply)" style="cursor: pointer; display: inline-block;">
+          🔽
+        </div>
+        
+          <ul *ngIf="reply.showReReplies" class="list-unstyled mt-2">
+            <li *ngFor="let rereply of reply.reReplies; trackBy: trackByReplyId" class="mb-3">
+              <div class="d-flex gap-3" style="position: relative; margin-left: 20px;">
+                
+                <!-- Avatar -->
+                <div class="flex-shrink-0">
+                  <div 
+                    class="rounded-circle bg-light d-flex align-items-center justify-content-center" 
+                    style="width: 32px; height: 32px;"
+                  >
+                    <span class="small">
+                      <!-- Initiale du prénom ou "?" si pas dispo -->
+                      {{ rereply.firstName?.charAt(0) || rereply.user?.firstName?.charAt(0) || '?' }}
+                    </span>
+                  </div>
+                </div>
+        
+                <!-- Contenu de la rereply -->
+                <div class="flex-grow-1">
+                  <!-- En-tête avec nom/prénom -->
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <strong class="small">
+                      <span *ngIf="rereply.firstName && rereply.lastName">
+                        {{ rereply.firstName }} {{ rereply.lastName }}
+                      </span>
+                      <span *ngIf="!rereply.firstName && rereply.user?.firstName && rereply.user?.lastName">
+                        {{ rereply.user.firstName }} {{ rereply.user.lastName }}
+                      </span>
+                      <span *ngIf="rereply.userId === currentUserId">Vous</span>
+                    </strong>
+                    <span class="text-muted small">
+                      {{ rereply.createdAt | date:'HH:mm' }}
+                    </span>
+                  </div>
+        
+                  <!-- Texte de la rereply -->
+                  <div class="bg-light rounded p-3" style="background-color: #fff!important;">
+                    <p class="mb-0 small">{{ rereply.text }}</p> 
+                  </div>
+                </div>
+        
+              </div>
+
+              <div class="setting-btn ms-auto setting-dropdown no-bg" 
+     (clickOutside)="outSideClose(rereply)" 
+     style="position: relative;">
+
+              <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+                <div role="button" 
+                     (click)="toggleDropdownReReply(reply, rereply)" 
+                     style="display: flex; justify-content: flex-end;">
+                  <app-feather-icon 
+                    [class]="'icon icon-font-color iw-14'" 
+                    [icons]="'more-horizontal'">
+                  </app-feather-icon>
+                </div>
+              </div>
+
+              <!-- Menu déroulant (rereply) -->
+  <div class="dropdown-menu dropdown-menu-right custom-dropdown" 
+  [class.show]="rereply.isShow" 
+  style="position: absolute; top: 100%; right: 0; z-index: 1000; min-width: 200px;">
+<ul class="mb-0">
+ <li>
+   <a href="javascript:void(0)">
+     <app-feather-icon 
+       [class]="'icon-font-light iw-16 ih-16'" 
+       [icons]="'bookmark'">
+     </app-feather-icon>
+     saveRereply
+   </a>
+ </li>
+ <li>
+   <a href="javascript:void(0)">
+     <app-feather-icon 
+       [class]="'icon-font-light iw-16 ih-16'" 
+       [icons]="'x-square'">
+     </app-feather-icon>
+     hideRereply
+   </a>
+ </li>
+ <li>
+   <a href="javascript:void(0)" (click)="startEditingReReplay(rereply)">
+     <app-feather-icon 
+       class="icon-font-light iw-16 ih-16" 
+       [icons]="'edit'">
+     </app-feather-icon>
+     Éditer
+   </a>
+ </li>
+ <li>
+  <a href="javascript:void(0)" (click)="deleteReReplay(rereply.id)">
+    <app-feather-icon 
+      [class]="'icon-font-light iw-16 ih-16'" 
+      [icons]="'trash-2'">
+    </app-feather-icon>
+    Supprimer
+  </a>
+</li>
+</ul>
+
+
+
+<!-- Formulaire d'édition -->
+<div *ngIf="editingReReplayId === rereply.id" 
+    style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9; margin-top: 10px;">
+ <input [value]="editedText" 
+        placeholder="Modifier le rereply..." 
+        (input)="onInputChange($event)" 
+        style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 12px;">
+ <div style="display: flex; gap: 10px;">
+   <button (click)="saveEditReReplay(rereply.id)" 
+           style="background-color: #007bff; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+     Sauvegarder
+   </button>
+   <button (click)="cancelEditingReReplay()" 
+           style="background-color: #e0e0e0; color: #333; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+     Annuler
+   </button>
+ </div>
+</div>
+
+</div>
+</div>
+
+            </li>
+
+
+            
+          </ul>
+          
+        </div>
+      </div>
+
+     
+
+        <!-- Bouton trois points + menu contextuel -->
+        <div 
+          class="setting-btn ms-auto setting-dropdown no-bg" 
+          (clickOutside)="outSideClose(reply)" 
+          style="position: relative;"
+        >
+          <!-- Bouton icône trois points -->
+          <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+            <div 
+              role="button" 
+              (click)="toggleDropdownReplay(reply)" 
+              style="display: flex; justify-content: flex-end;"
+            >
+              <app-feather-icon 
+                [class]="'icon icon-font-color iw-14'" 
+                [icons]="'more-horizontal'">
+              </app-feather-icon>
+            </div>
+          </div>
+
+          <!-- Menu déroulant (replay) -->
+          <div 
+            class="dropdown-menu dropdown-menu-right custom-dropdown" 
+            [class.show]="reply.isShow" 
+            style="position: absolute; top: 100%; right: 0; z-index: 1000; min-width: 200px;"
+          >
+            <ul class="mb-0">
+              <li>
+                <a href="javascript:void(0)">
+                  <app-feather-icon 
+                    [class]="'icon-font-light iw-16 ih-16'" 
+                    [icons]="'bookmark'">
+                  </app-feather-icon>
+                  saveReplay
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)">
+                  <app-feather-icon 
+                    [class]="'icon-font-light iw-16 ih-16'" 
+                    [icons]="'x-square'">
+                  </app-feather-icon>
+                  hideReplay
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" (click)="startEditingReplay(reply)">
+                  <app-feather-icon 
+                    class="icon-font-light iw-16 ih-16" 
+                    [icons]="'edit'">
+                  </app-feather-icon>
+                  Éditer
+                </a>
+              </li>
+              
+             
+
+              <!-- Formulaire d'édition -->
+<div *ngIf="editingReplayId === reply.id" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
+  <input 
+    [value]="editedText" 
+    placeholder="Modifier le replay..." 
+    (input)="onInputChange($event)" 
+    style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 12px;"
+  />
+  <div style="display: flex; gap: 10px;">
+    <button 
+      (click)="saveEditReplay(reply.id)" 
+      style="background-color: #007bff; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+      Sauvegarder
+    </button>
+    <button 
+      (click)="cancelEditingReplay()" 
+      style="background-color: #e0e0e0; color: #333; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+      Annuler
+    </button>
+  </div>
+</div>
+
+
+              <li>
+                <a href="javascript:void(0)" (click)="deleteReplay(reply.id)">
+                  <app-feather-icon 
+                    [class]="'icon-font-light iw-16 ih-16'" 
+                    [icons]="'trash-2'">
+                  </app-feather-icon>
+                  Supprimer
+                </a>
+              </li>
             </ul>
+          </div>
+        </div> <!-- Fin des 3 points -->
+      </div> <!-- Fin de d-flex réponse -->
+    </li>
+  </ul>
+
+  
+</div>
+
+
+  
+            
         </div>
         <div class="comment-time">
-            <h6>50 mins ago</h6>
+            <h6>{{ item.timeAgo }}</h6>
         </div>
     </div>
     <div class="sub-comment">
@@ -90,31 +646,65 @@
                 <img [src]="items.images" class="img-fluid  bg-img" alt="user"
                     style="display: none;">
             </a>
-            <div class="media-body">
-                <a href="javascript:void(0)">
-                    <h5>{{items.uname}}</h5>
-                </a>
-                <p>{{items.comment}}</p>
-                <ul class="comment-option">
-                    <li><a href="javascript:void(0)">like</a></li>
-                    <li><a href="javascript:void(0)">reply</a></li>
-                    <li><a href="javascript:void(0)">translate</a></li>
-                </ul>
-            </div>
+            
             <div class="comment-time">
                 <h6>50 mins ago</h6>
             </div>
         </div>
-        }   
-        @if (item.reply) {
-        <a href="javascript:void(0)" class="loader">
-            <app-feather-icon [class]="'iw-15 ih-15'" [icons]="'rotate-cw'"></app-feather-icon>load more
-            replies
-        </a>
         }
+        
+        
+        
+        <!--@if (item.reply) {
+        <a href="javascript:void(0)" class="loader">
+            <app-feather-icon [class]="'iw-15 ih-15'"></app-feather-icon>load more
+            replay
+        </a>
+    }-->
     </div>
+    
 </div>
-}   
+
+
+}
+<div *ngIf="hasMore && !loading">
+  <button (click)="loadMoreComments()" class="btn btn-primary">
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  </button>
+</div>
+
+
+
+
+<!-- Bouton pour générer les suggestions -->
+<a href="javascript:void(0)" (click)="toggleCommentSuggestions()">
+  <app-feather-icon class="iw-18 ih-18" icons="message-square"></app-feather-icon>
+  Générer commentaires
+</a>
+
+<div *ngIf="isActive" class="suggestions-box p-2 bg-light rounded shadow-sm mb-2">
+  <div class="d-flex flex-nowrap overflow-auto gap-2">
+    <button
+      *ngFor="let c of generatedComments"
+      class="btn btn-outline-secondary btn-sm text-nowrap"
+      (click)="selectComment(c)">
+      {{ c }}
+    </button>
+  </div>
+</div>
+
+<!-- Validation du commentaire choisi -->
+<div *ngIf="selectedComment" class="comment-bar d-flex align-items-center gap-2 mb-3">
+  <img class="user-avatar rounded-circle" src="assets/avatar/avatar.png" width="32" height="32" alt="avatar" />
+  <div class="flex-grow-1">
+    <strong>Votre commentaire :</strong>
+    <p class="m-0">{{ selectedComment }}</p>
+  </div>
+  <button href="javascript:void(0)" (click)="submitComment()">
+    <app-feather-icon [class]="'iw-14 ih-14 icon'" [icons]="'send'"></app-feather-icon>
+  </button>
+</div>
+
 <ng-template #popContent>
     <app-popover-loader [data]="commonServices.popoverData"></app-popover-loader>
 </ng-template>

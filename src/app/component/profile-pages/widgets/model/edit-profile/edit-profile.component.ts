@@ -78,8 +78,8 @@ export class EditProfileComponent {
   }
   getProfileImage(photo: string | null): string {
     return photo 
-      ? `url('http://localhost:8080/uploads/profilimages/${photo}')` 
-      : `url('http://localhost:8080/uploads/default.png')`;
+      ? `url('http://localhost:9000/uploads/profilimages/${photo}')` 
+      : `url('http://localhost:9000/uploads/default.png')`;
   }
     
 

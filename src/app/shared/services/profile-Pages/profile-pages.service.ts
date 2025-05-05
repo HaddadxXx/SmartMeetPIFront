@@ -21,4 +21,7 @@ export class ProfilePagesService {
   friendProfile(): Observable<post> {
     return this.http.get<post>('assets/data/profile-Pages/friend-profile.json')
   }
+
+  
+  
 }

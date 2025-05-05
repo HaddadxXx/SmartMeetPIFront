@@ -1,5 +1,25 @@
 <div class="modal-content">
-    <div class="modal-body p-0">
-        <app-create-post [isCreatePost]="isCreatePost"></app-create-post>
+    <div class="modal-header">
+      <h4 class="modal-title">Ajouter une story</h4>
+      <button type="button" class="close" (click)="activeModal.dismiss()">&times;</button>
     </div>
-</div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="storyFile">Choisir une image ou une vidéo</label>
+        <input type="file" id="storyFile" (change)="onFileSelected($event)" accept="image/*,video/*">
+      </div>
+      <div class="form-group">
+        <label for="status">Statut</label>
+        <input type="text" id="status" [(ngModel)]="status" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="cssClass">Classe CSS</label>
+        <input type="text" id="cssClass" [(ngModel)]="cssClass" class="form-control">
+      </div>
+      <button class="btn btn-primary" (click)="addStory()" [disabled]="!selectedFile">
+        Uploader
+      </button>
+    </div>
+  </div>
+  
+  

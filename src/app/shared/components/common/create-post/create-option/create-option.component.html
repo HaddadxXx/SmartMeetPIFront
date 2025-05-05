@@ -76,7 +76,12 @@
     </div>
 </div>
 <div class="search-input input-style icon-right">
-    <input type="text" class="form-control enable" placeholder="write something here.." (click)="postButton()">
+    <input 
+    type="text" 
+    class="form-control enable" 
+    [(ngModel)]="localContent" 
+    (input)="onInputChange($event)" 
+    placeholder="write something here..">
     <a href="javascript:void(0)">
         <img src="assets/images/icon/translate.png" class="img-fluid  icon" alt="translate">
     </a>

@@ -1,66 +1,187 @@
-<div class="post-details">
-    @if (postData.postImage || postData.carousel || postData.gallerySrc || postData.isUrl || postData.isMap) {
-    <div class="img-wrapper">
-        @if(postData.postImage && !postData.video){
-        <img [src]="postData.postImage" class="img-fluid " alt="">
-        }@else if(postData.postImage && postData.video){
-        <img [src]="postData.postImage" class="img-fluid " alt="">
-        <div class="controler">
-            <a href="javascript:void(0)" class="play" (click)="commonService.videoPlay(postData.video)">
-                <app-feather-icon [icons]="'play-circle'" [class]="'iw-50 ih-50'"></app-feather-icon>
-            </a>
-            <div class="duration">
-                <h6>06:20</h6>
+<div *ngFor="let post of posts" style="margin-left: 20px;">
+    <div class="post-details">
+      <!-- Profile Section -->
+      <div class="post-header">
+        <div class="post-title">
+          <div class="profile">
+            <div class="media">
+              <!-- User Image with Popover Trigger -->
+              <!-- User Info -->
+              <div class="media-body">
+                <a [routerLink]="['/timeline', post.userId]" class="profile-link">
+                    <h5>{{ post.firstName }} {{ post.lastName }}</h5>
+                  </a>
+                <div class="duration">
+                <small>{{ post.timeAgo }}</small>
+              </div>
+  
+              </div>
             </div>
-            <a href="javascript:void(0)" class="volume">
-                <app-feather-icon [icons]="'volume-2'" [class]="'iw-14 ih-14'"></app-feather-icon>
-            </a>
+          </div>
         </div>
-        }@else if (postData.isUrl) {
-        <div style="width:100%;height:0;padding-bottom:77%;position:relative;">
-            @if(postData.isUrl){
-            <iframe [src]="sanitizedUrl" style="position:absolute" class="giphy-embed w-100 h-100" allowFullScreen></iframe>
-            }
-        </div>
-        }@else if (postData.carousel) {
-        <div class="slider-section">
-            <div class="newsfeed1-slide ratio_landscape default-space no-arrow">
-                <owl-carousel-o [options]="storyOptions">
-                    @for (items of postData.carousel; track items) {
-                    <ng-template carouselSlide>
-                        <div>
-                            <div class="slider-wrapper">
-                                <a href="javascript:void(0)" class="img-part">
-                                    <div class="image bg-size"
-                                        [ngStyle]="{'background-image': 'url(' +  items.src  + ')'}"
-                                        style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
-                                        <img [src]="items.src" class="img-fluid  bg-img" alt="img"
-                                            style="display: none;">
-                                    </div>
-                                    @if(items.discount){
-                                    <div class="label-ribbon"><span>discount</span></div>
-                                    }
-                                </a>
-                                <div class="slider-content">
-                                    <h5><span>{{items.title}}</span>{{items.desc}}</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </ng-template>
-                    }
-                </owl-carousel-o>
+  
+        <!-- Settings Dropdown -->
+        <div class="setting-btn ms-auto setting-dropdown no-bg" (clickOutside)="outSideClose(post)">
+          <div class="btn-group custom-dropdown arrow-none dropdown-sm">
+            <div role="button" (click)="toggleDropdown(post)">
+              <app-feather-icon [class]="'icon icon-font-color iw-14'" [icons]="'more-horizontal'"></app-feather-icon>
             </div>
+            <div class="dropdown-menu dropdown-menu-right custom-dropdown" [class.show]="post.isShow">
+              <ul>
+                <li><a href="javascript:void(0)"><app-feather-icon [class]="'icon-font-light iw-16 ih-16'" [icons]="'bookmark'"></app-feather-icon>savepost</a></li>
+                <li><a href="javascript:void(0)"><app-feather-icon [class]="'icon-font-light iw-16 ih-16'" [icons]="'x-square'"></app-feather-icon>hidepost</a></li>
+                <li><a href="javascript:void(0)"><app-feather-icon [class]="'icon-font-light iw-16 ih-16'" [icons]="'x-octagon'"></app-feather-icon>unfollows {{ post.firstName }}</a></li>
+                <li>
+                  <a href="#" (click)="translate(post.id); $event.preventDefault()">
+                    <app-feather-icon class="icon-font-light iw-16 ih-16" [icons]="'x-square'"></app-feather-icon>
+                    Translate
+                  </a>
+                </li>
+               
+                <!-- Options d'édition et de suppression -->
+                <!-- Dans le dropdown -->
+                
+                <li>
+                  
+                  <a href="javascript:void(0)" (click)="editPost(post)">
+                    <app-feather-icon class="icon-font-light iw-16 ih-16" [icons]="'edit'"></app-feather-icon> Éditer
+                  </a>
+                </li>
+  <li><a href="javascript:void(0)" (click)="deletePost(post.id, post.userId)"><app-feather-icon [class]="'icon-font-light iw-16 ih-16'" [icons]="'trash-2'"></app-feather-icon>Supprimer</a></li>
+  
+              </ul>
+            </div>
+          </div>
         </div>
-        }@else if(postData.gallerySrc){
-        <app-gallery-section [data]="postData.gallerySrc"></app-gallery-section>
-        }@else if(postData.isMap){
-        <app-google-map></app-google-map>
-        }
-    </div>
-    }
-    <app-detail-box [data]="postData"></app-detail-box>
-    <div class="like-panel">
+      </div>
+  
+  
+  
+      
+      <div *ngIf="isEditing" class="modal-backdrop">
+        <div class="modal-box">
+          <h3>✍️ Modifier le post</h3>
+          
+          <textarea
+          [(ngModel)]="newPostContent"
+            placeholder="Écrivez votre nouveau contenu ici..."
+            rows="4"
+            cols="40">
+          </textarea>
+          
+          <select 
+         [(ngModel)]="newPostFeeling"
+            class="emotion-select">
+            <option value="HAPPY">😊 Heureux</option>
+            <option value="SAD">😢 Triste</option>
+            <option value="ANGRY">😡 En colère</option>
+            <option value="WORRIED">😟 Inquiet</option>
+            <option value="SHY">😳 Timide</option>
+            <option value="EXCITED">🤩 Excité</option>
+            <option value="SURPRISED">😲 Surpris</option>
+            <option value="SILLY">😜 Fou / Amusé</option>
+            <option value="EMBARRASSED">😳 Gêné</option>
+          </select>
+          
+          <div class="file-upload">
+            <label for="file-upload-input" class="upload-label">
+              📁 Choisir des fichiers
+              <input 
+                type="file" 
+                id="file-upload-input" 
+                (change)="onFileSelected($event)" 
+                multiple 
+                hidden>
+            </label>
+          </div>
+          
+          <div class="actions">
+            <button class="btn-save" (click)="submitEdit()">💾 Enregistrer</button>
+            <button class="btn-cancel" (click)="cancelEdit()">🚫 Annuler</button>
+          </div>
+        </div>
+      </div>
+      
+      
+
+    
+      <div>{{ post.content }}</div>
+      <div *ngIf="post.translatedContent">
+        <h4></h4>
+        <p>{{ post.translatedContent }}</p>
+      </div>
+      <div style="font-size: 10px; color: rgb(89, 89, 206); font-weight: bold;">{{post.feeling}}</div>
+      
+      <div *ngIf="post.files.length > 0" style="margin-left: 80px;">
+        <div *ngFor="let file of post.files">
+          
+          <!--{{ file | json }}  Ajoute cette ligne temporairement pour voir -->
+          
+          
+            <!-- Vérification supplémentaire de l'URL -->
+            <img 
+              *ngIf="file.url && isImage(file.url) && file.url.startsWith('http')"
+              [src]="file.url" 
+              alt="Image" 
+              width="200"
+              (error)="handleImageError(file)" />
+          
+          
+          <ng-template #violentContent>
+            <p class="violence-warning">⚠️ Ce contenu a été marqué comme violent et ne peut pas être affiché.</p>
+          </ng-template>
+          <!-- Vidéos (sans nom) -->
+          <ng-container *ngIf="file.url.endsWith('.mp4')">
+            <div class="video-center">
+              <video controls preload="metadata">
+                <source [src]="file.url" type="video/mp4" />
+                Votre navigateur ne prend pas en charge la lecture vidéo.
+              </video>
+            </div>
+          </ng-container>
+          
+          
+          
+      
+          <!-- PDF/DOC (avec nom) -->
+          <ng-container *ngIf="file.url.endsWith('.pdf') || file.url.endsWith('.doc') || file.url.endsWith('.docx')">
+            <a [href]="file.url" target="_blank">
+              {{ file.name }}
+            </a>
+          </ng-container>
+      
+          <!-- Autres fichiers (sans nom, juste une icône) -->
+          <ng-container *ngIf="!file.url.endsWith('.jpg') 
+                              && !file.url.endsWith('.png') 
+                              && !file.url.endsWith('.jpeg') 
+                              && !file.url.endsWith('.mp4')
+                              && !file.url.endsWith('.pdf')
+                              && !file.url.endsWith('.doc')
+                              && !file.url.endsWith('.docx')">
+            <a [href]="file.url" target="_blank" download>
+              <i class="fa fa-download"></i> <!-- Icône de téléchargement -->
+            </a>
+          </ng-container>
+      
+        </div>
+      </div>
+      
+      <app-detail-box [data]="post"></app-detail-box>
+      <div class="like-panel">
         <app-like-panel></app-like-panel>
+      </div>
+      <app-post-react [data]="post"></app-post-react>
     </div>
-    <app-post-react [data]="postData"></app-post-react>
-</div>
+  
+  
+  <!-- Popover Template -->
+  <ng-template #popContent let-post>
+    <app-popover-loader [data]="{
+      image: post.profileImage || 'assets/images/user-sm/1.jpg',
+      title: post.firstName + ' ' + post.lastName,
+      userId: post.userId
+    }"></app-popover-loader>
+  </ng-template>
+    
+  
+  

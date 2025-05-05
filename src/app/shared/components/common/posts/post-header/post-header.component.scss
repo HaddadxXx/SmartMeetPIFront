@@ -1,0 +1,19 @@
+.profile-link {
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+  
+    &:hover {
+      color: #0d6efd; // Couleur de lien bootstrap
+    }
+  }
+  
+  .user-img {
+    cursor: pointer;
+    transition: transform 0.2s;
+  
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  

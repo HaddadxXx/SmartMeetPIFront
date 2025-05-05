@@ -1,11 +1,21 @@
 <div class="create-post">
+    <!-- Section statique pour créer un post -->
     <div class="static-section" [class.d-none]="isColor">
-        <app-create-option (post)="getPost($event)"></app-create-option>
+        <app-create-option 
+            (post)="getPost($event)"
+            (contentUpdate)="updatePostContent($event)">
+        </app-create-option>
     </div>
+
+    <!-- Section pour le fond personnalisé -->
     <div class="create-bg">
         <div class="bg-post {{SelectedColor}}" id="bg-post1" [class.d-block]="isColor">
-            <div class="input-sec" >
-                <input type="text" class="form-control enable" placeholder="write something here..">
+            <div class="input-sec">
+                <input 
+                    type="text" 
+                    class="form-control enable" 
+                    [(ngModel)]="newPostContent" 
+                    placeholder="Write something here...">
                 <div class="close-icon">
                     <a href="javascript:void(0)" (click)="isColor = false">
                         <app-feather-icon [icons]="'x'" [class]="'iw-20 ih-20'"></app-feather-icon>
@@ -13,81 +23,93 @@
                 </div>
             </div>
         </div>
+        <!-- Sélection de la couleur de fond -->
         <ul class="gradient-bg">
             @for (item of color; track item) {
-            <li (click)="changeColor(item.class)" class="{{item.class}}"></li>
+                <li (click)="changeColor(item.class)" class="{{item.class}}"></li>
             }
         </ul>
     </div>
+
+    <!-- Options supplémentaires (sentiments, lieux, amis) -->
     @if(isCreatePost){
-    <div class="options-input {{class}}">
-        <a id="icon-close" href="javascript:void(0)" (click)="class = ''">
-            <app-feather-icon [icons]="'x'" [class]="'iw-15 icon-font-light icon-close'"></app-feather-icon>
-        </a>
-        <div class="search-input feeling-input">
-            <input type="text" class="form-control enable" list="feelings" placeholder="How Are You Feeling?">
-            <datalist id="feelings">
-                <option value="Happy">
-                <option value="Sad">
-                <option value="Angry">
-                <option value="Worried">
-                <option value="Shy">
-                <option value="Excited">
-                <option value="Surprised">
-                <option value="Silly">
-                <option value="Embarrassed">
-            </datalist>
-            <a href="javascript:void(0)">
-                <app-feather-icon [class]="'iw-15 icon-left icon-font-light'" [icons]="'smile'"></app-feather-icon>
+        <div class="options-input {{class}}">
+            <a id="icon-close" href="javascript:void(0)" (click)="class = ''">
+                <app-feather-icon [icons]="'x'" [class]="'iw-15 icon-font-light icon-close'"></app-feather-icon>
             </a>
+            <div class="search-input feeling-input">
+                <input type="text" class="form-control enable" list="feelings" placeholder="How Are You Feeling?">
+                <datalist id="feelings">
+                    <option value="Happy">
+                    <option value="Sad">
+                    <option value="Angry">
+                    <option value="Worried">
+                    <option value="Shy">
+                    <option value="Excited">
+                    <option value="Surprised">
+                    <option value="Silly">
+                    <option value="Embarrassed">
+                </datalist>
+                <a href="javascript:void(0)">
+                    <app-feather-icon [class]="'iw-15 icon-left icon-font-light'" [icons]="'smile'"></app-feather-icon>
+                </a>
+            </div>
+            <div class="search-input place-input">
+                <input type="text" class="form-control" placeholder="Search for places...">
+                <a href="javascript:void(0)">
+                    <app-feather-icon [class]="'iw-15 icon-left icon-font-light'" [icons]="'map-pin'"></app-feather-icon>
+                </a>    
+            </div>
+            <div class="search-input friend-input">
+                <input type="text" class="form-control" list="friends" placeholder="Search your friends...">
+                <datalist id="friends">
+                    <option value="Paige Turner">
+                    <option value="Bob Frapples">
+                    <option value="Josephin water">
+                    <option value="Petey Cruiser">
+                    <option value="Anna Sthesia">
+                    <option value="Paul Molive">
+                    <option value="Anna Mull">
+                </datalist>
+                <a href="javascript:void(0)">
+                    <app-feather-icon [class]="'iw-15 icon-left icon-font-light'" [icons]="'tag'"></app-feather-icon>
+                </a>
+            </div>
         </div>
-        <div class="search-input place-input">
-            <input type="text" class="form-control" placeholder="search for places...">
-            <a href="javascript:void(0)">
-                <app-feather-icon [class]="'iw-15 icon-left icon-font-light'" [icons]="'map-pin'"></app-feather-icon>
-            </a>    
-        </div>
-        <div class="search-input friend-input">
-            <input type="text" class="form-control" list="friends" placeholder="search your friends...">
-            <datalist id="friends">
-                <option value="Paige Turner">
-                <option value="Bob Frapples">
-                <option value="Josephin water">
-                <option value="Petey Cruiser">
-                <option value="Anna Sthesia">
-                <option value="Paul Molive">
-                <option value="Anna Mull">
-            </datalist>
-            <a href="javascript:void(0)">
-                <app-feather-icon [class]="'iw-15 icon-left icon-font-light'" [icons]="'tag'"></app-feather-icon>
-            </a>
-        </div>
-    </div>
     }
+
+    <!-- Options du bas (album, sentiments, lieux, amis) -->
     <ul class="create-btm-option">
         <li>
-            <input class="choose-file" type="file">
+            <input class="choose-file" type="file" (change)="onFileSelected($event)" multiple>
             <h5>
-                <app-feather-icon [icons]="'camera'" [class]="'iw-14'"></app-feather-icon>album
+              <app-feather-icon [icons]="'camera'" [class]="'iw-14'"></app-feather-icon>Album
             </h5>
-        </li>
+          </li>
         <li>
             <h5 (click)="change('feeling')">
-                <app-feather-icon [icons]="'smile'" [class]="'iw-15'"></app-feather-icon>feelings & acitivity
+                <app-feather-icon [icons]="'smile'" [class]="'iw-15'"></app-feather-icon>Feelings & Activity
             </h5>
         </li>
         <li>
             <h5 (click)="change('place')">
-                <app-feather-icon [icons]="'map-pin'" [class]="'iw-15'"></app-feather-icon>check in
+                <app-feather-icon [icons]="'map-pin'" [class]="'iw-15'"></app-feather-icon>Check In
             </h5>
         </li>
         <li>
             <h5 (click)="change('friends')">
-                <app-feather-icon [icons]="'tag'" [class]="'iw-15'"></app-feather-icon>tag friends
+                <app-feather-icon [icons]="'tag'" [class]="'iw-15'"></app-feather-icon>Tag Friends
             </h5>
         </li>
     </ul>
+
+    <!-- Bouton pour poster 
     <div id="post-btn1" class="post-btn" [class.d-block]="isPost">
-        <button  class="Disable">post</button>
-    </div>
+        <button class="Disable" (click)="addPost()">Post</button>
+    </div>-->
+    <div id="post-btn1" class="post-btn" [class.d-block]="isPost">
+        <button class="Disable" (click)="addPostForUser()">Post</button>
+      </div>
+
+    
 </div>

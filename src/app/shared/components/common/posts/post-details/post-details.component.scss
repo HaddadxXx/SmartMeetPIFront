@@ -1,0 +1,143 @@
+
+  .profile-link {
+    color: inherit;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+      color: #007bff;
+    }
+  }
+  .video-center {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+  }
+  
+  .video-center video {
+    max-width: 100%; /* prend toute la largeur du conteneur parent */
+    border-radius: 8px;
+  }
+
+  
+  /* Style général */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: linear-gradient(145deg, #f0f8ff, #e6f2ff);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 79, 255, 0.1);
+  width: 450px;
+  border: 1px solid rgba(173, 216, 230, 0.3);
+}
+
+h3 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+/* Zone de texte */
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #b3e5fc;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  resize: vertical;
+  background: rgba(255, 255, 255, 0.9);
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #64b5f6;
+  box-shadow: 0 0 0 3px rgba(100, 181, 246, 0.2);
+}
+
+/* Sélecteur d'émotions */
+.emotion-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #b3e5fc;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%2364b5f6%22%20d%3D%22M7%2010l5%205%205-5z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+/* Upload de fichiers */
+.file-upload {
+  margin-bottom: 1.5rem;
+}
+
+.upload-label {
+  display: block;
+  padding: 12px;
+  background: #64b5f6;
+  color: white;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.upload-label:hover {
+  background: #42a5f5;
+}
+
+/* Boutons */
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn-save, .btn-cancel {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-save {
+  background: linear-gradient(135deg, #64b5f6, #42a5f5);
+  color: white;
+}
+
+.btn-cancel {
+  background: linear-gradient(135deg, #ff6b6b, #ff4757);
+  color: white;
+}
+
+.btn-save:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(100, 181, 246, 0.4);
+}
+
+.btn-cancel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+}
+
+  
+  

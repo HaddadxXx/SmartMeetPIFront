@@ -1,75 +1,62 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CarouselModule } from 'ngx-owl-carousel-o';
-
-import { FeatherIconComponent } from '../../../../shared/components/common/feather-icon/feather-icon.component';
+import { Story } from '../../../interface/post';
 import { StoryUploadComponent } from '../story-upload/story-upload.component';
-
-import { allStory, stories, storySlider } from '../../../data/common';
+import { PostService } from '../../../services/news-feed-layout/post.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-stories',
   templateUrl: './add-stories.component.html',
   styleUrl: './add-stories.component.scss',
-  imports: [FeatherIconComponent, FeatherIconComponent, CommonModule, CarouselModule],
   standalone: true,
+  imports: [CommonModule],
 })
+export class AddStoriesComponent implements OnInit {
+  modalServices = inject(NgbModal);
 
-export class AddStoriesComponent {
-
-  public allStories = allStory;
-  public stories = stories;
-  public storySlider = storySlider;
+  public storyData: Story[] = [];
+  public selectedStory: Story | null = null;
   public emoji = [
-    {
-      svg: 'assets/svg/emoji/040.svg'
-    },
-    {
-      svg: 'assets/svg/emoji/113.svg'
-    },
-    {
-      svg: 'assets/svg/emoji/027.svg'
-    },
-    {
-      svg: 'assets/svg/emoji/052.svg'
-    },
-    {
-      svg: 'assets/svg/emoji/039.svg'
-    },
-    {
-      svg: 'assets/svg/emoji/042.svg'
-    },
+    { svg: 'assets/svg/emoji/040.svg' },
+    { svg: 'assets/svg/emoji/113.svg' },
+    { svg: 'assets/svg/emoji/027.svg' },
+    { svg: 'assets/svg/emoji/052.svg' },
+    { svg: 'assets/svg/emoji/039.svg' },
+    { svg: 'assets/svg/emoji/042.svg' },
   ];
 
-  constructor(public modalServices: NgbModal) { }
+  constructor(private postService: PostService) {}
 
-  public friendSuggestionOptions = {
-    loop: true,
-    margin: 20,
-    autoplay: true,
-    autoplayTimeout: 3000,
-    autoplayHoverPause: true,
-    dots: true,
-    nav: false,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      600: {
-        items: 3,
-      },
-      1000: {
-        items: 1,
-      },
-    },
-  };
+  ngOnInit() {
+    this.loadStories();
+  }
+
+  loadStories() {
+    this.postService.getStories().subscribe((stories: Story[]) => {
+      this.storyData = stories;
+      if (stories.length > 0) {
+        this.selectedStory = stories[0];
+      }
+    });
+  }
+
+  selectStory(story: Story) {
+    this.selectedStory = story;
+  }
 
   uploadStory() {
-    this.modalServices.open(StoryUploadComponent, {
-      centered: true
-    })
+    const modalRef = this.modalServices.open(StoryUploadComponent, { centered: true });
+    modalRef.closed.subscribe(() => this.loadStories());
+  }
+
+  getHoursAgo(dateString: string): string {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diff = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60));
+    return diff.toString();
   }
 
 
+  
 }

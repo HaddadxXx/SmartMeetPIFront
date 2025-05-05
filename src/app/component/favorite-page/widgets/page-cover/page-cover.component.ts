@@ -58,7 +58,7 @@ export class PageCoverComponent {
 
   getGroupImage(photo: string): string {
   
-    return photo ? `url('http://localhost:8080/uploads/${photo}')` : `url('http://localhost:8080/uploads/default.png')`;
+    return photo ? `url('http://localhost:9000/uploads/${photo}')` : `url('http://localhost:9000/uploads/default.png')`;
   }
 
 }

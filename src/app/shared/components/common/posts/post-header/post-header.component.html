@@ -1,24 +1,29 @@
 <div class="post-title">
-    <div class="profile">
+    <!--<div class="profile">
         <div class="media">
-            @if(postData) {
-            <a class="popover-cls user-img" #data="ngbPopover" [ngbPopover]="popContent" triggers=""
-            (click)="commonServices.toggle(data, postData.profileImage , postData.userName)" placement="top"
-             [ngStyle]="{'background-image': 'url(' +  postData.profileImage  + ')'}"
-                style=" background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
-                <img [src]="postData.profileImage" class="img-fluid  bg-img" alt="user" style="display: none;">
-            </a>
-            <div class="media-body">
-                <a href="javascript:void(0)">
-                    <h5>{{postData.userName}}
-                        @if(postData.isDescription){
-                        <span>{{postData.details}} <a href="javascript:void(0)">dance acadamy</a></span>
-                        }
-                    </h5>
+            @if(postData?.user) {
+               
+                <a [routerLink]="['/timeline', postData.user?.id]" 
+                   class="popover-cls user-img"
+                   [ngStyle]="{'background-image': 'url(' + postData.user?.profileImage + ')'}">
+                  <img [src]="postData.user?.profileImage" class="img-fluid bg-img" alt="user" style="display: none;">
                 </a>
-                <h6>30 mins ago</h6>
-            </div>
-            }
+        
+                
+                <div class="media-body">
+                  <a [routerLink]="['/timeline', postData.user?.id]" class="profile-link">
+                    <h5>
+                      {{postData.user?.firstName}} {{postData.user?.lastName}}
+                      @if(postData.isDescription) {
+                        <span>{{postData.details}} <a href="javascript:void(0)">dance academy</a></span>
+                      }
+                    </h5>
+                  </a>
+                  <h6>{{postData.createdAt | date:'short'}}</h6>
+                </div>
+              }
+            
+            
         </div>
     </div>
     <div class="setting-btn ms-auto setting-dropdown no-bg" (clickOutside)="outSideClose()">
@@ -47,7 +52,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div>-->
 </div>
 <ng-template #popContent>
     <app-popover-loader [data]="commonServices.popoverData"></app-popover-loader>

@@ -1,0 +1,72 @@
+.reply-input-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 18px;
+    padding: 2px 8px;
+    max-width: 350px;
+    min-width: 160px;
+    margin-bottom: 6px;
+  }
+  
+  .reply-input-mini {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 13px;
+    padding: 3px 6px;
+    height: 26px;
+    width: 120px;
+    flex: 1;
+  }
+  
+  .btn-icon, .btn-send-mini {
+    background: none;
+    border: none;
+    padding: 2px 4px;
+    color: #888;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    height: 26px;
+    width: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .btn-icon:hover, .btn-send-mini:hover {
+    background: #f0f2f5;
+    color: #007bff;
+  }
+  
+  .btn-send-mini:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .suggestion-item {
+    cursor: pointer;
+  }
+
+  .suggestions-box {
+    max-width: 100%; // Largeur maximale
+    width: fit-content; // S'adapte au contenu
+  
+    .d-flex {
+      scrollbar-width: thin; // Pour Firefox
+      scrollbar-color: #adb5bd transparent; // Couleur de la scrollbar
+  
+      &::-webkit-scrollbar {
+        height: 6px; // Hauteur de la scrollbar pour WebKit
+      }
+  
+      &::-webkit-scrollbar-thumb {
+        background-color: #adb5bd;
+        border-radius: 3px;
+      }
+    }
+  }
+  
