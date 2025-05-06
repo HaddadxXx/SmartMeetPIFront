@@ -37,7 +37,8 @@
           <div class="avatar me-3 flex-shrink-0" [ngStyle]="{'background-image': getProfileImage(user.profilePicture)}"></div>
           <div class="info">
             <strong class="d-block">{{ user.firstName }} {{ user.lastName }}</strong>
-            <small class="text-muted">{{ user.email }}</small>
+            <small class="text-muted">{{ user.email }}</small><div><small class="text-muted">Interests: {{ user.interests }}</small></div>
+            
           </div>
           <button class="btn btn-outline-primary ms-auto" (click)="sendCallRequest(user.id)" [disabled]="requestSent[user.id]">
             {{ requestSent[user.id] ? 'Requested' : 'Request' }}
