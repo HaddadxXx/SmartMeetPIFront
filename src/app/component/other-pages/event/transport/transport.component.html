@@ -1,174 +1,184 @@
-    <div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
-      <app-event-skeleton></app-event-skeleton>
+<div class="pre-loader" [class.d-none]="commonServices.isSkeleton">
+  <app-event-skeleton></app-event-skeleton>
+</div>
+<div class="event-cover">
+  <div class="event-img"
+      style="background-image: url(assets/images/cover/transport.jpeg);background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+      <img src="assets/images/cover/transport.jpeg" class="img-fluid bg-img" alt="" style="display: none;">
+      <div class="event-content">
+          <h1>Transports</h1>
+      </div>
+      <div class="cover-img-detail">
+      </div>
+  </div>
+</div>
+
+<div class="card p-4 mb-4">
+  <h1 class="mb-6">Add a Transport</h1>
+  <br>
+  <form>
+    <div *ngIf="serverErrors['general']" class="alert alert-danger">
+      {{ serverErrors['general'] }}
     </div>
-    <div class="event-cover">
-      <div class="event-img"
-          style="background-image: url(assets/images/cover/transport.jpeg);background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
-          <img src="assets/images/cover/transport.jpeg" class="img-fluid bg-img" alt="" style="display: none;">
-          <div class="event-content">
-              <h1>Transports</h1>
-          </div>
-          <div class="cover-img-detail">
-          </div>
+
+    <div class="form-group mb-3">
+      <label for="typetransport">Type of transport</label>
+      <input type="text" [(ngModel)]="type" [ngModelOptions]="{standalone: true}" class="form-control" id="typetransport" name="typetransport" placeholder="Enter the type">
+      <div *ngIf="serverErrors['type']" class="text-danger">{{ serverErrors['type'] }}</div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="capacite">Transport capacity</label>
+      <input type="number" [(ngModel)]="capacite" [ngModelOptions]="{standalone: true}" class="form-control" id="capacite" name="capacite" placeholder="0">
+      <div *ngIf="serverErrors['capacite']" class="text-danger">{{ serverErrors['capacite'] }}</div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="statut">Status</label>
+      <select [(ngModel)]="statut" [ngModelOptions]="{standalone: true}" class="form-control" id="statut" name="statut">
+        <option value="Available">Available</option>
+        <option value="Reserved">Reserved</option>
+      </select>
+      <div *ngIf="serverErrors['statut']" class="text-danger">{{ serverErrors['statut'] }}</div>
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="saveTransport()">Submit</button>
+  </form>
+</div>
+
+<div class="card p-4 mb-4">
+  <h1 class="mb-3">Filters</h1>
+  <div class="row">
+    <div class="col-md-4">
+      <label for="filterType">Filter by Type</label>
+      <input type="text" [(ngModel)]="filterType" (input)="applyFiltersAndSort()" class="form-control" id="filterType" placeholder="Enter type">
+    </div>
+    <div class="col-md-4">
+      <label for="filterStatus">Filter by Status</label>
+      <select [(ngModel)]="filterStatus" (change)="applyFiltersAndSort()" class="form-control" id="filterStatus">
+        <option value="">All</option>
+        <option value="Available">Available</option>
+        <option value="Reserved">Reserved</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="card p-4">
+  <h1 class="mb-3">Transport Table</h1>
+  <div *ngIf="selectedTransports.length > 0">
+    <button type="button" class="btn btn-danger mb-3" (click)="bulkDelete()">
+      Delete Selected Transports
+    </button>
+  </div>
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="bg-light">
+        <tr>
+          <th>
+            <input type="checkbox" (change)="toggleSelectAll($event)" [checked]="isAllSelected">
+          </th>
+          <th scope="col" (click)="sortBy('type')" style="cursor: pointer;">
+            Type <i class="bi" [ngClass]="sortField === 'type' ? (sortDirection === 'asc' ? 'bi-arrow-up' : 'bi-arrow-down') : ''"></i>
+          </th>
+          <th scope="col" (click)="sortBy('capacite')" style="cursor: pointer;">
+            Capacity <i class="bi" [ngClass]="sortField === 'capacite' ? (sortDirection === 'asc' ? 'bi-arrow-up' : 'bi-arrow-down') : ''"></i>
+          </th>
+          <th scope="col" (click)="sortBy('statut')" style="cursor: pointer;">
+            Status <i class="bi" [ngClass]="sortField === 'statut' ? (sortDirection === 'asc' ? 'bi-arrow-up' : 'bi-arrow-down') : ''"></i>
+          </th>
+          <th scope="col">Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let TransportItem of paginatedTransportArray">
+          <td>
+            <input type="checkbox" [(ngModel)]="TransportItem.selected" (ngModelChange)="onSelectionChange()">
+          </td>
+          <td>{{ TransportItem.type }}</td>
+          <td>{{ TransportItem.capacite }}</td>
+          <td>
+            <span [ngClass]="{'badge bg-success fw-bold': TransportItem.statut === 'Available', 'badge bg-danger fw-bold': TransportItem.statut === 'Reserved'}">
+              {{ TransportItem.statut }}
+            </span>
+          </td>
+          <td>
+            <button type="button" class="btn btn-sm btn-outline-primary me-2" (click)="setUpdateTransport(TransportItem)">
+              <i class="bi bi-pencil">Modify</i>
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-danger me-2" (click)="setDeleteTransport(TransportItem)">
+              <i class="bi bi-trash">Delete</i>            
+            </button>
+            <button type="button" class="btn btn-primary me-2" (click)="openAffectationModal(TransportItem)">Assign to an event</button>
+            <button type="button" class="btn btn-info" (click)="showCalendar(TransportItem)">View Schedule</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="pagination-controls mt-3 d-flex justify-content-between align-items-center">
+    <button class="btn btn-outline-primary" (click)="previousPage()" [disabled]="currentPage === 1">
+      Previous
+    </button>
+    <div class="page-numbers">
+      <button *ngFor="let page of getPageNumbers()" 
+              class="btn" 
+              [ngClass]="{'btn-primary': page === currentPage, 'btn-outline-primary': page !== currentPage}" 
+              (click)="goToPage(page)">
+        {{ page }}
+      </button>
+    </div>
+    <button class="btn btn-outline-primary" (click)="nextPage()" [disabled]="currentPage === totalPages">
+      Next
+    </button>
+  </div>
+</div>
+
+<div class="card p-4 mb-4">
+  <h1 class="mb-3">Transport Statistics</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="alert alert-success">
+        <strong>Available Transports:</strong> <span class="badge bg-success">{{ stats.available }}</span>
+      </div>
+      <div class="alert alert-danger">
+        <strong>Reserved Transports:</strong> <span class="badge bg-danger">{{ stats.reserved }}</span>
       </div>
     </div>
-    
-    <div class="card p-4 mb-4">
-      <h1 class="mb-6">Add a Transport</h1>
-      <br>
-      <form>
-        <div *ngIf="serverErrors?.general" class="alert alert-danger">
-          {{ serverErrors.general }}
-        </div>
-        
-        <div class="form-group mb-3">
-          <label for="typetransport">Type of transport</label>
-          <input type="text" [(ngModel)]="type" [ngModelOptions]="{standalone: true}" class="form-control" id="typetransport" name="typetransport" placeholder="Enter the type">
-          <div *ngIf="serverErrors?.type" class="text-danger">{{ serverErrors.type }}</div>
-        </div>
-    
-        <div class="form-group mb-3">
-          <label for="capacite">Transport capacity</label>
-          <input type="number" [(ngModel)]="capacite" [ngModelOptions]="{standalone: true}" class="form-control" id="capacite" name="capacite" placeholder="0">
-          <div *ngIf="serverErrors?.capacite" class="text-danger">{{ serverErrors.capacite }}</div>
-        </div>
-    
-        <div class="form-group mb-3">
-          <label for="statut">Status</label>
-          <select [(ngModel)]="statut" [ngModelOptions]="{standalone: true}" class="form-control" id="statut" name="statut">
-            <option value="Available">Available</option>
-            <option value="Reserved">Reserved</option>
-          </select>
-          <div *ngIf="serverErrors?.statut" class="text-danger">{{ serverErrors.statut }}</div>
-        </div>
-    
-        <button type="button" class="btn btn-primary" (click)="saveTransport()">Submit</button>
-      </form>
-    </div>
-    
-    <div class="card p-4 mb-4">
-      <h1 class="mb-3">Filters</h1>
-      <div class="row">
-        <div class="col-md-4">
-          <label for="filterType">Filter by Type</label>
-          <input type="text" [(ngModel)]="filterType" (input)="applyFiltersAndSort()" class="form-control" id="filterType" placeholder="Enter type">
-        </div>
-        <div class="col-md-4">
-          <label for="filterStatus">Filter by Status</label>
-          <select [(ngModel)]="filterStatus" (change)="applyFiltersAndSort()" class="form-control" id="filterStatus">
-            <option value="">All</option>
-            <option value="Available">Available</option>
-            <option value="Reserved">Reserved</option>
-          </select>
-        </div>
+    <div class="col-md-6">
+      <div class="chart-container">
+        <canvas
+          baseChart
+          [data]="pieChartData"
+          [options]="pieChartOptions"
+          [type]="pieChartType"
+        ></canvas>
       </div>
     </div>
-    
-    <div class="card p-4">
-      <h1 class="mb-3">Transport Table</h1>
-      <div class="table-responsive">
-        <table class="table">
-          <thead class="bg-light">
-            <tr>
-              <th scope="col" (click)="sortBy('type')" style="cursor: pointer;">
-                Type <i class="bi" [ngClass]="sortField === 'type' ? (sortDirection === 'asc' ? 'bi-arrow-up' : 'bi-arrow-down') : ''"></i>
-              </th>
-              <th scope="col" (click)="sortBy('capacite')" style="cursor: pointer;">
-                Capacity <i class="bi" [ngClass]="sortField === 'capacite' ? (sortDirection === 'asc' ? 'bi-arrow-up' : 'bi-arrow-down') : ''"></i>
-              </th>
-              <th scope="col" (click)="sortBy('statut')" style="cursor: pointer;">
-                Status <i class="bi" [ngClass]="sortField === 'statut' ? (sortDirection === 'asc' ? 'bi-arrow-up' : 'bi-arrow-down') : ''"></i>
-              </th>
-              <th scope="col">Options</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let TransportItem of paginatedTransportArray">
-              <td>{{ TransportItem.type }}</td>
-              <td>{{ TransportItem.capacite }}</td>
-              <td>
-                <span [ngClass]="{'badge bg-success fw-bold': TransportItem.statut === 'Available', 'badge bg-danger fw-bold': TransportItem.statut === 'Reserved'}">
-                  {{ TransportItem.statut }}
-                </span>
-              </td>
-              <td>
-                <button type="button" class="btn btn-sm btn-outline-primary me-2" (click)="setUpdateTransport(TransportItem)">
-                  <i class="bi bi-pencil">Modify</i>
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-danger me-2" (click)="setDeleteTransport(TransportItem)">
-                  <i class="bi bi-trash">Delete</i>            
-                </button>
-                <button type="button" class="btn btn-primary me-2" (click)="openAffectationModal(TransportItem)">Assign to an event</button>
-                <button type="button" class="btn btn-info" (click)="showCalendar(TransportItem)">View Schedule</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    
-      <!-- Pagination Controls -->
-      <div class="pagination-controls mt-3 d-flex justify-content-between align-items-center">
-        <button class="btn btn-outline-primary" (click)="previousPage()" [disabled]="currentPage === 1">
-          Previous
-        </button>
-        <div class="page-numbers">
-          <button *ngFor="let page of getPageNumbers()" 
-                  class="btn" 
-                  [ngClass]="{'btn-primary': page === currentPage, 'btn-outline-primary': page !== currentPage}" 
-                  (click)="goToPage(page)">
-            {{ page }}
-          </button>
-        </div>
-        <button class="btn btn-outline-primary" (click)="nextPage()" [disabled]="currentPage === totalPages">
-          Next
-        </button>
-      </div>
-    </div>
-    
-    <div class="card p-4 mb-4">
-      <h1 class="mb-3">Transport Statistics</h1>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="alert alert-success">
-            <strong>Available Transports:</strong> <span class="badge bg-success">{{ stats.available }}</span>
-          </div>
-          <div class="alert alert-danger">
-            <strong>Reserved Transports:</strong> <span class="badge bg-danger">{{ stats.reserved }}</span>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="chart-container">
-            <canvas
-              baseChart
-              [data]="pieChartData"
-              [options]="pieChartOptions"
-              [type]="pieChartType"
-            ></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div *ngIf="selectedTransportForCalendar" class="card p-4 mb-4">
-      <h1 class="mb-3">Schedule for {{ selectedTransportForCalendar.type }}</h1>
-      <mwl-calendar-month-view
-        [viewDate]="viewDate"
-        [events]="calendarEvents"
-        (dayClicked)="dayClicked($event)"
-      ></mwl-calendar-month-view>
-      <button class="btn btn-secondary mt-3" (click)="selectedTransportForCalendar = null">Close Calendar</button>
-    </div>
-    
-    <div *ngIf="showModal" class="modal">
-      <div class="modal-content">
-        <h2>Assign transport to an event</h2>
-        <label>Choose an event:</label>
-        <select [(ngModel)]="selectedEventId" class="form-control">
-          <option *ngFor="let event of eventArray" [value]="event.idEvent">{{ event.nomEvent }} ({{ event.dateDebut }} to {{ event.dateFin }})</option>
-        </select>
-        <br>
-        <button class="btn btn-success" (click)="affecterTransport()">Confirm</button>
-        <button class="btn btn-secondary" (click)="closeModal()">Cancel</button>
-      </div>
-    </div>
-    
+  </div>
+</div>
+
+<div *ngIf="selectedTransportForCalendar" class="card p-4 mb-4">
+  <h1 class="mb-3">Schedule for {{ selectedTransportForCalendar.type }}</h1>
+  <mwl-calendar-month-view
+    [viewDate]="viewDate"
+    [events]="calendarEvents"
+    (dayClicked)="dayClicked($event)"
+  ></mwl-calendar-month-view>
+  <button class="btn btn-secondary mt-3" (click)="selectedTransportForCalendar = null">Close Calendar</button>
+</div>
+
+<div *ngIf="showModal" class="modal">
+  <div class="modal-content">
+    <h2>Assign transport to an event</h2>
+    <label>Choose an event:</label>
+    <select [(ngModel)]="selectedEventId" class="form-control">
+      <option *ngFor="let event of eventArray" [value]="event.idEvent">{{ event.nomEvent }} ({{ event.dateDebut }} to {{ event.dateFin }})</option>
+    </select>
+    <br>
+    <button class="btn btn-success" (click)="affecterTransport()">Confirm</button>
+    <button class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+  </div>
+</div>

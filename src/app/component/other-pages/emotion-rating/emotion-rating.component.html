@@ -1,31 +1,3 @@
-<!-- <div class="emotion-rating-container">
-    <h2>Rate Our Application with Your Emotions</h2>
-    <p>Allow access to your webcam to detect your emotions in real-time and rate our application!</p>
-  
-    <div class="video-container">
-      <video #videoElement width="640" height="480" autoplay></video>
-      <canvas #canvasElement width="640" height="480"></canvas>
-    </div>
-  
-    <div class="emotion-info">
-      <h3>Detected Emotion: {{ detectedEmotion }}</h3>
-      <div class="emotion-probabilities">
-        <p *ngFor="let emotion of emotionKeys">
-          {{ emotion | titlecase }}: {{ (emotionProbabilities[emotion] * 100).toFixed(1) }}%
-        </p>
-      </div>
-    </div>
-  
-    <div class="rating-info">
-      <h3>Application Rating: {{ getAverageRating() }} / 100</h3>
-      <p>Your emotions are contributing to this rating in real-time!</p>
-      <div class="rating-bar">
-        <div class="rating-fill" [style.width.%]="getAverageRating()"></div>
-      </div>
-    </div>
-  
-    <button (click)="stopWebcam()">Stop Webcam</button>
-  </div> -->
   <div class="emotion-rating-container">
     <h2>Rate Our Application with Your Emotions</h2>
   

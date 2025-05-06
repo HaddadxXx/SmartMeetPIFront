@@ -7,12 +7,21 @@ import { FeatherIconComponent } from "../../../../shared/components/common/feath
 import { CommonService } from '../../../../shared/services/common.service';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { CalendarEvent} from 'angular-calendar';
+import { CalendarEvent } from 'angular-calendar';
 import { MonthViewDay } from 'calendar-utils';
 import { isSameDay, parse, isWithinInterval, startOfDay, endOfDay } from 'date-fns';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { Chart, PieController, ArcElement, Tooltip, Legend } from 'chart.js';
+
+// Define the Transport interface
+interface Transport {
+  id: string;
+  type: string;
+  capacite: number;
+  statut: string;
+  selected?: boolean; // Optional for bulk actions
+}
 
 Chart.register(PieController, ArcElement, Tooltip, Legend);
 
@@ -31,30 +40,34 @@ Chart.register(PieController, ArcElement, Tooltip, Legend);
   styleUrl: './transport.component.scss'
 })
 export class TransportComponent implements OnInit {
-  TransportArray: any[] = [];
-  filteredTransportArray: any[] = [];
-  paginatedTransportArray: any[] = []; // Array for the current page
+  TransportArray: Transport[] = [];
+  filteredTransportArray: Transport[] = [];
+  paginatedTransportArray: Transport[] = [];
   type: string = '';
   capacite: number = 0;
   statut: string = '';
   currentTransportID: string = '';
-  serverErrors: any = {};
+  serverErrors: { [key: string]: string } = {};
   showModal: boolean = false;
   selectedTransportId: string = '';
   selectedEventId: string = '';
-  eventArray: any[] = [];
+  eventArray: { idEvent: string; nomEvent: string; dateDebut: string; dateFin: string }[] = [];
   viewDate: Date = new Date();
   calendarEvents: CalendarEvent[] = [];
-  selectedTransportForCalendar: any = null;
+  selectedTransportForCalendar: Transport | null = null;
   filterStatus: string = '';
   filterType: string = '';
-  sortField: string = '';
+  sortField: keyof Transport = '' as keyof Transport;
   sortDirection: 'asc' | 'desc' = 'asc';
   stats: { available: number; reserved: number } = { available: 0, reserved: 0 };
 
+  // Bulk action properties
+  selectedTransports: Transport[] = [];
+  isAllSelected: boolean = false;
+
   // Pagination properties
   currentPage: number = 1;
-  pageSize: number = 5; // Number of items per page
+  pageSize: number = 5;
   totalPages: number = 1;
 
   public pieChartOptions: ChartConfiguration['options'] = {
@@ -119,8 +132,8 @@ export class TransportComponent implements OnInit {
 
   getAllTransport(): void {
     this.transportService.getAllTransports().subscribe({
-      next: (data: any) => {
-        this.TransportArray = data;
+      next: (data: Transport[]) => {
+        this.TransportArray = data.map((item: Transport) => ({ ...item, selected: false }));
         this.calculateStats();
         this.applyFiltersAndSort();
         if (this.selectedTransportForCalendar) {
@@ -131,7 +144,7 @@ export class TransportComponent implements OnInit {
     });
   }
 
-  setUpdateTransport(data: any): void {
+  setUpdateTransport(data: Transport): void {
     this.type = data.type;
     this.capacite = data.capacite;
     this.statut = data.statut;
@@ -155,7 +168,7 @@ export class TransportComponent implements OnInit {
     });
   }
 
-  setDeleteTransport(data: any): void {
+  setDeleteTransport(data: Transport): void {
     if (!confirm("Do you really want to delete this transport?")) {
       return;
     }
@@ -197,17 +210,19 @@ export class TransportComponent implements OnInit {
   private refreshData(): void {
     this.getAllTransport();
     this.resetForm();
+    this.selectedTransports = [];
+    this.isAllSelected = false;
   }
 
-  showCalendar(transport: any): void {
+  showCalendar(transport: Transport): void {
     this.selectedTransportForCalendar = transport;
     this.loadCalendarEvents(transport);
   }
 
-  loadCalendarEvents(transport: any): void {
+  loadCalendarEvents(transport: Transport): void {
     this.transportService.getAssignments(transport.id).subscribe({
-      next: (assignments: any[]) => {
-        this.calendarEvents = assignments.map((assignment: any) => {
+      next: (assignments: { dateDebut: string; dateFin: string; event: { nomEvent: string } }[]) => {
+        this.calendarEvents = assignments.map((assignment) => {
           const start = parse(assignment.dateDebut, 'yyyy-MM-dd', new Date());
           const end = parse(assignment.dateFin, 'yyyy-MM-dd', new Date());
           return {
@@ -248,22 +263,27 @@ export class TransportComponent implements OnInit {
     }
   }
 
-  openAffectationModal(transport: any) {
+  openAffectationModal(transport: Transport): void {
     this.selectedTransportId = transport.id;
     this.showModal = true;
 
     this.transportService.getAllEvents().subscribe((resultData: any) => {
-      this.eventArray = resultData;
+      this.eventArray = resultData.map((event: any) => ({
+        idEvent: event.idEvent,
+        nomEvent: event.nomEvent,
+        dateDebut: event.dateDebut,
+        dateFin: event.dateFin
+      }));
     });
   }
 
-  closeModal() {
+  closeModal(): void {
     this.showModal = false;
     this.selectedTransportId = '';
     this.selectedEventId = '';
   }
 
-  affecterTransport() {
+  affecterTransport(): void {
     if (!this.selectedTransportId || !this.selectedEventId) {
       alert("Please select an event!");
       return;
@@ -323,18 +343,19 @@ export class TransportComponent implements OnInit {
         const valueB = b[this.sortField];
         const direction = this.sortDirection === 'asc' ? 1 : -1;
 
-        if (typeof valueA === 'string') {
-          return valueA.localeCompare(valueB) * direction;
+        if (this.sortField === 'capacite') {
+          return ((valueA as number) - (valueB as number)) * direction;
+        } else {
+          return (valueA as string).localeCompare(valueB as string) * direction;
         }
-        return (valueA - valueB) * direction;
       });
     }
 
     this.filteredTransportArray = filteredArray;
-    this.updatePagination(); // Update pagination after filtering/sorting
+    this.updatePagination();
   }
 
-  sortBy(field: string): void {
+  sortBy(field: keyof Transport): void {
     if (this.sortField === field) {
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
     } else {
@@ -354,10 +375,11 @@ export class TransportComponent implements OnInit {
   // Pagination methods
   updatePagination(): void {
     this.totalPages = Math.ceil(this.filteredTransportArray.length / this.pageSize);
-    this.currentPage = Math.min(this.currentPage, this.totalPages || 1); // Ensure currentPage doesn't exceed totalPages
+    this.currentPage = Math.min(this.currentPage, this.totalPages || 1);
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.paginatedTransportArray = this.filteredTransportArray.slice(startIndex, endIndex);
+    this.updateSelectedTransports();
   }
 
   goToPage(page: number): void {
@@ -383,7 +405,7 @@ export class TransportComponent implements OnInit {
 
   getPageNumbers(): number[] {
     const pages: number[] = [];
-    const maxPagesToShow = 5; // Show up to 5 page numbers at a time
+    const maxPagesToShow = 5;
     let startPage = Math.max(1, this.currentPage - Math.floor(maxPagesToShow / 2));
     let endPage = Math.min(this.totalPages, startPage + maxPagesToShow - 1);
 
@@ -395,5 +417,47 @@ export class TransportComponent implements OnInit {
       pages.push(i);
     }
     return pages;
+  }
+
+  // Bulk Action Methods
+  toggleSelectAll(event: Event): void {
+    const checked = (event.target as HTMLInputElement).checked;
+    this.paginatedTransportArray.forEach(transport => transport.selected = checked);
+    this.updateSelectedTransports();
+    this.isAllSelected = checked;
+  }
+
+  onSelectionChange(): void {
+    this.updateSelectedTransports();
+    this.isAllSelected = this.paginatedTransportArray.every(transport => transport.selected);
+  }
+
+  private updateSelectedTransports(): void {
+    this.selectedTransports = this.TransportArray.filter(transport => transport.selected);
+  }
+
+  bulkDelete(): void {
+    if (this.selectedTransports.length === 0) {
+      alert('No transports selected for deletion!');
+      return;
+    }
+
+    if (!confirm(`Are you sure you want to delete ${this.selectedTransports.length} transport(s)?`)) {
+      return;
+    }
+
+    const deletePromises = this.selectedTransports.map(transport =>
+      this.transportService.deleteTransport(transport.id).toPromise()
+    );
+
+    Promise.all(deletePromises)
+      .then(() => {
+        alert(`${this.selectedTransports.length} transport(s) deleted successfully!`);
+        this.refreshData();
+      })
+      .catch(error => {
+        console.error('Error during bulk deletion:', error);
+        alert('An error occurred while deleting some transports. Please try again!');
+      });
   }
 }

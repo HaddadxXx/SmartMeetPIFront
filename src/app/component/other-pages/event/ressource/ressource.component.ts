@@ -1,226 +1,4 @@
-// import { Component } from '@angular/core';
-// import { FormsModule } from '@angular/forms';
-// import { CommonModule } from '@angular/common';
-// import { RessourceService } from '../../../../shared/services/ressource.service';
-// import { EventSectionComponent } from '../../../../shared/components/common/event-section/event-section.component';
-// import { CommonService } from '../../../../shared/services/common.service';
-// import { EventSkeletonComponent } from "../../../../shared/skeleton-loader/others-pages-skeleton/event-skeleton/event-skeleton.component";
-// import { FeatherComponent } from '../../../element-pages/icons/feather/feather.component';
-// import { FeatherIconComponent } from "../../../../shared/components/common/feather-icon/feather-icon.component";
-
-// @Component({
-//   selector: 'app-ressource',
-//   standalone: true,
-//   imports: [CommonModule, FormsModule, EventSectionComponent, EventSkeletonComponent, FeatherComponent, FeatherIconComponent],
-//   templateUrl: './ressource.component.html',
-//   styleUrl: './ressource.component.scss'
-// })
-// export class RessourceComponent {
-//   RessourceArray: any[] = [];
-//   name: string = '';
-//   typeR: string = '';
-//   quantite: number = 0;
-//   statutR: string = '';
-//   currentRessourceID: string = "";
-//   serverErrors: any = {};
-//   //////////////////////////
-//   showModall: boolean = false;
-//   selectedRessourceId: string = '';
-//   selectedSessionId: string = '';
-//   sessionArray: any[] = [];
-
-
-//   constructor(private ressourceService: RessourceService, public commonServices :CommonService) {
-//     this.getAllRessources();
-//   }
-
-//   /**
-//    * Enregistre ou met à jour une ressource
-//    */
-//   saveRess(): void {
-//     this.serverErrors = {};
-
-//    /* // Vérification des champs obligatoires
-//     if (!this.name.trim() || !this.typeR.trim() || this.quantite <= 0 || !this.statutR.trim()) {
-//       alert("Veuillez remplir tous les champs correctement !");
-//       return;
-//     }*/
-
-//     if (this.currentRessourceID === '') {
-//       this.register();
-//     } else {
-//       this.updateRess();
-//     }
-//   }
-
-//   /**
-//    * Création d'une nouvelle ressource
-//    */
-//   register(): void {
-//     const bodyData = this.getRessourcePayload();
-
-//     this.ressourceService.createRessource(bodyData).subscribe({
-//       next: () => {
-//         alert("Resource added successfully!");
-//         this.refreshData();
-//       },
-//       error: (error) => this.handleError(error)
-//     });
-//   }
-
-//   /**
-//    * Récupère toutes les ressources
-//    */
-//   getAllRessources(): void {
-//     this.ressourceService.getAllRessources().subscribe({
-//       next: (data: any) => {
-//         this.RessourceArray = data;
-//       },
-//       error: (error) => console.error("Error retrieving resources:", error)
-//     });
-//   }
-  
-//   /**
-//    * Prépare la mise à jour d'une ressource
-//    */
-//   setUpdateRess(data: any): void {
-//     this.name = data.name;
-//     this.typeR = data.typeR;
-//     this.quantite = data.quantite;
-//     this.statutR = data.statutR;
-//     this.currentRessourceID = data.id;
-//   }
-
-//   /**
-//    * Mise à jour d'une ressource existante
-//    */
-//   updateRess(): void {
-//     if (!this.currentRessourceID) {
-//       alert("Error: No resource ID selected!");
-//       return;
-//     }
-
-//     const bodyData = this.getRessourcePayload();
-
-//     this.ressourceService.updateRessource(this.currentRessourceID, bodyData).subscribe({
-//       next: () => {
-//         alert("Resource updated successfully!");
-//         this.refreshData();
-//       },
-//       error: (error) => this.handleError(error)
-//     });
-//   }
-
-//   /**
-//    * Suppression d'une ressource
-//    */
-//   setDeleteRess(data: any): void {
-//     if (!confirm("Do you really want to delete this resource?")) {
-//       return;
-//     }
-
-//     this.ressourceService.deleteRessource(data.id).subscribe({
-//       next: () => {
-//         alert("Resource deleted successfully !");
-//         this.refreshData();
-//       },
-//       error: (error) => console.error("Error during deletion:", error)
-//     });
-//   }
-
-//   /**
-//    * Réinitialise le formulaire
-//    */
-//   resetForm(): void {
-//     this.name = '';
-//     this.typeR = '';
-//     this.quantite = 0;
-//     this.statutR = '';
-//     this.currentRessourceID = '';
-//     this.serverErrors = {};
-//   }
-
-//   /**
-//    * Gère les erreurs du backend et met à jour `serverErrors`
-//    */
-//   private handleError(error: any): void {
-//     console.error("Erreur:", error);
-//     if (error.status === 400) {
-//       this.serverErrors = error.error;
-//     } else {
-//       alert("An error occurred, please try again!");
-//     }
-//   }
-
-//   /**
-//    * Récupère l'objet ressource à envoyer à l'API
-//    */
-//   private getRessourcePayload(): any {
-//     return {
-//       name: this.name.trim(),
-//       typeR: this.typeR.trim(),
-//       quantite: this.quantite,
-//       statutR: this.statutR.trim()
-//     };
-//   }
-
-//   /**
-//    * Rafraîchit la liste des ressources et réinitialise le formulaire
-//    */
-//   private refreshData(): void {
-//     this.getAllRessources();
-//     this.resetForm();
-//   }
-
-//   // Ouvrir la modal et charger les événements
-//   // openAffectationModall(ressource: any) {
-//   //   this.selectedRessourceId = ressource.id;
-//   //   this.showModall = true;
-
-//   //   this.ressourceService.getAllSessions().subscribe((resultData: any) => {
-//   //     this.sessionArray = resultData;
-//   //   });
-//   // }
-//   openAffectationModall(ressource: any) {
-//     this.selectedRessourceId = ressource.id;
-//     this.showModall = true;
-
-//     this.ressourceService.getAllSessions().subscribe((resultData: any) => {
-//       this.sessionArray = resultData.map((session: any) => ({
-//         idSession: session.idSession, // Utiliser idSession
-//         titre: session.titre,         // Utiliser titre
-//         date: session.date           // Utiliser date
-//       }));
-//     });
-//   }
-
-//   // Fermer la modal
-//   closeModall() {
-//     this.showModall = false;
-//     this.selectedRessourceId = '';
-//     this.selectedSessionId = '';
-//   }
-
-//   // Affecter un transport à un événement
-//   affecterRessource() {
-//     if (!this.selectedRessourceId || !this.selectedSessionId) {
-//       alert("Please select a session!");
-//       return;
-//     }
-
-//     this.ressourceService.affecterRessource(this.selectedSessionId, this.selectedRessourceId)
-//       .subscribe(
-//         (resultData) => {
-//           alert("Ressource successfully assigned!");
-//           this.closeModall();
-//         },
-//         (error) => {
-//           console.error("Error during assignment:", error);
-//           alert("The ressource is already assigned to this session!");
-//         }
-//       );
-//   }
-// }import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RessourceService } from '../../../../shared/services/ressource.service';
@@ -237,10 +15,19 @@ import { isWithinInterval, parse, startOfDay, endOfDay } from 'date-fns';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { Chart, PieController, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Component, OnInit } from '@angular/core';
 
 // Register Chart.js components for the pie chart
 Chart.register(PieController, ArcElement, Tooltip, Legend);
+
+// Define the Ressource interface
+interface Ressource {
+  id: string;
+  name: string;
+  typeR: string;
+  quantite: number;
+  statutR: string;
+  selected?: boolean;
+}
 
 @Component({
   selector: 'app-ressource',
@@ -259,27 +46,31 @@ Chart.register(PieController, ArcElement, Tooltip, Legend);
   styleUrl: './ressource.component.scss'
 })
 export class RessourceComponent implements OnInit {
-  RessourceArray: any[] = [];
-  filteredRessourceArray: any[] = [];
-  paginatedRessourceArray: any[] = [];
+  RessourceArray: Ressource[] = [];
+  filteredRessourceArray: Ressource[] = [];
+  paginatedRessourceArray: Ressource[] = [];
   name: string = '';
   typeR: string = '';
   quantite: number = 0;
   statutR: string = '';
   currentRessourceID: string = '';
-  serverErrors: any = {};
+  serverErrors: { [key: string]: string } = {};
   showModall: boolean = false;
   selectedRessourceId: string = '';
   selectedSessionId: string = '';
-  sessionArray: any[] = [];
+  sessionArray: { idSession: string; titre: string; date: string }[] = [];
   viewDate: Date = new Date();
   calendarEvents: CalendarEvent[] = [];
-  selectedRessourceForCalendar: any = null;
+  selectedRessourceForCalendar: Ressource | null = null;
   filterStatus: string = '';
   filterType: string = '';
-  sortField: string = '';
+  sortField: keyof Ressource = '' as keyof Ressource;
   sortDirection: 'asc' | 'desc' = 'asc';
   stats: { available: number; reserved: number } = { available: 0, reserved: 0 };
+
+  // Bulk action properties
+  selectedResources: Ressource[] = [];
+  isAllSelected: boolean = false;
 
   // Pagination properties
   currentPage: number = 1;
@@ -346,8 +137,8 @@ export class RessourceComponent implements OnInit {
 
   getAllRessources(): void {
     this.ressourceService.getAllRessources().subscribe({
-      next: (data: any) => {
-        this.RessourceArray = data;
+      next: (data: Ressource[]) => {
+        this.RessourceArray = data.map((item: Ressource) => ({ ...item, selected: false }));
         this.calculateStats();
         this.applyFiltersAndSort();
         if (this.selectedRessourceForCalendar) {
@@ -358,7 +149,7 @@ export class RessourceComponent implements OnInit {
     });
   }
 
-  setUpdateRess(data: any): void {
+  setUpdateRess(data: Ressource): void {
     this.name = data.name;
     this.typeR = data.typeR;
     this.quantite = data.quantite;
@@ -382,7 +173,7 @@ export class RessourceComponent implements OnInit {
     });
   }
 
-  setDeleteRess(data: any): void {
+  setDeleteRess(data: Ressource): void {
     if (!confirm('Do you really want to delete this resource?')) {
       return;
     }
@@ -426,18 +217,20 @@ export class RessourceComponent implements OnInit {
   private refreshData(): void {
     this.getAllRessources();
     this.resetForm();
+    this.selectedResources = [];
+    this.isAllSelected = false;
   }
 
   // Calendar Integration
-  showCalendar(ressource: any): void {
+  showCalendar(ressource: Ressource): void {
     this.selectedRessourceForCalendar = ressource;
     this.loadCalendarEvents(ressource);
   }
 
-  loadCalendarEvents(ressource: any): void {
+  loadCalendarEvents(ressource: Ressource): void {
     this.ressourceService.getAssignments(ressource.id).subscribe({
-      next: (assignments: any[]) => {
-        this.calendarEvents = assignments.map((assignment: any) => {
+      next: (assignments: { date: string; titre: string }[]) => {
+        this.calendarEvents = assignments.map((assignment) => {
           const start = parse(assignment.date, 'yyyy-MM-dd', new Date());
           const end = parse(assignment.date, 'yyyy-MM-dd', new Date());
           return {
@@ -478,7 +271,7 @@ export class RessourceComponent implements OnInit {
     }
   }
 
-  openAffectationModall(ressource: any) {
+  openAffectationModall(ressource: Ressource): void {
     this.selectedRessourceId = ressource.id;
     this.showModall = true;
 
@@ -491,13 +284,13 @@ export class RessourceComponent implements OnInit {
     });
   }
 
-  closeModall() {
+  closeModall(): void {
     this.showModall = false;
     this.selectedRessourceId = '';
     this.selectedSessionId = '';
   }
 
-  affecterRessource() {
+  affecterRessource(): void {
     if (!this.selectedRessourceId || !this.selectedSessionId) {
       alert('Please select a session!');
       return;
@@ -545,18 +338,20 @@ export class RessourceComponent implements OnInit {
         const valueB = b[this.sortField];
         const direction = this.sortDirection === 'asc' ? 1 : -1;
 
-        if (typeof valueA === 'string') {
-          return valueA.localeCompare(valueB) * direction;
+        if (this.sortField === 'quantite') {
+          return ((valueA as number) - (valueB as number)) * direction;
+        } else {
+          return (valueA as string).localeCompare(valueB as string) * direction;
         }
-        return (valueA - valueB) * direction;
       });
     }
 
     this.filteredRessourceArray = filteredArray;
     this.updatePagination();
+    this.updateSelectedResources();
   }
 
-  sortBy(field: string): void {
+  sortBy(field: keyof Ressource): void {
     if (this.sortField === field) {
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
     } else {
@@ -581,6 +376,7 @@ export class RessourceComponent implements OnInit {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.paginatedRessourceArray = this.filteredRessourceArray.slice(startIndex, endIndex);
+    this.updateSelectedResources();
   }
 
   goToPage(page: number): void {
@@ -618,5 +414,47 @@ export class RessourceComponent implements OnInit {
       pages.push(i);
     }
     return pages;
+  }
+
+  // Bulk Action Methods
+  toggleSelectAll(event: Event): void {
+    const checked = (event.target as HTMLInputElement).checked;
+    this.paginatedRessourceArray.forEach(resource => resource.selected = checked);
+    this.updateSelectedResources();
+    this.isAllSelected = checked;
+  }
+
+  onSelectionChange(): void {
+    this.updateSelectedResources();
+    this.isAllSelected = this.paginatedRessourceArray.every(resource => resource.selected);
+  }
+
+  private updateSelectedResources(): void {
+    this.selectedResources = this.RessourceArray.filter(resource => resource.selected);
+  }
+
+  bulkDelete(): void {
+    if (this.selectedResources.length === 0) {
+      alert('No resources selected for deletion!');
+      return;
+    }
+
+    if (!confirm(`Are you sure you want to delete ${this.selectedResources.length} resource(s)?`)) {
+      return;
+    }
+
+    const deletePromises = this.selectedResources.map(resource =>
+      this.ressourceService.deleteRessource(resource.id).toPromise()
+    );
+
+    Promise.all(deletePromises)
+      .then(() => {
+        alert(`${this.selectedResources.length} resource(s) deleted successfully!`);
+        this.refreshData();
+      })
+      .catch(error => {
+        console.error('Error during bulk deletion:', error);
+        alert('An error occurred while deleting some resources. Please try again!');
+      });
   }
 }
