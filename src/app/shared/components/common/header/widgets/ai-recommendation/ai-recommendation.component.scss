@@ -1,0 +1,84 @@
+.ai-reco-container {
+  position: relative;
+  display: inline-block;
+
+  .ai-reco-btn {
+    background: transparent;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    padding: .5rem;
+    border-radius: 50%;
+    transition: background .2s;
+
+    &:hover {
+      background: rgba(255,255,255,0.1);
+    }
+  }
+
+  
+  .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: .6rem;
+    background: #ff5b5b;
+    color: #fff;
+    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-reco-popup {
+    position: absolute;
+    top: 100%;               /* juste sous le bouton */
+    left: 50%;               /* point de départ : milieu du conteneur */
+    transform: translateX(-50%); /* on décale de moitié la largeur */
+    min-width: 220px;
+    background: #fff;
+    border-radius: .25rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    padding: 0;
+    
+    .dropdown-header {
+      font-size: .85rem;
+      padding: .5rem 1rem;
+      border-bottom: 1px solid #eaeaea;
+    }
+    .ai-reco-item {
+      padding: .5rem 1rem;
+
+      .avatar {
+        width: 36px;
+        height: 36px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 50%;
+      }
+      .info {
+        font-size: .85rem;
+      }
+      &:hover {
+        background: #f5f5f5;
+      }
+    }
+    .dropdown-footer {
+      padding: .5rem 0;
+      border-top: 1px solid #eaeaea;
+
+      a {
+        font-size: .8rem;
+        color: #007bff;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

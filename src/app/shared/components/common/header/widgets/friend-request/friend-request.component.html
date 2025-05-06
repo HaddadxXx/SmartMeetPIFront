@@ -12,20 +12,27 @@
         </div>
         <div class="dropdown-content">
             <ul class="friend-list">
-                @for (item of friendRequest; track item) {
+                @for (request of friendRequests; track request.id) {
                     <li>
                         <div class="media">
-                            <img [src]="item.url" alt="user">
-                            <div class="media-body">
-                                <div>
-                                    <h5 class="mt-0">Paige Turner</h5>
-                                    <h6> 1 mutual friend</h6>
+                            @if (request.senderDetails) {
+                                <div 
+                                class="profile-img" 
+                                [style.background-image]="getProfileImage(request.senderDetails.profilePicture)">
+                              </div>
+                                <div class="media-body">
+                                    <div>
+                                        <h5 class="mt-0">{{ request.senderDetails.firstName || 'Utilisateur inconnu' }}</h5>
+                                        <h6>1 mutual friend</h6> <!-- À adapter si vous avez les données -->
+                                    </div>
                                 </div>
-                            </div>
+                            } @else {
+                                <p>Chargement des détails...</p>
+                            }
                         </div>
                         <div class="action-btns">
-                            <button type="button" class="btn btn-solid" (click)="isOpen = false">confirm</button>
-                            <button type="button" class="btn btn-outline ms-1" (click)="isOpen = false">delete</button>
+                            <button type="button" class="btn btn-solid" (click)="confirmRequest(request.id)">confirm</button>
+                            <button type="button" class="btn btn-outline ms-1" (click)="deleteRequest(request.id)">delete</button>
                         </div>
                     </li>
                 }

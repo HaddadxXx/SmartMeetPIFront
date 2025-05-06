@@ -1,0 +1,37 @@
+<!-- Bouton qui déclenche la popup -->
+<div class="ai-reco-container" (click)="openPopup()" appClickOutSide (clickOutside)="closePopup()">
+    <button class="ai-reco-btn header-btn">
+      <app-feather-icon
+        [icons]="'zap'"
+        [class]="'icon-light stroke-width-3 iw-16 ih-16'">
+      </app-feather-icon>
+      <span *ngIf="recommendedUsers.length" class="badge">{{ recommendedUsers.length }}</span>
+    </button>
+  
+    <!-- Popup de recommandations -->
+    <div *ngIf="isPopupOpen" class="ai-reco-popup dropdown-menu dropdown-menu-right show">
+      <h6 class="dropdown-header">Ai Recommendations for you !</h6>
+      <ul class="list-unstyled mb-0">
+        <li *ngFor="let user of recommendedUsers; trackBy: trackByFn" class="ai-reco-item">
+          <a [routerLink]="['/profile', user.id]" (click)="closePopup($event)" class="d-flex align-items-center">
+            <div class="avatar" [ngStyle]="{'background-image': getProfileImage(user.profilePicture)}"></div>
+            <div class="info ml-2">
+              <strong>{{ user.firstName }} {{ user.lastName }}</strong>
+              <small class="text-muted d-block">{{ user.email }}</small>
+            </div>
+          </a>
+        </li>
+        <li *ngIf="!recommendedUsers.length" class="text-center py-2">
+          <small class="text-muted">No suggestions yet</small>
+        </li>
+      </ul>
+      <div class="dropdown-footer text-center">
+        <a (click)="openFullScreenPopup()">See all</a>
+      </div>
+    </div>
+  </div>
+  <app-popup-recommendation 
+    *ngIf="isFullScreenPopupOpen" 
+    [recommendedUsers]="recommendedUsers" 
+    (close)="closeFullScreenPopup()">
+  </app-popup-recommendation>

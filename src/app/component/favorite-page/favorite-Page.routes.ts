@@ -5,7 +5,7 @@ import { PageHomeComponent } from "./page-home/page-home.component";
 import { PageListingComponent } from "./page-listing/page-listing.component";
 import { ReviewComponent } from "./review/review.component";
 import { GroupListingComponent } from "./group-listing/group-listing.component";
-
+import { CallComponent } from "./page-home/zego/zego-call.component";
 export default [
     {
         path: '',
@@ -41,6 +41,8 @@ export default [
                 path: 'gallery/:groupId',
                 component: FavoritePhotosComponent,
             },
+            { path: 'call', component: CallComponent },
+            
            
         ]
     },

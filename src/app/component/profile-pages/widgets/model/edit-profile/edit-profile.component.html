@@ -1,91 +1,110 @@
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Edit Profile</h5>
-        <button type="button" class="btn-close" (click)="modalServices.dismissAll()"></button>
-      </div>
-  
-      <div class="modal-body">
-        <div class="edit-profile-sec">
-  
-          <!-- Profile Image -->
-          <div class="profile-wrap">
-            <div class="edit-title">
-              <div class="icon">
-                <app-feather-icon [icons]="'image'" [class]="'iw-16 ih-16'"></app-feather-icon>
-              </div>
-              <h5>Edit profile image</h5>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Edit Profile</h5>
+      <button type="button" class="btn-close" (click)="modalServices.dismissAll()"></button>
+    </div>
+
+    <div class="modal-body">
+      <div class="edit-profile-sec">
+
+        <!-- Profile Image -->
+        <div class="profile-wrap">
+          <div class="edit-title">
+            <div class="icon">
+              <app-feather-icon [icons]="'image'" class="iw-16 ih-16"></app-feather-icon>
             </div>
-            <div class="edit-content">
-              <div class="profile-pic">
-                <div class="bg-size"
-                     [ngStyle]="{'background-image': 'url(' + imagePreviewUrl + ')'}"
-                     style="background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
-                  <img [src]="imagePreviewUrl" class="img-fluid bg-img" alt="" style="display: none;">
-                </div>
-                <input type="file" (change)="onFileSelected($event)" />
+            <h5>Edit profile image</h5>
+          </div>
+          <div class="edit-content">
+            <div class="profile-pic">
+              <div
+                class="bg-size"
+                [ngStyle]="{ 'background-image': 'url(' + imagePreviewUrl + ')' }"
+                style="background-size: cover; background-position: center; background-repeat: no-repeat;"
+              >
+                <img [src]="imagePreviewUrl" class="img-fluid bg-img" alt="" style="display: none;">
               </div>
+              <input type="file" (change)="onFileSelected($event)" />
             </div>
           </div>
-  
-          <!-- First Name -->
-          <div class="profile-wrap">
-            <div class="edit-title">
-              <div class="icon">
-                <app-feather-icon [icons]="'user'" [class]="'iw-16 ih-16'"></app-feather-icon>
-              </div>
-              <h5>First Name</h5>
-            </div>
-            <div class="edit-content">
-              <input type="text" class="form-control" formControlName="firstName" />
-            </div>
-          </div>
-  
-          <!-- Last Name -->
-          <div class="profile-wrap">
-            <div class="edit-title">
-              <div class="icon">
-                <app-feather-icon [icons]="'user'" [class]="'iw-16 ih-16'"></app-feather-icon>
-              </div>
-              <h5>Last Name</h5>
-            </div>
-            <div class="edit-content">
-              <input type="text" class="form-control" formControlName="lastName" />
-            </div>
-          </div>
-  
-          <!-- Expertise Area -->
-          <div class="profile-wrap">
-            <div class="edit-title">
-              <div class="icon">
-                <app-feather-icon [icons]="'briefcase'" [class]="'iw-16 ih-16'"></app-feather-icon>
-              </div>
-              <h5>Expertise Area</h5>
-            </div>
-            <div class="edit-content">
-              <input type="text" class="form-control" formControlName="expertiseArea" />
-            </div>
-          </div>
-  
-          <!-- Interests -->
-          <div class="profile-wrap">
-            <div class="edit-title">
-              <div class="icon">
-                <app-feather-icon [icons]="'heart'" [class]="'iw-16 ih-16'"></app-feather-icon>
-              </div>
-              <h5>Interests</h5>
-            </div>
-            <div class="edit-content">
-              <input type="text" class="form-control" formControlName="interests" />
-            </div>
-          </div>
-  
         </div>
-      </div>
-  
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-solid">Save Changes</button>
+
+        <!-- First Name -->
+        <div class="profile-wrap">
+          <div class="edit-title">
+            <div class="icon">
+              <app-feather-icon [icons]="'user'" class="iw-16 ih-16"></app-feather-icon>
+            </div>
+            <h5>First Name</h5>
+          </div>
+          <div class="edit-content">
+            <input type="text" class="form-control" formControlName="firstName" />
+          </div>
+        </div>
+
+        <!-- Last Name -->
+        <div class="profile-wrap">
+          <div class="edit-title">
+            <div class="icon">
+              <app-feather-icon [icons]="'user'" class="iw-16 ih-16"></app-feather-icon>
+            </div>
+            <h5>Last Name</h5>
+          </div>
+          <div class="edit-content">
+            <input type="text" class="form-control" formControlName="lastName" />
+          </div>
+        </div>
+
+        <!-- Expertise Area -->
+        <div class="profile-wrap">
+          <div class="edit-title">
+            <div class="icon">
+              <app-feather-icon [icons]="'briefcase'" class="iw-16 ih-16"></app-feather-icon>
+            </div>
+            <h5>Expertise Area</h5>
+          </div>
+          <div class="edit-content">
+            <input type="text" class="form-control" formControlName="expertiseArea" />
+          </div>
+        </div>
+
+        <!-- Interests -->
+        <div class="profile-wrap">
+          <div class="edit-title">
+            <div class="icon">
+              <app-feather-icon [icons]="'heart'" class="iw-16 ih-16"></app-feather-icon>
+            </div>
+            <h5>Interests</h5>
+          </div>
+          <div class="edit-content">
+            <input type="text" class="form-control" formControlName="interests" />
+          </div>
+        </div>
+
+        <!-- About Me -->
+        <div class="profile-wrap">
+          <div class="edit-title">
+            <div class="icon">
+              <app-feather-icon [icons]="'edit-3'" class="iw-16 ih-16"></app-feather-icon>
+            </div>
+            <div>
+              <p class="small text-muted mb-1">
+                Racontez-nous votre histoire en quelques lignes pour inspirer la communauté !
+              </p>
+              <h5>About Me</h5>
+            </div>
+          </div>
+          <div class="edit-content">
+            <textarea class="form-control" formControlName="aboutMe" rows="3"></textarea>
+          </div>
+        </div>
+
       </div>
     </div>
-  </form>
-  
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-solid">Save Changes</button>
+    </div>
+  </div>
+</form>

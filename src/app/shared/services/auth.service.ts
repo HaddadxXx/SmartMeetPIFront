@@ -41,6 +41,27 @@ export class AuthService {
   getCurrentUser(): Observable<any> {
     return this.http.get<any>(this.apiUrlme, { withCredentials: true });
   }
+ // Récupérer un utilisateur par son ID
+ getUserById(id: string): Observable<any> {
+  return this.http.get<any>(`http://localhost:8080/api/users/${id}`);
+}
 
+// 3. Récupère la liste des 5 IDs recommandés (stockés) pour un user
+private apiRecos = 'http://localhost:8080/api/recommendations/ids';
+  getRecommendationIds(userId: string): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiRecos}/${userId}`);
+  }
+
+  sendCallRequest(from: string, to: string): Observable<any> {
+    return this.http.post(`http://localhost:8080/api/call-requests/send`, null, {
+      params: { from, to }
+    });
+  }
+
+  checkMutualRequests(user1: string, user2: string): Observable<boolean> {
+    return this.http.get<boolean>(`http://localhost:8080/api/call-requests/check-mutual`, {
+      params: { user1, user2 }
+    });
+  }
 
 }

@@ -51,7 +51,7 @@ export class MessengerSectionComponent {
     const selectedUser = this.chatUser.find(data => data.id === userId);
     if (selectedUser) {
       this.messageData = selectedUser;
-      console.log("il est la", selectedUser)
+      console.log("il es", selectedUser)
 
       this.selectedConversationId = this.generateConversationId(userId);
 console.log("l'id conv : ",this.selectedConversationId)

@@ -41,6 +41,7 @@ export class EditProfileComponent {
       lastName: [''],
       expertiseArea: [''],
       interests: [''],
+      aboutMe:[''],
     });
 
     this.authService.getCurrentUser().subscribe({
@@ -51,6 +52,7 @@ export class EditProfileComponent {
           lastName: user.lastName,
           expertiseArea: user.expertiseArea,
           interests: user.interests,
+          aboutMe : user.aboutMe
         });
       },
       error: (err) => {

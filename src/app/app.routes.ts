@@ -14,7 +14,8 @@ import { NgModule } from '@angular/core';
 import { SignupComponent } from '../app/auth/auth-login/signup.component';
 import { VerifComponent } from '../app/auth/auth-login/verif.component';
 import { PageHomeComponent } from './component/favorite-page/page-home/page-home.component';
-
+import { ChatContentComponent } from './component/other-pages/messenger/messenger-section/chat-content/chat-content.component';
+import { CallComponent } from './component/favorite-page/page-home/zego/zego-call.component';
 export const routes: Routes = [
   { path: 'group', redirectTo: 'favorite/group-listing', pathMatch: 'full' },
   
@@ -25,6 +26,7 @@ export const routes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'auth/verif', component: VerifComponent },
+  { path: 'call', component: CallComponent },
 
  
 
@@ -51,7 +53,15 @@ export const routes: Routes = [
     canActivate: [AdminGuard],
 
   },
+  { 
+    path: 'video-call', 
+    component: ChatContentComponent // Remplacez par votre composant vidéo
+  },
 
-  { path: '**', redirectTo: 'company/404' }
+  { path: '**', redirectTo: 'company/404' },
+  
+ 
+
+
 
 ];

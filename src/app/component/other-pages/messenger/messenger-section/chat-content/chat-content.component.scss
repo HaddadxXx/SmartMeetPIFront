@@ -1,0 +1,6 @@
+.messages-content {
+    height: 400px; /* ou ce que tu veux */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse;
+}

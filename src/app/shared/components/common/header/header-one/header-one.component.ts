@@ -12,12 +12,13 @@ import { NotificationComponent } from '../widgets/notification/notification.comp
 import { UserProfileComponent } from '../widgets/user-profile/user-profile.component';
 import { CommonService } from '../../../../services/common.service';
 import { ClickOutSideDirective } from '../../../../directives/click-out-side.directive';
+import { AiRecommendationComponent } from '../widgets/ai-recommendation/ai-recommendation.component';
 
 @Component({
   selector: 'app-header-one',
   standalone: true,
   imports: [BrandLogoComponent, RouterModule, SearchBoxComponent, FriendRequestComponent, MessagesComponent, 
-    ModeComponent, MobileMenuComponent, NotificationComponent, UserProfileComponent, FeatherIconComponent,ClickOutSideDirective],
+    ModeComponent, MobileMenuComponent, NotificationComponent, UserProfileComponent, FeatherIconComponent,ClickOutSideDirective,AiRecommendationComponent],
   templateUrl: './header-one.component.html',
   styleUrl: './header-one.component.scss'
 })
