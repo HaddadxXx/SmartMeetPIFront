@@ -1,14 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { post } from '../../interface/post';
+import { catchError, Observable, of, throwError } from 'rxjs';
+import { tap, timeout } from 'rxjs/operators';
+import { post, Story } from '../../interface/post';
 import { AuthService } from '../auth.service';
-import { throwError } from 'rxjs';
-import {  HttpParams } from '@angular/common/http';
-import { catchError } from 'rxjs';
-import { of } from 'rxjs';
-import {  timeout, tap } from 'rxjs/operators';
-import { Story } from '../../interface/post';
 @Injectable({
   providedIn: 'root'
 })
@@ -329,7 +324,18 @@ private apiUrlstory = 'http://localhost:9000/api';
   deleteStory(id: string) {
     return this.http.delete(`/api/stories/${id}`); // adapte l’URL si besoin
   }
-  
+  private baseUrlc = 'http://localhost:9000/posts';
+
+
+  getPostCount(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrlc}/count`);
+    
+
+  }
+  getPostsCountPerDay(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrlc}/count-per-day`);
+  }
+
   
 }
 
