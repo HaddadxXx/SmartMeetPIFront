@@ -34,6 +34,7 @@
 
   .ai-reco-popup {
     position: absolute;
+    width: 320px;
     top: 100%;               /* juste sous le bouton */
     left: 50%;               /* point de départ : milieu du conteneur */
     transform: translateX(-50%); /* on décale de moitié la largeur */

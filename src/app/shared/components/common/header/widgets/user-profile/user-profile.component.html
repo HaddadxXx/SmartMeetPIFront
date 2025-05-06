@@ -2,12 +2,20 @@
     <a class="main-link" href="javascript:void(0)" (click)="isOpen = !isOpen" [class.show]="isOpen">
         <app-feather-icon [icons]="'user'"
             [class]="'icon-light stroke-width-3 d-sm-none d-block iw-16 ih-16'"></app-feather-icon>
-        <div class="media d-none d-sm-flex">
-            <div class="user-img"
-                style="background-image: url(assets/images/user-sm/1234.jpg); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
-                <img src="assets/images/user-sm/1.jpg" class="img-fluid  bg-img" alt="user" style="display: none;">
-                <span class="available-stats online"></span>
-            </div>
+            <div class="media d-none d-sm-flex">
+                <div 
+                  class="user-img"
+                  [ngStyle]="{
+                    'background-image': getProfileImage(currentUser?.profilePicture),
+                    'background-size': 'cover',
+                    'background-position': 'center center',
+                    'background-repeat': 'no-repeat',
+                    'display': 'block'
+                  }">
+                  <img src="assets/images/user-sm/1.jpg" class="img-fluid bg-img" alt="user" style="display: none;">
+                  <span class="available-stats online"></span>
+                
+              </div>
             <div class="media-body d-none d-md-block">
                 <h4>{{currentUser.firstName}} {{currentUser.lastName}} </h4>
                 <span>active now</span>

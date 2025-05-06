@@ -58,13 +58,7 @@ export class GroupListingComponent {
   }
 
 
-  // // Gère le clic sur un onglet
-  // onTabClick(tabName: string): void {
-  //   if (tabName === 'create group') {
-  //     console.log('it works')
-  //     this.openGroupPopup(); // Appeler la méthode pour ouvrir le popup
-  //   }
-  // }
+
 
  
    // Ouvre le popup modal
@@ -117,8 +111,21 @@ onTabClick(tabName: string): void {
 loadGroupsByTab(tab: string, memberId: string): void {
   if (tab === 'your groups') {
     this.loadGroupsByOwner(memberId);
-  } else if (tab === 'followed groups') {
+  } 
+  else if (tab === 'followed groups') {
     this.loadGroups(memberId);
+  } 
+  else if (tab === 'top suggestions') {
+    // ===> PARTIE AJOUTÉE : top suggestions (groupes auxquels il n'appartient pas)
+    this.groupService.getAllExceptMember(memberId).subscribe({
+      next: (data) => {
+        this.groups = data;
+        console.log('getAllExceptMember Groupes récupérés:', this.groups);
+      },
+      error: (error) => {
+        console.error('getAllExceptMember Erreur lors du chargement des groupes', error);
+      }
+    });
   }
 }
 
@@ -136,17 +143,6 @@ ngOnInit(): void {
     }
   });
 }
-// ngOnInit(): void {
-//   this.authService.getCurrentUser().subscribe({
-//     next: (user) => {
-//       const memberId = user.id;
-//       this.loadGroups(memberId);
-//     },
-//     error: (error) => {
-//       console.error('Erreur lors de la récupération de l’utilisateur', error);
-//     }
-//   });
-// }
 
 
 loadGroups(memberId: string): void {
@@ -201,31 +197,3 @@ navigateToPageHome(groupId: number) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- // Gère la création d'un groupe
-  // onGroupCreated(): void {
-  //   this.showPopup = false; // Ferme le popup
-  //   console.log('Le groupe a été créé avec succès !');
-  //   // Vous pouvez également rafraîchir la liste des groupes ici si nécessaire
-  //  }

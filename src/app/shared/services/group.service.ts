@@ -54,7 +54,9 @@ export class GroupService {
   }
 
 
-
+  getAllExceptMember(memberId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/all-except/${memberId}`, { withCredentials: true });
+  }
 
 
 }

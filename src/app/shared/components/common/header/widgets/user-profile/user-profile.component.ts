@@ -3,10 +3,11 @@ import { Router, RouterModule } from '@angular/router';
 import { FeatherIconComponent } from '../../../feather-icon/feather-icon.component';
 import { ClickOutSideDirective } from '../../../../../directives/click-out-side.directive';
 import { AuthService } from '../../../../../services/auth.service';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [FeatherIconComponent, RouterModule,ClickOutSideDirective,],
+  imports: [FeatherIconComponent, RouterModule,ClickOutSideDirective,CommonModule],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss'
 })
@@ -39,5 +40,9 @@ export class UserProfileComponent {
     localStorage.clear();
     this.router.navigateByUrl("/auth/login");
   }
-
+  getProfileImage(profilePicture: string | null): string {
+    return profilePicture 
+      ? `url('http://localhost:8080/uploads/${profilePicture}')` 
+      : `url('http://localhost:8080/uploads/defaultuser.jpg')`;
+  }
 }
